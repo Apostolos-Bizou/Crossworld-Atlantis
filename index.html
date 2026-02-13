@@ -3,28 +3,16 @@
 <!--
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║  ATLANTIS ERP - Crossworld Marine Services                                    ║
-║  VERSION: v2.34 PERFECT - THE ABSOLUTE FINAL VERSION                          ║
+║  VERSION: v2.35 ANALYTICS #1 - CREW CHANGES (FIXED)                           ║
 ╠═══════════════════════════════════════════════════════════════════════════════╣
-║  COMPLETE VERSION HISTORY (v2.6 → v2.34)                                      ║
-║  ─────────────────────────────────────────────────────────────────────────────║
-║  v2.22: Assignment & Proposal - RFA Matrix, Crew Pool, Eligibility            ║
-║  v2.23: Supernumerary Personnel - Non-crew riders management                  ║
-║  v2.24-v2.28: Supernumerary features (Modal, Actions, Documents, Add)         ║
-║  v2.29: Crew Changes Module - Complete relief planning                        ║
-║  v2.30-v2.31: Crew Change Details & Edit functionality                        ║
-║  v2.32: Port Agents Filter - Interactive port filtering                       ║
-║  v2.33: Alerts & Blockers Detail - Critical issue tracking                    ║
-║  v2.34: Take Action Modal - Complete alert resolution workflow                ║
-║                                                                               ║
-║  🏆🏆🏆 22/22 MODULES - 100% COMPLETE! 🏆🏆🏆                                  ║
-║  ✨✨✨ EVERY BUTTON FUNCTIONAL! ✨✨✨                                          ║
-║  💎💎💎 PRODUCTION PERFECT! 💎💎💎                                            ║
+║  v2.35: Analytics Tab #1 - Crew Changes (Charts working!)                     ║
+║  🏆 22/22 MODULES + 10/22 ANALYTICS TABS 🏆                                   ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATLANTIS v2.34 PERFECT - ABSOLUTE FINAL | Crossworld Marine</title>
+    <title>ATLANTIS v2.35 Analytics #1 Crew Changes WORKING | Crossworld Marine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -1641,7 +1629,7 @@
                     <i data-lucide="chevron-down" style="width:16px;height:16px;opacity:0.6;"></i>
                 </div>
                 <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);text-align:center;">
-                    <span style="font-size:0.75rem;color:rgba(255,255,255,0.9);letter-spacing:0.05em;font-weight:600;">ATLANTIS_v2_34_PERFECT_ABSOLUTE_FINAL</span>
+                    <span style="font-size:0.75rem;color:rgba(255,255,255,0.9);letter-spacing:0.05em;font-weight:600;">ATLANTIS_v2_35_ANALYTICS_1_WORKING</span>
                 </div>
             </div>
         </aside>
@@ -2530,6 +2518,7 @@
                         <button class="analytics-tab" onclick="switchAnalyticsTab('documents')" data-tab="documents"><i data-lucide="file-check"></i>Documents</button>
                         <button class="analytics-tab" onclick="switchAnalyticsTab('travel')" data-tab="travel"><i data-lucide="plane"></i>Travel</button>
                         <button class="analytics-tab" onclick="switchAnalyticsTab('evaluations-analytics')" data-tab="evaluations-analytics"><i data-lucide="star"></i>Evaluations</button>
+                        <button class="analytics-tab" onclick="switchAnalyticsTab('crew-changes-analytics')" data-tab="crew-changes-analytics"><i data-lucide="repeat"></i>Crew Changes</button>
                         <button class="analytics-tab" onclick="switchAnalyticsTab('api')" data-tab="api"><i data-lucide="code"></i>API Hub</button>
                     </div>
 
@@ -3289,6 +3278,86 @@
                                 </div>
                                 <p style="margin:0 0 12px;color:#6d28d9;font-size:0.95rem;"><strong>Reliability</strong> scores need attention in Engine department (avg 3.8)</p>
                                 <div style="display:flex;align-items:center;gap:8px;"><span style="color:#7c3aed;font-weight:600;">📊 Recommended: Mentorship program</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: Crew Changes Analytics -->
+                    <div class="analytics-tab-content" id="tab-crew-changes-analytics">
+                        <!-- KPI Cards Row -->
+                        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:24px;">
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#10b981,#34d399);"><i data-lucide="repeat"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" data-count="12">0</div>
+                                    <div class="kpi-card-3d-label">Total Crew Changes</div>
+                                    <div class="kpi-card-3d-change up"><i data-lucide="trending-up"></i>Next 30 days</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#3b82f6,#60a5fa);"><i data-lucide="arrow-up"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" data-count="7">0</div>
+                                    <div class="kpi-card-3d-label">Embarkations</div>
+                                    <div class="kpi-card-3d-change neutral"><i data-lucide="activity"></i>Scheduled</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#ef4444,#f87171);"><i data-lucide="arrow-down"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" data-count="5">0</div>
+                                    <div class="kpi-card-3d-label">Sign-offs</div>
+                                    <div class="kpi-card-3d-change neutral"><i data-lucide="activity"></i>Scheduled</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);"><i data-lucide="alert-triangle"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" data-count="2">0</div>
+                                    <div class="kpi-card-3d-label">Active Alerts</div>
+                                    <div class="kpi-card-3d-change down"><i data-lucide="trending-down"></i>Require action</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Charts Row -->
+                        <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:24px;">
+                            <div class="chart-card-3d">
+                                <div class="chart-card-3d-header">
+                                    <div><h3>Crew Changes by Port</h3><span>Distribution across major ports</span></div>
+                                </div>
+                                <div class="chart-card-3d-body" style="height:300px;"><canvas id="crewChangesByPortChart"></canvas></div>
+                            </div>
+                            <div class="chart-card-3d">
+                                <div class="chart-card-3d-header">
+                                    <div><h3>Status Breakdown</h3><span>Current status overview</span></div>
+                                </div>
+                                <div class="chart-card-3d-body" style="height:300px;"><canvas id="crewChangesStatusChart"></canvas></div>
+                            </div>
+                        </div>
+
+                        <!-- Summary Table -->
+                        <div class="chart-card-3d">
+                            <div class="chart-card-3d-header">
+                                <div><h3>Upcoming Crew Changes Summary</h3><span>Next 30 days overview</span></div>
+                            </div>
+                            <div style="overflow-x:auto;">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Seafarer</th>
+                                            <th>Rank</th>
+                                            <th>Vessel</th>
+                                            <th>Port</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="crewChangesTableBody">
+                                        <!-- Will be filled by JavaScript -->
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -13367,6 +13436,11 @@ Report generated by ATLANTIS ERP`;
                 initEvalAnalyticsCharts();
             }
             
+            // Initialize crew changes analytics charts when tab is selected
+            if (tabName === 'crew-changes-analytics' && !chartInstances.crewChangesByPort) {
+                initCrewChangesCharts();
+            }
+            
             lucide.createIcons();
         }
         
@@ -13398,6 +13472,7 @@ Report generated by ATLANTIS ERP`;
             initTravelCharts();
             initEvalAnalyticsCharts();
             initComplaintsAnalyticsCharts();
+            initCrewChangesCharts();
             
             animateKPICounters();
         }
@@ -13785,6 +13860,73 @@ Report generated by ATLANTIS ERP`;
             createTopDestinationsChart();
             createRouteCostChart();
             createMonthlyBookingsChart();
+        }
+        
+        function initCrewChangesCharts() {
+            createCrewChangesByPortChart();
+            createCrewChangesStatusChart();
+            populateCrewChangesTable();
+        }
+        
+        function createCrewChangesByPortChart() {
+            const ctx = document.getElementById('crewChangesByPortChart');
+            if (!ctx) return;
+            chartInstances.crewChangesByPort = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Piraeus', 'Singapore', 'Rotterdam', 'Dubai'],
+                    datasets: [{
+                        label: 'Crew Changes',
+                        data: [3, 5, 2, 2],
+                        backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'],
+                        borderRadius: 8,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
+                }
+            });
+        }
+        
+        function createCrewChangesStatusChart() {
+            const ctx = document.getElementById('crewChangesStatusChart');
+            if (!ctx) return;
+            chartInstances.crewChangesStatus = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Confirmed', 'Planning'],
+                    datasets: [{
+                        data: [6, 6],
+                        backgroundColor: ['#10b981', '#3b82f6'],
+                        borderWidth: 0,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: { legend: { display: true, position: 'bottom' } }
+                }
+            });
+        }
+        
+        function populateCrewChangesTable() {
+            const tableBody = document.getElementById('crewChangesTableBody');
+            if (!tableBody || !MOCK_CREW_CHANGES) return;
+            tableBody.innerHTML = '';
+            MOCK_CREW_CHANGES.forEach(function(cc) {
+                const row = document.createElement('tr');
+                const typeClass = cc.type === 'embark' ? 'badge-success' : 'badge-danger';
+                const typeLabel = cc.type === 'embark' ? 'Embarkation' : 'Sign-off';
+                const statusClass = cc.status === 'confirmed' ? 'badge-success' : 'badge-primary';
+                row.innerHTML = '<td>' + cc.date + '</td><td>' + cc.name + '</td><td>' + cc.rank + '</td><td>' + cc.vessel + '</td><td>' + cc.port + '</td><td><span class="badge ' + typeClass + '">' + typeLabel + '</span></td><td><span class="badge ' + statusClass + '">' + cc.status + '</span></td>';
+                tableBody.appendChild(row);
+            });
         }
         
         function exportTravelAnalytics() {
