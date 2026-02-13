@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATLANTIS Reports & KPIs Control Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        :root {
+            --primary: #00495D;
+            --primary-dark: #003544;
+            --accent: #0891B2;
+            --accent-light: #22D3EE;
+            --white: #FFFFFF;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-800: #1E293B;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --purple: #8B5CF6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+            color: var(--gray-800);
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 32px;
+            border-radius: 16px;
+            margin-bottom: 32px;
+            box-shadow: 0 20px 40px rgba(0,73,93,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(34,211,238,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .header-content { position: relative; z-index: 1; }
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .header-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        .header-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .header-stat {
+            background: rgba(255,255,255,0.1);
+            padding: 16px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .header-stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-light);
+        }
+        .header-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        /* KPI Dashboard - 3D Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        .kpi-card {
+            background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.08),
+                0 1px 3px rgba(0,0,0,0.05),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+        }
+        .kpi-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 20px 50px rgba(0,0,0,0.12),
+                0 5px 10px rgba(0,0,0,0.08),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+        }
+        .kpi-card.success::before { background: linear-gradient(90deg, var(--success) 0%, #34D399 100%); }
+        .kpi-card.warning::before { background: linear-gradient(90deg, var(--warning) 0%, #FDB71A 100%); }
+        .kpi-card.danger::before { background: linear-gradient(90deg, var(--danger) 0%, #F87171 100%); }
+        .kpi-card.purple::before { background: linear-gradient(90deg, var(--purple) 0%, #A78BFA 100%); }
+        
+        .kpi-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .kpi-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            box-shadow: 0 8px 16px rgba(8,145,178,0.3);
+        }
+        .kpi-icon svg { width: 24px; height: 24px; color: var(--white); }
+        .kpi-trend {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .kpi-trend.up {
+            background: rgba(16,185,129,0.1);
+            color: var(--success);
+        }
+        .kpi-trend.down {
+            background: rgba(239,68,68,0.1);
+            color: var(--danger);
+        }
+        .kpi-trend svg { width: 14px; height: 14px; }
+        
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 4px;
+            font-variant-numeric: tabular-nums;
+        }
+        .kpi-label {
+            font-size: 0.9rem;
+            color: #64748B;
+            font-weight: 500;
+        }
+        .kpi-footer {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #64748B;
+        }
+
+        /* Report Categories */
+        .report-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        .category-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .category-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border-color: var(--accent);
+        }
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .category-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+        }
+        .category-icon svg { width: 28px; height: 28px; color: var(--accent); }
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+        .category-count {
+            font-size: 0.9rem;
+            color: #64748B;
+            margin-top: 4px;
+        }
+        .category-list {
+            list-style: none;
+            margin-top: 16px;
+        }
+        .category-list li {
+            padding: 8px 0;
+            color: #64748B;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .category-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        /* Modern Data Table */
+        .data-table-container {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 
+                0 20px 60px rgba(0,0,0,0.08),
+                0 1px 3px rgba(0,0,0,0.05),
+                inset 0 1px 0 rgba(255,255,255,1);
+            margin-bottom: 32px;
+            border: 1px solid var(--gray-200);
+        }
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .table-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+        .table-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(8,145,178,0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(8,145,178,0.4);
+        }
+        .btn-secondary {
+            background: var(--gray-100);
+            color: var(--gray-800);
+        }
+        .btn-secondary:hover {
+            background: var(--gray-200);
+        }
+        
+        .modern-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .modern-table thead {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+        }
+        .modern-table th {
+            padding: 16px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray-800);
+            border-bottom: 2px solid var(--gray-200);
+            position: relative;
+        }
+        .modern-table th:first-child { border-radius: 12px 0 0 0; }
+        .modern-table th:last-child { border-radius: 0 12px 0 0; }
+        
+        .modern-table tbody tr {
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .modern-table tbody tr:hover {
+            background: var(--gray-50);
+            transform: scale(1.01);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .modern-table td {
+            padding: 16px;
+            font-size: 0.95rem;
+            color: var(--gray-800);
+        }
+        .modern-table tbody tr:last-child td:first-child { border-radius: 0 0 0 12px; }
+        .modern-table tbody tr:last-child td:last-child { border-radius: 0 0 12px 0; }
+        
+        .status-badge {
+            display: inline-flex;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            align-items: center;
+            gap: 6px;
+        }
+        .status-badge.success {
+            background: rgba(16,185,129,0.1);
+            color: var(--success);
+        }
+        .status-badge.warning {
+            background: rgba(245,158,11,0.1);
+            color: var(--warning);
+        }
+        .status-badge.danger {
+            background: rgba(239,68,68,0.1);
+            color: var(--danger);
+        }
+        .status-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        /* Charts Container */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        .chart-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            border: 1px solid var(--gray-200);
+        }
+        .chart-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 20px;
+        }
+        .chart-canvas {
+            position: relative;
+            height: 300px;
+        }
+
+        /* AI Insights Panel */
+        .insights-panel {
+            background: linear-gradient(135deg, var(--purple) 0%, #9333EA 100%);
+            color: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 20px 40px rgba(139,92,246,0.3);
+            margin-bottom: 32px;
+        }
+        .insights-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .insights-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .insights-list {
+            list-style: none;
+        }
+        .insight-item {
+            background: rgba(255,255,255,0.1);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .insight-item:last-child { margin-bottom: 0; }
+        .insight-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .insight-description {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        @media print {
+            body { background: white; }
+            .btn, .header-stats { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <h1>
+                <div class="header-icon">
+                    <i data-lucide="bar-chart-3"></i>
+                </div>
+                Reports & KPIs Control Panel
+            </h1>
+            <p>Comprehensive Analytics & Performance Metrics Dashboard</p>
+            
+            <div class="header-stats">
+                <div class="header-stat">
+                    <div class="header-stat-value">15</div>
+                    <div class="header-stat-label">Active Report Categories</div>
+                </div>
+                <div class="header-stat">
+                    <div class="header-stat-value">15,662</div>
+                    <div class="header-stat-label">Total RFAs (2025)</div>
+                </div>
+                <div class="header-stat">
+                    <div class="header-stat-value">327</div>
+                    <div class="header-stat-label">Over-Contract Cases</div>
+                </div>
+                <div class="header-stat">
+                    <div class="header-stat-value">94%</div>
+                    <div class="header-stat-label">Compliance Rate</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KPI Dashboard - 3D Cards -->
+    <div class="kpi-grid">
+        <div class="kpi-card success">
+            <div class="kpi-header">
+                <div class="kpi-icon">
+                    <i data-lucide="users"></i>
+                </div>
+                <div class="kpi-trend up">
+                    <i data-lucide="trending-up"></i>
+                    +12%
+                </div>
+            </div>
+            <div class="kpi-value">2,847</div>
+            <div class="kpi-label">Active Seafarers</div>
+            <div class="kpi-footer">
+                <span>vs Last Month</span>
+                <span style="color: var(--success); font-weight: 600;">+234</span>
+            </div>
+        </div>
+
+        <div class="kpi-card warning">
+            <div class="kpi-header">
+                <div class="kpi-icon" style="background: linear-gradient(135deg, var(--warning) 0%, #FDB71A 100%);">
+                    <i data-lucide="alert-triangle"></i>
+                </div>
+                <div class="kpi-trend down">
+                    <i data-lucide="trending-down"></i>
+                    -5%
+                </div>
+            </div>
+            <div class="kpi-value">327</div>
+            <div class="kpi-label">Over-Contract Positions</div>
+            <div class="kpi-footer">
+                <span>Requires Action</span>
+                <span style="color: var(--warning); font-weight: 600;">89 Critical</span>
+            </div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-header">
+                <div class="kpi-icon">
+                    <i data-lucide="file-text"></i>
+                </div>
+                <div class="kpi-trend up">
+                    <i data-lucide="trending-up"></i>
+                    +8%
+                </div>
+            </div>
+            <div class="kpi-value">15,662</div>
+            <div class="kpi-label">RFAs Processed (YTD)</div>
+            <div class="kpi-footer">
+                <span>Year 2025</span>
+                <span style="color: var(--success); font-weight: 600;">Peak: May</span>
+            </div>
+        </div>
+
+        <div class="kpi-card purple">
+            <div class="kpi-header">
+                <div class="kpi-icon" style="background: linear-gradient(135deg, var(--purple) 0%, #A78BFA 100%);">
+                    <i data-lucide="ship"></i>
+                </div>
+                <div class="kpi-trend up">
+                    <i data-lucide="trending-up"></i>
+                    +3%
+                </div>
+            </div>
+            <div class="kpi-value">456</div>
+            <div class="kpi-label">Active Vessels</div>
+            <div class="kpi-footer">
+                <span>Across Fleet</span>
+                <span style="color: var(--purple); font-weight: 600;">47 Companies</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Categories -->
+    <div class="report-categories">
+        <div class="category-card" onclick="loadReport('operational')">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i data-lucide="activity"></i>
+                </div>
+                <div>
+                    <div class="category-title">Operational Reports</div>
+                    <div class="category-count">5 Reports Available</div>
+                </div>
+            </div>
+            <ul class="category-list">
+                <li>RFA Processing & Workgroups</li>
+                <li>Crew Changes Timeline</li>
+                <li>Assignment & Proposals</li>
+                <li>Rotation Plans</li>
+                <li>Daily Operations Log</li>
+            </ul>
+        </div>
+
+        <div class="category-card" onclick="loadReport('compliance')">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i data-lucide="shield-check"></i>
+                </div>
+                <div>
+                    <div class="category-title">Compliance Reports</div>
+                    <div class="category-count">4 Reports Available</div>
+                </div>
+            </div>
+            <ul class="category-list">
+                <li>Over-Contract Analysis</li>
+                <li>Document Expiry Tracking</li>
+                <li>MLC Compliance Status</li>
+                <li>Certificate Renewals</li>
+            </ul>
+        </div>
+
+        <div class="category-card" onclick="loadReport('performance')">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i data-lucide="award"></i>
+                </div>
+                <div>
+                    <div class="category-title">Performance Reports</div>
+                    <div class="category-count">3 Reports Available</div>
+                </div>
+            </div>
+            <ul class="category-list">
+                <li>Crew Evaluations & Ratings</li>
+                <li>Training Completion</li>
+                <li>Performance Analytics</li>
+            </ul>
+        </div>
+
+        <div class="category-card" onclick="loadReport('financial')">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i data-lucide="dollar-sign"></i>
+                </div>
+                <div>
+                    <div class="category-title">Financial Reports</div>
+                    <div class="category-count">3 Reports Available</div>
+                </div>
+            </div>
+            <ul class="category-list">
+                <li>Contract Values Analysis</li>
+                <li>Travel & Expenses</li>
+                <li>Cost Center Breakdown</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- AI Insights Panel -->
+    <div class="insights-panel">
+        <div class="insights-header">
+            <i data-lucide="sparkles" style="width: 32px; height: 32px;"></i>
+            <h3>AI-Powered Insights</h3>
+        </div>
+        <ul class="insights-list">
+            <li class="insight-item">
+                <div class="insight-title">
+                    <i data-lucide="trending-up"></i>
+                    High RFA Volume Detected
+                </div>
+                <div class="insight-description">
+                    May 2025 showed 15% increase in RFAs compared to average. Recommend reviewing workgroup capacity and consider hiring additional recruiters for Q2-Q3 peak periods.
+                </div>
+            </li>
+            <li class="insight-item">
+                <div class="insight-title">
+                    <i data-lucide="alert-circle"></i>
+                    Critical Over-Contract Cases
+                </div>
+                <div class="insight-description">
+                    89 seafarers are critically over-contract (>365 days). Immediate action required for ENCABO FERNANDO (1,304 days), OGANA ROGELIO (1,225 days), and 3 others to avoid compliance issues.
+                </div>
+            </li>
+            <li class="insight-item">
+                <div class="insight-title">
+                    <i data-lucide="target"></i>
+                    Workgroup Optimization Opportunity
+                </div>
+                <div class="insight-description">
+                    Golden Wgp handles only 13.7% of total RFAs. Consider balancing workload distribution to improve efficiency and reduce processing time by estimated 18%.
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Sample Data Table: Over-Contract Embarkations -->
+    <div class="data-table-container">
+        <div class="table-header">
+            <div class="table-title">Over-Contract Embarkations (Top Critical Cases)</div>
+            <div class="table-actions">
+                <button class="btn btn-secondary" onclick="exportToExcel()">
+                    <i data-lucide="download"></i>
+                    Export to Excel
+                </button>
+                <button class="btn btn-primary" onclick="exportToPDF()">
+                    <i data-lucide="file-text"></i>
+                    Export to PDF
+                </button>
+            </div>
+        </div>
+        
+        <table class="modern-table" id="overContractTable">
+            <thead>
+                <tr>
+                    <th>Crew Code</th>
+                    <th>Person Name</th>
+                    <th>Rank</th>
+                    <th>Vessel</th>
+                    <th>Company</th>
+                    <th>Embark Date</th>
+                    <th>Contract End</th>
+                    <th>Days Over</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>159442</strong></td>
+                    <td>ENCABO FERNANDO</td>
+                    <td>ABLE SEAMAN</td>
+                    <td>X-PRESS AGILITY</td>
+                    <td>CASSIOPEIA</td>
+                    <td>18/10/2021</td>
+                    <td>18/07/2022</td>
+                    <td style="font-weight: 700; color: var(--danger);">1,304</td>
+                    <td><span class="status-badge danger">Critical</span></td>
+                </tr>
+                <tr>
+                    <td><strong>101381</strong></td>
+                    <td>OGANA ROGELIO</td>
+                    <td>SECOND OFFICER</td>
+                    <td>X-PRESS MOY</td>
+                    <td>CASSIOPEIA</td>
+                    <td>05/04/2022</td>
+                    <td>05/10/2022</td>
+                    <td style="font-weight: 700; color: var(--danger);">1,225</td>
+                    <td><span class="status-badge danger">Critical</span></td>
+                </tr>
+                <tr>
+                    <td><strong>180158</strong></td>
+                    <td>CALANTOC EDUARDO JR.</td>
+                    <td>THIRD OFFICER</td>
+                    <td>X-PRESS MOY</td>
+                    <td>CASSIOPEIA</td>
+                    <td>05/04/2022</td>
+                    <td>05/09/2022</td>
+                    <td style="font-weight: 700; color: var(--danger);">1,255</td>
+                    <td><span class="status-badge danger">Critical</span></td>
+                </tr>
+                <tr>
+                    <td><strong>12423</strong></td>
+                    <td>PRINIAS ALEXANDROS</td>
+                    <td>MASTER</td>
+                    <td>CHIOS GLORY</td>
+                    <td>MANAG</td>
+                    <td>03/06/2022</td>
+                    <td>03/01/2023</td>
+                    <td style="font-weight: 700; color: var(--danger);">1,135</td>
+                    <td><span class="status-badge danger">Critical</span></td>
+                </tr>
+                <tr>
+                    <td><strong>119145</strong></td>
+                    <td>SABADO JAY</td>
+                    <td>MASTER</td>
+                    <td>CUMA</td>
+                    <td>SPRING</td>
+                    <td>28/01/2023</td>
+                    <td>28/03/2023</td>
+                    <td style="font-weight: 700; color: var(--danger);">1,051</td>
+                    <td><span class="status-badge danger">Critical</span></td>
+                </tr>
+                <tr>
+                    <td><strong>10537</strong></td>
+                    <td>TRINIDAD ENER</td>
+                    <td>BOSUN</td>
+                    <td>ARTEMIS</td>
+                    <td>DIANA</td>
+                    <td>20/12/2022</td>
+                    <td>20/08/2023</td>
+                    <td style="font-weight: 700; color: var(--warning);">906</td>
+                    <td><span class="status-badge warning">High Risk</span></td>
+                </tr>
+                <tr>
+                    <td><strong>129108</strong></td>
+                    <td>ESHANU GENNADII</td>
+                    <td>ELECTRICIAN</td>
+                    <td>ARTEMIS</td>
+                    <td>DIANA</td>
+                    <td>16/02/2023</td>
+                    <td>16/08/2023</td>
+                    <td style="font-weight: 700; color: var(--warning);">910</td>
+                    <td><span class="status-badge warning">High Risk</span></td>
+                </tr>
+                <tr>
+                    <td><strong>49940</strong></td>
+                    <td>CONCEPCION JOEL</td>
+                    <td>FITTER</td>
+                    <td>CHEM SOL</td>
+                    <td>CASSIOPEIA</td>
+                    <td>18/11/2022</td>
+                    <td>18/08/2023</td>
+                    <td style="font-weight: 700; color: var(--warning);">908</td>
+                    <td><span class="status-badge warning">High Risk</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Charts Grid -->
+    <div class="charts-grid">
+        <div class="chart-card">
+            <div class="chart-title">RFA Processing Trend (2025)</div>
+            <div class="chart-canvas">
+                <canvas id="rfaTrendChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-title">Over-Contract Distribution by Company</div>
+            <div class="chart-canvas">
+                <canvas id="companyDistChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-title">Workgroup Performance</div>
+            <div class="chart-canvas">
+                <canvas id="workgroupChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="chart-card">
+            <div class="chart-title">Compliance Rate Trend</div>
+            <div class="chart-canvas">
+                <canvas id="complianceChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // RFA Trend Chart
+        const rfaTrendCtx = document.getElementById('rfaTrendChart').getContext('2d');
+        new Chart(rfaTrendCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Total RFAs',
+                    data: [1770, 1452, 1368, 1320, 1515, 1114, 1414, 1149, 1342, 1349, 983, 886],
+                    backgroundColor: 'rgba(8, 145, 178, 0.8)',
+                    borderRadius: 8,
+                    borderSkipped: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        padding: 12,
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 13 },
+                        borderColor: 'rgba(8, 145, 178, 0.5)',
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(0, 0, 0, 0.05)' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // Company Distribution Chart
+        const companyDistCtx = document.getElementById('companyDistChart').getContext('2d');
+        new Chart(companyDistCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['CASSIOPEIA', 'OMICRON', 'LEADER', 'DILIGENT', 'SEALESTIAL', 'Others'],
+                datasets: [{
+                    data: [74, 28, 36, 23, 23, 143],
+                    backgroundColor: [
+                        'rgba(239, 68, 68, 0.8)',
+                        'rgba(245, 158, 11, 0.8)',
+                        'rgba(139, 92, 246, 0.8)',
+                        'rgba(8, 145, 178, 0.8)',
+                        'rgba(16, 185, 129, 0.8)',
+                        'rgba(148, 163, 184, 0.8)'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { padding: 15, font: { size: 11 } } },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        padding: 12
+                    }
+                }
+            }
+        });
+
+        // Workgroup Performance Chart
+        const workgroupCtx = document.getElementById('workgroupChart').getContext('2d');
+        new Chart(workgroupCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [
+                    {
+                        label: 'Main Workgroup',
+                        data: [1438, 1234, 1188, 1155, 1333, 964, 1202, 954, 1199, 1164, 880, 803],
+                        backgroundColor: 'rgba(8, 145, 178, 0.8)',
+                        borderRadius: 6
+                    },
+                    {
+                        label: 'Golden Wgp',
+                        data: [332, 218, 180, 165, 182, 150, 212, 195, 143, 185, 103, 83],
+                        backgroundColor: 'rgba(245, 158, 11, 0.8)',
+                        borderRadius: 6
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { padding: 15 } }
+                },
+                scales: {
+                    y: { beginAtZero: true, stacked: true },
+                    x: { stacked: true }
+                }
+            }
+        });
+
+        // Compliance Rate Trend
+        const complianceCtx = document.getElementById('complianceChart').getContext('2d');
+        new Chart(complianceCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Compliance Rate %',
+                    data: [89, 90, 91, 92, 93, 94, 94, 95, 95, 94, 94, 94],
+                    borderColor: 'rgba(16, 185, 129, 1)',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    borderWidth: 3,
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 85,
+                        max: 100,
+                        ticks: { callback: value => value + '%' }
+                    }
+                }
+            }
+        });
+
+        // Export to PDF Function
+        function exportToPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Title
+            doc.setFontSize(20);
+            doc.setTextColor(0, 73, 93);
+            doc.text('ATLANTIS ERP - Over-Contract Report', 14, 22);
+            
+            // Subtitle
+            doc.setFontSize(11);
+            doc.setTextColor(100, 100, 100);
+            doc.text('Critical Cases Requiring Immediate Action', 14, 30);
+            doc.text('Generated: ' + new Date().toLocaleDateString(), 14, 36);
+            
+            // Summary Box
+            doc.setFillColor(8, 145, 178);
+            doc.rect(14, 42, 182, 20, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(10);
+            doc.text('EXECUTIVE SUMMARY', 18, 50);
+            doc.text('Total Over-Contract: 327 positions', 18, 56);
+            doc.text('Critical Cases (>365 days): 89', 100, 56);
+            
+            // Table Header
+            doc.setFillColor(241, 245, 249);
+            doc.rect(14, 68, 182, 10, 'F');
+            doc.setTextColor(30, 41, 59);
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'bold');
+            doc.text('Crew Code', 16, 74);
+            doc.text('Name', 40, 74);
+            doc.text('Rank', 85, 74);
+            doc.text('Vessel', 120, 74);
+            doc.text('Days Over', 165, 74);
+            
+            // Table Rows
+            const tableData = [
+                ['159442', 'ENCABO FERNANDO', 'AB', 'X-PRESS AGILITY', '1,304'],
+                ['101381', 'OGANA ROGELIO', '2ND OFF', 'X-PRESS MOY', '1,225'],
+                ['180158', 'CALANTOC EDUARDO', '3RD OFF', 'X-PRESS MOY', '1,255'],
+                ['12423', 'PRINIAS ALEXANDROS', 'MASTER', 'CHIOS GLORY', '1,135'],
+                ['119145', 'SABADO JAY', 'MASTER', 'CUMA', '1,051']
+            ];
+            
+            doc.setFont(undefined, 'normal');
+            doc.setFontSize(8);
+            let yPos = 84;
+            
+            tableData.forEach((row, index) => {
+                if (index % 2 === 0) {
+                    doc.setFillColor(248, 250, 252);
+                    doc.rect(14, yPos - 5, 182, 10, 'F');
+                }
+                doc.setTextColor(30, 41, 59);
+                doc.text(row[0], 16, yPos);
+                doc.text(row[1], 40, yPos);
+                doc.text(row[2], 85, yPos);
+                doc.text(row[3], 120, yPos);
+                doc.setTextColor(239, 68, 68);
+                doc.setFont(undefined, 'bold');
+                doc.text(row[4], 165, yPos);
+                doc.setFont(undefined, 'normal');
+                yPos += 10;
+            });
+            
+            // Footer
+            doc.setFontSize(8);
+            doc.setTextColor(100, 100, 100);
+            doc.text('ATLANTIS ERP - Crossworld Marine Services', 14, 280);
+            doc.text('Page 1 of 1', 180, 280);
+            
+            // Save
+            doc.save('ATLANTIS_Over-Contract_Report_' + new Date().toISOString().split('T')[0] + '.pdf');
+        }
+
+        // Export to Excel Function
+        function exportToExcel() {
+            alert('Excel export functionality will be implemented with XLSX.js library');
+        }
+
+        // Load Report Function
+        function loadReport(category) {
+            alert('Loading ' + category + ' reports...\n\nThis will display detailed reports for the selected category.');
+        }
+    </script>
+</body>
+</html>
