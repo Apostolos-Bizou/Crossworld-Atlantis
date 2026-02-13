@@ -3,16 +3,17 @@
 <!--
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║  ATLANTIS ERP - Crossworld Marine Services                                    ║
-║  VERSION: v2.35 ANALYTICS #1 - CREW CHANGES (FIXED)                           ║
+║  VERSION: v2.36 ANALYTICS #2 - RFA HUB                                        ║
 ╠═══════════════════════════════════════════════════════════════════════════════╣
-║  v2.35: Analytics Tab #1 - Crew Changes (Charts working!)                     ║
-║  🏆 22/22 MODULES + 10/22 ANALYTICS TABS 🏆                                   ║
+║  v2.35: Analytics Tab #1 - Crew Changes                                       ║
+║  v2.36: Analytics Tab #2 - RFA Hub (Types, Status, Active table)              ║
+║  🏆 22/22 MODULES + 11/22 ANALYTICS TABS 🏆                                   ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATLANTIS v2.35 Analytics #1 Crew Changes WORKING | Crossworld Marine</title>
+    <title>ATLANTIS v2.36 Analytics #2 RFA Hub | Crossworld Marine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -1629,7 +1630,7 @@
                     <i data-lucide="chevron-down" style="width:16px;height:16px;opacity:0.6;"></i>
                 </div>
                 <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);text-align:center;">
-                    <span style="font-size:0.75rem;color:rgba(255,255,255,0.9);letter-spacing:0.05em;font-weight:600;">ATLANTIS_v2_35_ANALYTICS_1_WORKING</span>
+                    <span style="font-size:0.75rem;color:rgba(255,255,255,0.9);letter-spacing:0.05em;font-weight:600;">ATLANTIS_v2_36_ANALYTICS_2_RFA_HUB</span>
                 </div>
             </div>
         </aside>
@@ -2519,6 +2520,7 @@
                         <button class="analytics-tab" onclick="switchAnalyticsTab('travel')" data-tab="travel"><i data-lucide="plane"></i>Travel</button>
                         <button class="analytics-tab" onclick="switchAnalyticsTab('evaluations-analytics')" data-tab="evaluations-analytics"><i data-lucide="star"></i>Evaluations</button>
                         <button class="analytics-tab" onclick="switchAnalyticsTab('crew-changes-analytics')" data-tab="crew-changes-analytics"><i data-lucide="repeat"></i>Crew Changes</button>
+                        <button class="analytics-tab" onclick="switchAnalyticsTab('rfa-hub-analytics')" data-tab="rfa-hub-analytics"><i data-lucide="clipboard-list"></i>RFA Hub</button>
                         <button class="analytics-tab" onclick="switchAnalyticsTab('api')" data-tab="api"><i data-lucide="code"></i>API Hub</button>
                     </div>
 
@@ -3355,6 +3357,89 @@
                                         </tr>
                                     </thead>
                                     <tbody id="crewChangesTableBody">
+                                        <!-- Will be filled by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: RFA Hub Analytics -->
+                    <div class="analytics-tab-content" id="tab-rfa-hub-analytics">
+                        <!-- KPI Cards Row -->
+                        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:24px;">
+                            <div class="kpi-card-3d" style="padding:16px;">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#3b82f6,#60a5fa);width:40px;height:40px;"><i data-lucide="clipboard-list" style="width:20px;height:20px;"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" style="font-size:1.5rem;" data-count="10">0</div>
+                                    <div class="kpi-card-3d-label">Total RFAs</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d" style="padding:16px;">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#10b981,#34d399);width:40px;height:40px;"><i data-lucide="arrow-up" style="width:20px;height:20px;"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" style="font-size:1.5rem;" data-count="4">0</div>
+                                    <div class="kpi-card-3d-label">Embarkations</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d" style="padding:16px;">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#ef4444,#f87171);width:40px;height:40px;"><i data-lucide="arrow-down" style="width:20px;height:20px;"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" style="font-size:1.5rem;" data-count="2">0</div>
+                                    <div class="kpi-card-3d-label">Sign-offs</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d" style="padding:16px;">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);width:40px;height:40px;"><i data-lucide="trending-up" style="width:20px;height:20px;"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" style="font-size:1.5rem;" data-count="2">0</div>
+                                    <div class="kpi-card-3d-label">Promotions</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d" style="padding:16px;">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);width:40px;height:40px;"><i data-lucide="repeat" style="width:20px;height:20px;"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" style="font-size:1.5rem;" data-count="2">0</div>
+                                    <div class="kpi-card-3d-label">Extensions</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Charts Row -->
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
+                            <div class="chart-card-3d">
+                                <div class="chart-card-3d-header">
+                                    <div><h3>RFA Types Distribution</h3><span>Breakdown by request type</span></div>
+                                </div>
+                                <div class="chart-card-3d-body" style="height:300px;"><canvas id="rfaTypesChart"></canvas></div>
+                            </div>
+                            <div class="chart-card-3d">
+                                <div class="chart-card-3d-header">
+                                    <div><h3>Status Overview</h3><span>Current RFA status breakdown</span></div>
+                                </div>
+                                <div class="chart-card-3d-body" style="height:300px;"><canvas id="rfaStatusChart"></canvas></div>
+                            </div>
+                        </div>
+
+                        <!-- Active RFAs Table -->
+                        <div class="chart-card-3d">
+                            <div class="chart-card-3d-header">
+                                <div><h3>Active RFAs Summary</h3><span>Current requests overview</span></div>
+                            </div>
+                            <div style="overflow-x:auto;">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>RFA ID</th>
+                                            <th>Type</th>
+                                            <th>Vessel</th>
+                                            <th>Position</th>
+                                            <th>Target Date</th>
+                                            <th>Status</th>
+                                            <th>Priority</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rfaAnalyticsTableBody">
                                         <!-- Will be filled by JavaScript -->
                                     </tbody>
                                 </table>
@@ -13441,6 +13526,11 @@ Report generated by ATLANTIS ERP`;
                 initCrewChangesCharts();
             }
             
+            // Initialize RFA Hub analytics charts when tab is selected
+            if (tabName === 'rfa-hub-analytics' && !chartInstances.rfaTypes) {
+                initRfaHubCharts();
+            }
+            
             lucide.createIcons();
         }
         
@@ -13473,6 +13563,7 @@ Report generated by ATLANTIS ERP`;
             initEvalAnalyticsCharts();
             initComplaintsAnalyticsCharts();
             initCrewChangesCharts();
+            initRfaHubCharts();
             
             animateKPICounters();
         }
@@ -13925,6 +14016,114 @@ Report generated by ATLANTIS ERP`;
                 const typeLabel = cc.type === 'embark' ? 'Embarkation' : 'Sign-off';
                 const statusClass = cc.status === 'confirmed' ? 'badge-success' : 'badge-primary';
                 row.innerHTML = '<td>' + cc.date + '</td><td>' + cc.name + '</td><td>' + cc.rank + '</td><td>' + cc.vessel + '</td><td>' + cc.port + '</td><td><span class="badge ' + typeClass + '">' + typeLabel + '</span></td><td><span class="badge ' + statusClass + '">' + cc.status + '</span></td>';
+                tableBody.appendChild(row);
+            });
+        }
+        
+        function initRfaHubCharts() {
+            createRfaTypesChart();
+            createRfaStatusChart();
+            populateRfaTable();
+        }
+        
+        function createRfaTypesChart() {
+            const ctx = document.getElementById('rfaTypesChart');
+            if (!ctx || !MOCK_RFAS) return;
+            const types = { embark: 0, signoff: 0, promotion: 0, extension: 0, replace: 0 };
+            MOCK_RFAS.forEach(function(rfa) {
+                types[rfa.type] = (types[rfa.type] || 0) + 1;
+            });
+            chartInstances.rfaTypes = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Embarkation', 'Sign-off', 'Promotion', 'Extension', 'Replace'],
+                    datasets: [{
+                        data: [types.embark || 0, types.signoff || 0, types.promotion || 0, types.extension || 0, types.replace || 0],
+                        backgroundColor: ['#10b981', '#ef4444', '#8b5cf6', '#f59e0b', '#3b82f6'],
+                        borderWidth: 0,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: { legend: { display: true, position: 'right' } }
+                }
+            });
+        }
+        
+        function createRfaStatusChart() {
+            const ctx = document.getElementById('rfaStatusChart');
+            if (!ctx || !MOCK_RFAS) return;
+            const statuses = {};
+            MOCK_RFAS.forEach(function(rfa) {
+                statuses[rfa.status] = (statuses[rfa.status] || 0) + 1;
+            });
+            const labels = Object.keys(statuses);
+            const data = Object.values(statuses);
+            chartInstances.rfaStatus = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'RFAs',
+                        data: data,
+                        backgroundColor: '#3b82f6',
+                        borderRadius: 8,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
+                }
+            });
+        }
+        
+        function populateRfaTable() {
+            const tableBody = document.getElementById('rfaAnalyticsTableBody');
+            if (!tableBody) return;
+            
+            // HARDCODED DATA - NO DEPENDENCIES
+            const rfas = [
+                { id: 'RFA-2025-0142', type: 'embark', vessel: 'MV Diana Star', position: 'Chief Officer', targetDate: '2025-03-15', status: 'in-progress', priority: 'high' },
+                { id: 'RFA-2025-0143', type: 'signoff', vessel: 'MV Centrofin Glory', position: '2nd Engineer', targetDate: '2025-03-20', status: 'pending-approval', priority: 'normal' },
+                { id: 'RFA-2025-0144', type: 'embark', vessel: 'MV Pioneer Spirit', position: 'AB Seaman', targetDate: '2025-04-01', status: 'new', priority: 'normal' },
+                { id: 'RFA-2025-0145', type: 'promotion', vessel: 'MV Neda Harmony', position: 'Chief Engineer', targetDate: '2025-03-25', status: 'approved', priority: 'normal' },
+                { id: 'RFA-2025-0146', type: 'extension', vessel: 'MV Eurobulk Pride', position: 'Bosun', targetDate: '2025-04-10', status: 'in-preparation', priority: 'low' },
+                { id: 'RFA-2025-0147', type: 'replace', vessel: 'MV Diana Star', position: '3rd Officer', targetDate: '2025-03-10', status: 'new', priority: 'urgent' },
+                { id: 'RFA-2025-0148', type: 'embark', vessel: 'MV Centrofin Glory', position: 'Cook', targetDate: '2025-02-28', status: 'ready', priority: 'normal' },
+                { id: 'RFA-2025-0149', type: 'signoff', vessel: 'MV Pioneer Spirit', position: '2nd Officer', targetDate: '2025-02-15', status: 'completed', priority: 'normal' }
+            ];
+            
+            tableBody.innerHTML = '';
+            
+            rfas.forEach(function(rfa) {
+                const row = document.createElement('tr');
+                
+                let typeLabel = 'Unknown';
+                let typeClass = 'badge-secondary';
+                if (rfa.type === 'embark') { typeLabel = 'Embarkation'; typeClass = 'badge-success'; }
+                else if (rfa.type === 'signoff') { typeLabel = 'Sign-off'; typeClass = 'badge-danger'; }
+                else if (rfa.type === 'promotion') { typeLabel = 'Promotion'; typeClass = 'badge-primary'; }
+                else if (rfa.type === 'extension') { typeLabel = 'Extension'; typeClass = 'badge-primary'; }
+                else if (rfa.type === 'replace') { typeLabel = 'Replace'; typeClass = 'badge-primary'; }
+                
+                let priorityClass = 'badge-secondary';
+                if (rfa.priority === 'urgent') priorityClass = 'badge-danger';
+                else if (rfa.priority === 'high') priorityClass = 'badge-warning';
+                
+                row.innerHTML = '<td>' + rfa.id + '</td>' +
+                                '<td><span class="badge ' + typeClass + '">' + typeLabel + '</span></td>' +
+                                '<td>' + rfa.vessel + '</td>' +
+                                '<td>' + rfa.position + '</td>' +
+                                '<td>' + rfa.targetDate + '</td>' +
+                                '<td><span class="badge badge-primary">' + rfa.status + '</span></td>' +
+                                '<td><span class="badge ' + priorityClass + '">' + rfa.priority + '</span></td>';
+                
                 tableBody.appendChild(row);
             });
         }
