@@ -3,7 +3,7 @@
 <!--
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║  ATLANTIS ERP - Crossworld Marine Services                                    ║
-║  VERSION: v2.22 WITH ASSIGNMENT READY                                         ║
+║  VERSION: v2.28 WITH ADD SUPERNUMERARY                                        ║
 ╠═══════════════════════════════════════════════════════════════════════════════╣
 ║  VERSION HISTORY                                                              ║
 ║  ─────────────────────────────────────────────────────────────────────────────║
@@ -11,14 +11,20 @@
 ║             Contracts, Clients, Analytics, RFC Tasks, Interviews              ║
 ║  v2.0-v2.21: All 18 modules from Dashboard to Settings                        ║
 ║  v2.22: Assignment & Proposal - RFA Matrix, Crew Pool, Eligibility Engine     ║
+║  v2.23: Supernumerary Personnel - Non-crew riders management                  ║
+║  v2.24: Supernumerary Detail Modal - Complete personnel view                  ║
+║  v2.25: Supernumerary Quick Actions - Edit, Email, Documents                  ║
+║  v2.26: Document Viewer - View, Print, Download documents                     ║
+║  v2.27: Document Download & Print - FIXED script tag issue                    ║
+║  v2.28: Add Supernumerary & Refresh - New personnel entry form                ║
 ║                                                                               ║
-║  🎉 19/19 MODULES - 95% FRONTEND COMPLETE! 🎉                                 ║
+║  🎉 21/22 MODULES - 95.5% FRONTEND COMPLETE! 🎉                               ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATLANTIS v2.22 WITH ASSIGNMENT READY | Crossworld Marine</title>
+    <title>ATLANTIS v2.28 ADD SUPERNUMERARY | Crossworld Marine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -1606,6 +1612,7 @@
                 <div class="nav-section">
                     <div class="nav-section-title">Crew Management</div>
                     <a class="nav-item" data-view="seafarer-roster"><i data-lucide="users"></i><span>Seafarer Roster</span></a>
+                    <a class="nav-item" data-view="supernumerary"><i data-lucide="user-check"></i><span>Supernumerary</span><span class="nav-item-badge">3</span></a>
                     <a class="nav-item" data-view="documents"><i data-lucide="folder-open"></i><span>Documents</span></a>
                     <a class="nav-item" data-view="pending-transactions"><i data-lucide="list-checks"></i><span>Pending Transactions</span><span class="nav-item-badge">5</span></a>
                     <a class="nav-item" data-view="embarkation-prep"><i data-lucide="plane"></i><span>Embarkation Prep</span></a>
@@ -1633,7 +1640,7 @@
                     <i data-lucide="chevron-down" style="width:16px;height:16px;opacity:0.6;"></i>
                 </div>
                 <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);text-align:center;">
-                    <span style="font-size:0.75rem;color:rgba(255,255,255,0.9);letter-spacing:0.05em;font-weight:600;">ATLANTIS_v2_22_WITH_ASSIGNMENT_READY</span>
+                    <span style="font-size:0.75rem;color:rgba(255,255,255,0.9);letter-spacing:0.05em;font-weight:600;">ATLANTIS_v2_28_WITH_ADD_SUPERNUMERARY</span>
                 </div>
             </div>
         </aside>
@@ -3687,6 +3694,55 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- VIEW: SUPERNUMERARY PERSONNEL -->
+                <div class="view" id="view-supernumerary">
+                    <div class="page-header">
+                        <div class="page-title-section">
+                            <h1 class="page-title">Supernumerary Personnel</h1>
+                            <p class="page-subtitle">Non-crew riders • Inspectors • Observers • Superintendents</p>
+                        </div>
+                        <div class="page-actions">
+                            <button class="btn btn-secondary" onclick="renderSupernumeraryGrid();showNotification('Supernumerary list refreshed','success')"><i data-lucide="refresh-cw"></i>Refresh</button>
+                            <button class="btn btn-primary" onclick="openModal('addSupernumeraryModal')"><i data-lucide="user-plus"></i>Add Supernumerary</button>
+                        </div>
+                    </div>
+
+                    <div class="filters-panel">
+                        <div class="filters-row">
+                            <div class="filter-group">
+                                <label class="filter-label">CATEGORY</label>
+                                <select class="filter-select" id="supCategoryFilter" onchange="filterSupernumerary()">
+                                    <option value="">All Categories</option>
+                                    <option value="inspector">Flag State Inspector</option>
+                                    <option value="observer">Port State Observer</option>
+                                    <option value="superintendent">Technical Superintendent</option>
+                                    <option value="auditor">Safety Auditor</option>
+                                    <option value="trainer">Training Officer</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label class="filter-label">STATUS</label>
+                                <select class="filter-select" id="supStatusFilter" onchange="filterSupernumerary()">
+                                    <option value="">All Status</option>
+                                    <option value="embarked">Embarked</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="disembarked">Disembarked</option>
+                                </select>
+                            </div>
+                            <div class="filter-divider"></div>
+                            <div class="filter-search">
+                                <i data-lucide="search"></i>
+                                <input type="text" placeholder="Search by name, vessel..." id="supSearch" oninput="filterSupernumerary()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="supernumeraryGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:20px;margin-top:24px;">
+                        <!-- Cards will be rendered here by JavaScript -->
+                    </div>
+                </div>
+
                 <div class="view" id="view-settings">
                     <div class="page-header">
                         <div class="page-title-section">
@@ -4494,6 +4550,242 @@
                 </form>
             </div>
             <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('addSeafarerModal')">Cancel</button><button class="btn btn-primary"><i data-lucide="plus"></i>Add Seafarer</button></div>
+        </div>
+    </div>
+
+    <!-- ADD SUPERNUMERARY MODAL -->
+    <div class="modal-overlay" id="addSupernumeraryModal" onclick="closeModalOnOverlay(event,'addSupernumeraryModal')">
+        <div class="modal large" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title">Add New Supernumerary Personnel</h3>
+                <button class="modal-close" onclick="closeModal('addSupernumeraryModal')">
+                    <i data-lucide="x" style="width:20px;height:20px;"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addSupernumeraryForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Full Name <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="newSupName" placeholder="Enter full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Category <span class="required">*</span></label>
+                            <select class="form-select" id="newSupCategory" required>
+                                <option value="">Select category...</option>
+                                <option value="inspector">Flag State Inspector</option>
+                                <option value="observer">Port State Observer</option>
+                                <option value="superintendent">Technical Superintendent</option>
+                                <option value="auditor">Safety Auditor</option>
+                                <option value="trainer">Training Officer</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Email <span class="required">*</span></label>
+                            <input type="email" class="form-input" id="newSupEmail" placeholder="Enter email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone</label>
+                            <input type="tel" class="form-input" id="newSupPhone" placeholder="Enter phone number">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Company</label>
+                            <input type="text" class="form-input" id="newSupCompany" placeholder="Enter company name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nationality</label>
+                            <input type="text" class="form-input" id="newSupNationality" placeholder="Enter nationality">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Vessel</label>
+                            <input type="text" class="form-input" id="newSupVessel" placeholder="Enter vessel name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Port</label>
+                            <input type="text" class="form-input" id="newSupPort" placeholder="Enter port name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Purpose</label>
+                        <input type="text" class="form-input" id="newSupPurpose" placeholder="Enter assignment purpose">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Notes</label>
+                        <textarea class="form-textarea" id="newSupRemarks" placeholder="Additional notes..." rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('addSupernumeraryModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveNewSupernumerary()">
+                    <i data-lucide="plus"></i>Add Supernumerary
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUPERNUMERARY DETAIL MODAL -->
+    <div class="modal-overlay" id="supernumeraryDetailModal" onclick="closeModalOnOverlay(event,'supernumeraryDetailModal')">
+        <div class="modal large" onclick="event.stopPropagation()" style="max-width:900px;">
+            <!-- Gradient Header -->
+            <div style="background:linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);padding:32px;border-radius:12px 12px 0 0;color:white;position:relative;">
+                <button class="modal-close" onclick="closeModal('supernumeraryDetailModal')" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.2);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+                    <i data-lucide="x" style="width:18px;height:18px;color:white;"></i>
+                </button>
+                <div style="display:flex;align-items:center;gap:20px;">
+                    <div id="supModalAvatar" style="width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:700;color:white;"></div>
+                    <div>
+                        <h2 id="supModalName" style="margin:0 0 8px 0;font-size:1.75rem;font-weight:700;color:white;"></h2>
+                        <div id="supModalCategory" style="font-size:1rem;color:rgba(255,255,255,0.9);margin-bottom:16px;"></div>
+                        <div style="display:flex;gap:12px;">
+                            <span id="supModalStatusBadge" style="display:inline-block;padding:6px 16px;border-radius:16px;font-size:0.85rem;font-weight:600;background:rgba(255,255,255,0.25);"></span>
+                            <span id="supModalDurationBadge" style="display:inline-block;padding:6px 16px;border-radius:16px;font-size:0.85rem;font-weight:600;background:rgba(255,255,255,0.25);"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body" style="padding:32px;">
+                <div style="display:grid;grid-template-columns:1fr 400px;gap:32px;">
+                    <!-- Left Column -->
+                    <div>
+                        <!-- Personal Details -->
+                        <div style="background:white;border:1px solid var(--cw-gray-200);border-radius:12px;padding:24px;margin-bottom:24px;">
+                            <h3 style="display:flex;align-items:center;gap:12px;margin:0 0 20px 0;font-size:1.1rem;font-weight:600;color:var(--cw-gray-900);">
+                                <i data-lucide="user" style="width:20px;height:20px;"></i>
+                                Personal Details
+                            </h3>
+                            <div style="display:grid;gap:16px;">
+                                <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--cw-gray-100);">
+                                    <span style="color:var(--cw-gray-600);">ID:</span>
+                                    <span id="supModalId" style="font-weight:600;color:var(--cw-gray-900);"></span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--cw-gray-100);">
+                                    <span style="color:var(--cw-gray-600);">Nationality:</span>
+                                    <span id="supModalNationality" style="font-weight:600;color:var(--cw-gray-900);"></span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--cw-gray-100);">
+                                    <span style="color:var(--cw-gray-600);">Company:</span>
+                                    <span id="supModalCompany" style="font-weight:600;color:var(--cw-gray-900);"></span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--cw-gray-100);">
+                                    <span style="color:var(--cw-gray-600);">Email:</span>
+                                    <span id="supModalEmail" style="font-weight:600;color:var(--cw-gray-900);"></span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;padding:12px 0;">
+                                    <span style="color:var(--cw-gray-600);">Phone:</span>
+                                    <span id="supModalPhone" style="font-weight:600;color:var(--cw-gray-900);"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Current Assignment -->
+                        <div style="background:white;border:1px solid var(--cw-gray-200);border-radius:12px;padding:24px;margin-bottom:24px;">
+                            <h3 style="display:flex;align-items:center;gap:12px;margin:0 0 20px 0;font-size:1.1rem;font-weight:600;color:var(--cw-gray-900);">
+                                <i data-lucide="ship" style="width:20px;height:20px;"></i>
+                                Current Assignment
+                            </h3>
+                            <div style="display:grid;gap:16px;">
+                                <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--cw-gray-100);">
+                                    <span style="color:var(--cw-gray-600);">Vessel:</span>
+                                    <span id="supModalVessel" style="font-weight:600;color:var(--cw-gray-900);"></span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--cw-gray-100);">
+                                    <span style="color:var(--cw-gray-600);">Port:</span>
+                                    <span id="supModalPort" style="font-weight:600;color:var(--cw-gray-900);"></span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--cw-gray-100);">
+                                    <span style="color:var(--cw-gray-600);">Embark Date:</span>
+                                    <span id="supModalEmbarkDate" style="font-weight:600;color:var(--cw-gray-900);"></span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--cw-gray-100);">
+                                    <span style="color:var(--cw-gray-600);">Disembark Date:</span>
+                                    <span id="supModalDisembarkDate" style="font-weight:600;color:var(--cw-gray-900);"></span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;padding:12px 0;">
+                                    <span style="color:var(--cw-gray-600);">Purpose:</span>
+                                    <span id="supModalPurpose" style="font-weight:600;color:var(--cw-gray-900);"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notes -->
+                        <div id="supModalNotesSection" style="background:#fef3c7;border:2px solid #fbbf24;border-radius:12px;padding:20px;">
+                            <h3 style="display:flex;align-items:center;gap:12px;margin:0 0 12px 0;font-size:1rem;font-weight:600;color:#92400e;">
+                                <i data-lucide="file-text" style="width:18px;height:18px;color:#f59e0b;"></i>
+                                Notes
+                            </h3>
+                            <p id="supModalNotes" style="margin:0;color:#78350f;line-height:1.6;"></p>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div>
+                        <!-- Quick Actions -->
+                        <div style="background:white;border:1px solid var(--cw-gray-200);border-radius:12px;padding:20px;margin-bottom:24px;">
+                            <h3 style="margin:0 0 16px 0;font-size:1rem;font-weight:600;color:var(--cw-gray-900);">Quick Actions</h3>
+                            <div style="display:flex;flex-direction:column;gap:12px;">
+                                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="editSupernumeraryDetails()">
+                                    <i data-lucide="edit" style="width:18px;height:18px;"></i>
+                                    Edit Details
+                                </button>
+                                <button class="btn btn-secondary" style="width:100%;justify-content:center;background:white;border:1px solid var(--cw-gray-300);" onclick="sendSupernumeraryEmail()">
+                                    <i data-lucide="mail" style="width:18px;height:18px;"></i>
+                                    Send Email
+                                </button>
+                                <button class="btn btn-secondary" style="width:100%;justify-content:center;background:white;border:1px solid var(--cw-gray-300);" onclick="viewSupernumeraryDocuments()">
+                                    <i data-lucide="folder" style="width:18px;height:18px;"></i>
+                                    Documents
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Timeline -->
+                        <div style="background:linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);border:2px solid #0ea5e9;border-radius:12px;padding:20px;">
+                            <h3 style="display:flex;align-items:center;gap:12px;margin:0 0 20px 0;font-size:1rem;font-weight:600;color:var(--cw-primary);">
+                                <i data-lucide="clock" style="width:18px;height:18px;"></i>
+                                Timeline
+                            </h3>
+                            <div style="display:flex;flex-direction:column;gap:20px;">
+                                <div style="display:flex;align-items:start;gap:12px;">
+                                    <div style="width:24px;height:24px;border-radius:50%;background:#10b981;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                        <i data-lucide="check" style="width:14px;height:14px;color:white;"></i>
+                                    </div>
+                                    <div style="flex:1;">
+                                        <div style="font-weight:600;color:var(--cw-gray-900);margin-bottom:4px;">Created</div>
+                                        <div id="supModalCreatedDate" style="font-size:0.85rem;color:var(--cw-gray-600);"></div>
+                                    </div>
+                                </div>
+                                <div style="display:flex;align-items:start;gap:12px;">
+                                    <div style="width:24px;height:24px;border-radius:50%;background:#10b981;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                        <i data-lucide="check" style="width:14px;height:14px;color:white;"></i>
+                                    </div>
+                                    <div style="flex:1;">
+                                        <div style="font-weight:600;color:var(--cw-gray-900);margin-bottom:4px;">Approved</div>
+                                        <div id="supModalApprovedDate" style="font-size:0.85rem;color:var(--cw-gray-600);"></div>
+                                    </div>
+                                </div>
+                                <div id="supModalEmbarkedTimeline" style="display:flex;align-items:start;gap:12px;">
+                                    <div style="width:24px;height:24px;border-radius:50%;background:#10b981;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                        <i data-lucide="check" style="width:14px;height:14px;color:white;"></i>
+                                    </div>
+                                    <div style="flex:1;">
+                                        <div style="font-weight:600;color:var(--cw-gray-900);margin-bottom:4px;">Embarked</div>
+                                        <div id="supModalEmbarkedDate" style="font-size:0.85rem;color:var(--cw-gray-600);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -6974,6 +7266,74 @@
             { id: 'CAND-015', firstName: 'Luis', lastName: 'Rivera', rank: 'Bosun', stage: 'endorsed', daysInStage: 1, source: 'agency', rfcId: null, priority: 'normal', docsStatus: 'ok', phone: '+63 917 161 6161', email: 'luis.r@email.com' },
             // REJECTED
             { id: 'CAND-016', firstName: 'Manuel', lastName: 'Ortega', rank: 'Oiler', stage: 'rejected', daysInStage: 0, source: 'online', rfcId: null, priority: 'normal', docsStatus: 'incomplete', phone: '+63 917 171 7171', email: 'manuel.o@email.com' },
+        ];
+
+        // MOCK DATA - Supernumerary Personnel
+        const MOCK_SUPERNUMERARY = [
+            { 
+                id: 'SUP-001', 
+                name: 'John Smith', 
+                initials: 'JS',
+                nationality: 'GB United Kingdom',
+                company: 'Maritime Inspection Ltd',
+                email: 'john.smith@maritime-inspect.com',
+                phone: '+44 20 7123 4567',
+                category: 'inspector', 
+                categoryLabel: 'Flag State Inspector',
+                status: 'embarked', 
+                vessel: 'MV APOLLON', 
+                port: 'Piraeus, Greece',
+                embarkedDate: '2026-02-01', 
+                disembarkDate: '2026-02-13',
+                duration: 12,
+                purpose: 'Flag State Inspection',
+                remarks: 'Annual safety inspection and crew certification verification.',
+                createdDate: '2026-01-15',
+                approvedDate: '2026-01-20'
+            },
+            { 
+                id: 'SUP-002', 
+                name: 'Maria Santos', 
+                initials: 'MS',
+                nationality: 'PH Philippines',
+                company: 'Port Control Authority',
+                email: 'maria.santos@portcontrol.sg',
+                phone: '+65 6123 4567',
+                category: 'observer', 
+                categoryLabel: 'Port State Observer',
+                status: 'pending', 
+                vessel: 'MV ATHENA', 
+                port: 'Singapore',
+                embarkedDate: null, 
+                disembarkDate: null,
+                scheduledDate: '2026-02-18',
+                duration: null,
+                purpose: 'Audit',
+                remarks: 'Scheduled port state control observation',
+                createdDate: '2026-01-10',
+                approvedDate: '2026-01-25'
+            },
+            { 
+                id: 'SUP-003', 
+                name: 'David Lee', 
+                initials: 'DL',
+                nationality: 'SG Singapore',
+                company: 'Marine Technical Services',
+                email: 'david.lee@marinetechsg.com',
+                phone: '+65 8123 4567',
+                category: 'superintendent', 
+                categoryLabel: 'Technical Superintendent',
+                status: 'disembarked', 
+                vessel: 'MV POSEIDON', 
+                port: 'Rotterdam',
+                embarkedDate: '2026-01-28', 
+                disembarkDate: '2026-02-05',
+                duration: 7,
+                purpose: 'Technical',
+                remarks: 'Completed machinery inspection and repairs oversight',
+                createdDate: '2026-01-05',
+                approvedDate: '2026-01-12'
+            }
         ];
 
         // MOCK DATA - Evaluations
@@ -13904,6 +14264,10 @@ Generated by ATLANTIS ERP v2.18
                                 renderAssignmentBoard();
                                 renderCrewPool();
                             }, 50);
+                        } else if (viewId === 'supernumerary') {
+                            setTimeout(() => {
+                                renderSupernumeraryGrid();
+                            }, 50);
                         }
                     }, 100);
                 });
@@ -15173,6 +15537,694 @@ Generated by ATLANTIS ERP v2.18
             }, 100);
         }
         window.viewRegistrations = viewRegistrations;
+
+        // ===== SUPERNUMERARY PERSONNEL FUNCTIONS =====
+        function renderSupernumeraryGrid(data = MOCK_SUPERNUMERARY) {
+            const grid = document.getElementById('supernumeraryGrid');
+            if (!grid) return;
+
+            if (data.length === 0) {
+                grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--cw-gray-500);"><i data-lucide="users" style="width:48px;height:48px;margin-bottom:16px;"></i><div style="font-size:1.1rem;font-weight:600;margin-bottom:8px;">No supernumerary personnel found</div><div>Try adjusting your filters</div></div>';
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+                return;
+            }
+
+            grid.innerHTML = data.map(sup => {
+                let statusBadge, statusColor, borderColor;
+                if (sup.status === 'embarked') {
+                    statusBadge = 'EMBARKED';
+                    statusColor = '#10b981';
+                    borderColor = '#10b981';
+                } else if (sup.status === 'pending') {
+                    statusBadge = 'PENDING';
+                    statusColor = '#3b82f6';
+                    borderColor = '#3b82f6';
+                } else {
+                    statusBadge = 'DISEMBARKED';
+                    statusColor = '#6b7280';
+                    borderColor = '#6b7280';
+                }
+
+                let dateInfo = '';
+                if (sup.status === 'embarked') {
+                    dateInfo = `
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+                            <div>
+                                <div style="font-size:0.75rem;color:var(--cw-gray-500);margin-bottom:4px;">Currently On</div>
+                                <div style="font-weight:600;color:var(--cw-primary);">${sup.vessel}</div>
+                                <div style="font-size:0.8rem;color:var(--cw-gray-600);margin-top:2px;">Embarked: ${formatDate(sup.embarkedDate)}</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-size:0.75rem;color:var(--cw-gray-500);margin-bottom:4px;">Duration</div>
+                                <div style="font-weight:600;color:var(--cw-primary);">${sup.duration} days</div>
+                                <div style="font-size:0.8rem;color:var(--cw-gray-600);margin-top:2px;">Disembark: ${formatDate(sup.disembarkDate)}</div>
+                            </div>
+                        </div>
+                    `;
+                } else if (sup.status === 'pending') {
+                    dateInfo = `
+                        <div style="margin-bottom:16px;">
+                            <div style="font-size:0.75rem;color:var(--cw-gray-500);margin-bottom:4px;">Scheduled For</div>
+                            <div style="font-weight:600;color:var(--cw-primary);">${sup.vessel}</div>
+                            <div style="font-size:0.8rem;color:var(--cw-gray-600);margin-top:2px;">Expected: ${formatDate(sup.scheduledDate)}</div>
+                        </div>
+                    `;
+                } else {
+                    dateInfo = `
+                        <div style="margin-bottom:16px;">
+                            <div style="font-size:0.75rem;color:var(--cw-gray-500);margin-bottom:4px;">Last Assignment</div>
+                            <div style="font-weight:600;color:var(--cw-primary);">${sup.vessel}</div>
+                            <div style="font-size:0.8rem;color:var(--cw-gray-600);margin-top:2px;">Disembarked: ${formatDate(sup.disembarkDate)}</div>
+                        </div>
+                    `;
+                }
+
+                return `
+                    <div onclick="viewSupernumerary('${sup.id}')" style="background:white;border-radius:12px;border-left:4px solid ${borderColor};padding:20px;box-shadow:var(--shadow-sm);transition:all var(--transition-base);cursor:pointer;" onmouseover="this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'">
+                        <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:16px;">
+                            <div>
+                                <h3 style="font-size:1.1rem;font-weight:600;margin-bottom:4px;color:var(--cw-gray-900);">${sup.name}</h3>
+                                <div style="font-size:0.85rem;color:var(--cw-gray-600);">${sup.categoryLabel}</div>
+                            </div>
+                            <span style="display:inline-block;padding:4px 12px;border-radius:12px;font-size:0.75rem;font-weight:600;background:rgba(${statusColor === '#10b981' ? '16,185,129' : statusColor === '#3b82f6' ? '59,130,246' : '107,114,128'},0.1);color:${statusColor};">${statusBadge}</span>
+                        </div>
+                        ${dateInfo}
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-top:12px;border-top:1px solid var(--cw-gray-200);">
+                            <div>
+                                <div style="font-size:0.75rem;color:var(--cw-gray-500);">Port</div>
+                                <div style="font-weight:600;font-size:0.9rem;">${sup.port}</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-size:0.75rem;color:var(--cw-gray-500);">Purpose</div>
+                                <div style="font-weight:600;font-size:0.9rem;">${sup.purpose}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function filterSupernumerary() {
+            const categoryFilter = document.getElementById('supCategoryFilter')?.value || '';
+            const statusFilter = document.getElementById('supStatusFilter')?.value || '';
+            const search = document.getElementById('supSearch')?.value?.toLowerCase() || '';
+
+            const filtered = MOCK_SUPERNUMERARY.filter(sup => {
+                const matchCategory = !categoryFilter || sup.category === categoryFilter;
+                const matchStatus = !statusFilter || sup.status === statusFilter;
+                const matchSearch = !search || 
+                    sup.name.toLowerCase().includes(search) || 
+                    sup.vessel.toLowerCase().includes(search) ||
+                    sup.categoryLabel.toLowerCase().includes(search);
+                
+                return matchCategory && matchStatus && matchSearch;
+            });
+
+            renderSupernumeraryGrid(filtered);
+        }
+        window.filterSupernumerary = filterSupernumerary;
+
+        function viewSupernumerary(supId) {
+            const sup = MOCK_SUPERNUMERARY.find(s => s.id === supId);
+            if (!sup) return;
+
+            // Store current supernumerary for actions
+            currentSupernumerary = sup;
+
+            // Header
+            document.getElementById('supModalAvatar').textContent = sup.initials;
+            document.getElementById('supModalName').textContent = sup.name;
+            document.getElementById('supModalCategory').textContent = sup.categoryLabel;
+            
+            // Status badge
+            const statusBadge = document.getElementById('supModalStatusBadge');
+            if (sup.status === 'embarked') {
+                statusBadge.textContent = 'EMBARKED';
+                statusBadge.style.background = 'rgba(16,185,129,0.3)';
+                statusBadge.style.color = '#10b981';
+            } else if (sup.status === 'pending') {
+                statusBadge.textContent = 'PENDING';
+                statusBadge.style.background = 'rgba(59,130,246,0.3)';
+                statusBadge.style.color = '#3b82f6';
+            } else {
+                statusBadge.textContent = 'DISEMBARKED';
+                statusBadge.style.background = 'rgba(107,114,128,0.3)';
+                statusBadge.style.color = '#6b7280';
+            }
+
+            // Duration badge
+            const durationBadge = document.getElementById('supModalDurationBadge');
+            if (sup.duration) {
+                durationBadge.textContent = sup.duration + ' Days';
+                durationBadge.style.display = 'inline-block';
+            } else {
+                durationBadge.style.display = 'none';
+            }
+
+            // Personal Details
+            document.getElementById('supModalId').textContent = sup.id;
+            document.getElementById('supModalNationality').textContent = sup.nationality;
+            document.getElementById('supModalCompany').textContent = sup.company;
+            document.getElementById('supModalEmail').textContent = sup.email;
+            document.getElementById('supModalPhone').textContent = sup.phone;
+
+            // Current Assignment
+            document.getElementById('supModalVessel').textContent = sup.vessel;
+            document.getElementById('supModalPort').textContent = sup.port;
+            document.getElementById('supModalEmbarkDate').textContent = sup.embarkedDate ? formatDateLong(sup.embarkedDate) : '-';
+            document.getElementById('supModalDisembarkDate').textContent = sup.disembarkDate ? formatDateLong(sup.disembarkDate) : (sup.scheduledDate ? formatDateLong(sup.scheduledDate) : '-');
+            document.getElementById('supModalPurpose').textContent = sup.purpose;
+
+            // Notes
+            document.getElementById('supModalNotes').textContent = sup.remarks;
+
+            // Timeline
+            document.getElementById('supModalCreatedDate').textContent = formatDateLong(sup.createdDate);
+            document.getElementById('supModalApprovedDate').textContent = formatDateLong(sup.approvedDate);
+            
+            const embarkedTimeline = document.getElementById('supModalEmbarkedTimeline');
+            if (sup.status === 'embarked' && sup.embarkedDate) {
+                embarkedTimeline.style.display = 'flex';
+                document.getElementById('supModalEmbarkedDate').textContent = formatDateLong(sup.embarkedDate);
+            } else {
+                embarkedTimeline.style.display = 'none';
+            }
+
+            openModal('supernumeraryDetailModal');
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        window.viewSupernumerary = viewSupernumerary;
+
+        // Supernumerary Quick Actions Functions
+        let currentSupernumerary = null;
+
+        function editSupernumeraryDetails() {
+            if (!currentSupernumerary) {
+                showNotification('No supernumerary selected', 'error');
+                return;
+            }
+            
+            closeModal('supernumeraryDetailModal');
+            
+            // Create edit modal content
+            const editHtml = `
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit Supernumerary Details</h3>
+                    <button class="modal-close" onclick="closeModal('editSupernumeraryModal')">
+                        <i data-lucide="x" style="width:20px;height:20px;"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editSupernumeraryForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-input" value="${currentSupernumerary.name}" id="editSupName">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Category</label>
+                                <select class="form-select" id="editSupCategory">
+                                    <option value="inspector" ${currentSupernumerary.category === 'inspector' ? 'selected' : ''}>Flag State Inspector</option>
+                                    <option value="observer" ${currentSupernumerary.category === 'observer' ? 'selected' : ''}>Port State Observer</option>
+                                    <option value="superintendent" ${currentSupernumerary.category === 'superintendent' ? 'selected' : ''}>Technical Superintendent</option>
+                                    <option value="auditor" ${currentSupernumerary.category === 'auditor' ? 'selected' : ''}>Safety Auditor</option>
+                                    <option value="trainer" ${currentSupernumerary.category === 'trainer' ? 'selected' : ''}>Training Officer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-input" value="${currentSupernumerary.email}" id="editSupEmail">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-input" value="${currentSupernumerary.phone}" id="editSupPhone">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Company</label>
+                                <input type="text" class="form-input" value="${currentSupernumerary.company}" id="editSupCompany">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Nationality</label>
+                                <input type="text" class="form-input" value="${currentSupernumerary.nationality}" id="editSupNationality">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Notes</label>
+                            <textarea class="form-textarea" id="editSupRemarks" rows="3">${currentSupernumerary.remarks}</textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="closeModal('editSupernumeraryModal')">Cancel</button>
+                    <button class="btn btn-primary" onclick="saveSupernumeraryEdit()">
+                        <i data-lucide="save"></i>Save Changes
+                    </button>
+                </div>
+            `;
+            
+            // Create modal if doesn't exist
+            let modal = document.getElementById('editSupernumeraryModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'editSupernumeraryModal';
+                modal.className = 'modal-overlay';
+                modal.onclick = function(e) { if (e.target === modal) closeModal('editSupernumeraryModal'); };
+                document.body.appendChild(modal);
+            }
+            
+            modal.innerHTML = `<div class="modal large" onclick="event.stopPropagation()">${editHtml}</div>`;
+            openModal('editSupernumeraryModal');
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        window.editSupernumeraryDetails = editSupernumeraryDetails;
+
+        function saveSupernumeraryEdit() {
+            const name = document.getElementById('editSupName').value;
+            const email = document.getElementById('editSupEmail').value;
+            const phone = document.getElementById('editSupPhone').value;
+            
+            if (!name || !email) {
+                showNotification('Name and Email are required', 'error');
+                return;
+            }
+            
+            // Update mock data
+            const sup = MOCK_SUPERNUMERARY.find(s => s.id === currentSupernumerary.id);
+            if (sup) {
+                sup.name = name;
+                sup.email = email;
+                sup.phone = phone;
+                sup.company = document.getElementById('editSupCompany').value;
+                sup.nationality = document.getElementById('editSupNationality').value;
+                sup.remarks = document.getElementById('editSupRemarks').value;
+                
+                const categorySelect = document.getElementById('editSupCategory');
+                sup.category = categorySelect.value;
+                sup.categoryLabel = categorySelect.options[categorySelect.selectedIndex].text;
+            }
+            
+            closeModal('editSupernumeraryModal');
+            renderSupernumeraryGrid();
+            showNotification('Supernumerary details updated successfully', 'success');
+        }
+        window.saveSupernumeraryEdit = saveSupernumeraryEdit;
+
+        function sendSupernumeraryEmail() {
+            if (!currentSupernumerary) {
+                showNotification('No supernumerary selected', 'error');
+                return;
+            }
+            
+            const subject = encodeURIComponent(`Re: ${currentSupernumerary.purpose} - ${currentSupernumerary.vessel}`);
+            const body = encodeURIComponent(`Dear ${currentSupernumerary.name},
+
+Regarding your assignment:
+Vessel: ${currentSupernumerary.vessel}
+Port: ${currentSupernumerary.port}
+Purpose: ${currentSupernumerary.purpose}
+
+Best regards,
+Crossworld Marine Services`);
+            
+            window.location.href = `mailto:${currentSupernumerary.email}?subject=${subject}&body=${body}`;
+            showNotification('Opening email client...', 'info');
+        }
+        window.sendSupernumeraryEmail = sendSupernumeraryEmail;
+
+        function viewSupernumeraryDocuments() {
+            if (!currentSupernumerary) {
+                showNotification('No supernumerary selected', 'error');
+                return;
+            }
+            
+            closeModal('supernumeraryDetailModal');
+            
+            // Create documents modal
+            const docsHtml = `
+                <div class="modal-header">
+                    <h3 class="modal-title">Documents - ${currentSupernumerary.name}</h3>
+                    <button class="modal-close" onclick="closeModal('supernumeraryDocsModal')">
+                        <i data-lucide="x" style="width:20px;height:20px;"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div style="margin-bottom:20px;">
+                        <div style="display:flex;align-items:center;gap:12px;padding:16px;background:var(--cw-gray-50);border-radius:8px;">
+                            <i data-lucide="user" style="width:40px;height:40px;color:var(--cw-primary);"></i>
+                            <div>
+                                <div style="font-weight:600;font-size:1.1rem;">${currentSupernumerary.name}</div>
+                                <div style="color:var(--cw-gray-600);font-size:0.9rem;">${currentSupernumerary.categoryLabel}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Document Type</th>
+                                <th>Number</th>
+                                <th>Issue Date</th>
+                                <th>Expiry Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Passport</strong></td>
+                                <td id="doc-passport-num">P${Math.random().toString().slice(2,11)}</td>
+                                <td>${formatDateLong('2021-03-15')}</td>
+                                <td>${formatDateLong('2031-03-14')}</td>
+                                <td><span class="status-badge status-ready">Valid</span></td>
+                                <td><button class="btn btn-sm" onclick="viewDocument('Passport', document.getElementById('doc-passport-num').textContent, '2021-03-15', '2031-03-14')"><i data-lucide="eye" style="width:14px;height:14px;"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Professional License</strong></td>
+                                <td id="doc-license-num">LIC-${Math.random().toString().slice(2,9)}</td>
+                                <td>${formatDateLong('2023-01-10')}</td>
+                                <td>${formatDateLong('2028-01-09')}</td>
+                                <td><span class="status-badge status-ready">Valid</span></td>
+                                <td><button class="btn btn-sm" onclick="viewDocument('Professional License', document.getElementById('doc-license-num').textContent, '2023-01-10', '2028-01-09')"><i data-lucide="eye" style="width:14px;height:14px;"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Medical Certificate</strong></td>
+                                <td id="doc-medical-num">MED-${Math.random().toString().slice(2,8)}</td>
+                                <td>${formatDateLong('2025-11-20')}</td>
+                                <td>${formatDateLong('2026-11-19')}</td>
+                                <td><span class="status-badge status-ready">Valid</span></td>
+                                <td><button class="btn btn-sm" onclick="viewDocument('Medical Certificate', document.getElementById('doc-medical-num').textContent, '2025-11-20', '2026-11-19')"><i data-lucide="eye" style="width:14px;height:14px;"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Certification of Employment</strong></td>
+                                <td>COE-${currentSupernumerary.id}</td>
+                                <td>${formatDateLong(currentSupernumerary.createdDate)}</td>
+                                <td>-</td>
+                                <td><span class="status-badge status-ready">Active</span></td>
+                                <td><button class="btn btn-sm" onclick="viewDocument('Certification of Employment', 'COE-${currentSupernumerary.id}', '${currentSupernumerary.createdDate}', null)"><i data-lucide="eye" style="width:14px;height:14px;"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div style="margin-top:24px;padding:16px;background:#fef3c7;border:2px solid #fbbf24;border-radius:8px;">
+                        <div style="display:flex;align-items:start;gap:12px;">
+                            <i data-lucide="info" style="width:20px;height:20px;color:#f59e0b;flex-shrink:0;"></i>
+                            <div style="color:#78350f;font-size:0.9rem;">
+                                <strong>Note:</strong> All documents are subject to verification by the vessel master and must be valid for the entire duration of the assignment.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="closeModal('supernumeraryDocsModal')">Close</button>
+                    <button class="btn btn-primary" onclick="showNotification('Upload feature coming soon','info')">
+                        <i data-lucide="upload"></i>Upload Document
+                    </button>
+                </div>
+            `;
+            
+            let modal = document.getElementById('supernumeraryDocsModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'supernumeraryDocsModal';
+                modal.className = 'modal-overlay';
+                modal.onclick = function(e) { if (e.target === modal) closeModal('supernumeraryDocsModal'); };
+                document.body.appendChild(modal);
+            }
+            
+            modal.innerHTML = `<div class="modal large" onclick="event.stopPropagation()">${docsHtml}</div>`;
+            openModal('supernumeraryDocsModal');
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        window.viewSupernumeraryDocuments = viewSupernumeraryDocuments;
+
+        function viewDocument(docType, docNumber, issueDate, expiryDate) {
+            if (!currentSupernumerary) return;
+            
+            const viewerHtml = `
+                <div class="modal-header" style="background:linear-gradient(135deg, #00495D 0%, #0891b2 100%);color:white;border-radius:12px 12px 0 0;margin:-24px -24px 24px -24px;padding:24px;">
+                    <h3 style="margin:0;font-size:1.3rem;font-weight:700;color:white;">Document Viewer</h3>
+                    <button class="modal-close" onclick="closeModal('documentViewerModal')" style="background:rgba(255,255,255,0.2);color:white;">
+                        <i data-lucide="x" style="width:20px;height:20px;"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Document Info Header -->
+                    <div style="background:var(--cw-gray-50);border-radius:12px;padding:20px;margin-bottom:24px;">
+                        <div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;">
+                            <div style="width:80px;height:80px;background:linear-gradient(135deg, #00495D, #0891b2);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                                <i data-lucide="file-text" style="width:40px;height:40px;color:white;"></i>
+                            </div>
+                            <div>
+                                <div style="font-size:0.75rem;color:var(--cw-gray-500);text-transform:uppercase;margin-bottom:4px;">Document Type</div>
+                                <h2 style="margin:0 0 8px 0;font-size:1.5rem;font-weight:700;color:var(--cw-gray-900);">${docType}</h2>
+                                <div style="font-size:0.9rem;color:var(--cw-gray-600);">
+                                    <strong>Number:</strong> ${docNumber} • 
+                                    <strong>Holder:</strong> ${currentSupernumerary.name}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Document Details -->
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;">
+                        <div style="background:white;border:2px solid var(--cw-gray-200);border-radius:12px;padding:20px;">
+                            <h4 style="margin:0 0 16px 0;font-size:0.9rem;font-weight:600;color:var(--cw-gray-700);display:flex;align-items:center;gap:8px;">
+                                <i data-lucide="calendar" style="width:16px;height:16px;"></i>
+                                Issue Information
+                            </h4>
+                            <div style="display:grid;gap:12px;">
+                                <div>
+                                    <div style="font-size:0.75rem;color:var(--cw-gray-500);margin-bottom:4px;">Issue Date</div>
+                                    <div style="font-weight:600;font-size:1rem;">${formatDateLong(issueDate)}</div>
+                                </div>
+                                <div>
+                                    <div style="font-size:0.75rem;color:var(--cw-gray-500);margin-bottom:4px;">Expiry Date</div>
+                                    <div style="font-weight:600;font-size:1rem;">${expiryDate ? formatDateLong(expiryDate) : 'No expiry'}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="background:white;border:2px solid var(--cw-gray-200);border-radius:12px;padding:20px;">
+                            <h4 style="margin:0 0 16px 0;font-size:0.9rem;font-weight:600;color:var(--cw-gray-700);display:flex;align-items:center;gap:8px;">
+                                <i data-lucide="user" style="width:16px;height:16px;"></i>
+                                Holder Information
+                            </h4>
+                            <div style="display:grid;gap:12px;">
+                                <div>
+                                    <div style="font-size:0.75rem;color:var(--cw-gray-500);margin-bottom:4px;">Name</div>
+                                    <div style="font-weight:600;font-size:1rem;">${currentSupernumerary.name}</div>
+                                </div>
+                                <div>
+                                    <div style="font-size:0.75rem;color:var(--cw-gray-500);margin-bottom:4px;">Nationality</div>
+                                    <div style="font-weight:600;font-size:1rem;">${currentSupernumerary.nationality}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Document Preview -->
+                    <div style="background:white;border:2px solid var(--cw-gray-200);border-radius:12px;padding:20px;margin-bottom:24px;">
+                        <h4 style="margin:0 0 16px 0;font-size:0.9rem;font-weight:600;color:var(--cw-gray-700);display:flex;align-items:center;gap:8px;">
+                            <i data-lucide="image" style="width:16px;height:16px;"></i>
+                            Document Preview
+                        </h4>
+                        <div style="background:var(--cw-gray-100);border:2px dashed var(--cw-gray-300);border-radius:8px;padding:60px;text-align:center;">
+                            <i data-lucide="file" style="width:64px;height:64px;color:var(--cw-gray-400);margin-bottom:16px;"></i>
+                            <div style="font-size:1.1rem;font-weight:600;color:var(--cw-gray-700);margin-bottom:8px;">Document Preview Unavailable</div>
+                            <div style="font-size:0.9rem;color:var(--cw-gray-500);">
+                                ${docType} • ${docNumber}
+                            </div>
+                            <div style="margin-top:20px;">
+                                <button class="btn btn-primary" onclick="downloadDocumentFile('${docType}', '${docNumber}')">
+                                    <i data-lucide="download"></i>
+                                    Download Document
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Verification Status -->
+                    <div style="background:linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);border:2px solid #10b981;border-radius:12px;padding:16px;">
+                        <div style="display:flex;align-items:center;gap:12px;">
+                            <div style="width:40px;height:40px;background:#10b981;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <i data-lucide="check" style="width:24px;height:24px;color:white;"></i>
+                            </div>
+                            <div style="flex:1;">
+                                <div style="font-weight:600;color:#065f46;margin-bottom:4px;">Document Verified</div>
+                                <div style="font-size:0.85rem;color:#047857;">This document has been verified by Crossworld Marine Services on ${formatDateLong(new Date().toISOString())}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="closeModal('documentViewerModal')">Close</button>
+                    <button class="btn btn-secondary" onclick="printDocument('${docType}', '${docNumber}')">
+                        <i data-lucide="printer"></i>Print
+                    </button>
+                    <button class="btn btn-primary" onclick="downloadDocumentFile('${docType}', '${docNumber}')">
+                        <i data-lucide="download"></i>Download
+                    </button>
+                </div>
+            `;
+            
+            let modal = document.getElementById('documentViewerModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'documentViewerModal';
+                modal.className = 'modal-overlay';
+                modal.onclick = function(e) { if (e.target === modal) closeModal('documentViewerModal'); };
+                document.body.appendChild(modal);
+            }
+            
+            modal.innerHTML = `<div class="modal large" onclick="event.stopPropagation()" style="max-width:800px;">${viewerHtml}</div>`;
+            openModal('documentViewerModal');
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        window.viewDocument = viewDocument;
+
+        function downloadDocumentFile(docType, docNumber) {
+            if (!currentSupernumerary) return;
+            
+            const pdfContent = `CROSSWORLD MARINE SERVICES - Official Document
+
+Document Type: ${docType}
+Document Number: ${docNumber}
+
+HOLDER INFORMATION
+Name: ${currentSupernumerary.name}
+Nationality: ${currentSupernumerary.nationality}
+Company: ${currentSupernumerary.company}
+Category: ${currentSupernumerary.categoryLabel}
+
+CONTACT INFORMATION
+Email: ${currentSupernumerary.email}
+Phone: ${currentSupernumerary.phone}
+
+CURRENT ASSIGNMENT
+Vessel: ${currentSupernumerary.vessel}
+Port: ${currentSupernumerary.port}
+Purpose: ${currentSupernumerary.purpose}
+
+VERIFICATION
+This document has been verified by Crossworld Marine Services
+Verification Date: ${new Date().toLocaleDateString()}
+
+Document ID: ${docNumber}
+Generated: ${new Date().toISOString()}`;
+            
+            const blob = new Blob([pdfContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = docType.replace(/\s+/g, '_') + '_' + docNumber + '.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            showNotification(docType + ' downloaded successfully', 'success');
+        }
+        window.downloadDocumentFile = downloadDocumentFile;
+
+        function printDocument(docType, docNumber) {
+            if (!currentSupernumerary) return;
+            const printWin = window.open('', '_blank');
+            printWin.document.write('<html><head><title>' + docType + '</title>');
+            printWin.document.write('<style>body{font-family:Arial;max-width:800px;margin:40px auto;padding:40px}.header{text-align:center;margin-bottom:40px;border-bottom:3px solid #00495D;padding-bottom:20px}.company{font-size:24px;font-weight:bold;color:#00495D}.doc-title{font-size:28px;font-weight:bold;margin:20px 0}.section{margin:30px 0}.section-title{background:#00495D;color:white;padding:10px 15px;font-weight:bold;margin-bottom:15px}.info-row{display:grid;grid-template-columns:200px 1fr;padding:10px 15px;border-bottom:1px solid #e0e0e0}.info-label{font-weight:bold;color:#666}.verification{background:#ecfdf5;border:2px solid #10b981;padding:20px;margin-top:40px}.footer{margin-top:60px;padding-top:20px;border-top:2px solid #ddd;text-align:center;font-size:12px;color:#666}</style>');
+            printWin.document.write('</head><body>');
+            printWin.document.write('<div class="header"><div class="company">CROSSWORLD MARINE SERVICES</div><div>Official Document</div></div>');
+            printWin.document.write('<div class="doc-title">' + docType + '</div>');
+            printWin.document.write('<div style="text-align:center;font-size:18px;color:#666;margin-bottom:40px">Document Number: ' + docNumber + '</div>');
+            printWin.document.write('<div class="section"><div class="section-title">HOLDER INFORMATION</div>');
+            printWin.document.write('<div class="info-row"><div class="info-label">Name:</div><div>' + currentSupernumerary.name + '</div></div>');
+            printWin.document.write('<div class="info-row"><div class="info-label">Nationality:</div><div>' + currentSupernumerary.nationality + '</div></div>');
+            printWin.document.write('<div class="info-row"><div class="info-label">Company:</div><div>' + currentSupernumerary.company + '</div></div>');
+            printWin.document.write('<div class="info-row"><div class="info-label">Category:</div><div>' + currentSupernumerary.categoryLabel + '</div></div></div>');
+            printWin.document.write('<div class="section"><div class="section-title">CONTACT INFORMATION</div>');
+            printWin.document.write('<div class="info-row"><div class="info-label">Email:</div><div>' + currentSupernumerary.email + '</div></div>');
+            printWin.document.write('<div class="info-row"><div class="info-label">Phone:</div><div>' + currentSupernumerary.phone + '</div></div></div>');
+            printWin.document.write('<div class="section"><div class="section-title">CURRENT ASSIGNMENT</div>');
+            printWin.document.write('<div class="info-row"><div class="info-label">Vessel:</div><div>' + currentSupernumerary.vessel + '</div></div>');
+            printWin.document.write('<div class="info-row"><div class="info-label">Port:</div><div>' + currentSupernumerary.port + '</div></div>');
+            printWin.document.write('<div class="info-row"><div class="info-label">Purpose:</div><div>' + currentSupernumerary.purpose + '</div></div></div>');
+            printWin.document.write('<div class="verification"><strong style="color:#065f46">✓ Document Verified</strong><br>Verified by Crossworld Marine Services on ' + new Date().toLocaleDateString() + '</div>');
+            printWin.document.write('<div class="footer">Document ID: ' + docNumber + ' | Generated: ' + new Date().toLocaleString() + '</div>');
+            printWin.document.write('</body></html>');
+            printWin.document.close();
+            printWin.focus();
+            setTimeout(function() { printWin.print(); }, 250);
+            showNotification('Opening print dialog...', 'info');
+        }
+        window.printDocument = printDocument;
+
+        function saveNewSupernumerary() {
+            const name = document.getElementById('newSupName').value.trim();
+            const category = document.getElementById('newSupCategory').value;
+            const email = document.getElementById('newSupEmail').value.trim();
+            
+            if (!name || !category || !email) {
+                showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+            
+            const categoryLabels = {
+                'inspector': 'Flag State Inspector',
+                'observer': 'Port State Observer',
+                'superintendent': 'Technical Superintendent',
+                'auditor': 'Safety Auditor',
+                'trainer': 'Training Officer'
+            };
+            
+            const newId = 'SUP-' + String(MOCK_SUPERNUMERARY.length + 1).padStart(3, '0');
+            const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+            
+            const newSupernumerary = {
+                id: newId,
+                name: name,
+                initials: initials,
+                nationality: document.getElementById('newSupNationality').value.trim() || 'Not specified',
+                company: document.getElementById('newSupCompany').value.trim() || 'Not specified',
+                email: email,
+                phone: document.getElementById('newSupPhone').value.trim() || 'Not specified',
+                category: category,
+                categoryLabel: categoryLabels[category],
+                status: 'pending',
+                vessel: document.getElementById('newSupVessel').value.trim() || 'TBA',
+                port: document.getElementById('newSupPort').value.trim() || 'TBA',
+                embarkedDate: null,
+                disembarkDate: null,
+                scheduledDate: null,
+                duration: null,
+                purpose: document.getElementById('newSupPurpose').value.trim() || 'TBA',
+                remarks: document.getElementById('newSupRemarks').value.trim() || 'No remarks',
+                createdDate: new Date().toISOString().split('T')[0],
+                approvedDate: new Date().toISOString().split('T')[0]
+            };
+            
+            MOCK_SUPERNUMERARY.push(newSupernumerary);
+            
+            document.getElementById('addSupernumeraryForm').reset();
+            closeModal('addSupernumeraryModal');
+            renderSupernumeraryGrid();
+            showNotification('Supernumerary personnel added successfully', 'success');
+        }
+        window.saveNewSupernumerary = saveNewSupernumerary;
+
+        function formatDateLong(dateStr) {
+            if (!dateStr) return '-';
+            const d = new Date(dateStr);
+            return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '-';
+            const d = new Date(dateStr);
+            return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
 
 </script>
 </body>
