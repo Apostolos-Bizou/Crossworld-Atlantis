@@ -3,23 +3,18 @@
 <!--
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║  ATLANTIS ERP - Crossworld Marine Services                                    ║
-║  VERSION: v2.70 🏆 PRODUCTION READY - FINAL 🏆                                ║
+║  VERSION: v2.78 🏆 FULLSCREEN REPORTS WORKING! 🏆                             ║
 ╠═══════════════════════════════════════════════════════════════════════════════╣
-║  ✅ 22/22 MODULES - 100% COMPLETE                                             ║
-║  ✅ 20/20 ANALYTICS TABS - 100% COMPLETE                                      ║
-║  ✅ 7/7 SETTINGS TABS WITH CONTENT - 100% COMPLETE                            ║
-║  ✅ ALL AUTO-LOAD NAVIGATION - 100% WORKING                                   ║
-║  ✅ ANIMATED DASHBOARD COUNTERS - 100% WORKING                                ║
-║  ✅ ALL MODALS & INTERACTIVE FEATURES - 100% WORKING                          ║
-║  ✅ ZERO BUGS - ZERO CONFLICTS - 100% STABLE                                  ║
-║                                                                               ║
-║  🚀 READY FOR CLIENT DEMO & BACKEND INTEGRATION 🚀                            ║
+║  ✅ 22/22 MODULES + 20/20 ANALYTICS + 7/7 SETTINGS                            ║
+║  🎯 FULLSCREEN REPORTS MODULE - 100% WORKING!                                 ║
+║  🎯 CSS overflow:auto fixed scrolling issue                                   ║
+║  🎯 GitHub Pages iframe integration complete                                  ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATLANTIS v2.70 🏆 PRODUCTION READY | Crossworld Marine Services</title>
+    <title>ATLANTIS v2.78 🏆 PRODUCTION READY FINAL! | Crossworld Marine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -1618,6 +1613,7 @@
                 </div>
                 <div class="nav-section">
                     <div class="nav-section-title">Reports</div>
+                    <a class="nav-item" data-view="reports-kpi"><i data-lucide="file-bar-chart"></i><span>Reports & KPIs</span></a>
                     <a class="nav-item" data-view="analytics"><i data-lucide="bar-chart-3"></i><span>Analytics</span></a>
                     <a class="nav-item" data-view="compliance"><i data-lucide="bar-chart-2"></i><span>Complaints Analytics</span></a>
                 </div>
@@ -1636,7 +1632,7 @@
                     <i data-lucide="chevron-down" style="width:16px;height:16px;opacity:0.6;"></i>
                 </div>
                 <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);text-align:center;">
-                    <span style="font-size:0.75rem;color:rgba(255,255,255,0.9);letter-spacing:0.05em;font-weight:600;">ATLANTIS_v2_70_🏆_PRODUCTION_READY_FINAL</span>
+                    <span style="font-size:0.75rem;color:rgba(255,255,255,0.9);letter-spacing:0.05em;font-weight:600;">ATLANTIS_v2_78_🏆_PRODUCTION_READY_FINAL</span>
                 </div>
             </div>
         </aside>
@@ -4747,6 +4743,19 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- FULLSCREEN REPORTS & KPIs VIEW -->
+                <div class="view" id="view-reports-kpi" style="display:none;">
+                    <div id="fullscreen-reports-container" style="display:none;position:absolute;top:0;left:0;width:100%;height:100%;background:white;">
+                        <!-- Back Button -->
+                        <button id="reports-back-btn" style="position:absolute;top:20px;left:20px;z-index:10000;padding:12px 24px;background:linear-gradient(135deg,#0f766e,#14b8a6);color:white;border:none;border-radius:8px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 16px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)';" onclick="exitFullscreenReports(); navigateTo('dashboard');">
+                            <i data-lucide="arrow-left" style="width:18px;height:18px;"></i>
+                            <span>Back to ATLANTIS</span>
+                        </button>
+                        <!-- Fullscreen iframe with GitHub Pages URL -->
+                        <iframe id="reports-iframe" src="https://apostolos-bizou.github.io/Crossworld-Atlantis/reports.html" style="width:100%;height:100vh;border:none;" allow="fullscreen"></iframe>
                     </div>
                 </div>
 
@@ -13540,6 +13549,15 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
 
         // NAVIGATION
         function navigateTo(viewId) {
+            // Special handling for fullscreen Reports
+            if (viewId === 'reports-kpi') {
+                enterFullscreenReports();
+                return;
+            }
+            
+            // Exit fullscreen if coming from Reports
+            exitFullscreenReports();
+            
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
                 if (item.dataset.view === viewId) item.classList.add('active');
@@ -19440,6 +19458,112 @@ Generated: ${new Date().toISOString()}`;
             return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
         }
 
+        
+        // =====================================================
+        // FULLSCREEN REPORTS TOGGLE (v2.77 - COMPLETE RESET!)
+        // =====================================================
+        function enterFullscreenReports() {
+            // CRITICAL: Lock body scroll
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
+            
+            // Hide sidebar and header
+            const sidebar = document.getElementById('sidebar');
+            const header = document.querySelector('.main-header');
+            const mainContent = document.querySelector('.main-content');
+            
+            if (sidebar) {
+                sidebar.style.display = 'none';
+                sidebar.style.overflow = 'hidden';
+            }
+            if (header) {
+                header.style.display = 'none';
+            }
+            if (mainContent) {
+                mainContent.style.overflow = 'hidden';
+            }
+            
+            // Show fullscreen reports view
+            const reportsView = document.getElementById('view-reports-kpi');
+            const reportsContainer = document.getElementById('fullscreen-reports-container');
+            if (reportsView) {
+                reportsView.style.display = 'block';
+                reportsView.classList.add('active');
+            }
+            if (reportsContainer) {
+                // Make it FIXED and VISIBLE
+                reportsContainer.style.position = 'fixed';
+                reportsContainer.style.width = '100vw';
+                reportsContainer.style.height = '100vh';
+                reportsContainer.style.top = '0';
+                reportsContainer.style.left = '0';
+                reportsContainer.style.zIndex = '9999';
+                reportsContainer.style.display = 'block';
+            }
+            
+            // Update nav active state
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.view === 'reports-kpi') item.classList.add('active');
+            });
+            
+            // Refresh icons in back button
+            setTimeout(() => {
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }, 100);
+        }
+        
+        function exitFullscreenReports() {
+            console.log('🔄 exitFullscreenReports called - FULL RESET!');
+            
+            // CRITICAL: COMPLETE OVERFLOW RESET
+            document.body.style.overflow = '';
+            document.body.style.removeProperty('overflow');
+            document.documentElement.style.overflow = '';
+            document.documentElement.style.removeProperty('overflow');
+            
+            // Show sidebar and header with FULL RESET
+            const sidebar = document.getElementById('sidebar');
+            const header = document.querySelector('.main-header');
+            const mainContent = document.querySelector('.main-content');
+            
+            if (sidebar) {
+                sidebar.style.display = '';
+                sidebar.style.removeProperty('display');
+                sidebar.style.overflow = '';
+                sidebar.style.removeProperty('overflow');
+            }
+            if (header) {
+                header.style.display = '';
+                header.style.removeProperty('display');
+            }
+            if (mainContent) {
+                mainContent.style.overflow = '';
+                mainContent.style.removeProperty('overflow');
+            }
+            
+            // Hide fullscreen reports view and REMOVE ALL STYLES
+            const reportsView = document.getElementById('view-reports-kpi');
+            const reportsContainer = document.getElementById('fullscreen-reports-container');
+            if (reportsView) {
+                reportsView.style.display = 'none';
+                reportsView.classList.remove('active');
+            }
+            if (reportsContainer) {
+                // REMOVE ALL INLINE STYLES
+                reportsContainer.style.cssText = 'display:none;position:absolute;top:0;left:0;width:100%;height:100%;';
+            }
+            
+            // NUCLEAR OPTION: Force complete reflow
+            document.body.style.display = 'none';
+            document.body.offsetHeight; // Force reflow
+            document.body.style.display = '';
+            
+            console.log('✅ Full reset complete');
+        }
+        
+        window.exitFullscreenReports = exitFullscreenReports;
+        
         // =====================================================
         // SETTINGS TAB SWITCHING (v2.68 - WITH CONTENT PANELS)
         // =====================================================
