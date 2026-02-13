@@ -3,17 +3,16 @@
 <!--
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║  ATLANTIS ERP - Crossworld Marine Services                                    ║
-║  VERSION: v2.36 ANALYTICS #2 - RFA HUB                                        ║
+║  VERSION: v2.40 ANALYTICS #6 - EMBARKATION PREP                               ║
 ╠═══════════════════════════════════════════════════════════════════════════════╣
-║  v2.35: Analytics Tab #1 - Crew Changes                                       ║
-║  v2.36: Analytics Tab #2 - RFA Hub (Types, Status, Active table)              ║
-║  🏆 22/22 MODULES + 11/22 ANALYTICS TABS 🏆                                   ║
+║  v2.35-40: Analytics #1-6 Complete!                                            ║
+║  🏆 22/22 MODULES + 15/22 ANALYTICS TABS 🏆                                   ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATLANTIS v2.36 Analytics #2 RFA Hub | Crossworld Marine</title>
+    <title>ATLANTIS v2.40 Analytics #6 Embark Prep | Crossworld Marine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -1630,7 +1629,7 @@
                     <i data-lucide="chevron-down" style="width:16px;height:16px;opacity:0.6;"></i>
                 </div>
                 <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);text-align:center;">
-                    <span style="font-size:0.75rem;color:rgba(255,255,255,0.9);letter-spacing:0.05em;font-weight:600;">ATLANTIS_v2_36_ANALYTICS_2_RFA_HUB</span>
+                    <span style="font-size:0.75rem;color:rgba(255,255,255,0.9);letter-spacing:0.05em;font-weight:600;">ATLANTIS_v2_40_ANALYTICS_6_EMBARK_PREP</span>
                 </div>
             </div>
         </aside>
@@ -2521,6 +2520,10 @@
                         <button class="analytics-tab" onclick="switchAnalyticsTab('evaluations-analytics')" data-tab="evaluations-analytics"><i data-lucide="star"></i>Evaluations</button>
                         <button class="analytics-tab" onclick="switchAnalyticsTab('crew-changes-analytics')" data-tab="crew-changes-analytics"><i data-lucide="repeat"></i>Crew Changes</button>
                         <button class="analytics-tab" onclick="switchAnalyticsTab('rfa-hub-analytics')" data-tab="rfa-hub-analytics"><i data-lucide="clipboard-list"></i>RFA Hub</button>
+                        <button class="analytics-tab" onclick="switchAnalyticsTab('clients-analytics')" data-tab="clients-analytics"><i data-lucide="building-2"></i>Clients</button>
+                        <button class="analytics-tab" onclick="switchAnalyticsTab('complaints-analytics-tab')" data-tab="complaints-analytics-tab"><i data-lucide="alert-octagon"></i>Complaints</button>
+                        <button class="analytics-tab" onclick="switchAnalyticsTab('pending-tx-analytics')" data-tab="pending-tx-analytics"><i data-lucide="clock"></i>Pending Tx</button>
+                        <button class="analytics-tab" onclick="switchAnalyticsTab('embark-prep-analytics')" data-tab="embark-prep-analytics"><i data-lucide="check-circle"></i>Embark Prep</button>
                         <button class="analytics-tab" onclick="switchAnalyticsTab('api')" data-tab="api"><i data-lucide="code"></i>API Hub</button>
                     </div>
 
@@ -3440,6 +3443,327 @@
                                         </tr>
                                     </thead>
                                     <tbody id="rfaAnalyticsTableBody">
+                                        <!-- Will be filled by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: Clients Analytics -->
+                    <div class="analytics-tab-content" id="tab-clients-analytics">
+                        <!-- KPI Cards Row -->
+                        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:24px;">
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#3b82f6,#60a5fa);"><i data-lucide="building-2"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" data-count="34">0</div>
+                                    <div class="kpi-card-3d-label">Total Clients</div>
+                                    <div class="kpi-card-3d-change up"><i data-lucide="trending-up"></i>+3 this quarter</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#10b981,#34d399);"><i data-lucide="file-signature"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" data-count="156">0</div>
+                                    <div class="kpi-card-3d-label">Active Contracts</div>
+                                    <div class="kpi-card-3d-change up"><i data-lucide="trending-up"></i>+12 this month</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);"><i data-lucide="ship"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" data-count="89">0</div>
+                                    <div class="kpi-card-3d-label">Total Fleet</div>
+                                    <div class="kpi-card-3d-change up"><i data-lucide="trending-up"></i>+5 vessels</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);"><i data-lucide="dollar-sign"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value">$8.5M</div>
+                                    <div class="kpi-card-3d-label">Annual Revenue</div>
+                                    <div class="kpi-card-3d-change up"><i data-lucide="trending-up"></i>+15% YoY</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Charts Row -->
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
+                            <div class="chart-card-3d">
+                                <div class="chart-card-3d-header">
+                                    <div><h3>Clients by Type</h3><span>Distribution by vessel category</span></div>
+                                </div>
+                                <div class="chart-card-3d-body" style="height:300px;"><canvas id="clientsByTypeChart"></canvas></div>
+                            </div>
+                            <div class="chart-card-3d">
+                                <div class="chart-card-3d-header">
+                                    <div><h3>Contract Status</h3><span>Active vs Pending vs Expired</span></div>
+                                </div>
+                                <div class="chart-card-3d-body" style="height:300px;"><canvas id="clientsContractStatusChart"></canvas></div>
+                            </div>
+                        </div>
+
+                        <!-- Top Clients Table -->
+                        <div class="chart-card-3d">
+                            <div class="chart-card-3d-header">
+                                <div><h3>Top Clients by Fleet Size</h3><span>Leading principals overview</span></div>
+                            </div>
+                            <div style="overflow-x:auto;">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Client Name</th>
+                                            <th>Type</th>
+                                            <th>Vessels</th>
+                                            <th>Active Contracts</th>
+                                            <th>Crew Deployed</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="clientsAnalyticsTableBody">
+                                        <!-- Will be filled by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: Complaints Analytics -->
+                    <div class="analytics-tab-content" id="tab-complaints-analytics-tab">
+                        <!-- KPI Cards Row -->
+                        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:24px;">
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#ef4444,#f87171);"><i data-lucide="alert-octagon"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" data-count="7">0</div>
+                                    <div class="kpi-card-3d-label">Active Complaints</div>
+                                    <div class="kpi-card-3d-change down"><i data-lucide="trending-down"></i>-2 this month</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);"><i data-lucide="clock"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" data-count="3">0</div>
+                                    <div class="kpi-card-3d-label">Under Investigation</div>
+                                    <div class="kpi-card-3d-change neutral"><i data-lucide="activity"></i>In progress</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#10b981,#34d399);"><i data-lucide="check-circle"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" data-count="45">0</div>
+                                    <div class="kpi-card-3d-label">Resolved YTD</div>
+                                    <div class="kpi-card-3d-change up"><i data-lucide="trending-up"></i>92% resolution</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);"><i data-lucide="timer"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value">5.2</div>
+                                    <div class="kpi-card-3d-label">Avg Days to Resolve</div>
+                                    <div class="kpi-card-3d-change down"><i data-lucide="trending-down"></i>-1.3 days</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Charts Row -->
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
+                            <div class="chart-card-3d">
+                                <div class="chart-card-3d-header">
+                                    <div><h3>Complaints by Category</h3><span>Distribution by type</span></div>
+                                </div>
+                                <div class="chart-card-3d-body" style="height:300px;"><canvas id="complaintsByCategoryChart"></canvas></div>
+                            </div>
+                            <div class="chart-card-3d">
+                                <div class="chart-card-3d-header">
+                                    <div><h3>Severity Breakdown</h3><span>Critical vs High vs Medium vs Low</span></div>
+                                </div>
+                                <div class="chart-card-3d-body" style="height:300px;"><canvas id="complaintsSeverityChart"></canvas></div>
+                            </div>
+                        </div>
+
+                        <!-- Active Complaints Table -->
+                        <div class="chart-card-3d">
+                            <div class="chart-card-3d-header">
+                                <div><h3>Active Complaints Summary</h3><span>Current open cases</span></div>
+                            </div>
+                            <div style="overflow-x:auto;">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Category</th>
+                                            <th>Seafarer</th>
+                                            <th>Vessel</th>
+                                            <th>Date</th>
+                                            <th>Severity</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="complaintsAnalyticsTableBody">
+                                        <!-- Will be filled by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: Pending Transactions Analytics -->
+                    <div class="analytics-tab-content" id="tab-pending-tx-analytics">
+                        <!-- KPI Cards Row -->
+                        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:24px;">
+                            <div class="kpi-card-3d" style="padding:16px;">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#3b82f6,#60a5fa);width:40px;height:40px;"><i data-lucide="clock" style="width:20px;height:20px;"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" style="font-size:1.5rem;" data-count="5">0</div>
+                                    <div class="kpi-card-3d-label">Total Pending</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d" style="padding:16px;">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#10b981,#34d399);width:40px;height:40px;"><i data-lucide="arrow-up" style="width:20px;height:20px;"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" style="font-size:1.5rem;" data-count="2">0</div>
+                                    <div class="kpi-card-3d-label">Embarkations</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d" style="padding:16px;">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#ef4444,#f87171);width:40px;height:40px;"><i data-lucide="arrow-down" style="width:20px;height:20px;"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" style="font-size:1.5rem;" data-count="1">0</div>
+                                    <div class="kpi-card-3d-label">Sign-offs</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d" style="padding:16px;">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);width:40px;height:40px;"><i data-lucide="trending-up" style="width:20px;height:20px;"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" style="font-size:1.5rem;" data-count="1">0</div>
+                                    <div class="kpi-card-3d-label">Promotions</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d" style="padding:16px;">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);width:40px;height:40px;"><i data-lucide="repeat" style="width:20px;height:20px;"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" style="font-size:1.5rem;" data-count="1">0</div>
+                                    <div class="kpi-card-3d-label">Extensions</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Charts Row -->
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
+                            <div class="chart-card-3d">
+                                <div class="chart-card-3d-header">
+                                    <div><h3>Transaction Types</h3><span>Distribution by type</span></div>
+                                </div>
+                                <div class="chart-card-3d-body" style="height:300px;"><canvas id="pendingTxTypesChart"></canvas></div>
+                            </div>
+                            <div class="chart-card-3d">
+                                <div class="chart-card-3d-header">
+                                    <div><h3>Priority Breakdown</h3><span>Urgent vs Normal vs Low</span></div>
+                                </div>
+                                <div class="chart-card-3d-body" style="height:300px;"><canvas id="pendingTxPriorityChart"></canvas></div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Transactions Table -->
+                        <div class="chart-card-3d">
+                            <div class="chart-card-3d-header">
+                                <div><h3>Pending Transactions Queue</h3><span>Active approvals needed</span></div>
+                            </div>
+                            <div style="overflow-x:auto;">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>TX ID</th>
+                                            <th>Type</th>
+                                            <th>Seafarer</th>
+                                            <th>Vessel</th>
+                                            <th>Date Submitted</th>
+                                            <th>Priority</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="pendingTxAnalyticsTableBody">
+                                        <!-- Will be filled by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: Embarkation Prep Analytics -->
+                    <div class="analytics-tab-content" id="tab-embark-prep-analytics">
+                        <!-- KPI Cards Row -->
+                        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:24px;">
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#3b82f6,#60a5fa);"><i data-lucide="users"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" data-count="12">0</div>
+                                    <div class="kpi-card-3d-label">In Preparation</div>
+                                    <div class="kpi-card-3d-change neutral"><i data-lucide="activity"></i>Next 30 days</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#10b981,#34d399);"><i data-lucide="check-circle"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" data-count="8">0</div>
+                                    <div class="kpi-card-3d-label">Ready to Board</div>
+                                    <div class="kpi-card-3d-change up"><i data-lucide="trending-up"></i>67% complete</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);"><i data-lucide="alert-triangle"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" data-count="3">0</div>
+                                    <div class="kpi-card-3d-label">Pending Docs</div>
+                                    <div class="kpi-card-3d-change down"><i data-lucide="trending-down"></i>Need attention</div>
+                                </div>
+                            </div>
+                            <div class="kpi-card-3d">
+                                <div class="kpi-card-3d-icon" style="background:linear-gradient(135deg,#ef4444,#f87171);"><i data-lucide="x-circle"></i></div>
+                                <div class="kpi-card-3d-content">
+                                    <div class="kpi-card-3d-value" data-count="1">0</div>
+                                    <div class="kpi-card-3d-label">Medical Issues</div>
+                                    <div class="kpi-card-3d-change down"><i data-lucide="trending-down"></i>Unfit status</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Charts Row -->
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
+                            <div class="chart-card-3d">
+                                <div class="chart-card-3d-header">
+                                    <div><h3>Readiness Status</h3><span>Preparation completion levels</span></div>
+                                </div>
+                                <div class="chart-card-3d-body" style="height:300px;"><canvas id="embarkPrepStatusChart"></canvas></div>
+                            </div>
+                            <div class="chart-card-3d">
+                                <div class="chart-card-3d-header">
+                                    <div><h3>Document Compliance</h3><span>Certificate status breakdown</span></div>
+                                </div>
+                                <div class="chart-card-3d-body" style="height:300px;"><canvas id="embarkPrepDocsChart"></canvas></div>
+                            </div>
+                        </div>
+
+                        <!-- Embarkation Prep Table -->
+                        <div class="chart-card-3d">
+                            <div class="chart-card-3d-header">
+                                <div><h3>Upcoming Embarkations</h3><span>Seafarers in preparation</span></div>
+                            </div>
+                            <div style="overflow-x:auto;">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Seafarer</th>
+                                            <th>Rank</th>
+                                            <th>Vessel</th>
+                                            <th>Target Date</th>
+                                            <th>Progress</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="embarkPrepAnalyticsTableBody">
                                         <!-- Will be filled by JavaScript -->
                                     </tbody>
                                 </table>
@@ -13531,6 +13855,26 @@ Report generated by ATLANTIS ERP`;
                 initRfaHubCharts();
             }
             
+            // Initialize Clients analytics charts when tab is selected
+            if (tabName === 'clients-analytics' && !chartInstances.clientsByType) {
+                initClientsAnalyticsCharts();
+            }
+            
+            // Initialize Complaints analytics charts when tab is selected
+            if (tabName === 'complaints-analytics-tab' && !chartInstances.complaintsByCategory) {
+                initComplaintsAnalyticsTabCharts();
+            }
+            
+            // Initialize Pending Transactions analytics charts when tab is selected
+            if (tabName === 'pending-tx-analytics' && !chartInstances.pendingTxTypes) {
+                initPendingTxAnalyticsCharts();
+            }
+            
+            // Initialize Embarkation Prep analytics charts when tab is selected
+            if (tabName === 'embark-prep-analytics' && !chartInstances.embarkPrepStatus) {
+                initEmbarkPrepAnalyticsCharts();
+            }
+            
             lucide.createIcons();
         }
         
@@ -13564,6 +13908,10 @@ Report generated by ATLANTIS ERP`;
             initComplaintsAnalyticsCharts();
             initCrewChangesCharts();
             initRfaHubCharts();
+            initClientsAnalyticsCharts();
+            initComplaintsAnalyticsTabCharts();
+            initPendingTxAnalyticsCharts();
+            initEmbarkPrepAnalyticsCharts();
             
             animateKPICounters();
         }
@@ -14123,6 +14471,373 @@ Report generated by ATLANTIS ERP`;
                                 '<td>' + rfa.targetDate + '</td>' +
                                 '<td><span class="badge badge-primary">' + rfa.status + '</span></td>' +
                                 '<td><span class="badge ' + priorityClass + '">' + rfa.priority + '</span></td>';
+                
+                tableBody.appendChild(row);
+            });
+        }
+        
+        function initClientsAnalyticsCharts() {
+            createClientsByTypeChart();
+            createClientsContractStatusChart();
+            populateClientsTable();
+        }
+        
+        function createClientsByTypeChart() {
+            const ctx = document.getElementById('clientsByTypeChart');
+            if (!ctx) return;
+            chartInstances.clientsByType = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Bulk Carriers', 'Tankers', 'Container Ships', 'LNG Carriers', 'General Cargo'],
+                    datasets: [{
+                        data: [12, 8, 6, 5, 3],
+                        backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ef4444'],
+                        borderWidth: 0,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: { legend: { display: true, position: 'right' } }
+                }
+            });
+        }
+        
+        function createClientsContractStatusChart() {
+            const ctx = document.getElementById('clientsContractStatusChart');
+            if (!ctx) return;
+            chartInstances.clientsContractStatus = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Active', 'Pending', 'Expired'],
+                    datasets: [{
+                        label: 'Contracts',
+                        data: [156, 23, 45],
+                        backgroundColor: ['#10b981', '#f59e0b', '#ef4444'],
+                        borderRadius: 8,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
+                }
+            });
+        }
+        
+        function populateClientsTable() {
+            const tableBody = document.getElementById('clientsAnalyticsTableBody');
+            if (!tableBody) return;
+            
+            const clients = [
+                { name: 'Diana Shipping', type: 'Bulk Carriers', vessels: 18, contracts: 45, crew: 342, status: 'active' },
+                { name: 'Centrofin Management', type: 'Tankers', vessels: 15, contracts: 38, crew: 285, status: 'active' },
+                { name: 'Pioneer Marine', type: 'Container Ships', vessels: 12, contracts: 32, crew: 240, status: 'active' },
+                { name: 'Neda Maritime', type: 'LNG Carriers', vessels: 10, contracts: 28, crew: 210, status: 'active' },
+                { name: 'Eurobulk Ltd', type: 'Bulk Carriers', vessels: 9, contracts: 24, crew: 180, status: 'active' },
+                { name: 'Pacific Carriers', type: 'General Cargo', vessels: 8, contracts: 20, crew: 160, status: 'active' },
+                { name: 'Global Tankers', type: 'Tankers', vessels: 7, contracts: 18, crew: 140, status: 'active' }
+            ];
+            
+            tableBody.innerHTML = '';
+            
+            clients.forEach(function(client) {
+                const row = document.createElement('tr');
+                row.innerHTML = '<td><strong>' + client.name + '</strong></td>' +
+                                '<td><span class="badge badge-secondary">' + client.type + '</span></td>' +
+                                '<td>' + client.vessels + '</td>' +
+                                '<td>' + client.contracts + '</td>' +
+                                '<td>' + client.crew + '</td>' +
+                                '<td><span class="badge badge-success">Active</span></td>';
+                tableBody.appendChild(row);
+            });
+        }
+        
+        function initComplaintsAnalyticsTabCharts() {
+            createComplaintsByCategoryChart();
+            createComplaintsSeverityChart();
+            populateComplaintsAnalyticsTable();
+        }
+        
+        function createComplaintsByCategoryChart() {
+            const ctx = document.getElementById('complaintsByCategoryChart');
+            if (!ctx) return;
+            chartInstances.complaintsByCategory = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Safety', 'Harassment', 'Conduct', 'Working Conditions', 'Other'],
+                    datasets: [{
+                        data: [2, 1, 2, 1, 1],
+                        backgroundColor: ['#ef4444', '#f59e0b', '#8b5cf6', '#3b82f6', '#6b7280'],
+                        borderWidth: 0,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: { legend: { display: true, position: 'right' } }
+                }
+            });
+        }
+        
+        function createComplaintsSeverityChart() {
+            const ctx = document.getElementById('complaintsSeverityChart');
+            if (!ctx) return;
+            chartInstances.complaintsSeverity = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Critical', 'High', 'Medium', 'Low'],
+                    datasets: [{
+                        label: 'Complaints',
+                        data: [1, 2, 3, 1],
+                        backgroundColor: ['#ef4444', '#f59e0b', '#3b82f6', '#10b981'],
+                        borderRadius: 8,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
+                }
+            });
+        }
+        
+        function populateComplaintsAnalyticsTable() {
+            const tableBody = document.getElementById('complaintsAnalyticsTableBody');
+            if (!tableBody) return;
+            
+            const complaints = [
+                { id: 'CMP-2025-034', category: 'Safety', seafarer: 'Juan Dela Cruz', vessel: 'MV Diana Star', date: '2025-02-10', severity: 'high', status: 'investigating' },
+                { id: 'CMP-2025-035', category: 'Harassment', seafarer: 'Mario Reyes', vessel: 'MV Centrofin Glory', date: '2025-02-08', severity: 'critical', status: 'investigating' },
+                { id: 'CMP-2025-036', category: 'Conduct', seafarer: 'Eduardo Pascual', vessel: 'MV Pioneer Spirit', date: '2025-02-05', severity: 'medium', status: 'new' },
+                { id: 'CMP-2025-037', category: 'Working Conditions', seafarer: 'Jose Martinez', vessel: 'MV Neda Harmony', date: '2025-02-03', severity: 'medium', status: 'investigating' },
+                { id: 'CMP-2025-038', category: 'Safety', seafarer: 'Ramon Lopez', vessel: 'MV Eurobulk Pride', date: '2025-02-01', severity: 'high', status: 'new' },
+                { id: 'CMP-2025-039', category: 'Conduct', seafarer: 'Daniel Villanueva', vessel: 'MV Diana Star', date: '2025-01-28', severity: 'medium', status: 'new' },
+                { id: 'CMP-2025-040', category: 'Other', seafarer: 'Carlos Aquino', vessel: 'MV Centrofin Glory', date: '2025-01-25', severity: 'low', status: 'new' }
+            ];
+            
+            tableBody.innerHTML = '';
+            
+            complaints.forEach(function(complaint) {
+                const row = document.createElement('tr');
+                
+                let categoryClass = 'badge-secondary';
+                if (complaint.category === 'Safety') categoryClass = 'badge-danger';
+                else if (complaint.category === 'Harassment') categoryClass = 'badge-warning';
+                
+                let severityClass = 'badge-secondary';
+                if (complaint.severity === 'critical') severityClass = 'badge-danger';
+                else if (complaint.severity === 'high') severityClass = 'badge-warning';
+                else if (complaint.severity === 'medium') severityClass = 'badge-primary';
+                else if (complaint.severity === 'low') severityClass = 'badge-success';
+                
+                let statusClass = 'badge-primary';
+                if (complaint.status === 'investigating') statusClass = 'badge-warning';
+                
+                row.innerHTML = '<td>' + complaint.id + '</td>' +
+                                '<td><span class="badge ' + categoryClass + '">' + complaint.category + '</span></td>' +
+                                '<td>' + complaint.seafarer + '</td>' +
+                                '<td>' + complaint.vessel + '</td>' +
+                                '<td>' + complaint.date + '</td>' +
+                                '<td><span class="badge ' + severityClass + '">' + complaint.severity + '</span></td>' +
+                                '<td><span class="badge ' + statusClass + '">' + complaint.status + '</span></td>';
+                
+                tableBody.appendChild(row);
+            });
+        }
+        
+        function initPendingTxAnalyticsCharts() {
+            createPendingTxTypesChart();
+            createPendingTxPriorityChart();
+            populatePendingTxTable();
+        }
+        
+        function createPendingTxTypesChart() {
+            const ctx = document.getElementById('pendingTxTypesChart');
+            if (!ctx) return;
+            chartInstances.pendingTxTypes = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Embarkation', 'Sign-off', 'Promotion', 'Extension'],
+                    datasets: [{
+                        data: [2, 1, 1, 1],
+                        backgroundColor: ['#10b981', '#ef4444', '#8b5cf6', '#f59e0b'],
+                        borderWidth: 0,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: { legend: { display: true, position: 'right' } }
+                }
+            });
+        }
+        
+        function createPendingTxPriorityChart() {
+            const ctx = document.getElementById('pendingTxPriorityChart');
+            if (!ctx) return;
+            chartInstances.pendingTxPriority = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Urgent', 'Normal', 'Low'],
+                    datasets: [{
+                        label: 'Transactions',
+                        data: [2, 2, 1],
+                        backgroundColor: ['#ef4444', '#3b82f6', '#10b981'],
+                        borderRadius: 8,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
+                }
+            });
+        }
+        
+        function populatePendingTxTable() {
+            const tableBody = document.getElementById('pendingTxAnalyticsTableBody');
+            if (!tableBody) return;
+            
+            const transactions = [
+                { id: 'PTX-2025-089', type: 'embark', seafarer: 'Juan Dela Cruz', vessel: 'MV Diana Star', date: '2025-02-11', priority: 'urgent', status: 'pending-approval' },
+                { id: 'PTX-2025-090', type: 'signoff', seafarer: 'Mario Reyes', vessel: 'MV Centrofin Glory', date: '2025-02-10', priority: 'normal', status: 'pending-docs' },
+                { id: 'PTX-2025-091', type: 'promotion', seafarer: 'Eduardo Pascual', vessel: 'MV Pioneer Spirit', date: '2025-02-09', priority: 'normal', status: 'pending-approval' },
+                { id: 'PTX-2025-092', type: 'extension', seafarer: 'Jose Martinez', vessel: 'MV Neda Harmony', date: '2025-02-08', priority: 'low', status: 'pending-medical' },
+                { id: 'PTX-2025-093', type: 'embark', seafarer: 'Ramon Lopez', vessel: 'MV Eurobulk Pride', date: '2025-02-07', priority: 'urgent', status: 'pending-approval' }
+            ];
+            
+            tableBody.innerHTML = '';
+            
+            transactions.forEach(function(tx) {
+                const row = document.createElement('tr');
+                
+                let typeClass = 'badge-secondary';
+                let typeLabel = tx.type;
+                if (tx.type === 'embark') { typeClass = 'badge-success'; typeLabel = 'Embarkation'; }
+                else if (tx.type === 'signoff') { typeClass = 'badge-danger'; typeLabel = 'Sign-off'; }
+                else if (tx.type === 'promotion') { typeClass = 'badge-primary'; typeLabel = 'Promotion'; }
+                else if (tx.type === 'extension') { typeClass = 'badge-warning'; typeLabel = 'Extension'; }
+                
+                let priorityClass = 'badge-secondary';
+                if (tx.priority === 'urgent') priorityClass = 'badge-danger';
+                else if (tx.priority === 'normal') priorityClass = 'badge-primary';
+                else if (tx.priority === 'low') priorityClass = 'badge-success';
+                
+                row.innerHTML = '<td>' + tx.id + '</td>' +
+                                '<td><span class="badge ' + typeClass + '">' + typeLabel + '</span></td>' +
+                                '<td>' + tx.seafarer + '</td>' +
+                                '<td>' + tx.vessel + '</td>' +
+                                '<td>' + tx.date + '</td>' +
+                                '<td><span class="badge ' + priorityClass + '">' + tx.priority + '</span></td>' +
+                                '<td><span class="badge badge-warning">' + tx.status + '</span></td>';
+                
+                tableBody.appendChild(row);
+            });
+        }
+        
+        function initEmbarkPrepAnalyticsCharts() {
+            createEmbarkPrepStatusChart();
+            createEmbarkPrepDocsChart();
+            populateEmbarkPrepTable();
+        }
+        
+        function createEmbarkPrepStatusChart() {
+            const ctx = document.getElementById('embarkPrepStatusChart');
+            if (!ctx) return;
+            chartInstances.embarkPrepStatus = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Ready (100%)', 'On Track (75-99%)', 'Delayed (50-74%)', 'Critical (<50%)'],
+                    datasets: [{
+                        data: [8, 2, 1, 1],
+                        backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ef4444'],
+                        borderWidth: 0,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: { legend: { display: true, position: 'right' } }
+                }
+            });
+        }
+        
+        function createEmbarkPrepDocsChart() {
+            const ctx = document.getElementById('embarkPrepDocsChart');
+            if (!ctx) return;
+            chartInstances.embarkPrepDocs = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Complete', 'Pending', 'Expired'],
+                    datasets: [{
+                        label: 'Documents',
+                        data: [45, 8, 2],
+                        backgroundColor: ['#10b981', '#f59e0b', '#ef4444'],
+                        borderRadius: 8,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
+                }
+            });
+        }
+        
+        function populateEmbarkPrepTable() {
+            const tableBody = document.getElementById('embarkPrepAnalyticsTableBody');
+            if (!tableBody) return;
+            
+            const preparations = [
+                { seafarer: 'Juan Dela Cruz', rank: 'Chief Officer', vessel: 'MV Diana Star', date: '2025-02-20', progress: 100, status: 'ready' },
+                { seafarer: 'Mario Reyes', rank: '2nd Engineer', vessel: 'MV Centrofin Glory', date: '2025-02-22', progress: 95, status: 'on-track' },
+                { seafarer: 'Eduardo Pascual', rank: 'AB Seaman', vessel: 'MV Pioneer Spirit', date: '2025-02-25', progress: 100, status: 'ready' },
+                { seafarer: 'Jose Martinez', rank: 'Bosun', vessel: 'MV Neda Harmony', date: '2025-02-28', progress: 85, status: 'on-track' },
+                { seafarer: 'Ramon Lopez', rank: 'Cook', vessel: 'MV Eurobulk Pride', date: '2025-03-01', progress: 100, status: 'ready' },
+                { seafarer: 'Daniel Villanueva', rank: '2nd Officer', vessel: 'MV Diana Star', date: '2025-03-03', progress: 65, status: 'delayed' },
+                { seafarer: 'Carlos Aquino', rank: 'Oiler', vessel: 'MV Centrofin Glory', date: '2025-03-05', progress: 100, status: 'ready' },
+                { seafarer: 'Antonio Santos', rank: 'Master', vessel: 'MV Pioneer Spirit', date: '2025-03-08', progress: 100, status: 'ready' },
+                { seafarer: 'Pedro Gonzales', rank: 'Chief Engineer', vessel: 'MV Neda Harmony', date: '2025-03-10', progress: 100, status: 'ready' },
+                { seafarer: 'Miguel Torres', rank: '3rd Officer', vessel: 'MV Eurobulk Pride', date: '2025-03-12', progress: 40, status: 'critical' },
+                { seafarer: 'Roberto Cruz', rank: 'Electrician', vessel: 'MV Diana Star', date: '2025-03-15', progress: 100, status: 'ready' },
+                { seafarer: 'Francisco Ramos', rank: 'Fitter', vessel: 'MV Centrofin Glory', date: '2025-03-18', progress: 100, status: 'ready' }
+            ];
+            
+            tableBody.innerHTML = '';
+            
+            preparations.forEach(function(prep) {
+                const row = document.createElement('tr');
+                
+                let statusClass = 'badge-secondary';
+                let statusLabel = prep.status;
+                if (prep.status === 'ready') { statusClass = 'badge-success'; statusLabel = 'Ready'; }
+                else if (prep.status === 'on-track') { statusClass = 'badge-primary'; statusLabel = 'On Track'; }
+                else if (prep.status === 'delayed') { statusClass = 'badge-warning'; statusLabel = 'Delayed'; }
+                else if (prep.status === 'critical') { statusClass = 'badge-danger'; statusLabel = 'Critical'; }
+                
+                row.innerHTML = '<td>' + prep.seafarer + '</td>' +
+                                '<td>' + prep.rank + '</td>' +
+                                '<td>' + prep.vessel + '</td>' +
+                                '<td>' + prep.date + '</td>' +
+                                '<td><div style="width:60px;background:#e5e7eb;border-radius:4px;height:8px;"><div style="width:' + prep.progress + '%;background:#10b981;border-radius:4px;height:8px;"></div></div></td>' +
+                                '<td><span class="badge ' + statusClass + '">' + statusLabel + '</span></td>';
                 
                 tableBody.appendChild(row);
             });
