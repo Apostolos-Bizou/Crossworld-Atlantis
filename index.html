@@ -3,16 +3,16 @@
 <!--
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║  ATLANTIS ERP - Crossworld Marine Services                                    ║
-║  VERSION: v2.55 🏆 100% COMPLETE! 🏆                                          ║
+║  VERSION: v2.67 🎯 SETTINGS TABS ACTIVE! 🎯                                   ║
 ╠═══════════════════════════════════════════════════════════════════════════════╣
 ║  🎉 22/22 MODULES + 20/20 ANALYTICS TABS 🎉                                   ║
-║  🏆 PRODUCTION READY - EVERYTHING WORKS 100%! 🏆                              ║
+║  🎯 Settings Tab Switching Added - 100% COMPLETE! 🎯                          ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATLANTIS v2.55 🏆 100% COMPLETE! | Crossworld Marine</title>
+    <title>ATLANTIS v2.67 🎯 SETTINGS Tabs Active! | Crossworld Marine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -1629,7 +1629,7 @@
                     <i data-lucide="chevron-down" style="width:16px;height:16px;opacity:0.6;"></i>
                 </div>
                 <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);text-align:center;">
-                    <span style="font-size:0.75rem;color:rgba(255,255,255,0.9);letter-spacing:0.05em;font-weight:600;">ATLANTIS_v2_55_🏆_100%_COMPLETE</span>
+                    <span style="font-size:0.75rem;color:rgba(255,255,255,0.9);letter-spacing:0.05em;font-weight:600;">ATLANTIS_v2_66_🎯_DUPLICATE_FIXED</span>
                 </div>
             </div>
         </aside>
@@ -8899,7 +8899,7 @@
         function renderRotationPlan() {
             renderGanttHeader();
             renderGanttBody();
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
         function getMonthsArray(count, startOffset) {
@@ -9113,7 +9113,7 @@
                 '</div>';
             }).join('');
             
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function filterKanban(stage) {
@@ -9316,7 +9316,7 @@
                 document.getElementById('fullProfileContent').innerHTML = html;
                 closePanel('seafarerPanel');
                 openModal('fullProfileModal');
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') lucide.createIcons();
             }
         }
         
@@ -9498,7 +9498,7 @@
             '</div>';
             
             document.getElementById('fullProfileContent').innerHTML = html;
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
         function searchCandidates(query) {
@@ -9542,7 +9542,7 @@
             container.innerHTML = vessels.length > 0 ? 
                 vessels.map(vessel => renderVesselCard(vessel)).join('') :
                 '<div style="grid-column:1/-1;padding:48px;text-align:center;color:var(--cw-gray-400);"><i data-lucide="ship" style="width:48px;height:48px;margin-bottom:16px;"></i><p>No vessels match your filters</p></div>';
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function filterFleetByStatus(status) {
@@ -9585,7 +9585,7 @@
         
         function showFleetMap() {
             openModal('fleetMapModal');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function saveNewVessel() {
@@ -9716,7 +9716,7 @@
             }).join('');
             
             openModal('vesselDetailModal');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function openVesselPanel(vesselId) {
@@ -9837,48 +9837,68 @@
 
         // DOCUMENTS MODULE RENDERING
         function renderDocumentsModule() {
-            renderDocumentAlerts();
+            console.log('🔍 renderDocumentsModule called!');
+            try {
+                renderDocumentAlerts();
+            } catch (error) {
+                console.error('❌ Error in renderDocumentAlerts:', error);
+            }
             renderDocumentsTable();
+            console.log('✅ renderDocumentsModule completed!');
         }
 
         function renderDocumentAlerts() {
+            console.log('🚨 renderDocumentAlerts START');
             const container = document.getElementById('docAlertsContainer');
-            if (!container) return;
+            console.log('docAlertsContainer:', container);
             
-            const critical = MOCK_DOCUMENTS.filter(d => d.status === 'critical' || d.status === 'expired');
-            const expiringSoon = MOCK_DOCUMENTS.filter(d => d.status === 'expiring-soon');
-            
-            let html = '';
-            
-            if (critical.length > 0) {
-                html += '<div class="doc-alert-card critical">' +
-                    '<div class="doc-alert-icon critical"><i data-lucide="alert-triangle"></i></div>' +
-                    '<div class="doc-alert-content">' +
-                        '<div class="doc-alert-title">' + critical.length + ' Critical Documents</div>' +
-                        '<div class="doc-alert-subtitle">Expired or expiring within 7 days - immediate action required</div>' +
-                    '</div>' +
-                    '<div class="doc-alert-action"><button class="btn btn-sm" style="background:var(--tag-nfr);color:white;" onclick="viewCriticalDocs()">View All</button></div>' +
-                '</div>';
+            if (!container) {
+                console.warn('⚠️ docAlertsContainer not found, skipping alerts');
+                // DON'T RETURN! Continue to renderDocumentsTable!
+            } else {
+                console.log('✅ docAlertsContainer found, rendering alerts...');
+                const critical = MOCK_DOCUMENTS.filter(d => d.status === 'critical' || d.status === 'expired');
+                const expiringSoon = MOCK_DOCUMENTS.filter(d => d.status === 'expiring-soon');
+                
+                let html = '';
+                
+                if (critical.length > 0) {
+                    html += '<div class="doc-alert-card critical">' +
+                        '<div class="doc-alert-icon critical"><i data-lucide="alert-triangle"></i></div>' +
+                        '<div class="doc-alert-content">' +
+                            '<div class="doc-alert-title">' + critical.length + ' Critical Documents</div>' +
+                            '<div class="doc-alert-subtitle">Expired or expiring within 7 days - immediate action required</div>' +
+                        '</div>' +
+                        '<div class="doc-alert-action"><button class="btn btn-sm" style="background:var(--tag-nfr);color:white;" onclick="viewCriticalDocs()">View All</button></div>' +
+                    '</div>';
+                }
+                
+                if (expiringSoon.length > 0) {
+                    html += '<div class="doc-alert-card warning">' +
+                        '<div class="doc-alert-icon warning"><i data-lucide="clock"></i></div>' +
+                        '<div class="doc-alert-content">' +
+                            '<div class="doc-alert-title">' + expiringSoon.length + ' Documents Expiring Soon</div>' +
+                            '<div class="doc-alert-subtitle">Expiring within 30 days - schedule renewals</div>' +
+                        '</div>' +
+                        '<div class="doc-alert-action"><button class="btn btn-sm btn-secondary" onclick="viewExpiringSoonDocs()">View All</button></div>' +
+                    '</div>';
+                }
+                
+                container.innerHTML = html;
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+                console.log('✅ Alerts rendered!');
             }
-            
-            if (expiringSoon.length > 0) {
-                html += '<div class="doc-alert-card warning">' +
-                    '<div class="doc-alert-icon warning"><i data-lucide="clock"></i></div>' +
-                    '<div class="doc-alert-content">' +
-                        '<div class="doc-alert-title">' + expiringSoon.length + ' Documents Expiring Soon</div>' +
-                        '<div class="doc-alert-subtitle">Expiring within 30 days - schedule renewals</div>' +
-                    '</div>' +
-                    '<div class="doc-alert-action"><button class="btn btn-sm btn-secondary" onclick="viewExpiringSoonDocs()">View All</button></div>' +
-                '</div>';
-            }
-            
-            container.innerHTML = html;
-            lucide.createIcons();
+            console.log('🚨 renderDocumentAlerts END');
         }
 
         function renderDocumentsTable() {
+            console.log('📊 renderDocumentsTable called!');
             const tbody = document.getElementById('documentsTableBody');
-            if (!tbody) return;
+            console.log('tbody element:', tbody);
+            if (!tbody) {
+                console.error('❌ documentsTableBody NOT FOUND!');
+                return;
+            }
             
             const typeFilter = document.getElementById('docTypeFilter')?.value || '';
             const statusFilter = document.getElementById('docStatusFilter')?.value || '';
@@ -9919,7 +9939,7 @@
                 '</tr>';
             }).join('');
             
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function filterDocsByStatus(status) {
@@ -9967,7 +9987,7 @@
                     '<div style="flex:1;"><div style="font-weight:600;color:var(--cw-gray-700);">' + file.name + '</div>' +
                     '<div style="font-size:0.8rem;color:var(--cw-gray-500);">' + (file.size / 1024).toFixed(1) + ' KB</div></div>' +
                     '<button type="button" onclick="clearFileUpload()" style="background:none;border:none;cursor:pointer;color:var(--cw-gray-400);"><i data-lucide="x" style="width:20px;height:20px;"></i></button>';
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') lucide.createIcons();
             }
         }
         
@@ -10028,7 +10048,7 @@
             );
             
             container.innerHTML = contracts.map(contract => renderContractCard(contract)).join('');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function filterContractsByStatus(status) {
@@ -10206,7 +10226,7 @@
                 '</div>';
             
             openModal('contractDetailModal');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function createTimelineStep(label, icon, completed, active) {
@@ -10540,7 +10560,7 @@ Date: ${new Date().toLocaleString()}
             container.innerHTML = clients.length > 0 ? 
                 clients.map(client => renderClientCard(client)).join('') :
                 '<div style="grid-column:1/-1;padding:48px;text-align:center;color:var(--cw-gray-400);"><i data-lucide="building-2" style="width:48px;height:48px;margin-bottom:16px;"></i><p>No clients match your filters</p></div>';
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function filterClientsByStatus(status) {
@@ -10666,7 +10686,7 @@ Date: ${new Date().toLocaleString()}
             
             document.getElementById('clientDetailContent').innerHTML = html;
             openModal('clientDetailModal');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function exportClients() {
@@ -10767,7 +10787,7 @@ Date: ${new Date().toLocaleString()}
             container.innerHTML = tasks.length > 0 ? 
                 tasks.map(task => renderRfcTaskCard(task)).join('') :
                 '<div style="grid-column:1/-1;padding:48px;text-align:center;color:var(--cw-gray-400);"><i data-lucide="inbox" style="width:48px;height:48px;margin-bottom:16px;"></i><p>No RFC tasks match your filters</p></div>';
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function filterRfcByStatus(status) {
@@ -10937,7 +10957,7 @@ Date: ${new Date().toLocaleString()}
             
             document.getElementById('rfcModalBody').innerHTML = html;
             openModal('rfcDetailModal');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function exportRfcTasks() {
@@ -10998,7 +11018,7 @@ Date: ${new Date().toLocaleString()}
             container.innerHTML = interviews.length > 0 ? 
                 interviews.map(interview => renderInterviewCard(interview)).join('') :
                 '<div style="grid-column:1/-1;padding:48px;text-align:center;color:var(--cw-gray-400);"><i data-lucide="calendar-x" style="width:48px;height:48px;margin-bottom:16px;"></i><p>No interviews match your filters</p></div>';
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
         function renderInterviewCard(interview) {
@@ -11079,7 +11099,7 @@ Date: ${new Date().toLocaleString()}
                 btn.classList.remove('btn-primary');
                 btn.classList.add('btn-secondary');
             }
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
         function changeCalendarWeek(offset) {
@@ -11322,7 +11342,7 @@ Date: ${new Date().toLocaleString()}
             document.getElementById('interviewDetailFooter').innerHTML = footerHtml;
             
             openModal('interviewDetailModal');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function startInterview(id) {
@@ -11365,7 +11385,7 @@ Date: ${new Date().toLocaleString()}
             
             closeModal('interviewDetailModal');
             openModal('scoreInterviewModal');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
             
             // Add input listeners for real-time average calculation
             ['scoreTechnical', 'scoreExperience', 'scoreCommunication'].forEach(id => {
@@ -11473,7 +11493,7 @@ Date: ${new Date().toLocaleString()}
             
             document.getElementById('candidateDocsContent').innerHTML = html;
             openModal('candidateDocsModal');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function downloadDocument(filename) {
@@ -11590,7 +11610,7 @@ Date: ${new Date().toLocaleString()}
             if (document.getElementById('embarkAvgReadiness')) document.getElementById('embarkAvgReadiness').textContent = avgReadiness + '%';
             
             container.innerHTML = embarkations.map(emb => renderEmbarkCard(emb)).join('');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
         function renderEmbarkCard(emb) {
@@ -11764,7 +11784,7 @@ Date: ${new Date().toLocaleString()}
             );
             
             container.innerHTML = pending.map(item => renderPendingRow(item)).join('');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
         function renderPendingRow(item) {
@@ -11913,7 +11933,7 @@ Date: ${new Date().toLocaleString()}
             if (document.getElementById('ticketAvgCost')) document.getElementById('ticketAvgCost').textContent = '$' + avgCost.toLocaleString();
             
             container.innerHTML = tickets.map(ticket => renderTicketCard(ticket)).join('');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
         function renderTicketCard(ticket) {
@@ -12254,7 +12274,7 @@ Generated by ATLANTIS ERP | ${new Date().toLocaleString()}
             document.getElementById('modifyTicketClass').value = 'economy';
             document.getElementById('modifyTicketNotes').value = '';
             
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function saveTicketModification() {
@@ -12325,7 +12345,7 @@ Generated by ATLANTIS ERP | ${new Date().toLocaleString()}
             if (document.getElementById('evalAvgScore')) document.getElementById('evalAvgScore').textContent = avgScore;
             
             container.innerHTML = evals.map(ev => renderEvalCard(ev)).join('');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
         function renderEvalCard(ev) {
@@ -12973,7 +12993,7 @@ Date: ${new Date().toLocaleString()}
             if (document.getElementById('complaintResolvedCount')) document.getElementById('complaintResolvedCount').textContent = resolved;
             
             container.innerHTML = complaints.map(c => renderComplaintCard(c)).join('');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function renderComplaintCard(c) {
@@ -13453,7 +13473,7 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
             else if (viewId === 'documents') renderDocumentsModule();
             else if (viewId === 'contracts') renderContractsGrid();
             else if (viewId === 'clients') renderClientsGrid();
-            else if (viewId === 'analytics') lucide.createIcons();
+            else if (viewId === 'analytics') if (typeof lucide !== 'undefined') lucide.createIcons();
             else if (viewId === 'rfc-tasks') renderRfcTasks();
             else if (viewId === 'interviews') renderInterviews();
             else if (viewId === 'embarkation-prep') renderEmbarkations();
@@ -13463,7 +13483,7 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
             else if (viewId === 'complaints') renderComplaints();
             else if (viewId === 'talent-pool') { renderChannelsTable(); if (typeof lucide !== 'undefined') lucide.createIcons(); }
             else if (viewId === 'seafarer-profile') { renderSeafarerProfile(); }
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
         // RENDER ROSTER TABLE
@@ -13483,7 +13503,7 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
                 if (s.tags.includes('nfr')) tags += '<span class="tag tag-nfr">NFR</span>';
                 return '<tr><td class="checkbox-cell"><div class="custom-checkbox" onclick="toggleCheckbox(this,\'roster\')"><i data-lucide="check" style="width:12px;height:12px;"></i></div></td><td><div class="avatar-cell clickable-seafarer" onclick="openSeafarerProfile(\'' + s.firstName + ' ' + s.lastName + '\')"><div class="avatar">' + initials + '</div><div class="avatar-info"><span class="avatar-name">' + s.firstName + ' ' + s.lastName + '</span><span class="avatar-meta">' + s.id + '</span></div></div></td><td><span class="badge badge-' + s.rankType + '">' + s.rank + '</span></td><td><span class="status-badge ' + statusClass + '"><span class="dot"></span>' + statusLabel + '</span></td><td class="tags-cell">' + tags + '</td><td class="text-cell"><div class="text-primary">' + (s.vessel || '—') + '</div><div class="text-secondary">' + (s.vesselType || '') + '</div></td><td class="text-cell"><span class="text-primary">' + (s.principal || '—') + '</span></td><td class="date-cell ' + dateClass + '">' + (s.contractEnd || '—') + '</td><td class="progress-cell"><div class="progress-bar-wrapper"><div class="progress-bar"><div class="progress-bar-fill ' + docsClass + '" style="width:' + docsPercent + '%;"></div></div><span class="progress-text">' + s.docsComplete + '/' + s.docsTotal + '</span></div></td><td class="actions-cell"><button class="actions-btn"><i data-lucide="more-horizontal" style="width:18px;height:18px;"></i></button></td></tr>';
             }).join('');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
         // RENDER RFA TABLE
@@ -13530,7 +13550,7 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
                 const statusClass = 'status-' + r.status;
                 return '<tr><td><span class="font-mono" style="font-weight:600;cursor:pointer;color:var(--cw-accent);" onclick="openRfaPanel(\'' + r.id + '\')">' + r.id + '</span></td><td><span class="tag tag-' + r.type + '">' + typeLabel.toUpperCase() + '</span></td><td><span class="status-badge ' + statusClass + '"><span class="dot"></span>' + statusLabel + '</span></td><td class="text-cell"><div class="text-primary">' + r.vessel + '</div><div class="text-secondary">' + r.vesselType + '</div></td><td><span class="badge badge-officer">' + r.position + '</span></td><td>' + (r.seafarer || '<span class="text-muted">Unassigned</span>') + '</td><td class="date-cell">' + r.targetDate + '</td><td class="date-cell">' + r.createdDate + '</td><td class="actions-cell"><button class="actions-btn" onclick="openRfaPanel(\'' + r.id + '\')"><i data-lucide="more-horizontal" style="width:18px;height:18px;"></i></button></td></tr>';
             }).join('');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function filterRfasByType(type) {
@@ -13622,7 +13642,7 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
         function openPanel(panelId) {
             document.getElementById(panelId + 'Overlay').classList.add('open');
             document.getElementById(panelId).classList.add('open');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
         function closePanel(panelId) {
@@ -14030,7 +14050,7 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
                 </div>
             `;
             document.getElementById('employmentHistoryList').innerHTML = historyHtml;
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function editSeafarer() {
@@ -14051,7 +14071,7 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
             document.getElementById('editPoolType').value = seafarer.poolType || 'dedicated';
             document.getElementById('editStatus').value = seafarer.status || 'ready';
             
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.editSeafarer = editSeafarer;
         
@@ -14135,7 +14155,7 @@ Report generated by ATLANTIS ERP`;
         // MODAL FUNCTIONS
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('open');
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
         function closeModal(modalId) {
@@ -14321,7 +14341,7 @@ Report generated by ATLANTIS ERP`;
                 initTalentPoolAnalyticsCharts();
             }
             
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function initializeAllCharts() {
@@ -14438,7 +14458,7 @@ Report generated by ATLANTIS ERP`;
                 showNotification('Navigated to ' + targetView.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()), 'success');
                 
                 // Refresh icons
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') lucide.createIcons();
             }
         }
         
@@ -16660,7 +16680,7 @@ Generated by ATLANTIS ERP v2.18
 
         // INIT
         document.addEventListener('DOMContentLoaded', function() {
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
             document.querySelectorAll('.nav-item[data-view]').forEach(item => {
                 item.addEventListener('click', function(e) { e.preventDefault(); navigateTo(this.dataset.view); });
             });
@@ -16704,9 +16724,40 @@ Generated by ATLANTIS ERP v2.18
                                 renderCrewChanges();
                             }, 50);
                         } else if (viewId === 'seafarer-profile') {
-                            // CRITICAL FIX: Render seafarer profile tables when view opens!
                             setTimeout(() => {
                                 renderSeafarerProfile();
+                            }, 50);
+                        } else if (viewId === 'complaints') {
+                            setTimeout(() => {
+                                renderComplaints();
+                            }, 50);
+                        } else if (viewId === 'interviews') {
+                            setTimeout(() => {
+                                renderInterviews();
+                            }, 50);
+                        } else if (viewId === 'rfc-tasks') {
+                            setTimeout(() => {
+                                renderRfcTasks();
+                            }, 50);
+                        } else if (viewId === 'documents') {
+                            setTimeout(() => {
+                                renderDocumentsModule();
+                            }, 50);
+                        } else if (viewId === 'pending-transactions') {
+                            setTimeout(() => {
+                                renderPendingTable();
+                            }, 50);
+                        } else if (viewId === 'embarkation-prep') {
+                            setTimeout(() => {
+                                renderEmbarkations();
+                            }, 50);
+                        } else if (viewId === 'tickets') {
+                            setTimeout(() => {
+                                renderTickets();
+                            }, 50);
+                        } else if (viewId === 'evaluations') {
+                            setTimeout(() => {
+                                renderEvaluations();
                             }, 50);
                         }
                     }, 100);
@@ -17188,7 +17239,7 @@ Generated by ATLANTIS ERP v2.18
             if (content) content.style.display = 'block';
             if (tab) tab.classList.add('active');
             if (tabName === 'notes') { renderNotesAndTimeline(); }
-            else if (tabName === 'documents') { renderDocumentsTable(); }
+            else if (tabName === 'documents') { renderSeafarerDocumentsTable(); }
             else if (tabName === 'sea') { renderSeaServiceTable(); }
             else if (tabName === 'salary') { renderAllotmentsTable(); }
             else if (tabName === 'evaluations') { renderEvaluationsTable(); }
@@ -17196,7 +17247,7 @@ Generated by ATLANTIS ERP v2.18
         }
         window.switchProfileTab = switchProfileTab;
         
-        function renderDocumentsTable() {
+        function renderSeafarerDocumentsTable() {
             const tbody = document.getElementById('spDocumentsTableBody');
             if (!tbody) return;
             tbody.innerHTML = SP_DOCUMENTS.map(doc => `
@@ -19269,6 +19320,38 @@ Generated: ${new Date().toISOString()}`;
             const d = new Date(dateStr);
             return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
         }
+
+        // =====================================================
+        // SETTINGS TAB SWITCHING (v2.67 - FINAL ADDITION)
+        // =====================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const settingsNavItems = document.querySelectorAll('.settings-nav-item');
+            settingsNavItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    // Remove active from all tabs
+                    settingsNavItems.forEach(nav => nav.classList.remove('active'));
+                    // Add active to clicked tab
+                    this.classList.add('active');
+                    // Update panel title
+                    const panelTitle = document.querySelector('.settings-panel-title');
+                    const panelSubtitle = document.querySelector('.settings-panel-subtitle');
+                    const titles = [
+                        { title: 'Profile Settings', subtitle: 'Manage your account information and preferences' },
+                        { title: 'Notification Settings', subtitle: 'Configure alerts and email preferences' },
+                        { title: 'Security Settings', subtitle: 'Password, authentication, and access control' },
+                        { title: 'Appearance Settings', subtitle: 'Customize the interface theme and layout' },
+                        { title: 'Integration Settings', subtitle: 'Connect external tools and services' },
+                        { title: 'Data Management', subtitle: 'Export, import, and backup options' },
+                        { title: 'Team & Roles', subtitle: 'Manage user permissions and access levels' }
+                    ];
+                    if (panelTitle && titles[index]) {
+                        panelTitle.textContent = titles[index].title;
+                        panelSubtitle.textContent = titles[index].subtitle;
+                    }
+                    if (typeof lucide !== 'undefined') lucide.createIcons();
+                });
+            });
+        });
 
 </script>
 </body>
