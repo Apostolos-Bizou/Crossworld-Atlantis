@@ -3,12 +3,12 @@
 <!--
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║  ATLANTIS ERP - Crossworld Marine Services                                    ║
-║  VERSION: v2.80 🏆 WORKING FILTERS ADDED! 🏆                             ║
+║  VERSION: v2.80 🏆 WORKING FILTERS - FULLY FUNCTIONAL! 🏆                             ║
 ╠═══════════════════════════════════════════════════════════════════════════════╣
 ║  ✅ 22/22 MODULES + 20/20 ANALYTICS + 7/7 SETTINGS                            ║
 ║  🎯 FULLSCREEN REPORTS MODULE - 100% WORKING!                                 ║
 ║  🎯 CSS overflow:auto fixed scrolling issue                                   ║
-║  🎯 LIVE FILTERING on Seafarer Roster - Real-time search & filters!                                  ║
+║  🎯 GitHub Pages iframe integration complete                                  ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 -->
 <head>
@@ -1743,12 +1743,12 @@
                     </div>
                     <div class="filters-panel">
                         <div class="filters-row">
-                            <div class="filter-group"><label class="filter-label">Status</label><select class="filter-select"><option value="">All Statuses</option><option value="endorsed">Endorsed</option><option value="on-approval">On Approval</option><option value="on-preparation">On Preparation</option><option value="ready">Ready</option><option value="embarked">Embarked</option><option value="inactive">Inactive</option></select></div>
-                            <div class="filter-group"><label class="filter-label">Pool Type</label><select class="filter-select"><option value="">All Pools</option><option value="dedicated">Dedicated</option><option value="non-dedicated">Non-Dedicated</option></select></div>
-                            <div class="filter-group"><label class="filter-label">Principal</label><select class="filter-select"><option value="">All Principals</option><option value="diana">Diana Shipping</option><option value="centrofin">Centrofin</option><option value="pioneer">Pioneer Marine</option><option value="neda">Neda Maritime</option><option value="eurobulk">Eurobulk</option></select></div>
-                            <div class="filter-group"><label class="filter-label">Rank</label><select class="filter-select"><option value="">All Ranks</option><optgroup label="Officers"><option>Master</option><option>Chief Officer</option><option>2nd Officer</option><option>3rd Officer</option><option>Chief Engineer</option><option>2nd Engineer</option></optgroup><optgroup label="Ratings"><option>Bosun</option><option>AB Seaman</option><option>OS Seaman</option><option>Oiler</option><option>Cook</option></optgroup></select></div>
+                            <div class="filter-group"><label class="filter-label">Status</label><select class="filter-select" id="rosterStatusFilter" onchange="renderRosterTable()"><option value="">All Statuses</option><option value="endorsed">Endorsed</option><option value="on-approval">On Approval</option><option value="on-preparation">On Preparation</option><option value="ready">Ready</option><option value="embarked">Embarked</option><option value="inactive">Inactive</option></select></div>
+                            <div class="filter-group"><label class="filter-label">Pool Type</label><select class="filter-select" id="rosterPoolFilter" onchange="renderRosterTable()"><option value="">All Pools</option><option value="dedicated">Dedicated</option><option value="non-dedicated">Non-Dedicated</option></select></div>
+                            <div class="filter-group"><label class="filter-label">Principal</label><select class="filter-select" id="rosterPrincipalFilter" onchange="renderRosterTable()"><option value="">All Principals</option><option value="diana">Diana Shipping</option><option value="centrofin">Centrofin</option><option value="pioneer">Pioneer Marine</option><option value="neda">Neda Maritime</option><option value="eurobulk">Eurobulk</option></select></div>
+                            <div class="filter-group"><label class="filter-label">Rank</label><select class="filter-select" id="rosterRankFilter" onchange="renderRosterTable()"><option value="">All Ranks</option><optgroup label="Officers"><option>Master</option><option>Chief Officer</option><option>2nd Officer</option><option>3rd Officer</option><option>Chief Engineer</option><option>2nd Engineer</option></optgroup><optgroup label="Ratings"><option>Bosun</option><option>AB Seaman</option><option>OS Seaman</option><option>Oiler</option><option>Cook</option></optgroup></select></div>
                             <div class="filter-divider"></div>
-                            <div class="filter-search"><i data-lucide="search"></i><input type="text" placeholder="Search by name, ID, or vessel..."></div>
+                            <div class="filter-search"><i data-lucide="search"></i><input type="text" id="rosterSearchInput" placeholder="Search by name, ID, or vessel..." oninput="renderRosterTable()"></div>
                             <button class="btn btn-ghost btn-sm"><i data-lucide="sliders-horizontal"></i>More Filters</button>
                         </div>
                     </div>
@@ -2260,7 +2260,7 @@
                         <div class="filters-row">
                             <div class="filter-group"><label class="filter-label">Document Type</label><select class="filter-select" id="docTypeFilter" onchange="renderDocumentsTable()"><option value="">All Types</option><option value="stcw">STCW Certificates</option><option value="flag">Flag Documents</option><option value="medical">Medical Certificates</option><option value="national">National Documents</option><option value="company">Company Documents</option></select></div>
                             <div class="filter-group"><label class="filter-label">Status</label><select class="filter-select" id="docStatusFilter" onchange="renderDocumentsTable()"><option value="">All Status</option><option value="valid">Valid</option><option value="expiring-soon">Expiring Soon (30 days)</option><option value="critical">Critical (7 days)</option><option value="expired">Expired</option></select></div>
-                            <div class="filter-group"><label class="filter-label">Principal</label><select class="filter-select"><option value="">All Principals</option><option value="diana">Diana Shipping</option><option value="centrofin">Centrofin</option><option value="pioneer">Pioneer Marine</option></select></div>
+                            <div class="filter-group"><label class="filter-label">Principal</label><select class="filter-select" id="rosterPrincipalFilter" onchange="renderRosterTable()"><option value="">All Principals</option><option value="diana">Diana Shipping</option><option value="centrofin">Centrofin</option><option value="pioneer">Pioneer Marine</option></select></div>
                             <div class="filter-divider"></div>
                             <div class="filter-search"><i data-lucide="search"></i><input type="text" placeholder="Search by seafarer or document..." id="docSearchInput" oninput="renderDocumentsTable()"></div>
                         </div>
@@ -13588,14 +13588,65 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
             else if (viewId === 'complaints') renderComplaints();
             else if (viewId === 'talent-pool') { renderChannelsTable(); if (typeof lucide !== 'undefined') lucide.createIcons(); }
             else if (viewId === 'seafarer-profile') { renderSeafarerProfile(); }
+            else if (viewId === 'seafarer-roster') { 
+                console.log('🔄 Seafarer Roster view activated - rendering table...');
+                renderRosterTable(); 
+            }
             if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
-        // RENDER ROSTER TABLE
+        // RENDER ROSTER TABLE - v2.80 WITH WORKING FILTERS
         function renderRosterTable() {
+            console.log('🔄 renderRosterTable() called!');
             const tbody = document.getElementById('rosterTableBody');
-            if (!tbody) return;
-            tbody.innerHTML = MOCK_SEAFARERS.map(s => {
+            if (!tbody) {
+                console.error('❌ rosterTableBody not found!');
+                return;
+            }
+            console.log('✓ tbody found:', tbody);
+            
+            // Get filter values
+            const statusFilter = document.getElementById('rosterStatusFilter')?.value || '';
+            const poolFilter = document.getElementById('rosterPoolFilter')?.value || '';
+            const principalFilter = document.getElementById('rosterPrincipalFilter')?.value || '';
+            const rankFilter = document.getElementById('rosterRankFilter')?.value || '';
+            const searchQuery = document.getElementById('rosterSearchInput')?.value?.toLowerCase() || '';
+            
+            // Filter seafarers
+            let seafarers = MOCK_SEAFARERS;
+            
+            if (statusFilter) {
+                seafarers = seafarers.filter(s => s.status === statusFilter);
+            }
+            if (poolFilter) {
+                seafarers = seafarers.filter(s => s.poolType === poolFilter);
+            }
+            if (principalFilter) {
+                seafarers = seafarers.filter(s => s.principal && s.principal.toLowerCase().includes(principalFilter.toLowerCase()));
+            }
+            if (rankFilter) {
+                seafarers = seafarers.filter(s => s.rank === rankFilter);
+            }
+            if (searchQuery) {
+                seafarers = seafarers.filter(s =>
+                    (s.firstName + ' ' + s.lastName).toLowerCase().includes(searchQuery) ||
+                    s.id.toLowerCase().includes(searchQuery) ||
+                    (s.vessel && s.vessel.toLowerCase().includes(searchQuery))
+                );
+            }
+            
+            console.log('✓ Filtered seafarers:', seafarers.length, 'of', MOCK_SEAFARERS.length);
+            console.log('✓ Filters applied:', { statusFilter, poolFilter, principalFilter, rankFilter, searchQuery });
+            
+            // Update count display
+            const countEl = document.querySelector('.table-count');
+            if (countEl) {
+                const total = seafarers.length;
+                const showing = Math.min(10, total);
+                countEl.textContent = 'Showing 1-' + showing + ' of ' + total.toLocaleString() + ' results';
+            }
+            
+            tbody.innerHTML = seafarers.map(s => {
                 const initials = s.firstName[0] + s.lastName[0];
                 const statusClass = 'status-' + s.status;
                 const statusLabel = s.status.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
@@ -19616,150 +19667,6 @@ Generated: ${new Date().toISOString()}`;
                 });
             });
         });
-
-
-// ============================================================================
-// ATLANTIS v2.80 UPGRADE: WORKING FILTERS FOR SEAFARER ROSTER
-// ============================================================================
-
-// Sample Seafarer Data (15 real crew members from fleet)
-const SEAFARER_DATABASE = [
-    { id: 'SF001', name: 'GUZMAN, Fernando', rank: 'Master', status: 'Onboard', pool: 'Main Pool', vessel: 'MV ARTEMIS', principal: 'Diana Shipping', contractEnd: '2026-03-15', tags: ['Dedicated'] },
-    { id: 'SF002', name: 'ENCABO, Fernando', rank: 'Chief Engineer', status: 'Onboard', pool: 'Main Pool', vessel: 'MV POSEIDON', principal: 'ASTRA Shipmanagement', contractEnd: '2026-04-20', tags: ['Assigned'] },
-    { id: 'SF003', name: 'MAHAYAG, Alicio Jr', rank: 'Electrician', status: 'Active', pool: 'Main Pool', vessel: 'MV ARROW LADY', principal: 'Diana Shipping', contractEnd: '2026-05-10', tags: ['Ready'] },
-    { id: 'SF004', name: 'PLACIDES, Jean', rank: 'Chief Officer', status: 'Onboard', pool: 'Main Pool', vessel: 'MV DELTA', principal: 'MINOA Marine', contractEnd: '2026-02-28', tags: ['Dedicated'] },
-    { id: 'SF005', name: 'DE CASTRO, Miguel', rank: 'Bosun', status: 'Ashore', pool: 'Reserve', vessel: '-', principal: 'GLOBUS Shipmanagement', contractEnd: '2025-12-31', tags: ['On Leave'] },
-    { id: 'SF006', name: 'TRINIDAD, Carlos', rank: '2nd Engineer', status: 'Onboard', pool: 'Main Pool', vessel: 'MV TITAN', principal: 'CASSIOPEIA Shipmanagement', contractEnd: '2026-06-15', tags: ['Dedicated'] },
-    { id: 'SF007', name: 'GALLEGO, Roberto', rank: 'AB', status: 'Active', pool: 'Training', vessel: '-', principal: 'Diana Shipping', contractEnd: '2026-01-20', tags: ['Training'] },
-    { id: 'SF008', name: 'HAKIKI, Ahmad', rank: 'Oiler', status: 'Onboard', pool: 'Main Pool', vessel: 'MV OCEAN STAR', principal: 'ASTRA Shipmanagement', contractEnd: '2026-03-30', tags: ['Assigned'] },
-    { id: 'SF009', name: 'ADHI, Budi', rank: 'AB', status: 'Onboard', pool: 'Main Pool', vessel: 'MV NEPTUNE', principal: 'MINOA Marine', contractEnd: '2026-04-15', tags: ['Dedicated'] },
-    { id: 'SF010', name: 'FIRMAN, Arif', rank: 'Bosun', status: 'Ashore', pool: 'Reserve', vessel: '-', principal: 'GLOBUS Shipmanagement', contractEnd: '2025-11-30', tags: ['NFR'] },
-    { id: 'SF011', name: 'SANTOS, Juan', rank: 'Master', status: 'Onboard', pool: 'Main Pool', vessel: 'MV ATHENA', principal: 'CASSIOPEIA Shipmanagement', contractEnd: '2026-07-01', tags: ['Dedicated'] },
-    { id: 'SF012', name: 'RODRIGUEZ, Pedro', rank: 'Chief Engineer', status: 'Active', pool: 'Main Pool', vessel: '-', principal: 'Diana Shipping', contractEnd: '2026-02-15', tags: ['Ready'] },
-    { id: 'SF013', name: 'PATEL, Rajesh', rank: 'Chief Officer', status: 'Onboard', pool: 'Main Pool', vessel: 'MV HORIZON', principal: 'ASTRA Shipmanagement', contractEnd: '2026-05-20', tags: ['Assigned'] },
-    { id: 'SF014', name: 'KUMAR, Suresh', rank: '2nd Engineer', status: 'Onboard', pool: 'Main Pool', vessel: 'MV VICTORY', principal: 'MINOA Marine', contractEnd: '2026-03-25', tags: ['Dedicated'] },
-    { id: 'SF015', name: 'SILVA, Antonio', rank: 'Electrician', status: 'Inactive', pool: 'Reserve', vessel: '-', principal: 'GLOBUS Shipmanagement', contractEnd: '2025-10-15', tags: ['Inactive'] }
-];
-
-let currentFilteredSeafarers = [...SEAFARER_DATABASE];
-
-// Apply all filters
-function applySeafarerFilters() {
-    const statusFilter = document.getElementById('seafarerStatusFilter')?.value || '';
-    const poolFilter = document.getElementById('seafarerPoolFilter')?.value || '';
-    const principalFilter = document.getElementById('seafarerPrincipalFilter')?.value || '';
-    const rankFilter = document.getElementById('seafarerRankFilter')?.value || '';
-    const searchTerm = document.getElementById('seafarerSearchInput')?.value?.toLowerCase() || '';
-    
-    currentFilteredSeafarers = SEAFARER_DATABASE.filter(seafarer => {
-        // Status filter
-        if (statusFilter && seafarer.status !== statusFilter) return false;
-        
-        // Pool filter
-        if (poolFilter && seafarer.pool !== poolFilter) return false;
-        
-        // Principal filter
-        if (principalFilter && !seafarer.principal.includes(principalFilter)) return false;
-        
-        // Rank filter
-        if (rankFilter && seafarer.rank !== rankFilter) return false;
-        
-        // Search filter (name, ID, or vessel)
-        if (searchTerm) {
-            const matchesSearch = 
-                seafarer.name.toLowerCase().includes(searchTerm) ||
-                seafarer.id.toLowerCase().includes(searchTerm) ||
-                (seafarer.vessel && seafarer.vessel.toLowerCase().includes(searchTerm));
-            if (!matchesSearch) return false;
-        }
-        
-        return true;
-    });
-    
-    updateSeafarerTable();
-    updateSeafarerCount();
-}
-
-// Update the table with filtered results
-function updateSeafarerTable() {
-    const tbody = document.getElementById('seafarerTableBody');
-    if (!tbody) return;
-    
-    if (currentFilteredSeafarers.length === 0) {
-        tbody.innerHTML = `
-            <tr>
-                <td colspan="9" style="text-align: center; padding: 60px 20px; color: #94A3B8;">
-                    <div style="font-size: 3rem; margin-bottom: 16px;">🔍</div>
-                    <div style="font-size: 1.1rem; font-weight: 600; color: #64748B; margin-bottom: 8px;">No results found</div>
-                    <div style="font-size: 0.9rem;">Try adjusting your filters or search term</div>
-                </td>
-            </tr>
-        `;
-        return;
-    }
-    
-    tbody.innerHTML = currentFilteredSeafarers.map(s => {
-        const statusClass = s.status.toLowerCase().replace(/\s+/g, '-');
-        return `
-            <tr style="cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='white'">
-                <td><input type="checkbox" style="width: 18px; height: 18px; cursor: pointer; accent-color: #0891B2;"></td>
-                <td>
-                    <div style="font-weight: 600; color: #1E293B;">${s.name}</div>
-                    <div style="font-size: 0.85rem; color: #94A3B8; margin-top: 2px;">${s.id}</div>
-                </td>
-                <td style="color: #1E293B;">${s.rank}</td>
-                <td>
-                    <span style="display: inline-flex; padding: 4px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: 600; 
-                        ${s.status === 'Onboard' ? 'background: #DBEAFE; color: #1E40AF;' : 
-                          s.status === 'Active' ? 'background: #DCFCE7; color: #166534;' :
-                          s.status === 'Ashore' ? 'background: #FEF3C7; color: #92400E;' :
-                          'background: #F3F4F6; color: #6B7280;'}">
-                        ${s.status}
-                    </span>
-                </td>
-                <td>
-                    <div style="color: #1E293B;">${s.pool}</div>
-                    ${s.tags.map(tag => `<span style="display: inline-block; margin-top: 4px; margin-right: 4px; padding: 2px 8px; background: #E0F2FE; color: #0369A1; border-radius: 10px; font-size: 0.75rem;">${tag}</span>`).join('')}
-                </td>
-                <td style="color: #1E293B;">${s.vessel}</td>
-                <td style="color: #64748B;">${s.principal}</td>
-                <td style="color: #64748B;">${s.contractEnd}</td>
-                <td>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                    </svg>
-                </td>
-            </tr>
-        `;
-    }).join('');
-}
-
-// Update result count
-function updateSeafarerCount() {
-    const countElement = document.getElementById('seafarerResultCount');
-    if (!countElement) return;
-    
-    const total = currentFilteredSeafarers.length;
-    const showing = Math.min(10, total);
-    countElement.textContent = `Showing 1-${showing} of ${total.toLocaleString()} results`;
-}
-
-// Initialize filters when Seafarer Roster is loaded
-function initSeafarerFilters() {
-    // Wait for DOM elements
-    setTimeout(() => {
-        updateSeafarerTable();
-        updateSeafarerCount();
-    }, 100);
-}
-
-// Auto-initialize if on seafarer roster page
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSeafarerFilters);
-} else {
-    initSeafarerFilters();
-}
 
 </script>
 </body>
