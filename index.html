@@ -3,54 +3,22 @@
 <!--
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║  ATLANTIS ERP - Crossworld Marine Services                                    ║
+║  VERSION: v2.22 WITH ASSIGNMENT READY                                         ║
 ╠═══════════════════════════════════════════════════════════════════════════════╣
 ║  VERSION HISTORY                                                              ║
 ║  ─────────────────────────────────────────────────────────────────────────────║
 ║  v1.0-v1.9: Dashboard, Roster, RFA, Rotation, Candidates, Fleet, Documents,   ║
 ║             Contracts, Clients, Analytics, RFC Tasks, Interviews              ║
-║  v2.0: Embarkation Prep - Boarding checklist and readiness tracking           ║
-║  v2.1: Pending Transactions - Unified approval queue                          ║
-║  v2.2: Tickets - Flight bookings with route display, PNR, pricing             ║
-║  v2.3: Evaluations - Performance reviews with star ratings and comments       ║
-║  v2.4: Compliance - STCW, Medical, Flag State, Training compliance scores     ║
-║  v2.18: Settings - Profile, notifications, preferences, system configuration  ║
-║  v2.22: Assignment & Proposal - RFA Matrix, crew pool, eligibility engine     ║
-║  v2.23: Supernumerary Personnel, Crew Changes, Crew Papers Availability       ║
+║  v2.0-v2.21: All 18 modules from Dashboard to Settings                        ║
+║  v2.22: Assignment & Proposal - RFA Matrix, Crew Pool, Eligibility Engine     ║
 ║                                                                               ║
-║  🎉🎉🎉 ALL 22 MODULES 100% COMPLETE! 🎉🎉🎉                                    ║
-║                                                                               ║
-║  📝 v2.23 CODENAME: "CHARTBUSTER" ⚡                                          ║
-║     Fixed: Chart.js memory leaks - all charts properly destroyed/recreated    ║
-║     Fixed: Canvas reuse errors in Analytics, Travel, Evaluations, Complaints  ║
-║     Fixed: Lucide icons "not defined" errors - added safeCreateIcons()        ║
-║     Added: Global chart cleanup in initializeAllCharts()                      ║
-║     Added: Individual cleanup in initTravelCharts(), initEvalAnalyticsCharts  ║
-║     Added: Safe icon loading with error handling (64 calls protected)         ║
-║     Added: Interactive Alerts & Notifications with impressive modals          ║
-║     Result: Smooth navigation, no crashes, perfect rendering! 🚀               ║
-║                                                                               ║
-║  📌 REVISION r01 - Supernumerary Enhancements                                 ║
-║     Fixed: Scrolling in Supernumerary Personnel table (max-height: 600px)     ║
-║     Added: Real-time search functionality (name, role, vessel, purpose)       ║
-║     Added: Multi-filter system (Purpose, Status, Vessel + Clear button)       ║
-║     Added: Export, Add Rider, View Detail button functionality                ║
-║     Added: 5 data rows with proper data attributes for filtering              ║
-║     Result: Fully functional Supernumerary module ready for use! ✅            ║
-║                                                                               ║
-║  📌 REVISION r02 - Card View Layout (MAJOR UI CHANGE)                         ║
-║     Changed: TABLE VIEW → BEAUTIFUL CARD VIEW (matching reference design!)    ║
-║     Added: 6 gorgeous cards with gradient headers and status badges           ║
-║     Added: Hover effects with shadow lift and transform animations            ║
-║     Added: Color-coded left borders (Purple/Blue/Cyan/Orange per status)      ║
-║     Fixed: Card-based filtering (Purpose, Status, Vessel, Search)             ║
-║     Design: Responsive grid layout (auto-fill, min 380px cards)               ║
-║     Result: Professional card UI exactly like reference screenshot! 🎨         ║
+║  🎉 19/19 MODULES - 95% FRONTEND COMPLETE! 🎉                                 ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATLANTIS ERP v2.23 | Crossworld Marine</title>
+    <title>ATLANTIS v2.22 WITH ASSIGNMENT READY | Crossworld Marine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -204,11 +172,16 @@
         
         /* Filters */
         .filters-panel { background: var(--cw-white); border-radius: var(--border-radius-lg); border: 1px solid var(--cw-gray-200); padding: 16px 20px; margin-bottom: 16px; }
+        .filters-bar { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
         .filters-row { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
         .filter-group { display: flex; flex-direction: column; gap: 4px; }
+        .filter-group.search-group { flex: 1; min-width: 240px; position: relative; }
         .filter-label { font-size: 0.7rem; font-weight: 600; color: var(--cw-gray-500); text-transform: uppercase; letter-spacing: 0.05em; }
-        .filter-select { height: 36px; padding: 0 32px 0 12px; border: 1px solid var(--cw-gray-300); border-radius: var(--border-radius); font-size: 0.85rem; font-family: inherit; color: var(--cw-gray-700); background: var(--cw-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 8px center; appearance: none; cursor: pointer; min-width: 140px; }
+        .filter-select { height: 36px; padding: 0 32px 0 12px; border: 1px solid var(--cw-gray-300); border-radius: var(--border-radius); font-size: 0.85rem; font-family: inherit; color: var(--cw-gray-700); background: var(--cw-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 8px center; appearance: none; cursor: pointer; min-width: 160px; }
         .filter-select:focus { outline: none; border-color: var(--cw-accent); box-shadow: 0 0 0 3px rgba(8,145,178,0.1); }
+        .search-input { width: 100%; height: 36px; padding: 0 12px 0 36px; border: 1px solid var(--cw-gray-300); border-radius: var(--border-radius); font-size: 0.85rem; font-family: inherit; color: var(--cw-gray-700); }
+        .search-input:focus { outline: none; border-color: var(--cw-accent); box-shadow: 0 0 0 3px rgba(8,145,178,0.1); }
+        .search-group svg { position: absolute; left: 10px; bottom: 10px; width: 18px; height: 18px; color: var(--cw-gray-400); pointer-events: none; }
         .filter-search { position: relative; flex: 1; min-width: 200px; }
         .filter-search input { width: 100%; height: 36px; padding: 0 12px 0 36px; border: 1px solid var(--cw-gray-300); border-radius: var(--border-radius); font-size: 0.85rem; font-family: inherit; }
         .filter-search input:focus { outline: none; border-color: var(--cw-accent); box-shadow: 0 0 0 3px rgba(8,145,178,0.1); }
@@ -1072,6 +1045,58 @@
         .settings-section { margin-bottom: 32px; }
         .settings-section:last-child { margin-bottom: 0; }
         .settings-section-title { font-size: 0.85rem; font-weight: 600; color: var(--cw-gray-800); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--cw-gray-100); }
+
+        /* Assignment & Proposal Module */
+        .assignment-container { display: grid; grid-template-columns: 1fr 400px; gap: 24px; height: calc(100vh - 200px); }
+        .rfa-matrix-board, .crew-pool-panel { background: var(--cw-white); border-radius: var(--border-radius-lg); padding: 20px; overflow-y: auto; }
+        .board-header, .panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px solid var(--cw-gray-100); }
+        .board-header h2, .panel-header h2 { font-size: 1.1rem; font-weight: 700; color: var(--cw-gray-900); display: flex; align-items: center; gap: 8px; }
+        .rfa-matrix-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+        .rfa-matrix-card { background: var(--cw-white); border: 2px solid var(--cw-gray-200); border-radius: var(--border-radius); padding: 16px; cursor: pointer; transition: all var(--transition-fast); }
+        .rfa-matrix-card:hover { border-color: var(--cw-accent); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .rfa-matrix-card.has-proposals { border-left: 4px solid #10B981; }
+        .rfa-matrix-card.urgent { border-left: 4px solid #EF4444; }
+        .rfa-card-header { display: flex; justify-content: space-between; margin-bottom: 12px; }
+        .rfa-card-id { font-size: 0.7rem; font-weight: 600; color: var(--cw-gray-500); text-transform: uppercase; }
+        .rfa-card-type { padding: 4px 8px; background: rgba(8,145,178,0.1); color: var(--cw-accent); border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+        .rfa-card-vessel { font-size: 0.95rem; font-weight: 700; color: var(--cw-gray-900); margin-bottom: 8px; }
+        .rfa-card-rank { font-size: 0.85rem; color: var(--cw-gray-600); margin-bottom: 12px; }
+        .rfa-card-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; font-size: 0.75rem; }
+        .rfa-meta-label { color: var(--cw-gray-500); }
+        .rfa-meta-value { color: var(--cw-gray-900); font-weight: 600; }
+        .rfa-card-proposals { padding: 8px; background: var(--cw-gray-50); border-radius: 6px; font-size: 0.75rem; display: flex; justify-content: space-between; }
+        .rfa-card-proposals.has-proposals { background: rgba(16,185,129,0.1); color: #059669; }
+        .rfa-card-footer { display: flex; gap: 6px; margin-top: 12px; }
+        .rfa-card-btn { flex: 1; padding: 6px; background: var(--cw-accent); color: white; border: none; border-radius: 6px; font-size: 0.75rem; font-weight: 600; cursor: pointer; }
+        .rfa-card-btn:hover { background: var(--cw-primary); }
+        .rfa-card-btn.secondary { background: var(--cw-gray-200); color: var(--cw-gray-700); }
+        .crew-pool-panel { display: flex; flex-direction: column; overflow: hidden; }
+        .crew-count { background: var(--cw-accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
+        .pool-tabs { display: flex; border-bottom: 1px solid var(--cw-gray-200); padding: 0 20px; }
+        .pool-tab { background: none; border: none; padding: 12px 16px; font-size: 0.85rem; font-weight: 600; color: var(--cw-gray-500); cursor: pointer; border-bottom: 3px solid transparent; }
+        .pool-tab:hover { color: var(--cw-accent); }
+        .pool-tab.active { color: var(--cw-accent); border-bottom-color: var(--cw-accent); }
+        .pool-tab .tab-badge { background: var(--cw-gray-200); color: var(--cw-gray-700); padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; margin-left: 6px; }
+        .pool-tab.active .tab-badge { background: var(--cw-accent); color: white; }
+        .crew-pool-list { flex: 1; overflow-y: auto; padding: 16px; }
+        .crew-pool-card { background: var(--cw-gray-50); border: 1px solid var(--cw-gray-200); border-radius: var(--border-radius); padding: 12px; margin-bottom: 12px; cursor: pointer; }
+        .crew-pool-card:hover { background: white; border-color: var(--cw-accent); }
+        .crew-pool-card.eligible { border-left: 3px solid #10B981; }
+        .crew-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .crew-card-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--cw-primary), var(--cw-accent)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+        .crew-card-info { flex: 1; }
+        .crew-card-name { font-size: 0.9rem; font-weight: 700; color: var(--cw-gray-900); }
+        .crew-card-rank { font-size: 0.75rem; color: var(--cw-gray-600); }
+        .crew-card-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+        .crew-badge { padding: 3px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 600; }
+        .crew-badge.dedicated { background: rgba(14,165,233,0.1); color: var(--tag-dedicated); }
+        .crew-badge.non-dedicated { background: rgba(139,92,246,0.1); color: var(--tag-non-dedicated); }
+        .crew-badge.endorsed { background: rgba(139,92,246,0.1); color: var(--status-endorsed); }
+        .crew-eligibility { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+        .eligibility-indicator { font-size: 0.7rem; padding: 4px; background: var(--cw-gray-100); border-radius: 4px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 3px; }
+        .eligibility-indicator.ok { background: rgba(16,185,129,0.1); color: #059669; }
+        .eligibility-indicator.warning { background: rgba(245,158,11,0.1); color: #D97706; }
+        .eligibility-indicator.error { background: rgba(239,68,68,0.1); color: #DC2626; }
         .settings-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--cw-gray-100); }
         .settings-row:last-child { border-bottom: none; }
         .settings-row-info { flex: 1; }
@@ -1574,19 +1599,16 @@
                     <a class="nav-item" data-view="clients"><i data-lucide="building-2"></i><span>Clients</span></a>
                     <a class="nav-item" data-view="fleet"><i data-lucide="ship"></i><span>Fleet & Vessels</span></a>
                     <a class="nav-item" data-view="rfa-hub"><i data-lucide="git-pull-request"></i><span>RFA Hub</span><span class="nav-item-badge danger">12</span></a>
-                    <a class="nav-item" data-view="assignment-proposal"><i data-lucide="user-check"></i><span>Assignment & Proposal</span></a>
+                    <a class="nav-item" data-view="assignment-proposal"><i data-lucide="users-round"></i><span>Assignment & Proposal</span><span class="nav-item-badge">8</span></a>
                     <a class="nav-item" data-view="contracts"><i data-lucide="file-signature"></i><span>Contracts</span></a>
                     <a class="nav-item" data-view="rotation-plan"><i data-lucide="calendar-range"></i><span>Rotation Plan</span></a>
                 </div>
                 <div class="nav-section">
                     <div class="nav-section-title">Crew Management</div>
                     <a class="nav-item" data-view="seafarer-roster"><i data-lucide="users"></i><span>Seafarer Roster</span></a>
-                    <a class="nav-item" data-view="supernumerary"><i data-lucide="user-cog"></i><span>Supernumerary Personnel</span></a>
                     <a class="nav-item" data-view="documents"><i data-lucide="folder-open"></i><span>Documents</span></a>
-                    <a class="nav-item" data-view="crew-papers"><i data-lucide="file-badge"></i><span>Crew Papers Availability</span></a>
                     <a class="nav-item" data-view="pending-transactions"><i data-lucide="list-checks"></i><span>Pending Transactions</span><span class="nav-item-badge">5</span></a>
                     <a class="nav-item" data-view="embarkation-prep"><i data-lucide="plane"></i><span>Embarkation Prep</span></a>
-                    <a class="nav-item" data-view="crew-changes"><i data-lucide="repeat"></i><span>Crew Changes</span></a>
                     <a class="nav-item" data-view="tickets"><i data-lucide="ticket"></i><span>Tickets</span></a>
                     <a class="nav-item" data-view="evaluations"><i data-lucide="star"></i><span>Evaluations</span></a>
                     <a class="nav-item" data-view="complaints"><i data-lucide="message-square-warning"></i><span>Complaints</span><span class="nav-item-badge danger">7</span></a>
@@ -1610,11 +1632,8 @@
                     </div>
                     <i data-lucide="chevron-down" style="width:16px;height:16px;opacity:0.6;"></i>
                 </div>
-                <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);">
-                    <div style="background:rgba(34,211,238,0.12);padding:10px 12px;border-radius:8px;border-left:3px solid rgba(34,211,238,0.8);">
-                        <div style="font-size:0.7rem;color:rgba(255,255,255,0.95);font-weight:700;letter-spacing:0.08em;margin-bottom:3px;">v2.23 "CHARTBUSTER" r02</div>
-                        <div style="font-size:0.6rem;color:rgba(255,255,255,0.6);line-height:1.4;">Supernumerary Card View Layout</div>
-                    </div>
+                <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);text-align:center;">
+                    <span style="font-size:0.75rem;color:rgba(255,255,255,0.9);letter-spacing:0.05em;font-weight:600;">ATLANTIS_v2_22_WITH_ASSIGNMENT_READY</span>
                 </div>
             </div>
         </aside>
@@ -1676,15 +1695,15 @@
                             <div class="card-header"><h3 class="card-title">Alerts & Notifications</h3><span class="nav-item-badge danger">5</span></div>
                             <div class="card-body">
                                 <div style="display:flex;flex-direction:column;gap:12px;">
-                                    <div onclick="openAlertDetail('certificates')" style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(239,68,68,0.05);border-radius:var(--border-radius);border-left:3px solid var(--tag-nfr);cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(239,68,68,0.1)'" onmouseout="this.style.background='rgba(239,68,68,0.05)'">
+                                    <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(239,68,68,0.05);border-radius:var(--border-radius);border-left:3px solid var(--tag-nfr);">
                                         <i data-lucide="alert-triangle" style="width:20px;height:20px;color:var(--tag-nfr);"></i>
                                         <div><div style="font-weight:600;font-size:0.85rem;">3 certificates expiring this week</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">Requires immediate attention</div></div>
                                     </div>
-                                    <div onclick="openAlertDetail('rfas')" style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(245,158,11,0.05);border-radius:var(--border-radius);border-left:3px solid var(--status-on-approval);cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(245,158,11,0.1)'" onmouseout="this.style.background='rgba(245,158,11,0.05)'">
+                                    <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(245,158,11,0.05);border-radius:var(--border-radius);border-left:3px solid var(--status-on-approval);">
                                         <i data-lucide="clock" style="width:20px;height:20px;color:var(--status-on-approval);"></i>
                                         <div><div style="font-weight:600;font-size:0.85rem;">8 RFAs pending approval</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">Average wait: 2.3 days</div></div>
                                     </div>
-                                    <div onclick="openAlertDetail('embarkation')" style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(59,130,246,0.05);border-radius:var(--border-radius);border-left:3px solid var(--status-on-preparation);cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(59,130,246,0.1)'" onmouseout="this.style.background='rgba(59,130,246,0.05)'">
+                                    <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(59,130,246,0.05);border-radius:var(--border-radius);border-left:3px solid var(--status-on-preparation);">
                                         <i data-lucide="users" style="width:20px;height:20px;color:var(--status-on-preparation);"></i>
                                         <div><div style="font-weight:600;font-size:0.85rem;">5 seafarers ready for embarkation</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">Scheduled within 7 days</div></div>
                                     </div>
@@ -2018,6 +2037,83 @@
                         <!-- Vessel cards rendered by JavaScript -->
                     </div>
                 </div>
+
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <!-- ASSIGNMENT & PROPOSAL MODULE -->
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <div class="view" id="view-assignment-proposal">
+                    <div class="page-header">
+                        <div class="page-title-section">
+                            <h1 class="page-title">Assignment & Proposal</h1>
+                            <p class="page-subtitle">Match crew to RFAs • Manage crew pools • Submit proposals</p>
+                        </div>
+                        <div class="page-actions">
+                            <button class="btn btn-secondary" onclick="refreshAssignmentBoard()"><i data-lucide="refresh-cw"></i>Refresh</button>
+                            <button class="btn btn-primary" onclick="openCreateProposalModal()"><i data-lucide="user-plus"></i>Create Proposal</button>
+                        </div>
+                    </div>
+                    
+                    <div class="filters-bar">
+                        <div class="filter-group">
+                            <label class="filter-label">Status</label>
+                            <select id="assignmentStatusFilter" class="filter-select" onchange="renderAssignmentBoard()">
+                                <option value="">All Statuses</option>
+                                <option value="open">Open RFAs</option>
+                                <option value="proposed">Proposed</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Client</label>
+                            <select id="assignmentClientFilter" class="filter-select" onchange="renderAssignmentBoard()">
+                                <option value="">All Clients</option>
+                                <option value="Diana Shipping">Diana Shipping</option>
+                                <option value="Centrofin">Centrofin</option>
+                                <option value="Pioneer Marine">Pioneer Marine</option>
+                                <option value="Neda Maritime">Neda Maritime</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Rank</label>
+                            <select id="assignmentRankFilter" class="filter-select" onchange="renderAssignmentBoard()">
+                                <option value="">All Ranks</option>
+                                <option value="Master">Master</option>
+                                <option value="Chief Officer">Chief Officer</option>
+                                <option value="2nd Officer">2nd Officer</option>
+                                <option value="Chief Engineer">Chief Engineer</option>
+                                <option value="2nd Engineer">2nd Engineer</option>
+                                <option value="Bosun">Bosun</option>
+                                <option value="AB">AB</option>
+                                <option value="Oiler">Oiler</option>
+                            </select>
+                        </div>
+                        <div class="filter-group search-group">
+                            <input type="text" id="assignmentSearchInput" class="search-input" placeholder="Search RFAs or Crew..." onkeyup="renderAssignmentBoard()">
+                            <i data-lucide="search"></i>
+                        </div>
+                    </div>
+
+                    <div class="assignment-container">
+                        <div class="rfa-matrix-board">
+                            <div class="board-header">
+                                <h2><i data-lucide="layout-grid"></i>Open RFAs (8)</h2>
+                            </div>
+                            <div id="rfaMatrixGrid" class="rfa-matrix-grid"></div>
+                        </div>
+                        <div class="crew-pool-panel">
+                            <div class="panel-header">
+                                <h2><i data-lucide="users"></i>Available Crew</h2>
+                                <span class="crew-count" id="crewPoolCount">24</span>
+                            </div>
+                            <div class="pool-tabs">
+                                <button class="pool-tab active" onclick="switchCrewPool('all')" data-pool="all">All <span class="tab-badge">24</span></button>
+                                <button class="pool-tab" onclick="switchCrewPool('dedicated')" data-pool="dedicated">Dedicated <span class="tab-badge">12</span></button>
+                                <button class="pool-tab" onclick="switchCrewPool('non-dedicated')" data-pool="non-dedicated">Non-Dedicated <span class="tab-badge">12</span></button>
+                            </div>
+                            <div id="crewPoolList" class="crew-pool-list"></div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="view" id="view-contracts">
                     <div class="page-header">
                         <div class="page-title-section">
@@ -4212,491 +4308,6 @@
                                 <div class="card-body" id="timelineContainer" style="max-height:500px;overflow-y:auto;"></div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- VIEW: ASSIGNMENT & PROPOSAL -->
-            <div class="view" id="view-assignment-proposal">
-                <div class="page-header">
-                    <div class="page-title-section">
-                        <h1 class="page-title">Assignment & Proposal</h1>
-                        <p class="page-subtitle">Match crew to RFAs using eligibility engine - Rank, Documents, Experience, Availability</p>
-                    </div>
-                    <div class="page-actions">
-                        <button class="btn btn-secondary"><i data-lucide="download"></i>Export Matches</button>
-                        <button class="btn btn-primary"><i data-lucide="send"></i>Send Proposal</button>
-                    </div>
-                </div>
-                <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);">
-                    <div class="stat-card"><div class="stat-label">Open RFAs</div><div class="stat-value">28</div><span class="tag" style="background:rgba(99,102,241,0.1);color:#6366F1;">PENDING</span></div>
-                    <div class="stat-card"><div class="stat-label">Available Crew</div><div class="stat-value">312</div><span class="tag" style="background:rgba(16,185,129,0.1);color:#10B981;">READY</span></div>
-                    <div class="stat-card"><div class="stat-label">Perfect Matches</div><div class="stat-value">47</div><span class="tag" style="background:rgba(139,92,246,0.1);color:#8B5CF6;">100%</span></div>
-                    <div class="stat-card"><div class="stat-label">Pending Approvals</div><div class="stat-value">12</div><span class="tag" style="background:rgba(245,158,11,0.1);color:#F59E0B;">WAITING</span></div>
-                </div>
-                <div class="card">
-                    <div class="card-header"><h3 class="card-title">RFA Matrix - Crew Pool Matching</h3></div>
-                    <div class="card-body" style="padding:0;overflow-x:auto;">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th style="min-width:180px;">Seafarer</th>
-                                    <th>Rank</th>
-                                    <th>Status</th>
-                                    <th>Documents</th>
-                                    <th>Experience</th>
-                                    <th>Match Score</th>
-                                    <th>Vessel</th>
-                                    <th>RFA Type</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><div style="display:flex;align-items:center;gap:10px;"><div style="width:32px;height:32px;border-radius:8px;background:var(--cw-primary);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:0.8rem;">JD</div><div><div style="font-weight:600;">Juan Dela Cruz</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">ID: SEA-2847</div></div></div></td>
-                                    <td>Master</td>
-                                    <td><span class="status-badge endorsed">Endorsed</span></td>
-                                    <td><span style="color:var(--status-ready);font-weight:600;">✓ Complete</span></td>
-                                    <td>15 years</td>
-                                    <td><div style="display:flex;align-items:center;gap:8px;"><div style="width:60px;height:6px;background:var(--cw-gray-200);border-radius:3px;overflow:hidden;"><div style="width:100%;height:100%;background:var(--status-ready);"></div></div><span style="font-weight:700;color:var(--status-ready);">100%</span></div></td>
-                                    <td>M/V PACIFIC STAR</td>
-                                    <td><span class="tag tag-embark">EMBARK</span></td>
-                                    <td><button class="btn btn-sm btn-primary">Assign</button></td>
-                                </tr>
-                                <tr>
-                                    <td><div style="display:flex;align-items:center;gap:10px;"><div style="width:32px;height:32px;border-radius:8px;background:var(--cw-primary);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:0.8rem;">MR</div><div><div style="font-weight:600;">Maria Rodriguez</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">ID: SEA-1523</div></div></div></td>
-                                    <td>Chief Engineer</td>
-                                    <td><span class="status-badge endorsed">Endorsed</span></td>
-                                    <td><span style="color:var(--status-ready);font-weight:600;">✓ Complete</span></td>
-                                    <td>12 years</td>
-                                    <td><div style="display:flex;align-items:center;gap:8px;"><div style="width:60px;height:6px;background:var(--cw-gray-200);border-radius:3px;overflow:hidden;"><div style="width:95%;height:100%;background:var(--cw-accent);"></div></div><span style="font-weight:700;color:var(--cw-accent);">95%</span></div></td>
-                                    <td>M/V DIANA GLORY</td>
-                                    <td><span class="tag tag-embark">EMBARK</span></td>
-                                    <td><button class="btn btn-sm btn-primary">Assign</button></td>
-                                </tr>
-                                <tr>
-                                    <td><div style="display:flex;align-items:center;gap:10px;"><div style="width:32px;height:32px;border-radius:8px;background:var(--cw-primary);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:0.8rem;">AP</div><div><div style="font-weight:600;">Alex Petrov</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">ID: SEA-0892</div></div></div></td>
-                                    <td>2nd Officer</td>
-                                    <td><span class="status-badge endorsed">Endorsed</span></td>
-                                    <td><span style="color:var(--status-on-approval);font-weight:600;">⚠ Medical Expiring</span></td>
-                                    <td>8 years</td>
-                                    <td><div style="display:flex;align-items:center;gap:8px;"><div style="width:60px;height:6px;background:var(--cw-gray-200);border-radius:3px;overflow:hidden;"><div style="width:80%;height:100%;background:var(--status-on-approval);"></div></div><span style="font-weight:700;color:var(--status-on-approval);">80%</span></div></td>
-                                    <td>M/V CENTROFIN STAR</td>
-                                    <td><span class="tag tag-promotion">PROMOTION</span></td>
-                                    <td><button class="btn btn-sm btn-ghost">Review</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- VIEW: SUPERNUMERARY PERSONNEL -->
-            <div class="view" id="view-supernumerary">
-                <div class="page-header">
-                    <div class="page-title-section">
-                        <h1 class="page-title">Supernumerary Personnel</h1>
-                        <p class="page-subtitle">Manage non-crew riders - Training, Inspection, Audit, and VIP passengers</p>
-                    </div>
-                    <div class="page-actions">
-                        <button class="btn btn-secondary" onclick="exportSupernumerary()"><i data-lucide="download"></i>Export</button>
-                        <button class="btn btn-primary" onclick="openAddSupernumeraryModal()"><i data-lucide="plus"></i>Add Rider</button>
-                    </div>
-                </div>
-                <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);">
-                    <div class="stat-card"><div class="stat-label">Active Riders</div><div class="stat-value">18</div></div>
-                    <div class="stat-card"><div class="stat-label">Training</div><div class="stat-value">12</div><span class="tag" style="background:rgba(59,130,246,0.1);color:#3B82F6;">CADETS</span></div>
-                    <div class="stat-card"><div class="stat-label">Inspection</div><div class="stat-value">4</div><span class="tag" style="background:rgba(245,158,11,0.1);color:#F59E0B;">AUDIT</span></div>
-                    <div class="stat-card"><div class="stat-label">VIP Guests</div><div class="stat-value">2</div><span class="tag" style="background:rgba(139,92,246,0.1);color:#8B5CF6;">GUEST</span></div>
-                </div>
-                
-                <!-- Filters Panel -->
-                <div class="filters-panel">
-                    <div class="filters-row">
-                        <div class="filter-group">
-                            <label class="filter-label">Purpose</label>
-                            <select class="filter-select" id="supernumeraryPurposeFilter" onchange="filterSupernumerary()">
-                                <option value="">All Purposes</option>
-                                <option value="training">Training</option>
-                                <option value="inspection">Inspection</option>
-                                <option value="audit">Audit</option>
-                                <option value="vip">VIP Guest</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label class="filter-label">Status</label>
-                            <select class="filter-select" id="supernumeraryStatusFilter" onchange="filterSupernumerary()">
-                                <option value="">All Statuses</option>
-                                <option value="embarked">Embarked</option>
-                                <option value="scheduled">Scheduled</option>
-                                <option value="completed">Completed</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label class="filter-label">Vessel</label>
-                            <select class="filter-select" id="supernumeraryVesselFilter" onchange="filterSupernumerary()">
-                                <option value="">All Vessels</option>
-                                <option value="pacific">M/V PACIFIC STAR</option>
-                                <option value="diana">M/V DIANA GLORY</option>
-                                <option value="centrofin">M/V CENTROFIN STAR</option>
-                                <option value="pioneer">M/V PIONEER WAVE</option>
-                            </select>
-                        </div>
-                        <div class="filter-divider"></div>
-                        <div class="filter-search">
-                            <i data-lucide="search"></i>
-                            <input type="text" id="supernumerarySearchInput" placeholder="Search by name, role, vessel..." oninput="filterSupernumerary()">
-                        </div>
-                        <button class="btn btn-ghost btn-sm" onclick="resetSupernumeraryFilters()"><i data-lucide="x"></i>Clear Filters</button>
-                    </div>
-                </div>
-                
-                <!-- Supernumerary Cards Grid -->
-                <div id="supernumeraryCardsGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:20px;padding:20px 0;">
-                    
-                    <!-- Card 1: John Smith -->
-                    <div class="supernumerary-card" data-purpose="inspection" data-status="embarked" data-vessel="apollo" data-name="John Smith">
-                        <div onclick="viewSupernumeraryDetail('John Smith')" style="background:white;border-radius:16px;border-left:4px solid #8B5CF6;box-shadow:0 2px 8px rgba(0,0,0,0.08);padding:20px;transition:all 0.3s;cursor:pointer;" onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.15)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)';this.style.transform='translateY(0)'">
-                            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:16px;">
-                                <div style="display:flex;align-items:center;gap:12px;">
-                                    <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#8B5CF6,#A78BFA);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;">JS</div>
-                                    <div>
-                                        <div style="font-weight:700;font-size:1.05rem;color:var(--cw-gray-900);">John Smith</div>
-                                        <div style="font-size:0.85rem;color:var(--cw-gray-500);">Flag State Inspector</div>
-                                    </div>
-                                </div>
-                                <span style="background:rgba(16,185,129,0.1);color:var(--status-ready);padding:6px 14px;border-radius:8px;font-size:0.75rem;font-weight:700;">EMBARKED</span>
-                            </div>
-                            <div style="background:var(--cw-gray-50);padding:14px;border-radius:10px;margin-bottom:14px;">
-                                <div style="font-size:0.7rem;color:var(--cw-gray-500);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Currently On</div>
-                                <div style="font-weight:700;font-size:1rem;color:var(--cw-primary);">MV APOLLON</div>
-                                <div style="font-size:0.8rem;color:var(--cw-gray-600);margin-top:4px;">Embarked: Feb 1, 2026</div>
-                            </div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.85rem;">
-                                <div>
-                                    <span style="color:var(--cw-gray-500);">Duration:</span>
-                                    <strong style="margin-left:6px;color:var(--cw-gray-900);">12 days</strong>
-                                </div>
-                                <div>
-                                    <span style="color:var(--cw-gray-500);">Disembark:</span>
-                                    <strong style="margin-left:6px;color:var(--cw-gray-900);">Feb 13</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 2: Maria Santos -->
-                    <div class="supernumerary-card" data-purpose="audit" data-status="pending" data-vessel="athena" data-name="Maria Santos">
-                        <div onclick="viewSupernumeraryDetail('Maria Santos')" style="background:white;border-radius:16px;border-left:4px solid #3B82F6;box-shadow:0 2px 8px rgba(0,0,0,0.08);padding:20px;transition:all 0.3s;cursor:pointer;" onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.15)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)';this.style.transform='translateY(0)'">
-                            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:16px;">
-                                <div style="display:flex;align-items:center;gap:12px;">
-                                    <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#3B82F6,#60A5FA);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;">MS</div>
-                                    <div>
-                                        <div style="font-weight:700;font-size:1.05rem;color:var(--cw-gray-900);">Maria Santos</div>
-                                        <div style="font-size:0.85rem;color:var(--cw-gray-500);">Port State Observer</div>
-                                    </div>
-                                </div>
-                                <span style="background:rgba(245,158,11,0.1);color:var(--status-on-approval);padding:6px 14px;border-radius:8px;font-size:0.75rem;font-weight:700;">PENDING</span>
-                            </div>
-                            <div style="background:var(--cw-gray-50);padding:14px;border-radius:10px;margin-bottom:14px;">
-                                <div style="font-size:0.7rem;color:var(--cw-gray-500);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Scheduled For</div>
-                                <div style="font-weight:700;font-size:1rem;color:var(--cw-primary);">MV ATHENA</div>
-                                <div style="font-size:0.8rem;color:var(--cw-gray-600);margin-top:4px;">Expected: Feb 18, 2026</div>
-                            </div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.85rem;">
-                                <div>
-                                    <span style="color:var(--cw-gray-500);">Port:</span>
-                                    <strong style="margin-left:6px;color:var(--cw-gray-900);">Singapore</strong>
-                                </div>
-                                <div>
-                                    <span style="color:var(--cw-gray-500);">Purpose:</span>
-                                    <strong style="margin-left:6px;color:var(--cw-gray-900);">Audit</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 3: David Lee -->
-                    <div class="supernumerary-card" data-purpose="training" data-status="disembarked" data-vessel="poseidon" data-name="David Lee">
-                        <div onclick="viewSupernumeraryDetail('David Lee')" style="background:white;border-radius:16px;border-left:4px solid #0891B2;box-shadow:0 2px 8px rgba(0,0,0,0.08);padding:20px;transition:all 0.3s;cursor:pointer;" onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.15)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)';this.style.transform='translateY(0)'">
-                            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:16px;">
-                                <div style="display:flex;align-items:center;gap:12px;">
-                                    <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#0891B2,#06B6D4);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;">DL</div>
-                                    <div>
-                                        <div style="font-weight:700;font-size:1.05rem;color:var(--cw-gray-900);">David Lee</div>
-                                        <div style="font-size:0.85rem;color:var(--cw-gray-500);">Technical Superintendent</div>
-                                    </div>
-                                </div>
-                                <span style="background:rgba(107,114,128,0.1);color:var(--cw-gray-600);padding:6px 14px;border-radius:8px;font-size:0.75rem;font-weight:700;">DISEMBARKED</span>
-                            </div>
-                            <div style="background:var(--cw-gray-50);padding:14px;border-radius:10px;margin-bottom:14px;">
-                                <div style="font-size:0.7rem;color:var(--cw-gray-500);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Last Assignment</div>
-                                <div style="font-weight:700;font-size:1rem;color:var(--cw-primary);">MV POSEIDON</div>
-                                <div style="font-size:0.8rem;color:var(--cw-gray-600);margin-top:4px;">Disembarked: Feb 5, 2026</div>
-                            </div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.85rem;">
-                                <div>
-                                    <span style="color:var(--cw-gray-500);">Duration:</span>
-                                    <strong style="margin-left:6px;color:var(--cw-gray-900);">7 days</strong>
-                                </div>
-                                <div>
-                                    <span style="color:var(--cw-gray-500);">Port:</span>
-                                    <strong style="margin-left:6px;color:var(--cw-gray-900);">Rotterdam</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 4: Thomas Chen (Training) -->
-                    <div class="supernumerary-card" data-purpose="training" data-status="embarked" data-vessel="pacific" data-name="Thomas Chen">
-                        <div onclick="viewSupernumeraryDetail('Thomas Chen')" style="background:white;border-radius:16px;border-left:4px solid #3B82F6;box-shadow:0 2px 8px rgba(0,0,0,0.08);padding:20px;transition:all 0.3s;cursor:pointer;" onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.15)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)';this.style.transform='translateY(0)'">
-                            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:16px;">
-                                <div style="display:flex;align-items:center;gap:12px;">
-                                    <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#3B82F6,#60A5FA);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;">TC</div>
-                                    <div>
-                                        <div style="font-weight:700;font-size:1.05rem;color:var(--cw-gray-900);">Thomas Chen</div>
-                                        <div style="font-size:0.85rem;color:var(--cw-gray-500);">Cadet Officer</div>
-                                    </div>
-                                </div>
-                                <span style="background:rgba(16,185,129,0.1);color:var(--status-ready);padding:6px 14px;border-radius:8px;font-size:0.75rem;font-weight:700;">EMBARKED</span>
-                            </div>
-                            <div style="background:var(--cw-gray-50);padding:14px;border-radius:10px;margin-bottom:14px;">
-                                <div style="font-size:0.7rem;color:var(--cw-gray-500);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Training On</div>
-                                <div style="font-weight:700;font-size:1rem;color:var(--cw-primary);">M/V PACIFIC STAR</div>
-                                <div style="font-size:0.8rem;color:var(--cw-gray-600);margin-top:4px;">Embarked: Jan 15, 2026</div>
-                            </div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.85rem;">
-                                <div>
-                                    <span style="color:var(--cw-gray-500);">Duration:</span>
-                                    <strong style="margin-left:6px;color:var(--cw-gray-900);">90 days</strong>
-                                </div>
-                                <div>
-                                    <span style="color:var(--cw-gray-500);">Completion:</span>
-                                    <strong style="margin-left:6px;color:var(--cw-gray-900);">Apr 15</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 5: Sarah Johnson (Inspection) -->
-                    <div class="supernumerary-card" data-purpose="inspection" data-status="pending" data-vessel="diana" data-name="Sarah Johnson">
-                        <div onclick="viewSupernumeraryDetail('Sarah Johnson')" style="background:white;border-radius:16px;border-left:4px solid #F59E0B;box-shadow:0 2px 8px rgba(0,0,0,0.08);padding:20px;transition:all 0.3s;cursor:pointer;" onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.15)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)';this.style.transform='translateY(0)'">
-                            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:16px;">
-                                <div style="display:flex;align-items:center;gap:12px;">
-                                    <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#F59E0B,#FBBF24);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;">SJ</div>
-                                    <div>
-                                        <div style="font-weight:700;font-size:1.05rem;color:var(--cw-gray-900);">Sarah Johnson</div>
-                                        <div style="font-size:0.85rem;color:var(--cw-gray-500);">Safety Inspector</div>
-                                    </div>
-                                </div>
-                                <span style="background:rgba(245,158,11,0.1);color:var(--status-on-approval);padding:6px 14px;border-radius:8px;font-size:0.75rem;font-weight:700;">SCHEDULED</span>
-                            </div>
-                            <div style="background:var(--cw-gray-50);padding:14px;border-radius:10px;margin-bottom:14px;">
-                                <div style="font-size:0.7rem;color:var(--cw-gray-500);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Inspection At</div>
-                                <div style="font-weight:700;font-size:1rem;color:var(--cw-primary);">M/V DIANA GLORY</div>
-                                <div style="font-size:0.8rem;color:var(--cw-gray-600);margin-top:4px;">Expected: Feb 1, 2026</div>
-                            </div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.85rem;">
-                                <div>
-                                    <span style="color:var(--cw-gray-500);">Duration:</span>
-                                    <strong style="margin-left:6px;color:var(--cw-gray-900);">7 days</strong>
-                                </div>
-                                <div>
-                                    <span style="color:var(--cw-gray-500);">Completion:</span>
-                                    <strong style="margin-left:6px;color:var(--cw-gray-900);">Feb 8</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 6: Michael Kim (Training) -->
-                    <div class="supernumerary-card" data-purpose="training" data-status="embarked" data-vessel="centrofin" data-name="Michael Kim">
-                        <div onclick="viewSupernumeraryDetail('Michael Kim')" style="background:white;border-radius:16px;border-left:4px solid #3B82F6;box-shadow:0 2px 8px rgba(0,0,0,0.08);padding:20px;transition:all 0.3s;cursor:pointer;" onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.15)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)';this.style.transform='translateY(0)'">
-                            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:16px;">
-                                <div style="display:flex;align-items:center;gap:12px;">
-                                    <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#3B82F6,#60A5FA);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;">MK</div>
-                                    <div>
-                                        <div style="font-weight:700;font-size:1.05rem;color:var(--cw-gray-900);">Michael Kim</div>
-                                        <div style="font-size:0.85rem;color:var(--cw-gray-500);">Engine Cadet</div>
-                                    </div>
-                                </div>
-                                <span style="background:rgba(16,185,129,0.1);color:var(--status-ready);padding:6px 14px;border-radius:8px;font-size:0.75rem;font-weight:700;">EMBARKED</span>
-                            </div>
-                            <div style="background:var(--cw-gray-50);padding:14px;border-radius:10px;margin-bottom:14px;">
-                                <div style="font-size:0.7rem;color:var(--cw-gray-500);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Training On</div>
-                                <div style="font-weight:700;font-size:1rem;color:var(--cw-primary);">M/V CENTROFIN STAR</div>
-                                <div style="font-size:0.8rem;color:var(--cw-gray-600);margin-top:4px;">Embarked: Jan 20, 2026</div>
-                            </div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.85rem;">
-                                <div>
-                                    <span style="color:var(--cw-gray-500);">Duration:</span>
-                                    <strong style="margin-left:6px;color:var(--cw-gray-900);">120 days</strong>
-                                </div>
-                                <div>
-                                    <span style="color:var(--cw-gray-500);">Completion:</span>
-                                    <strong style="margin-left:6px;color:var(--cw-gray-900);">May 20</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- VIEW: CREW PAPERS AVAILABILITY -->
-            <div class="view" id="view-crew-papers">
-                <div class="page-header">
-                    <div class="page-title-section">
-                        <h1 class="page-title">Crew Papers Availability</h1>
-                        <p class="page-subtitle">Monitor certificate expiry dates and compliance status for embarked crew</p>
-                    </div>
-                    <div class="page-actions">
-                        <button class="btn btn-secondary"><i data-lucide="bell"></i>Set Alerts</button>
-                        <button class="btn btn-primary"><i data-lucide="download"></i>Export Report</button>
-                    </div>
-                </div>
-                <div class="stats-grid" style="grid-template-columns:repeat(5,1fr);">
-                    <div class="stat-card"><div class="stat-label">Total Embarked</div><div class="stat-value">1,456</div></div>
-                    <div class="stat-card"><div class="stat-label">All Valid</div><div class="stat-value">1,234</div><span style="display:inline-flex;align-items:center;gap:4px;padding:4px 8px;background:rgba(16,185,129,0.1);color:var(--status-ready);border-radius:6px;font-size:0.7rem;font-weight:600;"><i data-lucide="check-circle" style="width:14px;height:14px;"></i>VALID</span></div>
-                    <div class="stat-card"><div class="stat-label">Expiring Soon</div><div class="stat-value">178</div><span style="display:inline-flex;align-items:center;gap:4px;padding:4px 8px;background:rgba(245,158,11,0.1);color:var(--status-on-approval);border-radius:6px;font-size:0.7rem;font-weight:600;"><i data-lucide="alert-triangle" style="width:14px;height:14px;"></i>WARNING</span></div>
-                    <div class="stat-card"><div class="stat-label">Expired</div><div class="stat-value">34</div><span style="display:inline-flex;align-items:center;gap:4px;padding:4px 8px;background:rgba(239,68,68,0.1);color:var(--tag-nfr);border-radius:6px;font-size:0.7rem;font-weight:600;"><i data-lucide="x-circle" style="width:14px;height:14px;"></i>EXPIRED</span></div>
-                    <div class="stat-card"><div class="stat-label">Missing Docs</div><div class="stat-value">10</div><span style="display:inline-flex;align-items:center;gap:4px;padding:4px 8px;background:rgba(107,114,128,0.1);color:var(--cw-gray-600);border-radius:6px;font-size:0.7rem;font-weight:600;"><i data-lucide="file-x" style="width:14px;height:14px;"></i>MISSING</span></div>
-                </div>
-                <div class="filters-panel">
-                    <div class="filters-row">
-                        <div class="filter-group"><label class="filter-label">Certificate Type</label><select class="filter-select"><option value="">All Types</option><option>COC (Certificate of Competency)</option><option>COE (Certificate of Endorsement)</option><option>Medical Certificate</option><option>Passport</option><option>Seaman's Book</option><option>STCW Certificates</option></select></div>
-                        <div class="filter-group"><label class="filter-label">Status</label><select class="filter-select"><option value="">All Statuses</option><option value="valid">Valid (>90 days)</option><option value="expiring">Expiring (30-90 days)</option><option value="critical">Critical (<30 days)</option><option value="expired">Expired</option></select></div>
-                        <div class="filter-group"><label class="filter-label">Vessel</label><select class="filter-select"><option value="">All Vessels</option><option>M/V PACIFIC STAR</option><option>M/V DIANA GLORY</option><option>M/V CENTROFIN STAR</option></select></div>
-                        <div class="filter-divider"></div>
-                        <div class="filter-search"><i data-lucide="search"></i><input type="text" placeholder="Search by seafarer name..."></div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header"><h3 class="card-title">Certificate Expiry Dashboard</h3></div>
-                    <div class="card-body" style="padding:0;overflow-x:auto;">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th style="min-width:180px;">Seafarer</th>
-                                    <th>Rank</th>
-                                    <th>Vessel</th>
-                                    <th>COC Status</th>
-                                    <th>Medical</th>
-                                    <th>Passport</th>
-                                    <th>Seaman's Book</th>
-                                    <th>STCW</th>
-                                    <th>Overall Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><div style="display:flex;align-items:center;gap:10px;"><div style="width:32px;height:32px;border-radius:8px;background:var(--cw-primary);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:0.8rem;">JD</div><div><div style="font-weight:600;">Juan Dela Cruz</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">ID: SEA-2847</div></div></div></td>
-                                    <td>Master</td>
-                                    <td>M/V PACIFIC STAR</td>
-                                    <td><span style="color:var(--status-ready);"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></span><div style="font-size:0.75rem;color:var(--cw-gray-500);">Valid 245 days</div></td>
-                                    <td><span style="color:var(--status-ready);"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></span><div style="font-size:0.75rem;color:var(--cw-gray-500);">Valid 180 days</div></td>
-                                    <td><span style="color:var(--status-ready);"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></span><div style="font-size:0.75rem;color:var(--cw-gray-500);">Valid 890 days</div></td>
-                                    <td><span style="color:var(--status-ready);"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></span><div style="font-size:0.75rem;color:var(--cw-gray-500);">Valid 320 days</div></td>
-                                    <td><span style="color:var(--status-ready);"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></span><div style="font-size:0.75rem;color:var(--cw-gray-500);">All Valid</div></td>
-                                    <td><span style="display:inline-flex;align-items:center;gap:4px;padding:4px 8px;background:rgba(16,185,129,0.1);color:var(--status-ready);border-radius:6px;font-size:0.75rem;font-weight:600;"><i data-lucide="check-circle" style="width:12px;height:12px;"></i>VALID</span></td>
-                                </tr>
-                                <tr>
-                                    <td><div style="display:flex;align-items:center;gap:10px;"><div style="width:32px;height:32px;border-radius:8px;background:var(--cw-primary);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:0.8rem;">MR</div><div><div style="font-weight:600;">Maria Rodriguez</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">ID: SEA-1523</div></div></div></td>
-                                    <td>Chief Engineer</td>
-                                    <td>M/V DIANA GLORY</td>
-                                    <td><span style="color:var(--status-ready);"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></span><div style="font-size:0.75rem;color:var(--cw-gray-500);">Valid 156 days</div></td>
-                                    <td><span style="color:var(--status-on-approval);"><i data-lucide="alert-triangle" style="width:16px;height:16px;"></i></span><div style="font-size:0.75rem;color:var(--status-on-approval);font-weight:600;">Expires in 45 days</div></td>
-                                    <td><span style="color:var(--status-ready);"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></span><div style="font-size:0.75rem;color:var(--cw-gray-500);">Valid 678 days</div></td>
-                                    <td><span style="color:var(--status-ready);"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></span><div style="font-size:0.75rem;color:var(--cw-gray-500);">Valid 234 days</div></td>
-                                    <td><span style="color:var(--status-ready);"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></span><div style="font-size:0.75rem;color:var(--cw-gray-500);">All Valid</div></td>
-                                    <td><span style="display:inline-flex;align-items:center;gap:4px;padding:4px 8px;background:rgba(245,158,11,0.1);color:var(--status-on-approval);border-radius:6px;font-size:0.75rem;font-weight:600;"><i data-lucide="alert-triangle" style="width:12px;height:12px;"></i>WARNING</span></td>
-                                </tr>
-                                <tr>
-                                    <td><div style="display:flex;align-items:center;gap:10px;"><div style="width:32px;height:32px;border-radius:8px;background:var(--cw-primary);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:0.8rem;">AP</div><div><div style="font-weight:600;">Alex Petrov</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">ID: SEA-0892</div></div></div></td>
-                                    <td>2nd Officer</td>
-                                    <td>M/V CENTROFIN STAR</td>
-                                    <td><span style="color:var(--status-ready);"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></span><div style="font-size:0.75rem;color:var(--cw-gray-500);">Valid 423 days</div></td>
-                                    <td><span style="color:var(--tag-nfr);"><i data-lucide="x-circle" style="width:16px;height:16px;"></i></span><div style="font-size:0.75rem;color:var(--tag-nfr);font-weight:600;">Expired 12 days ago</div></td>
-                                    <td><span style="color:var(--status-ready);"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></span><div style="font-size:0.75rem;color:var(--cw-gray-500);">Valid 512 days</div></td>
-                                    <td><span style="color:var(--status-ready);"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></span><div style="font-size:0.75rem;color:var(--cw-gray-500);">Valid 145 days</div></td>
-                                    <td><span style="color:var(--status-ready);"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></span><div style="font-size:0.75rem;color:var(--cw-gray-500);">All Valid</div></td>
-                                    <td><span style="display:inline-flex;align-items:center;gap:4px;padding:4px 8px;background:rgba(239,68,68,0.1);color:var(--tag-nfr);border-radius:6px;font-size:0.75rem;font-weight:600;"><i data-lucide="x-circle" style="width:12px;height:12px;"></i>EXPIRED</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- VIEW: CREW CHANGES -->
-            <div class="view" id="view-crew-changes">
-                <div class="page-header">
-                    <div class="page-title-section">
-                        <h1 class="page-title">Crew Changes</h1>
-                        <p class="page-subtitle">Plan and execute crew rotations - On-signers, Off-signers, Port Agents, Travel Coordination</p>
-                    </div>
-                    <div class="page-actions">
-                        <button class="btn btn-secondary"><i data-lucide="map-pin"></i>Port Agents</button>
-                        <button class="btn btn-primary" onclick="alert('Plan Crew Change - Coming Soon')"><i data-lucide="plus"></i>Plan Crew Change</button>
-                    </div>
-                </div>
-                <div class="stats-grid" style="grid-template-columns:repeat(6,1fr);">
-                    <div class="stat-card"><div class="stat-label">Upcoming Changes</div><div class="stat-value">42</div></div>
-                    <div class="stat-card"><div class="stat-label">This Week</div><div class="stat-value">8</div><span class="tag" style="background:rgba(239,68,68,0.1);color:#EF4444;">URGENT</span></div>
-                    <div class="stat-card"><div class="stat-label">This Month</div><div class="stat-value">34</div><span class="tag" style="background:rgba(59,130,246,0.1);color:#3B82F6;">PLANNED</span></div>
-                    <div class="stat-card"><div class="stat-label">On-Signers Ready</div><div class="stat-value">38</div></div>
-                    <div class="stat-card"><div class="stat-label">Off-Signers Due</div><div class="stat-value">42</div></div>
-                    <div class="stat-card"><div class="stat-label">Completed Today</div><div class="stat-value">3</div><span class="tag" style="background:rgba(16,185,129,0.1);color:#10B981;">DONE</span></div>
-                </div>
-                <div class="card">
-                    <div class="card-header"><h3 class="card-title">Crew Change Schedule - Relief Timeline</h3></div>
-                    <div class="card-body" style="padding:16px;overflow-x:auto;">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Vessel</th>
-                                    <th>Port</th>
-                                    <th>ETA</th>
-                                    <th style="min-width:180px;">Off-Signer</th>
-                                    <th style="min-width:180px;">On-Signer (Relief)</th>
-                                    <th>Status</th>
-                                    <th>Port Agent</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><div style="font-weight:600;">M/V PACIFIC STAR</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">IMO 9876543</div></td>
-                                    <td><div><strong>Singapore</strong></div><div style="font-size:0.75rem;color:var(--cw-gray-500);">SIN</div></td>
-                                    <td><div style="font-weight:600;">Feb 18, 2026</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">14:00 LT</div></td>
-                                    <td><div style="display:flex;align-items:center;gap:8px;"><div style="width:32px;height:32px;border-radius:8px;background:var(--tag-nfr);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:0.75rem;">PL</div><div><div style="font-weight:600;">Peter Lee</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">Master (Contract End)</div></div></div></td>
-                                    <td><div style="display:flex;align-items:center;gap:8px;"><div style="width:32px;height:32px;border-radius:8px;background:var(--status-ready);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:0.75rem;">JD</div><div><div style="font-weight:600;">Juan Dela Cruz</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">Master (Relief)</div></div></div></td>
-                                    <td><span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;background:rgba(16,185,129,0.1);color:var(--status-ready);border-radius:6px;font-size:0.75rem;font-weight:600;"><i data-lucide="check-circle" style="width:12px;height:12px;"></i>READY</span></td>
-                                    <td><div style="font-weight:500;">Singapore Marine</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">+65 6123 4567</div></td>
-                                    <td><button class="btn btn-sm btn-primary">Details</button></td>
-                                </tr>
-                                <tr>
-                                    <td><div style="font-weight:600;">M/V DIANA GLORY</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">IMO 9234567</div></td>
-                                    <td><div><strong>Rotterdam</strong></div><div style="font-size:0.75rem;color:var(--cw-gray-500);">RTM</div></td>
-                                    <td><div style="font-weight:600;">Feb 22, 2026</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">08:00 LT</div></td>
-                                    <td><div style="display:flex;align-items:center;gap:8px;"><div style="width:32px;height:32px;border-radius:8px;background:var(--tag-nfr);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:0.75rem;">KS</div><div><div style="font-weight:600;">Klaus Schmidt</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">Chief Engineer</div></div></div></td>
-                                    <td><div style="display:flex;align-items:center;gap:8px;"><div style="width:32px;height:32px;border-radius:8px;background:var(--status-ready);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:0.75rem;">MR</div><div><div style="font-weight:600;">Maria Rodriguez</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">Chief Engineer</div></div></div></td>
-                                    <td><span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;background:rgba(16,185,129,0.1);color:var(--status-ready);border-radius:6px;font-size:0.75rem;font-weight:600;"><i data-lucide="check-circle" style="width:12px;height:12px;"></i>READY</span></td>
-                                    <td><div style="font-weight:500;">Rotterdam Port Services</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">+31 10 234 5678</div></td>
-                                    <td><button class="btn btn-sm btn-primary">Details</button></td>
-                                </tr>
-                                <tr>
-                                    <td><div style="font-weight:600;">M/V CENTROFIN STAR</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">IMO 9345678</div></td>
-                                    <td><div><strong>Manila</strong></div><div style="font-size:0.75rem;color:var(--cw-gray-500);">MNL</div></td>
-                                    <td><div style="font-weight:600;">Feb 25, 2026</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">16:00 LT</div></td>
-                                    <td><div style="display:flex;align-items:center;gap:8px;"><div style="width:32px;height:32px;border-radius:8px;background:var(--tag-nfr);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:0.75rem;">RG</div><div><div style="font-weight:600;">Roberto Garcia</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">2nd Officer</div></div></div></td>
-                                    <td><div style="display:flex;align-items:center;gap:8px;"><div style="width:32px;height:32px;border-radius:8px;background:var(--status-on-approval);color:white;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:0.75rem;">AP</div><div><div style="font-weight:600;">Alex Petrov</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">2nd Officer</div></div></div></td>
-                                    <td><span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;background:rgba(245,158,11,0.1);color:var(--status-on-approval);border-radius:6px;font-size:0.75rem;font-weight:600;"><i data-lucide="clock" style="width:12px;height:12px;"></i>PENDING</span></td>
-                                    <td><div style="font-weight:500;">Manila Ship Agents</div><div style="font-size:0.75rem;color:var(--cw-gray-500);">+63 2 8234 5678</div></td>
-                                    <td><button class="btn btn-sm btn-ghost">Details</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
@@ -7224,52 +6835,6 @@
         </div>
     </div>
 
-    <!-- Alert Detail Modal -->
-    <div class="modal-overlay" id="alertDetailModal" onclick="closeModalOnOverlay(event,'alertDetailModal')">
-        <div class="modal" style="width:900px;max-width:95%;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;" onclick="event.stopPropagation()">
-            <div class="modal-header" id="alertModalHeader" style="background:linear-gradient(135deg,var(--cw-primary) 0%,var(--cw-accent) 100%);color:white;padding:24px 28px;">
-                <div style="display:flex;align-items:center;gap:14px;">
-                    <div id="alertModalIcon" style="width:48px;height:48px;background:rgba(255,255,255,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;"></div>
-                    <div>
-                        <h3 class="modal-title" id="alertModalTitle" style="margin:0;font-size:1.25rem;color:white;">Alert Details</h3>
-                        <p id="alertModalSubtitle" style="margin:4px 0 0;opacity:0.85;font-size:0.85rem;color:rgba(255,255,255,0.9);">Details and actions</p>
-                    </div>
-                </div>
-                <button class="modal-close" onclick="closeModal('alertDetailModal')" style="color:white;opacity:0.8;"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
-            </div>
-            <div class="modal-body" id="alertModalContent" style="overflow-y:auto;flex:1;padding:0;">
-                <!-- Dynamic content will be inserted here -->
-            </div>
-            <div class="modal-footer" id="alertModalFooter">
-                <button class="btn btn-secondary" onclick="closeModal('alertDetailModal')">Close</button>
-                <button class="btn btn-primary" id="alertModalAction"><i data-lucide="check"></i>Take Action</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Supernumerary Detail Modal -->
-    <div class="modal-overlay" id="supernumeraryDetailModal" onclick="closeModalOnOverlay(event,'supernumeraryDetailModal')">
-        <div class="modal" style="width:900px;max-width:95%;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;" onclick="event.stopPropagation()">
-            <div class="modal-header" id="supernumeraryModalHeader" style="background:linear-gradient(135deg,#8B5CF6 0%,#A78BFA 100%);color:white;padding:32px 28px;">
-                <div style="display:flex;align-items:center;gap:20px;">
-                    <div id="supernumeraryModalAvatar" style="width:80px;height:80px;background:rgba(255,255,255,0.3);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:700;color:white;">JS</div>
-                    <div style="flex:1;">
-                        <h3 id="supernumeraryModalName" style="margin:0;font-size:1.5rem;color:white;font-weight:700;">John Smith</h3>
-                        <p id="supernumeraryModalRole" style="margin:6px 0 12px;opacity:0.9;font-size:1rem;color:rgba(255,255,255,0.95);">Flag State Inspector</p>
-                        <div style="display:flex;gap:10px;">
-                            <span id="supernumeraryModalStatus" style="background:rgba(255,255,255,0.25);color:white;padding:6px 16px;border-radius:8px;font-size:0.8rem;font-weight:700;">EMBARKED</span>
-                            <span id="supernumeraryModalDuration" style="background:rgba(255,255,255,0.25);color:white;padding:6px 16px;border-radius:8px;font-size:0.8rem;font-weight:700;">12 Days</span>
-                        </div>
-                    </div>
-                </div>
-                <button class="modal-close" onclick="closeModal('supernumeraryDetailModal')" style="color:white;opacity:0.9;position:absolute;top:20px;right:20px;"><i data-lucide="x" style="width:24px;height:24px;"></i></button>
-            </div>
-            <div class="modal-body" id="supernumeraryModalContent" style="overflow-y:auto;flex:1;padding:28px;">
-                <!-- Dynamic content will be inserted here -->
-            </div>
-        </div>
-    </div>
-
     <!-- Seafarer Profile Slide Panel -->
     <div class="panel-overlay" id="seafarerPanelOverlay" onclick="closePanel('seafarerPanel')"></div>
     <div class="slide-panel large" id="seafarerPanel">
@@ -7433,6 +6998,44 @@
             { id: 'CMP-2024-148', seafarer: 'Juan Dela Cruz', rank: 'Chief Officer', vessel: 'MV Diana Star', principal: 'Diana Shipping', category: 'wages', priority: 'medium', status: 'resolved', subject: 'Allotment transfer delay', description: 'Monthly allotment to family delayed by 2 weeks. Caused financial hardship for dependents.', dateSubmitted: '2025-01-15', assignedTo: 'Finance Dept', daysOpen: 0, resolvedDate: '2025-01-20', resolution: 'Bank transfer issue identified and corrected. Allotment sent with apology bonus.', anonymous: false },
             { id: 'CMP-2024-147', seafarer: 'Mario Reyes', rank: '2nd Engineer', vessel: 'MV Centrofin Glory', principal: 'Centrofin', category: 'safety', priority: 'high', status: 'resolved', subject: 'PPE not replaced timely', description: 'Safety boots worn out and request for replacement ignored for 3 weeks.', dateSubmitted: '2025-01-10', assignedTo: 'Safety Officer', daysOpen: 0, resolvedDate: '2025-01-15', resolution: 'New PPE issued immediately. Implemented monthly PPE inspection checklist.', anonymous: false },
             { id: 'CMP-2024-145', seafarer: 'Eduardo Pascual', rank: 'Chief Engineer', vessel: 'MV Pioneer Spirit', principal: 'Pioneer Marine', category: 'working-conditions', priority: 'medium', status: 'closed', subject: 'Air conditioning not working in cabin', description: 'Cabin AC unit broken for 2 weeks. Temperature reaching 35°C in tropical waters.', dateSubmitted: '2025-01-05', assignedTo: 'Technical Dept', daysOpen: 0, resolvedDate: '2025-01-08', resolution: 'AC unit replaced. Added to preventive maintenance schedule.', anonymous: false },
+        ];
+
+        const MOCK_OPEN_RFAS = [
+            { id: 'RFA-2026-001', type: 'Embark', vessel: 'MV APOLLON', imo: '9234567', client: 'Diana Shipping', rank: 'Chief Officer', joinDate: '2026-03-15', urgent: true, proposalsCount: 2, status: 'proposed', daysUntil: 31 },
+            { id: 'RFA-2026-002', type: 'Sign-off', vessel: 'MV ATHENA', imo: '9345678', client: 'Centrofin', rank: '2nd Engineer', joinDate: '2026-03-20', urgent: false, proposalsCount: 1, status: 'proposed', daysUntil: 36 },
+            { id: 'RFA-2026-003', type: 'Embark', vessel: 'MV POSEIDON', imo: '9456789', client: 'Pioneer Marine', rank: 'Bosun', joinDate: '2026-03-10', urgent: true, proposalsCount: 0, status: 'open', daysUntil: 26 },
+            { id: 'RFA-2026-004', type: 'Promotion', vessel: 'MV ZEUS', imo: '9567890', client: 'Diana Shipping', rank: 'Chief Engineer', joinDate: '2026-04-01', urgent: false, proposalsCount: 1, status: 'proposed', daysUntil: 48 },
+            { id: 'RFA-2026-005', type: 'Embark', vessel: 'MV ARTEMIS', imo: '9678901', client: 'Neda Maritime', rank: 'AB', joinDate: '2026-03-25', urgent: false, proposalsCount: 3, status: 'proposed', daysUntil: 41 },
+            { id: 'RFA-2026-006', type: 'Replacement', vessel: 'MV HERMES', imo: '9789012', client: 'Centrofin', rank: '2nd Officer', joinDate: '2026-02-28', urgent: true, proposalsCount: 0, status: 'open', daysUntil: 16 },
+            { id: 'RFA-2026-007', type: 'Extension', vessel: 'MV HERA', imo: '9890123', client: 'Pioneer Marine', rank: 'Oiler', joinDate: '2026-04-10', urgent: false, proposalsCount: 1, status: 'proposed', daysUntil: 57 },
+            { id: 'RFA-2026-008', type: 'Embark', vessel: 'MV DIONYSUS', imo: '9901234', client: 'Diana Shipping', rank: 'Master', joinDate: '2026-03-18', urgent: false, proposalsCount: 2, status: 'proposed', daysUntil: 34 }
+        ];
+
+        const MOCK_CREW_POOL = [
+            { id: 'SF-1001', name: 'John Martinez', rank: 'Chief Officer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '12y' },
+            { id: 'SF-1002', name: 'Maria Santos', rank: 'Chief Officer', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: false, quotaOK: true, experience: '8y' },
+            { id: 'SF-1003', name: 'Ahmed Hassan', rank: '2nd Engineer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '15y' },
+            { id: 'SF-1004', name: 'Elena Popov', rank: 'Bosun', pool: 'non-dedicated', status: 'Endorsed', docsOK: false, restOK: true, quotaOK: true, experience: '6y' },
+            { id: 'SF-1005', name: 'Carlos Rodriguez', rank: 'Chief Engineer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '18y' },
+            { id: 'SF-1006', name: 'Li Wei', rank: 'AB', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: false, experience: '4y' },
+            { id: 'SF-1007', name: 'Ivan Petrov', rank: '2nd Officer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '10y' },
+            { id: 'SF-1008', name: 'Ana Silva', rank: 'Oiler', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: false, quotaOK: true, experience: '5y' },
+            { id: 'SF-1009', name: 'Michael O\'Brien', rank: 'Master', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '22y' },
+            { id: 'SF-1010', name: 'Yuki Tanaka', rank: 'Chief Officer', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '14y' },
+            { id: 'SF-1011', name: 'Pierre Dubois', rank: '2nd Engineer', pool: 'dedicated', status: 'Endorsed', docsOK: false, restOK: true, quotaOK: true, experience: '9y' },
+            { id: 'SF-1012', name: 'Sofia Andersson', rank: 'Bosun', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '7y' },
+            { id: 'SF-1013', name: 'Ravi Kumar', rank: 'Chief Engineer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '16y' },
+            { id: 'SF-1014', name: 'Isabella Costa', rank: 'AB', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '3y' },
+            { id: 'SF-1015', name: 'Hans Mueller', rank: '2nd Officer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: false, quotaOK: true, experience: '11y' },
+            { id: 'SF-1016', name: 'Fatima Al-Mansoori', rank: 'Oiler', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '6y' },
+            { id: 'SF-1017', name: 'Thomas Anderson', rank: 'Master', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '25y' },
+            { id: 'SF-1018', name: 'Olga Ivanova', rank: 'Chief Officer', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: false, experience: '13y' },
+            { id: 'SF-1019', name: 'Jorge Fernandez', rank: '2nd Engineer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '8y' },
+            { id: 'SF-1020', name: 'Mei Lin', rank: 'Bosun', pool: 'non-dedicated', status: 'Endorsed', docsOK: false, restOK: false, quotaOK: true, experience: '5y' },
+            { id: 'SF-1021', name: 'Lars Nielsen', rank: 'Chief Engineer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '19y' },
+            { id: 'SF-1022', name: 'Amara Okafor', rank: 'AB', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '4y' },
+            { id: 'SF-1023', name: 'Dimitri Papadopoulos', rank: '2nd Officer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '12y' },
+            { id: 'SF-1024', name: 'Natasha Kowalski', rank: 'Oiler', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '7y' }
         ];
 
         // MOCK DATA - Tickets
@@ -7635,7 +7238,7 @@
         function renderRotationPlan() {
             renderGanttHeader();
             renderGanttBody();
-            safeCreateIcons();
+            lucide.createIcons();
         }
 
         function getMonthsArray(count, startOffset) {
@@ -7849,7 +7452,7 @@
                 '</div>';
             }).join('');
             
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function filterKanban(stage) {
@@ -7936,7 +7539,7 @@
             document.getElementById('candidateModalRank').textContent = candidate.rank + ' • ' + candidate.id;
             document.getElementById('candidateModalBody').innerHTML = html;
             openModal('candidateDetailModal');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
 
@@ -7961,7 +7564,7 @@
             if (phoneField) phoneField.value = candidate.phone;
             if (sourceField) sourceField.value = candidate.source;
             if (priorityField) priorityField.value = candidate.priority;
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.editCandidateFromModal = editCandidateFromModal;
         
@@ -8052,7 +7655,7 @@
                 document.getElementById('fullProfileContent').innerHTML = html;
                 closePanel('seafarerPanel');
                 openModal('fullProfileModal');
-                safeCreateIcons();
+                lucide.createIcons();
             }
         }
         
@@ -8234,7 +7837,7 @@
             '</div>';
             
             document.getElementById('fullProfileContent').innerHTML = html;
-            safeCreateIcons();
+            lucide.createIcons();
         }
 
         function searchCandidates(query) {
@@ -8278,7 +7881,7 @@
             container.innerHTML = vessels.length > 0 ? 
                 vessels.map(vessel => renderVesselCard(vessel)).join('') :
                 '<div style="grid-column:1/-1;padding:48px;text-align:center;color:var(--cw-gray-400);"><i data-lucide="ship" style="width:48px;height:48px;margin-bottom:16px;"></i><p>No vessels match your filters</p></div>';
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function filterFleetByStatus(status) {
@@ -8321,7 +7924,7 @@
         
         function showFleetMap() {
             openModal('fleetMapModal');
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function saveNewVessel() {
@@ -8452,7 +8055,7 @@
             }).join('');
             
             openModal('vesselDetailModal');
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function openVesselPanel(vesselId) {
@@ -8609,7 +8212,7 @@
             }
             
             container.innerHTML = html;
-            safeCreateIcons();
+            lucide.createIcons();
         }
 
         function renderDocumentsTable() {
@@ -8655,7 +8258,7 @@
                 '</tr>';
             }).join('');
             
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function filterDocsByStatus(status) {
@@ -8703,7 +8306,7 @@
                     '<div style="flex:1;"><div style="font-weight:600;color:var(--cw-gray-700);">' + file.name + '</div>' +
                     '<div style="font-size:0.8rem;color:var(--cw-gray-500);">' + (file.size / 1024).toFixed(1) + ' KB</div></div>' +
                     '<button type="button" onclick="clearFileUpload()" style="background:none;border:none;cursor:pointer;color:var(--cw-gray-400);"><i data-lucide="x" style="width:20px;height:20px;"></i></button>';
-                safeCreateIcons();
+                lucide.createIcons();
             }
         }
         
@@ -8764,7 +8367,7 @@
             );
             
             container.innerHTML = contracts.map(contract => renderContractCard(contract)).join('');
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function filterContractsByStatus(status) {
@@ -8942,7 +8545,7 @@
                 '</div>';
             
             openModal('contractDetailModal');
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function createTimelineStep(label, icon, completed, active) {
@@ -9276,7 +8879,7 @@ Date: ${new Date().toLocaleString()}
             container.innerHTML = clients.length > 0 ? 
                 clients.map(client => renderClientCard(client)).join('') :
                 '<div style="grid-column:1/-1;padding:48px;text-align:center;color:var(--cw-gray-400);"><i data-lucide="building-2" style="width:48px;height:48px;margin-bottom:16px;"></i><p>No clients match your filters</p></div>';
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function filterClientsByStatus(status) {
@@ -9402,7 +9005,7 @@ Date: ${new Date().toLocaleString()}
             
             document.getElementById('clientDetailContent').innerHTML = html;
             openModal('clientDetailModal');
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function exportClients() {
@@ -9503,7 +9106,7 @@ Date: ${new Date().toLocaleString()}
             container.innerHTML = tasks.length > 0 ? 
                 tasks.map(task => renderRfcTaskCard(task)).join('') :
                 '<div style="grid-column:1/-1;padding:48px;text-align:center;color:var(--cw-gray-400);"><i data-lucide="inbox" style="width:48px;height:48px;margin-bottom:16px;"></i><p>No RFC tasks match your filters</p></div>';
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function filterRfcByStatus(status) {
@@ -9673,7 +9276,7 @@ Date: ${new Date().toLocaleString()}
             
             document.getElementById('rfcModalBody').innerHTML = html;
             openModal('rfcDetailModal');
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function exportRfcTasks() {
@@ -9734,7 +9337,7 @@ Date: ${new Date().toLocaleString()}
             container.innerHTML = interviews.length > 0 ? 
                 interviews.map(interview => renderInterviewCard(interview)).join('') :
                 '<div style="grid-column:1/-1;padding:48px;text-align:center;color:var(--cw-gray-400);"><i data-lucide="calendar-x" style="width:48px;height:48px;margin-bottom:16px;"></i><p>No interviews match your filters</p></div>';
-            safeCreateIcons();
+            lucide.createIcons();
         }
 
         function renderInterviewCard(interview) {
@@ -9815,7 +9418,7 @@ Date: ${new Date().toLocaleString()}
                 btn.classList.remove('btn-primary');
                 btn.classList.add('btn-secondary');
             }
-            safeCreateIcons();
+            lucide.createIcons();
         }
 
         function changeCalendarWeek(offset) {
@@ -10058,7 +9661,7 @@ Date: ${new Date().toLocaleString()}
             document.getElementById('interviewDetailFooter').innerHTML = footerHtml;
             
             openModal('interviewDetailModal');
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function startInterview(id) {
@@ -10101,7 +9704,7 @@ Date: ${new Date().toLocaleString()}
             
             closeModal('interviewDetailModal');
             openModal('scoreInterviewModal');
-            safeCreateIcons();
+            lucide.createIcons();
             
             // Add input listeners for real-time average calculation
             ['scoreTechnical', 'scoreExperience', 'scoreCommunication'].forEach(id => {
@@ -10209,7 +9812,7 @@ Date: ${new Date().toLocaleString()}
             
             document.getElementById('candidateDocsContent').innerHTML = html;
             openModal('candidateDocsModal');
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function downloadDocument(filename) {
@@ -10326,7 +9929,7 @@ Date: ${new Date().toLocaleString()}
             if (document.getElementById('embarkAvgReadiness')) document.getElementById('embarkAvgReadiness').textContent = avgReadiness + '%';
             
             container.innerHTML = embarkations.map(emb => renderEmbarkCard(emb)).join('');
-            safeCreateIcons();
+            lucide.createIcons();
         }
 
         function renderEmbarkCard(emb) {
@@ -10500,7 +10103,7 @@ Date: ${new Date().toLocaleString()}
             );
             
             container.innerHTML = pending.map(item => renderPendingRow(item)).join('');
-            safeCreateIcons();
+            lucide.createIcons();
         }
 
         function renderPendingRow(item) {
@@ -10649,7 +10252,7 @@ Date: ${new Date().toLocaleString()}
             if (document.getElementById('ticketAvgCost')) document.getElementById('ticketAvgCost').textContent = '$' + avgCost.toLocaleString();
             
             container.innerHTML = tickets.map(ticket => renderTicketCard(ticket)).join('');
-            safeCreateIcons();
+            lucide.createIcons();
         }
 
         function renderTicketCard(ticket) {
@@ -10990,7 +10593,7 @@ Generated by ATLANTIS ERP | ${new Date().toLocaleString()}
             document.getElementById('modifyTicketClass').value = 'economy';
             document.getElementById('modifyTicketNotes').value = '';
             
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function saveTicketModification() {
@@ -11061,7 +10664,7 @@ Generated by ATLANTIS ERP | ${new Date().toLocaleString()}
             if (document.getElementById('evalAvgScore')) document.getElementById('evalAvgScore').textContent = avgScore;
             
             container.innerHTML = evals.map(ev => renderEvalCard(ev)).join('');
-            safeCreateIcons();
+            lucide.createIcons();
         }
 
         function renderEvalCard(ev) {
@@ -11349,6 +10952,336 @@ Date: ${new Date().toLocaleString()}
         }
 
         // COMPLAINTS MODULE FUNCTIONS
+
+        // ASSIGNMENT & PROPOSAL MODULE
+        let currentCrewPool = 'all';
+        
+        function renderAssignmentBoard() {
+            const container = document.getElementById('rfaMatrixGrid');
+            console.log('renderAssignmentBoard called, container:', container);
+            if (!container) {
+                console.error('rfaMatrixGrid container not found!');
+                return;
+            }
+            
+            const statusFilter = document.getElementById('assignmentStatusFilter')?.value || '';
+            const clientFilter = document.getElementById('assignmentClientFilter')?.value || '';
+            const rankFilter = document.getElementById('assignmentRankFilter')?.value || '';
+            const searchQuery = document.getElementById('assignmentSearchInput')?.value?.toLowerCase() || '';
+            
+            let rfas = MOCK_OPEN_RFAS;
+            console.log('Total RFAs:', rfas.length);
+            if (statusFilter) rfas = rfas.filter(r => r.status === statusFilter);
+            if (clientFilter) rfas = rfas.filter(r => r.client === clientFilter);
+            if (rankFilter) rfas = rfas.filter(r => r.rank === rankFilter);
+            if (searchQuery) rfas = rfas.filter(r => r.id.toLowerCase().includes(searchQuery) || r.vessel.toLowerCase().includes(searchQuery) || r.rank.toLowerCase().includes(searchQuery));
+            
+            console.log('Filtered RFAs:', rfas.length);
+            
+            container.innerHTML = rfas.map(rfa => `
+                <div class="rfa-matrix-card ${rfa.urgent ? 'urgent' : ''} ${rfa.proposalsCount > 0 ? 'has-proposals' : ''}" onclick="openRfaDetailsModal('${rfa.id}')">
+                    <div class="rfa-card-header">
+                        <span class="rfa-card-id">${rfa.id}</span>
+                        <span class="rfa-card-type">${rfa.type}</span>
+                    </div>
+                    <div class="rfa-card-vessel">${rfa.vessel}</div>
+                    <div class="rfa-card-rank"><strong>Rank:</strong> ${rfa.rank}</div>
+                    ${rfa.urgent ? '<div style="color: #EF4444; font-size: 0.75rem; font-weight: 700;">⚠ URGENT</div>' : ''}
+                    <div class="rfa-card-meta">
+                        <div><span class="rfa-meta-label">Client</span><br><span class="rfa-meta-value">${rfa.client}</span></div>
+                        <div><span class="rfa-meta-label">Join</span><br><span class="rfa-meta-value">${new Date(rfa.joinDate).toLocaleDateString('en-GB', {day: '2-digit', month: 'short'})}</span></div>
+                    </div>
+                    <div class="rfa-card-proposals ${rfa.proposalsCount > 0 ? 'has-proposals' : ''}">
+                        <span>Proposals</span><span class="proposals-count">${rfa.proposalsCount}</span>
+                    </div>
+                    <div class="rfa-card-footer">
+                        <button class="rfa-card-btn" onclick="event.stopPropagation(); showNotification('Propose crew for ${rfa.id}', 'success')">Propose</button>
+                        <button class="rfa-card-btn secondary" onclick="event.stopPropagation(); showNotification('View ${rfa.id}', 'info')">View</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        
+        function renderCrewPool() {
+            const container = document.getElementById('crewPoolList');
+            if (!container) return;
+            
+            let crew = MOCK_CREW_POOL;
+            if (currentCrewPool !== 'all') {
+                crew = crew.filter(c => c.pool === currentCrewPool);
+            }
+            
+            document.getElementById('crewPoolCount').textContent = crew.length;
+            
+            container.innerHTML = crew.map(c => {
+                const initials = c.name.split(' ').map(n => n[0]).join('');
+                const eligible = c.docsOK && c.restOK && c.quotaOK;
+                return `
+                    <div class="crew-pool-card ${eligible ? 'eligible' : ''}" onclick="openCrewDetailsModal('${c.id}')">
+                        <div class="crew-card-header">
+                            <div class="crew-card-avatar">${initials}</div>
+                            <div class="crew-card-info">
+                                <div class="crew-card-name">${c.name}</div>
+                                <div class="crew-card-rank">${c.rank} • ${c.experience}</div>
+                            </div>
+                        </div>
+                        <div class="crew-card-badges">
+                            <span class="crew-badge ${c.pool}">${c.pool === 'dedicated' ? 'Dedicated' : 'Non-Dedicated'}</span>
+                            <span class="crew-badge endorsed">${c.status}</span>
+                        </div>
+                        <div class="crew-eligibility">
+                            <div class="eligibility-indicator ${c.docsOK ? 'ok' : 'error'}">
+                                <i data-lucide="${c.docsOK ? 'check-circle' : 'x-circle'}"></i> Docs
+                            </div>
+                            <div class="eligibility-indicator ${c.restOK ? 'ok' : 'warning'}">
+                                <i data-lucide="${c.restOK ? 'check-circle' : 'clock'}"></i> Rest
+                            </div>
+                            <div class="eligibility-indicator ${c.quotaOK ? 'ok' : 'error'}">
+                                <i data-lucide="${c.quotaOK ? 'check-circle' : 'x-circle'}"></i> Quota
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        
+        function switchCrewPool(pool) {
+            currentCrewPool = pool;
+            document.querySelectorAll('.pool-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.pool === pool);
+            });
+            renderCrewPool();
+        }
+        
+        function refreshAssignmentBoard() {
+            showNotification('Board refreshed', 'success');
+            renderAssignmentBoard();
+            renderCrewPool();
+        }
+        
+        function openCreateProposalModal() {
+            const modalContent = `
+                <div style="max-width: 700px;">
+                    <h2 style="margin-bottom: 24px; color: var(--cw-gray-900);">
+                        <i data-lucide="user-plus"></i> Create New Proposal
+                    </h2>
+                    
+                    <div style="background: var(--cw-gray-50); padding: 16px; border-radius: 8px; margin-bottom: 24px;">
+                        <p style="color: var(--cw-gray-600); font-size: 0.9rem; margin: 0;">
+                            Select an RFA and match it with an available crew member from the pool. The system will check eligibility automatically.
+                        </p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Select RFA <span style="color: #EF4444;">*</span></label>
+                        <select class="form-input" id="proposalRfaSelect" onchange="updateProposalDetails()">
+                            <option value="">-- Select an RFA --</option>
+                            ${MOCK_OPEN_RFAS.map(rfa => `
+                                <option value="${rfa.id}">${rfa.id} - ${rfa.vessel} (${rfa.rank}) - ${rfa.client}</option>
+                            `).join('')}
+                        </select>
+                    </div>
+                    
+                    <div id="rfaDetails" style="display: none; background: white; border: 2px solid var(--cw-gray-200); border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+                        <h3 style="font-size: 0.95rem; font-weight: 700; color: var(--cw-gray-900); margin-bottom: 12px;">RFA Details</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.85rem;">
+                            <div><span style="color: var(--cw-gray-600);">Vessel:</span> <strong id="rfaVessel">-</strong></div>
+                            <div><span style="color: var(--cw-gray-600);">Rank:</span> <strong id="rfaRank">-</strong></div>
+                            <div><span style="color: var(--cw-gray-600);">Client:</span> <strong id="rfaClient">-</strong></div>
+                            <div><span style="color: var(--cw-gray-600);">Join Date:</span> <strong id="rfaJoinDate">-</strong></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Select Crew Member <span style="color: #EF4444;">*</span></label>
+                        <select class="form-input" id="proposalCrewSelect">
+                            <option value="">-- First select an RFA --</option>
+                        </select>
+                    </div>
+                    
+                    <div id="eligibilityChecks" style="display: none; margin-top: 20px;">
+                        <h3 style="font-size: 0.95rem; font-weight: 700; color: var(--cw-gray-900); margin-bottom: 12px;">Eligibility Checks</h3>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                            <div style="background: white; border: 2px solid var(--cw-gray-200); border-radius: 8px; padding: 12px; text-align: center;">
+                                <div id="docsCheck" style="font-size: 2rem;">-</div>
+                                <div style="font-size: 0.75rem; color: var(--cw-gray-600); margin-top: 4px;">Documents</div>
+                            </div>
+                            <div style="background: white; border: 2px solid var(--cw-gray-200); border-radius: 8px; padding: 12px; text-align: center;">
+                                <div id="restCheck" style="font-size: 2rem;">-</div>
+                                <div style="font-size: 0.75rem; color: var(--cw-gray-600); margin-top: 4px;">Rest Period</div>
+                            </div>
+                            <div style="background: white; border: 2px solid var(--cw-gray-200); border-radius: 8px; padding: 12px; text-align: center;">
+                                <div id="quotaCheck" style="font-size: 2rem;">-</div>
+                                <div style="font-size: 0.75rem; color: var(--cw-gray-600); margin-top: 4px;">Quota</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label class="form-label">Notes to Client (Optional)</label>
+                        <textarea class="form-input" id="proposalNotes" rows="3" placeholder="Add any additional notes or remarks..."></textarea>
+                    </div>
+                    
+                    <div class="modal-footer" style="margin-top: 24px; display: flex; gap: 12px; justify-content: flex-end;">
+                        <button class="btn btn-secondary" onclick="closeModal('customModal')">
+                            Cancel
+                        </button>
+                        <button class="btn btn-primary" onclick="submitNewProposal()" id="submitProposalBtn" disabled>
+                            <i data-lucide="send"></i> Submit Proposal
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            showModal('customModal', modalContent);
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        
+        function updateProposalDetails() {
+            const rfaId = document.getElementById('proposalRfaSelect').value;
+            const rfaDetailsDiv = document.getElementById('rfaDetails');
+            const crewSelect = document.getElementById('proposalCrewSelect');
+            
+            if (!rfaId) {
+                rfaDetailsDiv.style.display = 'none';
+                crewSelect.innerHTML = '<option value="">-- First select an RFA --</option>';
+                document.getElementById('eligibilityChecks').style.display = 'none';
+                document.getElementById('submitProposalBtn').disabled = true;
+                return;
+            }
+            
+            const rfa = MOCK_OPEN_RFAS.find(r => r.id === rfaId);
+            if (rfa) {
+                rfaDetailsDiv.style.display = 'block';
+                document.getElementById('rfaVessel').textContent = rfa.vessel;
+                document.getElementById('rfaRank').textContent = rfa.rank;
+                document.getElementById('rfaClient').textContent = rfa.client;
+                document.getElementById('rfaJoinDate').textContent = new Date(rfa.joinDate).toLocaleDateString('en-GB');
+                
+                // Filter crew by matching rank
+                const matchingCrew = MOCK_CREW_POOL.filter(c => c.rank === rfa.rank);
+                crewSelect.innerHTML = '<option value="">-- Select crew member --</option>' + 
+                    matchingCrew.map(c => `<option value="${c.id}">${c.name} - ${c.rank} (${c.pool}, ${c.experience})</option>`).join('');
+                
+                // Add change listener for crew selection
+                crewSelect.onchange = function() {
+                    const crewId = this.value;
+                    if (crewId) {
+                        const crew = MOCK_CREW_POOL.find(c => c.id === crewId);
+                        if (crew) {
+                            showEligibilityChecks(crew);
+                            document.getElementById('submitProposalBtn').disabled = false;
+                        }
+                    } else {
+                        document.getElementById('eligibilityChecks').style.display = 'none';
+                        document.getElementById('submitProposalBtn').disabled = true;
+                    }
+                };
+            }
+        }
+        
+        function showEligibilityChecks(crew) {
+            document.getElementById('eligibilityChecks').style.display = 'block';
+            document.getElementById('docsCheck').innerHTML = crew.docsOK ? '<span style="color: #10B981;">✓</span>' : '<span style="color: #EF4444;">✗</span>';
+            document.getElementById('restCheck').innerHTML = crew.restOK ? '<span style="color: #10B981;">✓</span>' : '<span style="color: #F59E0B;">⏰</span>';
+            document.getElementById('quotaCheck').innerHTML = crew.quotaOK ? '<span style="color: #10B981;">✓</span>' : '<span style="color: #EF4444;">✗</span>';
+        }
+        
+        function submitNewProposal() {
+            const rfaId = document.getElementById('proposalRfaSelect').value;
+            const crewId = document.getElementById('proposalCrewSelect').value;
+            const notes = document.getElementById('proposalNotes').value;
+            
+            if (!rfaId || !crewId) {
+                showNotification('Please select both RFA and crew member', 'error');
+                return;
+            }
+            
+            const rfa = MOCK_OPEN_RFAS.find(r => r.id === rfaId);
+            const crew = MOCK_CREW_POOL.find(c => c.id === crewId);
+            
+            showNotification(`Proposal created: ${crew.name} for ${rfa.vessel} (${rfa.id})`, 'success');
+            closeModal('customModal');
+            
+            // Update RFA proposals count
+            rfa.proposalsCount++;
+            renderAssignmentBoard();
+        }
+
+        // =====================================================
+        // RFA DETAILS MODAL - COMPREHENSIVE VIEW
+        // =====================================================
+        function openRfaDetailsModal(rfaId) {
+            console.log('openRfaDetailsModal called with ID:', rfaId);
+            const rfa = MOCK_OPEN_RFAS.find(r => r.id === rfaId);
+            console.log('Found RFA:', rfa);
+            if (!rfa) {
+                console.error('RFA not found!');
+                return;
+            }
+            
+            // Mock proposal history
+            const mockProposals = [
+                { id: 'PROP-001', crewName: 'John Martinez', crewRank: 'Chief Officer', submittedDate: '2026-02-10', status: 'Pending', docsOK: true, restOK: true, quotaOK: true },
+                { id: 'PROP-002', crewName: 'Yuki Tanaka', crewRank: 'Chief Officer', submittedDate: '2026-02-09', status: 'Rejected', docsOK: true, restOK: false, quotaOK: true, rejectionReason: 'Insufficient rest period' }
+            ];
+            
+            // Mock timeline events
+            const timeline = [
+                { date: '2026-02-12 09:30', event: 'RFA Created', user: 'Fleet Manager', icon: 'plus-circle', color: '#0891B2' },
+                { date: '2026-02-10 14:15', event: 'Proposal Submitted', user: 'Maria Santos', icon: 'user-plus', color: '#10B981' },
+                { date: '2026-02-09 11:00', event: 'Proposal Rejected', user: 'Client', icon: 'x-circle', color: '#EF4444' }
+            ];
+            
+            const statusColors = { 'open': '#F59E0B', 'proposed': '#3B82F6', 'approved': '#10B981' };
+            
+            const modalContent = '<div style="max-width: 900px; width: 100%;"><div style="background: linear-gradient(135deg, var(--cw-primary) 0%, var(--cw-accent) 100%); padding: 24px; border-radius: 12px 12px 0 0; margin: -24px -24px 24px -24px;"><div style="display: flex; align-items: center; justify-content: space-between; color: white;"><div style="flex: 1;"><div style="font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">' + rfa.type + ' Request</div><h2 style="font-size: 1.75rem; font-weight: 700; margin: 0 0 8px 0;">' + rfa.id + '</h2><div style="font-size: 0.9rem; opacity: 0.9;"><i data-lucide="ship" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></i> ' + rfa.vessel + ' • IMO ' + rfa.imo + '</div></div><div style="text-align: right;"><div style="display: inline-block; padding: 8px 16px; background: rgba(255,255,255,0.2); border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">' + rfa.status.toUpperCase() + '</div>' + (rfa.urgent ? '<div style="background: rgba(239,68,68,0.2); color: #FEE2E2; padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;"><i data-lucide="alert-triangle" style="width: 14px; height: 14px;"></i> URGENT</div>' : '') + '</div></div></div><div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;"><div><div style="background: white; border: 2px solid var(--cw-gray-200); border-radius: 12px; padding: 20px; margin-bottom: 20px;"><h3 style="font-size: 1.1rem; font-weight: 700; margin: 0 0 16px 0; padding-bottom: 12px; border-bottom: 2px solid var(--cw-gray-100);"><i data-lucide="info"></i> Request Details</h3><div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;"><div><div style="font-size: 0.75rem; color: var(--cw-gray-500);">Rank Required</div><div style="font-size: 1rem; font-weight: 700;">' + rfa.rank + '</div></div><div><div style="font-size: 0.75rem; color: var(--cw-gray-500);">Client</div><div style="font-size: 1rem; font-weight: 700;">' + rfa.client + '</div></div><div><div style="font-size: 0.75rem; color: var(--cw-gray-500);">Join Date</div><div style="font-size: 1rem; font-weight: 700;"><i data-lucide="calendar" style="width: 14px; height: 14px;"></i> ' + new Date(rfa.joinDate).toLocaleDateString('en-GB') + '</div></div><div><div style="font-size: 0.75rem; color: var(--cw-gray-500);">Days Until</div><div style="font-size: 1rem; font-weight: 700; color: ' + (rfa.urgent ? '#EF4444' : '#10B981') + ';"><i data-lucide="clock" style="width: 14px; height: 14px;"></i> ' + rfa.daysUntil + ' days</div></div></div></div><div style="background: white; border: 2px solid var(--cw-gray-200); border-radius: 12px; padding: 20px;"><h3 style="font-size: 1.1rem; font-weight: 700; margin: 0 0 16px 0; padding-bottom: 12px; border-bottom: 2px solid var(--cw-gray-100);"><i data-lucide="users"></i> Proposals (' + rfa.proposalsCount + ')</h3>' + (rfa.proposalsCount > 0 ? mockProposals.slice(0, rfa.proposalsCount).map(p => '<div style="background: var(--cw-gray-50); border: 1px solid var(--cw-gray-200); border-radius: 8px; padding: 14px; margin-bottom: 12px;"><div style="font-weight: 700;">' + p.crewName + '</div><div style="font-size: 0.8rem; color: var(--cw-gray-600);">' + p.crewRank + '</div><div style="margin-top: 8px; font-size: 0.75rem;">Submitted: ' + p.submittedDate + '</div></div>').join('') : '<div style="text-align: center; padding: 20px; color: var(--cw-gray-500);">No proposals yet</div>') + '</div></div><div><div style="background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%); border: 2px solid #BAE6FD; border-radius: 12px; padding: 16px; margin-bottom: 16px;"><div style="text-align: center;"><div style="font-size: 0.75rem; color: var(--cw-gray-600);">Status</div><div style="font-size: 1.5rem; font-weight: 700; color: ' + statusColors[rfa.status] + ';">' + rfa.status.toUpperCase() + '</div></div></div><button class="btn btn-primary" style="width: 100%; margin-top: 12px;" onclick="closeModal(\'rfaDetailsModal\'); openCreateProposalModal();"><i data-lucide="user-plus"></i> Create Proposal</button></div></div><div style="margin-top: 24px; display: flex; justify-content: flex-end;"><button class="btn btn-secondary" onclick="closeModal(\'rfaDetailsModal\')">Close</button></div></div>';
+            
+            showModal('rfaDetailsModal', modalContent);
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        // =====================================================
+        // CREW DETAILS MODAL - COMPREHENSIVE PROFILE VIEW
+        // =====================================================
+        function openCrewDetailsModal(crewId) {
+            console.log('openCrewDetailsModal called with ID:', crewId);
+            const crew = MOCK_CREW_POOL.find(c => c.id === crewId);
+            console.log('Found Crew:', crew);
+            if (!crew) {
+                console.error('Crew not found!');
+                return;
+            }
+            
+            const initials = crew.name.split(' ').map(n => n[0]).join('');
+            const poolColor = crew.pool === 'dedicated' ? '#0EA5E9' : '#8B5CF6';
+            
+            // Mock sea service history
+            const seaService = [
+                { vessel: 'MV EUROPA', rank: crew.rank, from: '2023-05-15', to: '2024-01-20', duration: '8 months' },
+                { vessel: 'MV PACIFIC STAR', rank: 'Junior Officer', from: '2022-06-01', to: '2023-04-30', duration: '11 months' },
+                { vessel: 'MV OCEAN PRIDE', rank: 'Cadet', from: '2021-03-15', to: '2022-05-15', duration: '14 months' }
+            ];
+            
+            // Mock certificates
+            const certificates = [
+                { name: 'COC Class II', issueDate: '2023-01-15', expiryDate: '2028-01-15', status: 'valid', daysRemaining: 730 },
+                { name: 'STCW Basic Safety', issueDate: '2021-06-20', expiryDate: '2026-06-20', status: 'valid', daysRemaining: 495 },
+                { name: 'Medical Certificate', issueDate: '2025-08-10', expiryDate: '2026-08-10', status: 'expiring', daysRemaining: 180 },
+                { name: 'Passport', issueDate: '2020-03-01', expiryDate: '2030-03-01', status: 'valid', daysRemaining: 1478 }
+            ];
+            
+            const modalContent = '<div style="max-width: 900px; width: 100%;"><div style="background: linear-gradient(135deg, ' + poolColor + ' 0%, var(--cw-accent) 100%); padding: 24px; border-radius: 12px 12px 0 0; margin: -24px -24px 24px -24px;"><div style="display: flex; align-items: center; gap: 20px; color: white;"><div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; border: 4px solid rgba(255,255,255,0.4);">' + initials + '</div><div style="flex: 1;"><div style="font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">' + (crew.pool === 'dedicated' ? 'Dedicated Pool' : 'Non-Dedicated Pool') + '</div><h2 style="font-size: 1.75rem; font-weight: 700; margin: 0 0 8px 0;">' + crew.name + '</h2><div style="font-size: 1rem; opacity: 0.95;"><i data-lucide="anchor" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></i> ' + crew.rank + ' • ' + crew.experience + ' Experience</div></div><div style="text-align: right;"><div style="display: inline-block; padding: 8px 16px; background: rgba(255,255,255,0.2); border-radius: 20px; font-size: 0.85rem; font-weight: 600;">' + crew.status + '</div></div></div></div><div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;"><div><div style="background: white; border: 2px solid var(--cw-gray-200); border-radius: 12px; padding: 20px; margin-bottom: 20px;"><h3 style="font-size: 1.1rem; font-weight: 700; margin: 0 0 16px 0; padding-bottom: 12px; border-bottom: 2px solid var(--cw-gray-100);"><i data-lucide="user"></i> Personal Details</h3><div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; font-size: 0.9rem;"><div><div style="font-size: 0.75rem; color: var(--cw-gray-500); text-transform: uppercase; margin-bottom: 4px;">Crew ID</div><div style="font-weight: 700;">' + crew.id + '</div></div><div><div style="font-size: 0.75rem; color: var(--cw-gray-500); text-transform: uppercase; margin-bottom: 4px;">Nationality</div><div style="font-weight: 700;">🇵🇭 Philippines</div></div><div><div style="font-size: 0.75rem; color: var(--cw-gray-500); text-transform: uppercase; margin-bottom: 4px;">Date of Birth</div><div style="font-weight: 700;">15 Mar 1990 (35y)</div></div><div><div style="font-size: 0.75rem; color: var(--cw-gray-500); text-transform: uppercase; margin-bottom: 4px;">Contact</div><div style="font-weight: 700;">+63 917 xxx xxxx</div></div></div></div><div style="background: white; border: 2px solid var(--cw-gray-200); border-radius: 12px; padding: 20px; margin-bottom: 20px;"><h3 style="font-size: 1.1rem; font-weight: 700; margin: 0 0 16px 0; padding-bottom: 12px; border-bottom: 2px solid var(--cw-gray-100);"><i data-lucide="file-text"></i> Documents & Certificates</h3>' + certificates.map(cert => '<div style="background: var(--cw-gray-50); border-left: 3px solid ' + (cert.status === 'valid' ? '#10B981' : cert.status === 'expiring' ? '#F59E0B' : '#EF4444') + '; border-radius: 6px; padding: 12px; margin-bottom: 10px;"><div style="display: flex; justify-content: space-between; align-items: start;"><div><div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 4px;">' + cert.name + '</div><div style="font-size: 0.75rem; color: var(--cw-gray-600);">Expires: ' + new Date(cert.expiryDate).toLocaleDateString('en-GB') + '</div></div><div style="text-align: right;"><div style="font-size: 0.7rem; font-weight: 600; color: ' + (cert.status === 'valid' ? '#059669' : '#D97706') + ';">' + cert.daysRemaining + ' days</div><div style="font-size: 0.65rem; padding: 2px 8px; background: ' + (cert.status === 'valid' ? 'rgba(16,185,129,0.1)' : 'rgba(245,158,11,0.1)') + '; color: ' + (cert.status === 'valid' ? '#059669' : '#D97706') + '; border-radius: 10px; margin-top: 4px;">' + cert.status.toUpperCase() + '</div></div></div></div>').join('') + '</div><div style="background: white; border: 2px solid var(--cw-gray-200); border-radius: 12px; padding: 20px;"><h3 style="font-size: 1.1rem; font-weight: 700; margin: 0 0 16px 0; padding-bottom: 12px; border-bottom: 2px solid var(--cw-gray-100);"><i data-lucide="ship"></i> Sea Service History</h3>' + seaService.map((service, idx) => '<div style="position: relative; padding-left: 20px; padding-bottom: ' + (idx === seaService.length - 1 ? '0' : '16px') + '; margin-bottom: ' + (idx === seaService.length - 1 ? '0' : '16px') + '; border-left: 2px solid var(--cw-gray-200);"><div style="position: absolute; left: -6px; top: 4px; width: 10px; height: 10px; background: var(--cw-accent); border-radius: 50%; border: 2px solid white;"></div><div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 4px;">' + service.vessel + '</div><div style="font-size: 0.85rem; color: var(--cw-gray-700); margin-bottom: 4px;">' + service.rank + '</div><div style="font-size: 0.75rem; color: var(--cw-gray-500);">' + new Date(service.from).toLocaleDateString('en-GB') + ' - ' + new Date(service.to).toLocaleDateString('en-GB') + ' (' + service.duration + ')</div></div>').join('') + '</div></div><div><div style="background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%); border: 2px solid #BAE6FD; border-radius: 12px; padding: 16px; margin-bottom: 16px;"><h4 style="font-size: 0.9rem; font-weight: 700; margin: 0 0 12px 0;">Eligibility Status</h4><div style="display: grid; grid-template-columns: 1fr; gap: 10px;">' + (['Docs', 'Rest', 'Quota'].map((check, i) => {const ok = i === 0 ? crew.docsOK : i === 1 ? crew.restOK : crew.quotaOK; return '<div style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: white; border-radius: 8px;"><span style="font-size: 0.85rem; font-weight: 600;">' + check + '</span><span style="font-size: 1.2rem;">' + (ok ? '<span style="color: #10B981;">✓</span>' : '<span style="color: #EF4444;">✗</span>') + '</span></div>';}).join('')) + '</div></div><div style="background: white; border: 2px solid var(--cw-gray-200); border-radius: 12px; padding: 16px; margin-bottom: 16px;"><h4 style="font-size: 0.9rem; font-weight: 700; margin: 0 0 12px 0;">Quick Actions</h4><div style="display: flex; flex-direction: column; gap: 8px;"><button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="closeModal(\'crewDetailsModal\'); openCreateProposalModal();"><i data-lucide="user-plus"></i> Propose for RFA</button><button class="btn btn-secondary" style="width: 100%; justify-content: center;" onclick="showNotification(\'Edit profile\', \'info\');"><i data-lucide="edit"></i> Edit Profile</button><button class="btn btn-secondary" style="width: 100%; justify-content: center;" onclick="showNotification(\'View full history\', \'info\');"><i data-lucide="history"></i> Full History</button></div></div><div style="background: var(--cw-gray-50); border: 1px solid var(--cw-gray-200); border-radius: 12px; padding: 16px;"><h4 style="font-size: 0.9rem; font-weight: 700; margin: 0 0 12px 0;"><i data-lucide="info"></i> Additional Info</h4><div style="font-size: 0.85rem; color: var(--cw-gray-700); line-height: 1.6;"><div style="margin-bottom: 6px;"><strong>Pool Type:</strong> ' + (crew.pool === 'dedicated' ? 'Dedicated' : 'Non-Dedicated') + '</div><div style="margin-bottom: 6px;"><strong>Last Vessel:</strong> MV EUROPA</div><div><strong>Total Sea Time:</strong> 33 months</div></div></div></div></div><div style="margin-top: 24px; display: flex; justify-content: flex-end; gap: 12px;"><button class="btn btn-secondary" onclick="closeModal(\'crewDetailsModal\')">Close</button><button class="btn btn-primary" onclick="closeModal(\'crewDetailsModal\'); openCreateProposalModal();"><i data-lucide="send"></i> Create Proposal</button></div></div>';
+            
+            showModal('crewDetailsModal', modalContent);
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+
         function renderComplaints() {
             const container = document.getElementById('complaintsGrid');
             if (!container) return;
@@ -11379,7 +11312,7 @@ Date: ${new Date().toLocaleString()}
             if (document.getElementById('complaintResolvedCount')) document.getElementById('complaintResolvedCount').textContent = resolved;
             
             container.innerHTML = complaints.map(c => renderComplaintCard(c)).join('');
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function renderComplaintCard(c) {
@@ -11823,16 +11756,12 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
             'clients': { section: 'Crew Operations', title: 'Clients' },
             'fleet': { section: 'Crew Operations', title: 'Fleet & Vessels' },
             'rfa-hub': { section: 'Crew Operations', title: 'RFA Hub' },
-            'assignment-proposal': { section: 'Crew Operations', title: 'Assignment & Proposal' },
             'contracts': { section: 'Crew Operations', title: 'Contracts' },
             'rotation-plan': { section: 'Crew Operations', title: 'Rotation Plan' },
             'seafarer-roster': { section: 'Crew Management', title: 'Seafarer Roster' },
-            'supernumerary': { section: 'Crew Management', title: 'Supernumerary Personnel' },
             'documents': { section: 'Crew Management', title: 'Documents' },
-            'crew-papers': { section: 'Crew Management', title: 'Crew Papers Availability' },
             'pending-transactions': { section: 'Crew Management', title: 'Pending Transactions' },
             'embarkation-prep': { section: 'Crew Management', title: 'Embarkation Prep' },
-            'crew-changes': { section: 'Crew Management', title: 'Crew Changes' },
             'tickets': { section: 'Crew Management', title: 'Tickets' },
             'evaluations': { section: 'Crew Management', title: 'Evaluations' },
             'complaints': { section: 'Crew Management', title: 'Complaints' },
@@ -11840,17 +11769,6 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
             'compliance': { section: 'Reports', title: 'Complaints Analytics' },
             'settings': { section: 'System', title: 'Settings' },
         };
-
-        // HELPER FUNCTIONS
-        function safeCreateIcons() {
-            if (typeof lucide !== 'undefined' && lucide.createIcons) {
-                try {
-                    lucide.createIcons();
-                } catch (e) {
-                    // Silent fail - icons will show as boxes
-                }
-            }
-        }
 
         // NAVIGATION
         function navigateTo(viewId) {
@@ -11874,7 +11792,7 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
             else if (viewId === 'documents') renderDocumentsModule();
             else if (viewId === 'contracts') renderContractsGrid();
             else if (viewId === 'clients') renderClientsGrid();
-            else if (viewId === 'analytics') safeCreateIcons();
+            else if (viewId === 'analytics') lucide.createIcons();
             else if (viewId === 'rfc-tasks') renderRfcTasks();
             else if (viewId === 'interviews') renderInterviews();
             else if (viewId === 'embarkation-prep') renderEmbarkations();
@@ -11882,9 +11800,9 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
             else if (viewId === 'tickets') renderTickets();
             else if (viewId === 'evaluations') renderEvaluations();
             else if (viewId === 'complaints') renderComplaints();
-            else if (viewId === 'talent-pool') { renderChannelsTable(); if (typeof lucide !== 'undefined') safeCreateIcons(); }
+            else if (viewId === 'talent-pool') { renderChannelsTable(); if (typeof lucide !== 'undefined') lucide.createIcons(); }
             else if (viewId === 'seafarer-profile') { renderSeafarerProfile(); }
-            safeCreateIcons();
+            lucide.createIcons();
         }
 
         // RENDER ROSTER TABLE
@@ -11904,7 +11822,7 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
                 if (s.tags.includes('nfr')) tags += '<span class="tag tag-nfr">NFR</span>';
                 return '<tr><td class="checkbox-cell"><div class="custom-checkbox" onclick="toggleCheckbox(this,\'roster\')"><i data-lucide="check" style="width:12px;height:12px;"></i></div></td><td><div class="avatar-cell clickable-seafarer" onclick="openSeafarerProfile(\'' + s.firstName + ' ' + s.lastName + '\')"><div class="avatar">' + initials + '</div><div class="avatar-info"><span class="avatar-name">' + s.firstName + ' ' + s.lastName + '</span><span class="avatar-meta">' + s.id + '</span></div></div></td><td><span class="badge badge-' + s.rankType + '">' + s.rank + '</span></td><td><span class="status-badge ' + statusClass + '"><span class="dot"></span>' + statusLabel + '</span></td><td class="tags-cell">' + tags + '</td><td class="text-cell"><div class="text-primary">' + (s.vessel || '—') + '</div><div class="text-secondary">' + (s.vesselType || '') + '</div></td><td class="text-cell"><span class="text-primary">' + (s.principal || '—') + '</span></td><td class="date-cell ' + dateClass + '">' + (s.contractEnd || '—') + '</td><td class="progress-cell"><div class="progress-bar-wrapper"><div class="progress-bar"><div class="progress-bar-fill ' + docsClass + '" style="width:' + docsPercent + '%;"></div></div><span class="progress-text">' + s.docsComplete + '/' + s.docsTotal + '</span></div></td><td class="actions-cell"><button class="actions-btn"><i data-lucide="more-horizontal" style="width:18px;height:18px;"></i></button></td></tr>';
             }).join('');
-            safeCreateIcons();
+            lucide.createIcons();
         }
 
         // RENDER RFA TABLE
@@ -11951,7 +11869,7 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
                 const statusClass = 'status-' + r.status;
                 return '<tr><td><span class="font-mono" style="font-weight:600;cursor:pointer;color:var(--cw-accent);" onclick="openRfaPanel(\'' + r.id + '\')">' + r.id + '</span></td><td><span class="tag tag-' + r.type + '">' + typeLabel.toUpperCase() + '</span></td><td><span class="status-badge ' + statusClass + '"><span class="dot"></span>' + statusLabel + '</span></td><td class="text-cell"><div class="text-primary">' + r.vessel + '</div><div class="text-secondary">' + r.vesselType + '</div></td><td><span class="badge badge-officer">' + r.position + '</span></td><td>' + (r.seafarer || '<span class="text-muted">Unassigned</span>') + '</td><td class="date-cell">' + r.targetDate + '</td><td class="date-cell">' + r.createdDate + '</td><td class="actions-cell"><button class="actions-btn" onclick="openRfaPanel(\'' + r.id + '\')"><i data-lucide="more-horizontal" style="width:18px;height:18px;"></i></button></td></tr>';
             }).join('');
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function filterRfasByType(type) {
@@ -12043,7 +11961,7 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
         function openPanel(panelId) {
             document.getElementById(panelId + 'Overlay').classList.add('open');
             document.getElementById(panelId).classList.add('open');
-            safeCreateIcons();
+            lucide.createIcons();
         }
 
         function closePanel(panelId) {
@@ -12451,7 +12369,7 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
                 </div>
             `;
             document.getElementById('employmentHistoryList').innerHTML = historyHtml;
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function editSeafarer() {
@@ -12472,7 +12390,7 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
             document.getElementById('editPoolType').value = seafarer.poolType || 'dedicated';
             document.getElementById('editStatus').value = seafarer.status || 'ready';
             
-            safeCreateIcons();
+            lucide.createIcons();
         }
         window.editSeafarer = editSeafarer;
         
@@ -12556,193 +12474,50 @@ Report generated by ATLANTIS ERP`;
         // MODAL FUNCTIONS
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('open');
-            safeCreateIcons();
+            lucide.createIcons();
         }
 
         function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('open');
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.remove('open');
         }
+
+        // Dynamic modal function for custom content
+        function showModal(modalId, content) {
+            let modal = document.getElementById(modalId);
+            
+            // Create modal if it doesn't exist
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = modalId;
+                modal.className = 'modal-overlay';
+                modal.innerHTML = `
+                    <div class="modal" style="max-width: 960px;" onclick="event.stopPropagation()">
+                        <button class="modal-close" onclick="closeModal('${modalId}')" style="position: absolute; top: 16px; right: 16px; z-index: 10;">
+                            <i data-lucide="x"></i>
+                        </button>
+                        <div class="modal-body" id="${modalId}-body" style="max-height: 85vh; overflow-y: auto;"></div>
+                    </div>
+                `;
+                modal.onclick = function() { closeModal(modalId); };
+                document.body.appendChild(modal);
+            }
+            
+            // Update content
+            const modalBody = document.getElementById(`${modalId}-body`);
+            if (modalBody) modalBody.innerHTML = content;
+            
+            // Open modal
+            modal.classList.add('open');
+            console.log('Modal opened:', modalId);
+            
+            // Recreate Lucide icons
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
 
         function closeModalOnOverlay(event, modalId) {
             if (event.target === event.currentTarget) closeModal(modalId);
-        }
-
-        // ALERT DETAIL MODAL
-        function openAlertDetail(type) {
-            const modal = {
-                header: document.getElementById('alertModalHeader'),
-                icon: document.getElementById('alertModalIcon'),
-                title: document.getElementById('alertModalTitle'),
-                subtitle: document.getElementById('alertModalSubtitle'),
-                content: document.getElementById('alertModalContent'),
-                action: document.getElementById('alertModalAction')
-            };
-            
-            if (type === 'certificates') {
-                modal.header.style.background = 'linear-gradient(135deg, #DC2626 0%, #EF4444 100%)';
-                modal.icon.innerHTML = '<i data-lucide="alert-triangle" style="width:24px;height:24px;color:white;"></i>';
-                modal.title.textContent = 'Certificates Expiring Soon';
-                modal.subtitle.textContent = '3 certificates require immediate renewal';
-                modal.content.innerHTML = `
-                    <div style="padding:24px;">
-                        <div style="background:rgba(239,68,68,0.1);padding:16px;border-radius:12px;margin-bottom:20px;border-left:4px solid var(--tag-nfr);">
-                            <div style="font-weight:600;color:var(--tag-nfr);margin-bottom:4px;">⚠️ URGENT ACTION REQUIRED</div>
-                            <div style="font-size:0.85rem;color:var(--cw-gray-600);">These certificates will expire within the next 7 days. Immediate renewal is necessary to avoid compliance violations.</div>
-                        </div>
-                        <div style="display:flex;flex-direction:column;gap:12px;">
-                            <div style="background:white;border:1px solid var(--cw-gray-200);border-radius:12px;padding:16px;">
-                                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;">
-                                    <div>
-                                        <div style="font-weight:700;font-size:1rem;color:var(--cw-gray-900);">Juan Dela Cruz</div>
-                                        <div style="font-size:0.85rem;color:var(--cw-gray-500);margin-top:2px;">Master • M/V PACIFIC STAR</div>
-                                    </div>
-                                    <span style="background:rgba(239,68,68,0.1);color:var(--tag-nfr);padding:6px 12px;border-radius:8px;font-size:0.75rem;font-weight:600;">EXPIRES IN 3 DAYS</span>
-                                </div>
-                                <div style="background:var(--cw-gray-50);padding:12px;border-radius:8px;">
-                                    <div style="font-size:0.8rem;color:var(--cw-gray-500);margin-bottom:4px;">Certificate Type</div>
-                                    <div style="font-weight:600;color:var(--cw-gray-900);">STCW Medical Certificate</div>
-                                    <div style="font-size:0.8rem;color:var(--tag-nfr);margin-top:6px;">Expiry: Feb 15, 2026</div>
-                                </div>
-                            </div>
-                            <div style="background:white;border:1px solid var(--cw-gray-200);border-radius:12px;padding:16px;">
-                                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;">
-                                    <div>
-                                        <div style="font-weight:700;font-size:1rem;color:var(--cw-gray-900);">Maria Rodriguez</div>
-                                        <div style="font-size:0.85rem;color:var(--cw-gray-500);margin-top:2px;">Chief Engineer • M/V DIANA GLORY</div>
-                                    </div>
-                                    <span style="background:rgba(239,68,68,0.1);color:var(--tag-nfr);padding:6px 12px;border-radius:8px;font-size:0.75rem;font-weight:600;">EXPIRES IN 5 DAYS</span>
-                                </div>
-                                <div style="background:var(--cw-gray-50);padding:12px;border-radius:8px;">
-                                    <div style="font-size:0.8rem;color:var(--cw-gray-500);margin-bottom:4px;">Certificate Type</div>
-                                    <div style="font-weight:600;color:var(--cw-gray-900);">Certificate of Competency (COC)</div>
-                                    <div style="font-size:0.8rem;color:var(--tag-nfr);margin-top:6px;">Expiry: Feb 17, 2026</div>
-                                </div>
-                            </div>
-                            <div style="background:white;border:1px solid var(--cw-gray-200);border-radius:12px;padding:16px;">
-                                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;">
-                                    <div>
-                                        <div style="font-weight:700;font-size:1rem;color:var(--cw-gray-900);">Alex Petrov</div>
-                                        <div style="font-size:0.85rem;color:var(--cw-gray-500);margin-top:2px;">2nd Officer • M/V CENTROFIN STAR</div>
-                                    </div>
-                                    <span style="background:rgba(239,68,68,0.1);color:var(--tag-nfr);padding:6px 12px;border-radius:8px;font-size:0.75rem;font-weight:600;">EXPIRES IN 6 DAYS</span>
-                                </div>
-                                <div style="background:var(--cw-gray-50);padding:12px;border-radius:8px;">
-                                    <div style="font-size:0.8rem;color:var(--cw-gray-500);margin-bottom:4px;">Certificate Type</div>
-                                    <div style="font-weight:600;color:var(--cw-gray-900);">Passport</div>
-                                    <div style="font-size:0.8rem;color:var(--tag-nfr);margin-top:6px;">Expiry: Feb 18, 2026</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                modal.action.innerHTML = '<i data-lucide="mail" style="width:16px;height:16px;"></i>Notify Document Controller';
-                modal.action.onclick = () => { showNotification('Document Controller notified about expiring certificates', 'success'); closeModal('alertDetailModal'); };
-                
-            } else if (type === 'rfas') {
-                modal.header.style.background = 'linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)';
-                modal.icon.innerHTML = '<i data-lucide="clock" style="width:24px;height:24px;color:white;"></i>';
-                modal.title.textContent = 'Pending RFA Approvals';
-                modal.subtitle.textContent = '8 requests awaiting principal approval';
-                modal.content.innerHTML = `
-                    <div style="padding:24px;">
-                        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
-                            <div style="background:rgba(245,158,11,0.1);padding:16px;border-radius:12px;text-align:center;">
-                                <div style="font-size:2rem;font-weight:700;color:var(--status-on-approval);">2.3</div>
-                                <div style="font-size:0.75rem;color:var(--cw-gray-600);">Avg Wait (days)</div>
-                            </div>
-                            <div style="background:rgba(99,102,241,0.1);padding:16px;border-radius:12px;text-align:center;">
-                                <div style="font-size:2rem;font-weight:700;color:#6366F1;">5</div>
-                                <div style="font-size:0.75rem;color:var(--cw-gray-600);">Embark</div>
-                            </div>
-                            <div style="background:rgba(139,92,246,0.1);padding:16px;border-radius:12px;text-align:center;">
-                                <div style="font-size:2rem;font-weight:700;color:#8B5CF6;">3</div>
-                                <div style="font-size:0.75rem;color:var(--cw-gray-600);">Sign-off</div>
-                            </div>
-                        </div>
-                        <div style="display:flex;flex-direction:column;gap:10px;">
-                            ${[
-                                {id:'RFA-2847',type:'Embark',vessel:'M/V PACIFIC STAR',rank:'Master',days:4,principal:'Diana Shipping'},
-                                {id:'RFA-2846',type:'Embark',vessel:'M/V DIANA GLORY',rank:'Chief Engineer',days:3,principal:'Neda Maritime'},
-                                {id:'RFA-2845',type:'Sign-off',vessel:'M/V CENTROFIN STAR',rank:'2nd Officer',days:2,principal:'Centrofin'},
-                                {id:'RFA-2844',type:'Embark',vessel:'M/V PIONEER WAVE',rank:'Chief Officer',days:2,principal:'Pioneer Marine'},
-                                {id:'RFA-2843',type:'Sign-off',vessel:'M/V ATLANTIC STAR',rank:'Bosun',days:1,principal:'Diana Shipping'}
-                            ].map(rfa => `
-                                <div style="background:white;border:1px solid var(--cw-gray-200);border-radius:10px;padding:14px;display:flex;justify-content:space-between;align-items:center;">
-                                    <div style="flex:1;">
-                                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
-                                            <span style="font-family:monospace;font-weight:700;color:var(--cw-accent);">${rfa.id}</span>
-                                            <span class="tag tag-${rfa.type.toLowerCase()}">${rfa.type.toUpperCase()}</span>
-                                        </div>
-                                        <div style="font-weight:600;color:var(--cw-gray-900);margin-bottom:3px;">${rfa.vessel}</div>
-                                        <div style="font-size:0.8rem;color:var(--cw-gray-500);">${rfa.rank} • ${rfa.principal}</div>
-                                    </div>
-                                    <div style="text-align:right;">
-                                        <div style="font-size:1.5rem;font-weight:700;color:${rfa.days > 3 ? 'var(--tag-nfr)' : 'var(--status-on-approval)'};">${rfa.days}</div>
-                                        <div style="font-size:0.7rem;color:var(--cw-gray-500);">days waiting</div>
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-                modal.action.innerHTML = '<i data-lucide="send" style="width:16px;height:16px;"></i>Send Reminder to Principals';
-                modal.action.onclick = () => { showNotification('Reminder emails sent to all principals', 'success'); closeModal('alertDetailModal'); };
-                
-            } else if (type === 'embarkation') {
-                modal.header.style.background = 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)';
-                modal.icon.innerHTML = '<i data-lucide="users" style="width:24px;height:24px;color:white;"></i>';
-                modal.title.textContent = 'Ready for Embarkation';
-                modal.subtitle.textContent = '5 seafarers scheduled within 7 days';
-                modal.content.innerHTML = `
-                    <div style="padding:24px;">
-                        <div style="background:rgba(59,130,246,0.1);padding:16px;border-radius:12px;margin-bottom:20px;border-left:4px solid var(--status-on-preparation);">
-                            <div style="font-weight:600;color:var(--status-on-preparation);margin-bottom:4px;">✓ ALL CHECKS PASSED</div>
-                            <div style="font-size:0.85rem;color:var(--cw-gray-600);">All seafarers have completed preparation and are ready for embarkation.</div>
-                        </div>
-                        <div style="display:flex;flex-direction:column;gap:12px;">
-                            ${[
-                                {name:'Juan Dela Cruz',rank:'Master',vessel:'M/V PACIFIC STAR',port:'Singapore',eta:'Feb 18, 2026',docs:'24/24',medical:'✓ Fit'},
-                                {name:'Maria Rodriguez',rank:'Chief Engineer',vessel:'M/V DIANA GLORY',port:'Rotterdam',eta:'Feb 19, 2026',docs:'23/23',medical:'✓ Fit'},
-                                {name:'Alex Petrov',rank:'2nd Officer',vessel:'M/V CENTROFIN STAR',port:'Manila',eta:'Feb 20, 2026',docs:'22/22',medical:'✓ Fit'},
-                                {name:'Thomas Chen',rank:'Chief Officer',vessel:'M/V PIONEER WAVE',port:'Dubai',eta:'Feb 21, 2026',docs:'25/25',medical:'✓ Fit'},
-                                {name:'Sarah Kim',rank:'3rd Engineer',vessel:'M/V ATLANTIC STAR',port:'Hong Kong',eta:'Feb 22, 2026',docs:'21/21',medical:'✓ Fit'}
-                            ].map(seafarer => `
-                                <div style="background:white;border:1px solid var(--cw-gray-200);border-radius:12px;padding:16px;">
-                                    <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;">
-                                        <div style="flex:1;">
-                                            <div style="font-weight:700;font-size:1rem;color:var(--cw-gray-900);margin-bottom:4px;">${seafarer.name}</div>
-                                            <div style="font-size:0.85rem;color:var(--cw-gray-500);">${seafarer.rank}</div>
-                                        </div>
-                                        <div style="display:flex;gap:8px;">
-                                            <span style="background:rgba(16,185,129,0.1);color:var(--status-ready);padding:6px 12px;border-radius:8px;font-size:0.75rem;font-weight:600;">${seafarer.docs}</span>
-                                            <span style="background:rgba(16,185,129,0.1);color:var(--status-ready);padding:6px 12px;border-radius:8px;font-size:0.75rem;font-weight:600;">${seafarer.medical}</span>
-                                        </div>
-                                    </div>
-                                    <div style="background:var(--cw-gray-50);padding:12px;border-radius:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
-                                        <div>
-                                            <div style="font-size:0.7rem;color:var(--cw-gray-500);margin-bottom:3px;">Vessel</div>
-                                            <div style="font-size:0.85rem;font-weight:600;color:var(--cw-gray-900);">${seafarer.vessel}</div>
-                                        </div>
-                                        <div>
-                                            <div style="font-size:0.7rem;color:var(--cw-gray-500);margin-bottom:3px;">Port</div>
-                                            <div style="font-size:0.85rem;font-weight:600;color:var(--cw-gray-900);">${seafarer.port}</div>
-                                        </div>
-                                        <div>
-                                            <div style="font-size:0.7rem;color:var(--cw-gray-500);margin-bottom:3px;">ETA</div>
-                                            <div style="font-size:0.85rem;font-weight:600;color:var(--status-on-preparation);">${seafarer.eta}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-                modal.action.innerHTML = '<i data-lucide="plane" style="width:16px;height:16px;"></i>Book Tickets';
-                modal.action.onclick = () => { showNotification('Redirecting to Tickets module...', 'info'); closeModal('alertDetailModal'); setTimeout(() => navigateTo('tickets'), 500); };
-            }
-            
-            openModal('alertDetailModal');
-            safeCreateIcons();
         }
 
         // CHECKBOX FUNCTIONS
@@ -12830,17 +12605,10 @@ Report generated by ATLANTIS ERP`;
                 initEvalAnalyticsCharts();
             }
             
-            safeCreateIcons();
+            lucide.createIcons();
         }
         
         function initializeAllCharts() {
-            // DESTROY ALL EXISTING CHARTS FIRST
-            Object.keys(chartInstances).forEach(key => {
-                if (chartInstances[key] && typeof chartInstances[key].destroy === 'function') {
-                    chartInstances[key].destroy();
-                }
-            });
-            
             // Chart.js global defaults for 3D-like appearance
             Chart.defaults.font.family = "'Inter', 'SF Pro Display', sans-serif";
             Chart.defaults.plugins.legend.display = false;
@@ -12940,7 +12708,6 @@ Report generated by ATLANTIS ERP`;
         function createCrewDistributionChart() {
             const ctx = document.getElementById('crewDistributionChart');
             if (!ctx) return;
-            if (chartInstances.crewDistribution) { chartInstances.crewDistribution.destroy(); }
             chartInstances.crewDistribution = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
@@ -12959,7 +12726,6 @@ Report generated by ATLANTIS ERP`;
         function createPrincipalsChart() {
             const ctx = document.getElementById('principalsChart');
             if (!ctx) return;
-            if (chartInstances.principals) { chartInstances.principals.destroy(); }
             chartInstances.principals = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -12973,7 +12739,6 @@ Report generated by ATLANTIS ERP`;
         function createRfcPerformanceChart() {
             const ctx = document.getElementById('rfcPerformanceChart');
             if (!ctx) return;
-            if (chartInstances.rfcPerformance) { chartInstances.rfcPerformance.destroy(); }
             chartInstances.rfcPerformance = new Chart(ctx, {
                 type: 'polarArea',
                 data: {
@@ -12987,7 +12752,6 @@ Report generated by ATLANTIS ERP`;
         function createDocumentComplianceChart() {
             const ctx = document.getElementById('documentComplianceChart');
             if (!ctx) return;
-            if (chartInstances.documentCompliance) { chartInstances.documentCompliance.destroy(); }
             chartInstances.documentCompliance = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
@@ -13001,7 +12765,6 @@ Report generated by ATLANTIS ERP`;
         function createSeafarersByRankChart() {
             const ctx = document.getElementById('seafarersByRankChart');
             if (!ctx) return;
-            if (chartInstances.seafarersByRank) { chartInstances.seafarersByRank.destroy(); }
             chartInstances.seafarersByRank = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -13254,13 +13017,6 @@ Report generated by ATLANTIS ERP`;
         }
         
         function initTravelCharts() {
-            // Destroy existing travel charts first
-            ['travelSpend', 'travelType', 'topAirlines', 'topDestinations', 'routeCost', 'monthlyBookings'].forEach(key => {
-                if (chartInstances[key] && typeof chartInstances[key].destroy === 'function') {
-                    chartInstances[key].destroy();
-                }
-            });
-            
             createTravelSpendChart();
             createTravelTypeChart();
             createTopAirlinesChart();
@@ -13588,13 +13344,6 @@ Report generated by ATLANTIS ERP v2.18`;
         }
         
         function initEvalAnalyticsCharts() {
-            // Destroy existing evaluation charts first
-            ['evalRatingDist', 'evalScoreTrend', 'evalCriteria', 'evalByRank', 'evalByPrincipal', 'evalByVesselType', 'evalVolume', 'evalEvaluators', 'evalRadar', 'evalExcellence'].forEach(key => {
-                if (chartInstances[key] && typeof chartInstances[key].destroy === 'function') {
-                    chartInstances[key].destroy();
-                }
-            });
-            
             createEvalRatingDistChart();
             createEvalScoreTrendChart();
             createEvalCriteriaChart();
@@ -13901,13 +13650,6 @@ Report generated by ATLANTIS ERP v2.18`;
         }
         
         function initComplaintsAnalyticsCharts() {
-            // Destroy existing complaints charts first
-            ['complaintStatus', 'complaintTrend', 'complaintCategory', 'complaintPriority', 'complaintByVessel', 'complaintResolutionTime', 'complaintByPrincipal', 'complaintHandler'].forEach(key => {
-                if (chartInstances[key] && typeof chartInstances[key].destroy === 'function') {
-                    chartInstances[key].destroy();
-                }
-            });
-            
             createComplaintStatusChart();
             createComplaintTrendChart();
             createComplaintCategoryChart();
@@ -14125,324 +13867,9 @@ Generated by ATLANTIS ERP v2.18
             }, 1000);
         }
 
-        // SUPERNUMERARY FUNCTIONS
-        function filterSupernumerary() {
-            const purposeFilter = document.getElementById('supernumeraryPurposeFilter').value.toLowerCase();
-            const statusFilter = document.getElementById('supernumeraryStatusFilter').value.toLowerCase();
-            const vesselFilter = document.getElementById('supernumeraryVesselFilter').value.toLowerCase();
-            const searchTerm = document.getElementById('supernumerarySearchInput').value.toLowerCase();
-            
-            const cards = document.querySelectorAll('.supernumerary-card');
-            let visibleCount = 0;
-            
-            cards.forEach(card => {
-                const purpose = card.dataset.purpose || '';
-                const status = card.dataset.status || '';
-                const vessel = card.dataset.vessel || '';
-                const name = card.dataset.name || '';
-                const cardText = card.textContent.toLowerCase();
-                
-                const matchesPurpose = !purposeFilter || purpose === purposeFilter;
-                const matchesStatus = !statusFilter || status === statusFilter;
-                const matchesVessel = !vesselFilter || vessel === vesselFilter;
-                const matchesSearch = !searchTerm || cardText.includes(searchTerm);
-                
-                if (matchesPurpose && matchesStatus && matchesVessel && matchesSearch) {
-                    card.style.display = '';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-        
-        function resetSupernumeraryFilters() {
-            document.getElementById('supernumeraryPurposeFilter').value = '';
-            document.getElementById('supernumeraryStatusFilter').value = '';
-            document.getElementById('supernumeraryVesselFilter').value = '';
-            document.getElementById('supernumerarySearchInput').value = '';
-            filterSupernumerary();
-            showNotification('Filters cleared', 'success');
-        }
-        
-        function exportSupernumerary() {
-            showNotification('Exporting Supernumerary Personnel data...', 'info');
-            setTimeout(() => {
-                showNotification('✓ Export completed! Downloaded as Supernumerary_Report.xlsx', 'success');
-            }, 1500);
-        }
-        
-        function openAddSupernumeraryModal() {
-            showNotification('Add Supernumerary modal - Coming soon!', 'info');
-        }
-        
-        function viewSupernumeraryDetail(name) {
-            // Mock data - in real app this would come from backend
-            const supernumeraries = {
-                'John Smith': {
-                    initials: 'JS',
-                    name: 'John Smith',
-                    role: 'Flag State Inspector',
-                    status: 'EMBARKED',
-                    duration: '12 Days',
-                    id: 'SUP-001',
-                    nationality: 'GB United Kingdom',
-                    company: 'Maritime Inspection Ltd',
-                    email: 'john.smith@maritime-inspect.com',
-                    phone: '+44 20 7123 4567',
-                    vessel: 'MV APOLLON',
-                    port: 'Piraeus, Greece',
-                    embarked: 'Feb 1, 2026',
-                    disembark: 'Feb 13, 2026',
-                    purpose: 'Flag State Inspection',
-                    gradient: 'linear-gradient(135deg,#8B5CF6 0%,#A78BFA 100%)',
-                    created: 'Jan 15, 2026',
-                    approved: 'Jan 20, 2026'
-                },
-                'Maria Santos': {
-                    initials: 'MS',
-                    name: 'Maria Santos',
-                    role: 'Port State Observer',
-                    status: 'PENDING',
-                    duration: '7 Days',
-                    id: 'SUP-002',
-                    nationality: 'SG Singapore',
-                    company: 'Port Authority of Singapore',
-                    email: 'm.santos@portauth-sg.com',
-                    phone: '+65 6123 4567',
-                    vessel: 'MV ATHENA',
-                    port: 'Singapore',
-                    embarked: 'Feb 18, 2026',
-                    disembark: 'Feb 25, 2026',
-                    purpose: 'Port State Control Audit',
-                    gradient: 'linear-gradient(135deg,#3B82F6 0%,#60A5FA 100%)',
-                    created: 'Feb 1, 2026',
-                    approved: 'Feb 5, 2026'
-                },
-                'David Lee': {
-                    initials: 'DL',
-                    name: 'David Lee',
-                    role: 'Technical Superintendent',
-                    status: 'DISEMBARKED',
-                    duration: '7 Days',
-                    id: 'SUP-003',
-                    nationality: 'NL Netherlands',
-                    company: 'Fleet Management Europe',
-                    email: 'd.lee@fleetmgt-eu.com',
-                    phone: '+31 10 234 5678',
-                    vessel: 'MV POSEIDON',
-                    port: 'Rotterdam',
-                    embarked: 'Jan 29, 2026',
-                    disembark: 'Feb 5, 2026',
-                    purpose: 'Technical Inspection',
-                    gradient: 'linear-gradient(135deg,#0891B2 0%,#06B6D4 100%)',
-                    created: 'Jan 15, 2026',
-                    approved: 'Jan 22, 2026'
-                },
-                'Thomas Chen': {
-                    initials: 'TC',
-                    name: 'Thomas Chen',
-                    role: 'Cadet Officer',
-                    status: 'EMBARKED',
-                    duration: '90 Days',
-                    id: 'SUP-004',
-                    nationality: 'PH Philippines',
-                    company: 'Maritime Academy Philippines',
-                    email: 't.chen@maritime-academy.ph',
-                    phone: '+63 2 8123 4567',
-                    vessel: 'M/V PACIFIC STAR',
-                    port: 'Manila',
-                    embarked: 'Jan 15, 2026',
-                    disembark: 'Apr 15, 2026',
-                    purpose: 'Deck Officer Training',
-                    gradient: 'linear-gradient(135deg,#3B82F6 0%,#60A5FA 100%)',
-                    created: 'Dec 15, 2025',
-                    approved: 'Jan 5, 2026'
-                },
-                'Sarah Johnson': {
-                    initials: 'SJ',
-                    name: 'Sarah Johnson',
-                    role: 'Safety Inspector',
-                    status: 'SCHEDULED',
-                    duration: '7 Days',
-                    id: 'SUP-005',
-                    nationality: 'US United States',
-                    company: 'OSHA Maritime Division',
-                    email: 's.johnson@osha-maritime.gov',
-                    phone: '+1 202 555 1234',
-                    vessel: 'M/V DIANA GLORY',
-                    port: 'Houston, TX',
-                    embarked: 'Feb 1, 2026',
-                    disembark: 'Feb 8, 2026',
-                    purpose: 'Safety Compliance Inspection',
-                    gradient: 'linear-gradient(135deg,#F59E0B 0%,#FBBF24 100%)',
-                    created: 'Jan 10, 2026',
-                    approved: 'Jan 18, 2026'
-                },
-                'Michael Kim': {
-                    initials: 'MK',
-                    name: 'Michael Kim',
-                    role: 'Engine Cadet',
-                    status: 'EMBARKED',
-                    duration: '120 Days',
-                    id: 'SUP-006',
-                    nationality: 'KR South Korea',
-                    company: 'Korea Maritime University',
-                    email: 'm.kim@kmu.ac.kr',
-                    phone: '+82 51 410 4567',
-                    vessel: 'M/V CENTROFIN STAR',
-                    port: 'Busan',
-                    embarked: 'Jan 20, 2026',
-                    disembark: 'May 20, 2026',
-                    purpose: 'Engine Room Training',
-                    gradient: 'linear-gradient(135deg,#3B82F6 0%,#60A5FA 100%)',
-                    created: 'Dec 20, 2025',
-                    approved: 'Jan 10, 2026'
-                }
-            };
-            
-            const person = supernumeraries[name];
-            if (!person) return;
-            
-            // Update modal header
-            document.getElementById('supernumeraryModalHeader').style.background = person.gradient;
-            document.getElementById('supernumeraryModalAvatar').textContent = person.initials;
-            document.getElementById('supernumeraryModalName').textContent = person.name;
-            document.getElementById('supernumeraryModalRole').textContent = person.role;
-            document.getElementById('supernumeraryModalStatus').textContent = person.status;
-            document.getElementById('supernumeraryModalDuration').textContent = person.duration;
-            
-            // Build modal content
-            const content = `
-                <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;">
-                    <!-- Left Column -->
-                    <div>
-                        <!-- Personal Details -->
-                        <div style="background:white;border-radius:16px;border:1px solid var(--cw-gray-200);padding:24px;margin-bottom:20px;">
-                            <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
-                                <i data-lucide="user" style="width:20px;height:20px;color:var(--cw-gray-600);"></i>
-                                <h4 style="margin:0;font-size:1.05rem;font-weight:700;color:var(--cw-gray-900);">Personal Details</h4>
-                            </div>
-                            <div style="display:grid;gap:16px;">
-                                <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--cw-gray-100);">
-                                    <span style="color:var(--cw-gray-500);font-size:0.9rem;">ID:</span>
-                                    <strong style="color:var(--cw-gray-900);font-weight:600;">${person.id}</strong>
-                                </div>
-                                <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--cw-gray-100);">
-                                    <span style="color:var(--cw-gray-500);font-size:0.9rem;">Nationality:</span>
-                                    <strong style="color:var(--cw-gray-900);font-weight:600;">${person.nationality}</strong>
-                                </div>
-                                <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--cw-gray-100);">
-                                    <span style="color:var(--cw-gray-500);font-size:0.9rem;">Company:</span>
-                                    <strong style="color:var(--cw-gray-900);font-weight:600;text-align:right;">${person.company}</strong>
-                                </div>
-                                <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--cw-gray-100);">
-                                    <span style="color:var(--cw-gray-500);font-size:0.9rem;">Email:</span>
-                                    <strong style="color:var(--cw-primary);font-weight:600;font-size:0.85rem;">${person.email}</strong>
-                                </div>
-                                <div style="display:flex;justify-content:space-between;align-items:center;">
-                                    <span style="color:var(--cw-gray-500);font-size:0.9rem;">Phone:</span>
-                                    <strong style="color:var(--cw-gray-900);font-weight:600;">${person.phone}</strong>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Current Assignment -->
-                        <div style="background:white;border-radius:16px;border:1px solid var(--cw-gray-200);padding:24px;">
-                            <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
-                                <i data-lucide="ship" style="width:20px;height:20px;color:var(--cw-gray-600);"></i>
-                                <h4 style="margin:0;font-size:1.05rem;font-weight:700;color:var(--cw-gray-900);">Current Assignment</h4>
-                            </div>
-                            <div style="display:grid;gap:16px;">
-                                <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--cw-gray-100);">
-                                    <span style="color:var(--cw-gray-500);font-size:0.9rem;">Vessel:</span>
-                                    <strong style="color:var(--cw-primary);font-weight:700;font-size:1rem;">${person.vessel}</strong>
-                                </div>
-                                <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--cw-gray-100);">
-                                    <span style="color:var(--cw-gray-500);font-size:0.9rem;">Port:</span>
-                                    <strong style="color:var(--cw-gray-900);font-weight:600;">${person.port}</strong>
-                                </div>
-                                <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--cw-gray-100);">
-                                    <span style="color:var(--cw-gray-500);font-size:0.9rem;">Embarked:</span>
-                                    <strong style="color:var(--cw-gray-900);font-weight:600;">${person.embarked}</strong>
-                                </div>
-                                <div style="display:flex;justify-content:space-between;align-items:center;">
-                                    <span style="color:var(--cw-gray-500);font-size:0.9rem;">Disembark:</span>
-                                    <strong style="color:var(--cw-gray-900);font-weight:600;">${person.disembark}</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Column -->
-                    <div>
-                        <!-- Quick Actions -->
-                        <div style="background:white;border-radius:16px;border:1px solid var(--cw-gray-200);padding:20px;margin-bottom:20px;">
-                            <h4 style="margin:0 0 16px;font-size:1rem;font-weight:700;color:var(--cw-gray-900);">Quick Actions</h4>
-                            <div style="display:flex;flex-direction:column;gap:10px;">
-                                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="showNotification('Edit functionality - Coming soon!','info')">
-                                    <i data-lucide="edit" style="width:16px;height:16px;"></i>Edit Details
-                                </button>
-                                <button class="btn btn-secondary" style="width:100%;justify-content:center;" onclick="showNotification('Email sent to ${person.email}','success')">
-                                    <i data-lucide="mail" style="width:16px;height:16px;"></i>Send Email
-                                </button>
-                                <button class="btn btn-secondary" style="width:100%;justify-content:center;" onclick="showNotification('Opening documents...','info')">
-                                    <i data-lucide="file-text" style="width:16px;height:16px;"></i>Documents
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Timeline -->
-                        <div style="background:rgba(59,130,246,0.05);border-radius:16px;border:1px solid rgba(59,130,246,0.2);padding:20px;">
-                            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-                                <i data-lucide="clock" style="width:18px;height:18px;color:var(--cw-primary);"></i>
-                                <h4 style="margin:0;font-size:0.95rem;font-weight:700;color:var(--cw-primary);">Timeline</h4>
-                            </div>
-                            <div style="display:flex;flex-direction:column;gap:14px;">
-                                <div style="display:flex;gap:10px;">
-                                    <div style="color:var(--status-ready);">✓</div>
-                                    <div style="flex:1;">
-                                        <div style="font-weight:600;font-size:0.85rem;color:var(--cw-gray-900);">Created</div>
-                                        <div style="font-size:0.75rem;color:var(--cw-gray-500);margin-top:2px;">${person.created}</div>
-                                    </div>
-                                </div>
-                                <div style="display:flex;gap:10px;">
-                                    <div style="color:var(--status-ready);">✓</div>
-                                    <div style="flex:1;">
-                                        <div style="font-weight:600;font-size:0.85rem;color:var(--cw-gray-900);">Approved</div>
-                                        <div style="font-size:0.75rem;color:var(--cw-gray-500);margin-top:2px;">${person.approved}</div>
-                                    </div>
-                                </div>
-                                <div style="display:flex;gap:10px;">
-                                    <div style="color:var(--status-ready);">✓</div>
-                                    <div style="flex:1;">
-                                        <div style="font-weight:600;font-size:0.85rem;color:var(--cw-gray-900);">Embarked</div>
-                                        <div style="font-size:0.75rem;color:var(--cw-gray-500);margin-top:2px;">${person.embarked}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            document.getElementById('supernumeraryModalContent').innerHTML = content;
-            openModal('supernumeraryDetailModal');
-            safeCreateIcons();
-        }
-
         // INIT
         document.addEventListener('DOMContentLoaded', function() {
-            // Wait for lucide to load before initializing
-            function tryInitIcons(attempts = 0) {
-                if (typeof lucide !== 'undefined') {
-                    safeCreateIcons();
-                } else if (attempts < 5) {
-                    setTimeout(() => tryInitIcons(attempts + 1), 50);
-                }
-            }
-            tryInitIcons();
-            
+            lucide.createIcons();
             document.querySelectorAll('.nav-item[data-view]').forEach(item => {
                 item.addEventListener('click', function(e) { e.preventDefault(); navigateTo(this.dataset.view); });
             });
@@ -14471,6 +13898,12 @@ Generated by ATLANTIS ERP v2.18
                             initTravelCharts();
                         } else if (viewId === 'talent-pool') {
                             renderChannelsTable();
+                        } else if (viewId === 'assignment-proposal') {
+                            console.log('Assignment view clicked, initializing...');
+                            setTimeout(() => {
+                                renderAssignmentBoard();
+                                renderCrewPool();
+                            }, 50);
                         }
                     }, 100);
                 });
@@ -14586,7 +14019,7 @@ Generated by ATLANTIS ERP v2.18
                     </td>
                 </tr>
             `).join('');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.renderChannelsTable = renderChannelsTable;
         
@@ -14606,7 +14039,7 @@ Generated by ATLANTIS ERP v2.18
                     </td>
                 </tr>
             `).join('');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.renderSalaryRangesTable = renderSalaryRangesTable;
         
@@ -14627,7 +14060,7 @@ Generated by ATLANTIS ERP v2.18
                     </td>
                 </tr>
             `).join('');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.renderNfrTable = renderNfrTable;
         
@@ -14647,7 +14080,7 @@ Generated by ATLANTIS ERP v2.18
                     </td>
                 </tr>
             `).join('');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.renderAutoTagTable = renderAutoTagTable;
         
@@ -14680,7 +14113,7 @@ Generated by ATLANTIS ERP v2.18
                 </tr>
             `).join('');
             if (filtered.length === 0) tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--cw-gray-500);">No channels found matching your filters</td></tr>';
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.filterChannels = filterChannels;
         
@@ -14712,7 +14145,7 @@ Generated by ATLANTIS ERP v2.18
                 </tr>
             `).join('');
             if (filtered.length === 0) tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--cw-gray-500);">No salary ranges found matching your filters</td></tr>';
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.filterSalaryRanges = filterSalaryRanges;
         
@@ -14747,7 +14180,7 @@ Generated by ATLANTIS ERP v2.18
                 </tr>
             `).join('');
             if (filtered.length === 0) tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--cw-gray-500);">No NFR records found matching your filters</td></tr>';
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.filterNfr = filterNfr;
         
@@ -14781,7 +14214,7 @@ Generated by ATLANTIS ERP v2.18
                 </tr>
             `).join('');
             if (filtered.length === 0) tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--cw-gray-500);">No auto-tag rules found matching your filters</td></tr>';
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.filterAutoTags = filterAutoTags;
         
@@ -14915,7 +14348,7 @@ Generated by ATLANTIS ERP v2.18
             renderEvaluationsTable();
             renderNotesAndTimeline();
             
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.renderSeafarerProfile = renderSeafarerProfile;
         
@@ -14941,7 +14374,7 @@ Generated by ATLANTIS ERP v2.18
             else if (tabName === 'sea') { renderSeaServiceTable(); }
             else if (tabName === 'salary') { renderAllotmentsTable(); }
             else if (tabName === 'evaluations') { renderEvaluationsTable(); }
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.switchProfileTab = switchProfileTab;
         
@@ -14963,7 +14396,7 @@ Generated by ATLANTIS ERP v2.18
                     </td>
                 </tr>
             `).join('');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function renderSeaServiceTable() {
@@ -14984,7 +14417,7 @@ Generated by ATLANTIS ERP v2.18
                     </td>
                 </tr>
             `).join('');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function renderAllotmentsTable() {
@@ -15003,7 +14436,7 @@ Generated by ATLANTIS ERP v2.18
                     </td>
                 </tr>
             `).join('');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function renderEvaluationsTable() {
@@ -15026,7 +14459,7 @@ Generated by ATLANTIS ERP v2.18
                     <td><button class="btn btn-sm" title="View Details" onclick="viewEvaluation('${ev.id}')"><i data-lucide="eye" style="width:14px;height:14px;"></i></button></td>
                 </tr>
             `).join('');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         function renderNotesAndTimeline() {
@@ -15094,7 +14527,7 @@ Generated by ATLANTIS ERP v2.18
                     </td>
                 </tr>
             `).join('');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.filterDocuments = filterDocuments;
         
@@ -15319,7 +14752,7 @@ Generated by ATLANTIS ERP v2.18
                 </div>
             `;
             openModal('viewDocumentModal');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.viewDocument = viewDocument;
         
@@ -15394,7 +14827,7 @@ Generated by ATLANTIS ERP v2.18
             html += '</div></div>';
             document.getElementById('seaServiceContent').innerHTML = html;
             openModal('seaServiceModal');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
         function editSeaServiceFromModal() {
@@ -15477,7 +14910,7 @@ Generated by ATLANTIS ERP v2.18
                     </td>
                 </tr>
             `).join('');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         
         // ALLOTMENTS FILTER
@@ -15510,7 +14943,7 @@ Generated by ATLANTIS ERP v2.18
                     </td>
                 </tr>
             `).join('');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.filterAllotments = filterAllotments;
         
@@ -15554,7 +14987,7 @@ Generated by ATLANTIS ERP v2.18
                     <td><button class="btn btn-sm" title="View Details" onclick="viewEvaluation('${ev.id}')"><i data-lucide="eye" style="width:14px;height:14px;"></i></button></td>
                 </tr>
             `).join('');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.filterEvaluations = filterEvaluations;
         
@@ -15616,7 +15049,7 @@ Generated by ATLANTIS ERP v2.18
                     </div>
                 </div>
             `).join('');
-            if (typeof lucide !== 'undefined') safeCreateIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
         window.filterTimeline = filterTimeline;
         
