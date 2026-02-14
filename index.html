@@ -13,11 +13,8 @@
 -->
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>ATLANTIS v2.81 🚀 FULLY RESPONSIVE | Crossworld Marine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATLANTIS v2.80 🏆 PRODUCTION READY FINAL! | Crossworld Marine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -1563,140 +1560,6 @@
                 opacity: 0;
             }
         }
-    
-        /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-           🚀 ATLANTIS v2.81 - RESPONSIVE ENHANCEMENTS
-        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-        /* 📱 MOBILE LAYOUT */
-        @media (max-width: 767px) {
-            .app-container { flex-direction: column; }
-            
-            .sidebar {
-                transform: translateX(-100%);
-                position: fixed;
-                z-index: 999;
-                box-shadow: 2px 0 24px rgba(0,0,0,0.2);
-            }
-            
-            body.mobile-menu-open .sidebar { transform: translateX(0); }
-            
-            body.mobile-menu-open::before {
-                content: '';
-                position: fixed;
-                inset: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 998;
-            }
-            
-            .header { height: 56px; padding: 0 16px; }
-            .main-content { margin-left: 0; padding-top: 56px; }
-            .page-content { padding: 16px; }
-            .breadcrumb { display: none; }
-            .global-search { display: none; }
-            
-            .stats-grid {
-                grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
-                gap: 12px;
-            }
-            
-            .stat-card { padding: 12px 16px; }
-            
-            .filters-panel { padding: 12px 16px; }
-            .filters-bar {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                gap: 8px;
-            }
-            
-            .filter-select { min-width: 120px; font-size: 0.8rem; }
-            .filter-divider { display: none; }
-            
-            table { min-width: 600px; font-size: 0.8rem; }
-            th, td { padding: 10px 12px; }
-            .avatar { width: 32px; height: 32px; font-size: 0.75rem; }
-            
-            .page-header { flex-direction: column; gap: 12px; }
-            .page-title { font-size: clamp(1.25rem, 4vw, 1.5rem); }
-            
-            .page-actions { width: 100%; }
-            .page-actions .btn { width: 100%; }
-            
-            .card-header, .card-body { padding: 12px 16px; }
-            
-            .modal-overlay { padding: 16px; align-items: flex-end; }
-            .modal {
-                max-width: 100%;
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
-                transform: translateY(100%);
-            }
-            .modal-overlay.open .modal { transform: translateY(0); }
-            .modal-header, .modal-body, .modal-footer { padding: 16px; }
-            .modal-footer { flex-direction: column-reverse; }
-            .modal-footer .btn { width: 100%; }
-            
-            .form-row { grid-template-columns: 1fr; }
-            .form-input, .form-select, .form-textarea { font-size: 16px; }
-            
-            .slide-panel { width: 100%; }
-            .panel-header, .panel-content, .panel-footer { padding: 16px; }
-            .panel-footer { flex-direction: column-reverse; }
-            
-            .pagination { flex-direction: column; padding: 12px 16px; }
-        }
-        
-        /* 🔘 MOBILE MENU BUTTON */
-        .mobile-menu-toggle {
-            display: none;
-            width: 44px;
-            height: 44px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-        }
-        
-        .mobile-menu-toggle:hover { background: var(--cw-gray-100); }
-        .mobile-menu-toggle svg { width: 24px; height: 24px; color: var(--cw-gray-700); }
-        
-        @media (max-width: 767px) {
-            .mobile-menu-toggle { display: flex; }
-        }
-        
-        /* 📐 RESPONSIVE GRIDS */
-        .stats-grid {
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-        }
-        
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        /* ♿ ACCESSIBILITY */
-        *:focus-visible {
-            outline: 2px solid var(--cw-accent);
-            outline-offset: 2px;
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
-        /* 🖨️ PRINT */
-        @media print {
-            .sidebar, .header, .mobile-menu-toggle, .page-actions,
-            .filters-panel, .pagination { display: none !important; }
-            .main-content { margin-left: 0; padding: 0; }
-            body { background: white; }
-        }
     </style>
 </head>
 <body>
@@ -1778,9 +1641,6 @@
         <main class="main-content">
             <header class="header">
                 <div class="header-left">
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
-                    <i data-lucide="menu"></i>
-                </button>
                     <button class="menu-toggle" onclick="toggleSidebar()"><i data-lucide="menu" style="width:20px;height:20px;"></i></button>
                     <nav class="breadcrumb" id="breadcrumb">
                         <span class="breadcrumb-item">Overview</span>
@@ -7957,7 +7817,7 @@
                     <h4 style="margin:0 0 16px;font-size:1rem;color:var(--cw-gray-700);display:flex;align-items:center;gap:8px;"><i data-lucide="message-square" style="width:20px;height:20px;color:var(--cw-primary);"></i>Evaluator's Comments</h4>
                     <div style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-left:4px solid var(--status-ready);border-radius:0 12px 12px 0;padding:20px;">
                         <p style="margin:0;font-style:italic;font-size:1.1rem;color:var(--cw-gray-700);line-height:1.6;" id="evalDetailComment">"Exceptional performance throughout the contract. Highly recommended for promotion."</p>
-                        <p style="margin:12px 0 0;font-weight:600;color:var(--cw-gray-600);" id="evalDetailCommentAuthor">- Capt. Santos</p>
+                        <p style="margin:12px 0 0;font-weight:600;color:var(--cw-gray-600);" id="evalDetailCommentAuthor">— Capt. Santos</p>
                     </div>
                 </div>
             </div>
@@ -8625,8 +8485,1356 @@
         </div>
     </div>
 
-    
-</body></html>');
+    <script>
+        // MOCK DATA - Seafarers
+        const MOCK_SEAFARERS = [
+            { id: 'CW-2024-00142', firstName: 'Juan', lastName: 'Dela Cruz', rank: 'Chief Officer', rankType: 'officer', status: 'embarked', poolType: 'dedicated', assigned: true, vessel: 'MV Diana Star', vesselType: 'Bulk Carrier', principal: 'Diana Shipping', contractEnd: '2025-08-15', docsComplete: 24, docsTotal: 24, email: 'juan.delacruz@email.com', phone: '+63 917 123 4567', location: 'Quezon City, Metro Manila', tags: [] },
+            { id: 'CW-2023-00891', firstName: 'Mario', lastName: 'Reyes', rank: '2nd Engineer', rankType: 'officer', status: 'on-preparation', poolType: 'dedicated', assigned: true, vessel: 'MV Centrofin Glory', vesselType: 'Tanker', principal: 'Centrofin', contractEnd: '2025-09-20', docsComplete: 18, docsTotal: 24, email: 'mario.reyes@email.com', phone: '+63 917 234 5678', location: 'Cebu City', tags: [] },
+            { id: 'CW-2022-00567', firstName: 'Antonio', lastName: 'Santos', rank: 'Master', rankType: 'officer', status: 'embarked', poolType: 'dedicated', assigned: true, vessel: 'MV Pioneer Spirit', vesselType: 'Container Ship', principal: 'Pioneer Marine', contractEnd: '2025-03-28', docsComplete: 24, docsTotal: 24, email: 'antonio.santos@email.com', phone: '+63 917 345 6789', location: 'Manila', tags: [] },
+            { id: 'CW-2024-00234', firstName: 'Roberto', lastName: 'Garcia', rank: 'AB Seaman', rankType: 'rating', status: 'endorsed', poolType: 'non-dedicated', assigned: false, vessel: null, vesselType: null, principal: null, contractEnd: null, docsComplete: 20, docsTotal: 20, email: 'roberto.garcia@email.com', phone: '+63 917 456 7890', location: 'Davao City', tags: [] },
+            { id: 'CW-2021-00123', firstName: 'Eduardo', lastName: 'Pascual', rank: 'Chief Engineer', rankType: 'officer', status: 'ready', poolType: 'dedicated', assigned: true, vessel: 'MV Neda Harmony', vesselType: 'LNG Carrier', principal: 'Neda Maritime', contractEnd: '2025-07-10', docsComplete: 26, docsTotal: 26, email: 'eduardo.pascual@email.com', phone: '+63 917 567 8901', location: 'Iloilo City', tags: [] },
+            { id: 'CW-2023-00456', firstName: 'Jose', lastName: 'Martinez', rank: 'Bosun', rankType: 'rating', status: 'on-approval', poolType: 'non-dedicated', assigned: true, vessel: 'MV Eurobulk Pride', vesselType: 'Bulk Carrier', principal: 'Eurobulk', contractEnd: '2025-10-05', docsComplete: 20, docsTotal: 24, email: 'jose.martinez@email.com', phone: '+63 917 678 9012', location: 'Batangas', tags: [] },
+            { id: 'CW-2020-00089', firstName: 'Fernando', lastName: 'Bautista', rank: '3rd Officer', rankType: 'officer', status: 'embarked', poolType: 'dedicated', assigned: true, vessel: 'MV Diana Star', vesselType: 'Bulk Carrier', principal: 'Diana Shipping', contractEnd: '2025-02-28', docsComplete: 15, docsTotal: 24, email: 'fernando.bautista@email.com', phone: '+63 917 789 0123', location: 'Pangasinan', tags: ['on-leave'] },
+            { id: 'CW-2019-00345', firstName: 'Carlos', lastName: 'Aquino', rank: 'Oiler', rankType: 'rating', status: 'inactive', poolType: 'non-dedicated', assigned: false, vessel: null, vesselType: null, principal: null, contractEnd: null, docsComplete: 8, docsTotal: 20, email: 'carlos.aquino@email.com', phone: '+63 917 890 1234', location: 'Bulacan', tags: ['nfr'] },
+            { id: 'CW-2024-00567', firstName: 'Ramon', lastName: 'Lopez', rank: 'Cook', rankType: 'rating', status: 'embarked', poolType: 'dedicated', assigned: true, vessel: 'MV Centrofin Glory', vesselType: 'Tanker', principal: 'Centrofin', contractEnd: '2025-11-30', docsComplete: 18, docsTotal: 18, email: 'ramon.lopez@email.com', phone: '+63 917 901 2345', location: 'Zambales', tags: [] },
+            { id: 'CW-2022-00789', firstName: 'Daniel', lastName: 'Villanueva', rank: '2nd Officer', rankType: 'officer', status: 'on-preparation', poolType: 'non-dedicated', assigned: true, vessel: 'MV Pioneer Spirit', vesselType: 'Container Ship', principal: 'Pioneer Marine', contractEnd: '2025-06-15', docsComplete: 21, docsTotal: 24, email: 'daniel.villanueva@email.com', phone: '+63 917 012 3456', location: 'Laguna', tags: [] },
+        ];
+
+        // MOCK DATA - RFAs
+        const MOCK_RFAS = [
+            { id: 'RFA-2025-0142', type: 'embark', status: 'in-progress', vessel: 'MV Diana Star', vesselType: 'Bulk Carrier', principal: 'Diana Shipping', position: 'Chief Officer', seafarer: 'Juan Dela Cruz', targetDate: '2025-03-15', createdDate: '2025-02-01', priority: 'high' },
+            { id: 'RFA-2025-0143', type: 'signoff', status: 'pending-approval', vessel: 'MV Centrofin Glory', vesselType: 'Tanker', principal: 'Centrofin', position: '2nd Engineer', seafarer: 'Mario Reyes', targetDate: '2025-03-20', createdDate: '2025-02-05', priority: 'normal' },
+            { id: 'RFA-2025-0144', type: 'embark', status: 'new', vessel: 'MV Pioneer Spirit', vesselType: 'Container Ship', principal: 'Pioneer Marine', position: 'AB Seaman', seafarer: null, targetDate: '2025-04-01', createdDate: '2025-02-10', priority: 'normal' },
+            { id: 'RFA-2025-0145', type: 'promotion', status: 'approved', vessel: 'MV Neda Harmony', vesselType: 'LNG Carrier', principal: 'Neda Maritime', position: 'Chief Engineer', seafarer: 'Eduardo Pascual', targetDate: '2025-03-25', createdDate: '2025-01-28', priority: 'normal' },
+            { id: 'RFA-2025-0146', type: 'extension', status: 'in-preparation', vessel: 'MV Eurobulk Pride', vesselType: 'Bulk Carrier', principal: 'Eurobulk', position: 'Bosun', seafarer: 'Jose Martinez', targetDate: '2025-04-10', createdDate: '2025-02-08', priority: 'low' },
+            { id: 'RFA-2025-0147', type: 'replace', status: 'new', vessel: 'MV Diana Star', vesselType: 'Bulk Carrier', principal: 'Diana Shipping', position: '3rd Officer', seafarer: null, targetDate: '2025-03-10', createdDate: '2025-02-11', priority: 'urgent' },
+            { id: 'RFA-2025-0148', type: 'embark', status: 'ready', vessel: 'MV Centrofin Glory', vesselType: 'Tanker', principal: 'Centrofin', position: 'Cook', seafarer: 'Ramon Lopez', targetDate: '2025-02-28', createdDate: '2025-01-20', priority: 'normal' },
+            { id: 'RFA-2025-0149', type: 'signoff', status: 'completed', vessel: 'MV Pioneer Spirit', vesselType: 'Container Ship', principal: 'Pioneer Marine', position: '2nd Officer', seafarer: 'Daniel Villanueva', targetDate: '2025-02-15', createdDate: '2025-01-15', priority: 'normal' },
+            { id: 'RFA-2025-0150', type: 'embark', status: 'cancelled', vessel: 'MV Neda Harmony', vesselType: 'LNG Carrier', principal: 'Neda Maritime', position: 'Oiler', seafarer: 'Carlos Aquino', targetDate: '2025-02-20', createdDate: '2025-01-10', priority: 'normal' },
+            { id: 'RFA-2025-0151', type: 'extension', status: 'pending-approval', vessel: 'MV Diana Star', vesselType: 'Bulk Carrier', principal: 'Diana Shipping', position: 'Master', seafarer: 'Antonio Santos', targetDate: '2025-04-15', createdDate: '2025-02-09', priority: 'high' },
+        ];
+
+        // MOCK DATA - Vessels with Crew Rotations
+        // MOCK DATA - Candidates Pipeline
+        const MOCK_CANDIDATES = [
+            // NEW
+            { id: 'CAND-001', firstName: 'Ricardo', lastName: 'Mendoza', rank: 'Chief Officer', stage: 'new', daysInStage: 1, source: 'walk-in', rfcId: 'RFC-2025-042', priority: 'high', docsStatus: 'pending', phone: '+63 917 111 2222', email: 'ricardo.m@email.com' },
+            { id: 'CAND-002', firstName: 'Miguel', lastName: 'Torres', rank: '2nd Engineer', stage: 'new', daysInStage: 2, source: 'referral', rfcId: null, priority: 'normal', docsStatus: 'pending', phone: '+63 917 222 3333', email: 'miguel.t@email.com' },
+            { id: 'CAND-003', firstName: 'Pablo', lastName: 'Cruz', rank: 'AB Seaman', stage: 'new', daysInStage: 0, source: 'online', rfcId: 'RFC-2025-040', priority: 'urgent', docsStatus: 'pending', phone: '+63 917 333 4444', email: 'pablo.c@email.com' },
+            { id: 'CAND-004', firstName: 'Leonardo', lastName: 'Ramos', rank: 'Bosun', stage: 'new', daysInStage: 3, source: 'agency', rfcId: null, priority: 'normal', docsStatus: 'pending', phone: '+63 917 444 5555', email: 'leo.r@email.com' },
+            // SCREENING
+            { id: 'CAND-005', firstName: 'Arturo', lastName: 'Bautista', rank: 'Master', stage: 'screening', daysInStage: 4, source: 'referral', rfcId: null, priority: 'high', docsStatus: 'partial', phone: '+63 917 555 6666', email: 'arturo.b@email.com' },
+            { id: 'CAND-006', firstName: 'Carlos', lastName: 'Fernandez', rank: 'Chief Officer', stage: 'screening', daysInStage: 2, source: 'walk-in', rfcId: 'RFC-2025-042', priority: 'normal', docsStatus: 'ok', phone: '+63 917 666 7777', email: 'carlos.f@email.com' },
+            { id: 'CAND-007', firstName: 'Diego', lastName: 'Villanueva', rank: '3rd Officer', stage: 'screening', daysInStage: 5, source: 'online', rfcId: null, priority: 'normal', docsStatus: 'partial', phone: '+63 917 777 8888', email: 'diego.v@email.com' },
+            // INTERVIEW
+            { id: 'CAND-008', firstName: 'Ernesto', lastName: 'Garcia', rank: 'Chief Engineer', stage: 'interview', daysInStage: 2, source: 'agency', rfcId: null, priority: 'high', docsStatus: 'ok', phone: '+63 917 888 9999', email: 'ernesto.g@email.com' },
+            { id: 'CAND-009', firstName: 'Francisco', lastName: 'Lopez', rank: '2nd Officer', stage: 'interview', daysInStage: 1, source: 'referral', rfcId: null, priority: 'normal', docsStatus: 'ok', phone: '+63 917 999 0000', email: 'francisco.l@email.com' },
+            { id: 'CAND-010', firstName: 'Gabriel', lastName: 'Santos', rank: 'AB Seaman', stage: 'interview', daysInStage: 3, source: 'walk-in', rfcId: 'RFC-2025-040', priority: 'normal', docsStatus: 'ok', phone: '+63 917 000 1111', email: 'gabriel.s@email.com' },
+            // NEGOTIATION
+            { id: 'CAND-011', firstName: 'Hector', lastName: 'Reyes', rank: 'Chief Officer', stage: 'negotiation', daysInStage: 4, source: 'referral', rfcId: 'RFC-2025-042', priority: 'high', docsStatus: 'ok', phone: '+63 917 121 2121', email: 'hector.r@email.com' },
+            { id: 'CAND-012', firstName: 'Ivan', lastName: 'Aquino', rank: '2nd Engineer', stage: 'negotiation', daysInStage: 6, source: 'agency', rfcId: 'RFC-2025-041', priority: 'normal', docsStatus: 'ok', phone: '+63 917 131 3131', email: 'ivan.a@email.com' },
+            // ENDORSED
+            { id: 'CAND-013', firstName: 'Julio', lastName: 'Pascual', rank: 'Master', stage: 'endorsed', daysInStage: 0, source: 'referral', rfcId: null, priority: 'normal', docsStatus: 'ok', phone: '+63 917 141 4141', email: 'julio.p@email.com' },
+            { id: 'CAND-014', firstName: 'Kevin', lastName: 'Martinez', rank: 'Chief Officer', stage: 'endorsed', daysInStage: 2, source: 'walk-in', rfcId: 'RFC-2025-042', priority: 'normal', docsStatus: 'ok', phone: '+63 917 151 5151', email: 'kevin.m@email.com' },
+            { id: 'CAND-015', firstName: 'Luis', lastName: 'Rivera', rank: 'Bosun', stage: 'endorsed', daysInStage: 1, source: 'agency', rfcId: null, priority: 'normal', docsStatus: 'ok', phone: '+63 917 161 6161', email: 'luis.r@email.com' },
+            // REJECTED
+            { id: 'CAND-016', firstName: 'Manuel', lastName: 'Ortega', rank: 'Oiler', stage: 'rejected', daysInStage: 0, source: 'online', rfcId: null, priority: 'normal', docsStatus: 'incomplete', phone: '+63 917 171 7171', email: 'manuel.o@email.com' },
+        ];
+
+        // MOCK DATA - Supernumerary Personnel
+        const MOCK_SUPERNUMERARY = [
+            { 
+                id: 'SUP-001', 
+                name: 'John Smith', 
+                initials: 'JS',
+                nationality: 'GB United Kingdom',
+                company: 'Maritime Inspection Ltd',
+                email: 'john.smith@maritime-inspect.com',
+                phone: '+44 20 7123 4567',
+                category: 'inspector', 
+                categoryLabel: 'Flag State Inspector',
+                status: 'embarked', 
+                vessel: 'MV APOLLON', 
+                port: 'Piraeus, Greece',
+                embarkedDate: '2026-02-01', 
+                disembarkDate: '2026-02-13',
+                duration: 12,
+                purpose: 'Flag State Inspection',
+                remarks: 'Annual safety inspection and crew certification verification.',
+                createdDate: '2026-01-15',
+                approvedDate: '2026-01-20'
+            },
+            { 
+                id: 'SUP-002', 
+                name: 'Maria Santos', 
+                initials: 'MS',
+                nationality: 'PH Philippines',
+                company: 'Port Control Authority',
+                email: 'maria.santos@portcontrol.sg',
+                phone: '+65 6123 4567',
+                category: 'observer', 
+                categoryLabel: 'Port State Observer',
+                status: 'pending', 
+                vessel: 'MV ATHENA', 
+                port: 'Singapore',
+                embarkedDate: null, 
+                disembarkDate: null,
+                scheduledDate: '2026-02-18',
+                duration: null,
+                purpose: 'Audit',
+                remarks: 'Scheduled port state control observation',
+                createdDate: '2026-01-10',
+                approvedDate: '2026-01-25'
+            },
+            { 
+                id: 'SUP-003', 
+                name: 'David Lee', 
+                initials: 'DL',
+                nationality: 'SG Singapore',
+                company: 'Marine Technical Services',
+                email: 'david.lee@marinetechsg.com',
+                phone: '+65 8123 4567',
+                category: 'superintendent', 
+                categoryLabel: 'Technical Superintendent',
+                status: 'disembarked', 
+                vessel: 'MV POSEIDON', 
+                port: 'Rotterdam',
+                embarkedDate: '2026-01-28', 
+                disembarkDate: '2026-02-05',
+                duration: 7,
+                purpose: 'Technical',
+                remarks: 'Completed machinery inspection and repairs oversight',
+                createdDate: '2026-01-05',
+                approvedDate: '2026-01-12'
+            }
+        ];
+
+        // MOCK DATA - Crew Changes
+        const MOCK_CREW_CHANGES = [
+            {
+                id: 'CC-001',
+                type: 'embark',
+                name: 'John Doe',
+                rank: 'Chief Engineer',
+                vessel: 'MV APOLLON',
+                port: 'Piraeus',
+                date: '2026-02-15',
+                status: 'confirmed'
+            },
+            {
+                id: 'CC-002',
+                type: 'signoff',
+                name: 'Maria Santos',
+                rank: '2nd Officer',
+                vessel: 'MV ATHENA',
+                port: 'Singapore',
+                date: '2026-02-18',
+                status: 'planning'
+            },
+            {
+                id: 'CC-003',
+                type: 'embark',
+                name: 'David Chen',
+                rank: 'Bosun',
+                vessel: 'MV ZEUS',
+                port: 'Singapore',
+                date: '2026-02-20',
+                status: 'confirmed'
+            },
+            {
+                id: 'CC-004',
+                type: 'signoff',
+                name: 'Robert Taylor',
+                rank: 'AB Seaman',
+                vessel: 'MV POSEIDON',
+                port: 'Rotterdam',
+                date: '2026-02-22',
+                status: 'planning'
+            },
+            {
+                id: 'CC-005',
+                type: 'embark',
+                name: 'Ahmed Hassan',
+                rank: '3rd Engineer',
+                vessel: 'MV ARTEMIS',
+                port: 'Dubai',
+                date: '2026-02-25',
+                status: 'planning'
+            },
+            {
+                id: 'CC-006',
+                type: 'signoff',
+                name: 'Carlos Rodriguez',
+                rank: 'Cook',
+                vessel: 'MV HERMES',
+                port: 'Singapore',
+                date: '2026-02-28',
+                status: 'confirmed'
+            },
+            {
+                id: 'CC-007',
+                type: 'embark',
+                name: 'Li Wang',
+                rank: 'Oiler',
+                vessel: 'MV ATHENA',
+                port: 'Singapore',
+                date: '2026-03-02',
+                status: 'planning'
+            },
+            {
+                id: 'CC-008',
+                type: 'signoff',
+                name: 'Jose Garcia',
+                rank: 'Chief Officer',
+                vessel: 'MV APOLLON',
+                port: 'Piraeus',
+                date: '2026-03-05',
+                status: 'confirmed'
+            },
+            {
+                id: 'CC-009',
+                type: 'embark',
+                name: 'Michael Brown',
+                rank: '2nd Engineer',
+                vessel: 'MV ZEUS',
+                port: 'Rotterdam',
+                date: '2026-03-08',
+                status: 'planning'
+            },
+            {
+                id: 'CC-010',
+                type: 'signoff',
+                name: 'Abdul Rahman',
+                rank: 'Fitter',
+                vessel: 'MV ARTEMIS',
+                port: 'Dubai',
+                date: '2026-03-10',
+                status: 'confirmed'
+            },
+            {
+                id: 'CC-011',
+                type: 'embark',
+                name: 'James Wilson',
+                rank: 'Master',
+                vessel: 'MV HERMES',
+                port: 'Piraeus',
+                date: '2026-03-12',
+                status: 'planning'
+            },
+            {
+                id: 'CC-012',
+                type: 'signoff',
+                name: 'Thomas Anderson',
+                rank: 'Electrician',
+                vessel: 'MV POSEIDON',
+                port: 'Rotterdam',
+                date: '2026-03-14',
+                status: 'confirmed'
+            }
+        ];
+
+        // MOCK DATA - Evaluations
+        const MOCK_EVALUATIONS = [
+            { id: 'EVAL-001', name: 'Juan Dela Cruz', rank: 'Chief Officer', vessel: 'MV Diana Star', principal: 'Diana Shipping', period: 'Nov 2024 - Feb 2025', scores: { technical: 5, teamwork: 4, communication: 5, reliability: 5, leadership: 4 }, avgScore: 4.6, rating: 'excellent', comment: 'Exceptional performance throughout the contract. Highly recommended for promotion.', evaluator: 'Capt. Santos', date: '2025-02-05' },
+            { id: 'EVAL-002', name: 'Mario Reyes', rank: '2nd Engineer', vessel: 'MV Centrofin Glory', principal: 'Centrofin', period: 'Dec 2024 - Feb 2025', scores: { technical: 4, teamwork: 5, communication: 4, reliability: 4, leadership: 4 }, avgScore: 4.2, rating: 'good', comment: 'Solid performance. Good team player with strong technical skills.', evaluator: 'C/E Pascual', date: '2025-02-03' },
+            { id: 'EVAL-003', name: 'Roberto Garcia', rank: 'AB Seaman', vessel: 'MV Pioneer Spirit', principal: 'Pioneer Marine', period: 'Oct 2024 - Feb 2025', scores: { technical: 4, teamwork: 4, communication: 3, reliability: 4, leadership: 3 }, avgScore: 3.6, rating: 'good', comment: 'Dependable crew member. Needs improvement in communication.', evaluator: 'Bosun Martinez', date: '2025-02-01' },
+            { id: 'EVAL-004', name: 'Antonio Santos', rank: 'Master', vessel: 'MV Neda Harmony', principal: 'Neda Maritime', period: 'Sep 2024 - Jan 2025', scores: { technical: 5, teamwork: 5, communication: 5, reliability: 5, leadership: 5 }, avgScore: 5.0, rating: 'excellent', comment: 'Outstanding captain. Exemplary leadership and safety record.', evaluator: 'Fleet Manager', date: '2025-01-28' },
+            { id: 'EVAL-005', name: 'Carlos Aquino', rank: 'Oiler', vessel: 'MV Diana Ocean', principal: 'Diana Shipping', period: 'Nov 2024 - Jan 2025', scores: { technical: 3, teamwork: 3, communication: 3, reliability: 3, leadership: 2 }, avgScore: 2.8, rating: 'average', comment: 'Meets basic requirements. Needs more experience and training.', evaluator: 'C/E Reyes', date: '2025-01-25' },
+            { id: 'EVAL-006', name: 'Ramon Lopez', rank: 'Cook', vessel: 'MV Centrofin Titan', principal: 'Centrofin', period: 'Oct 2024 - Feb 2025', scores: { technical: 5, teamwork: 5, communication: 4, reliability: 5, leadership: 4 }, avgScore: 4.6, rating: 'excellent', comment: 'Excellent galley management. Crew very satisfied with meals.', evaluator: 'Capt. Torres', date: '2025-02-04' },
+        ];
+
+        // MOCK DATA - Complaints & Grievances
+        const MOCK_COMPLAINTS = [
+            { id: 'CMP-2025-001', seafarer: 'Roberto Garcia', rank: 'AB Seaman', vessel: 'MV Pioneer Spirit', principal: 'Pioneer Marine', category: 'wages', priority: 'high', status: 'open', subject: 'Overtime payment discrepancy', description: 'Reported overtime hours for December 2024 not reflected in January payslip. Missing approximately 45 hours of OT.', dateSubmitted: '2025-02-08', assignedTo: 'Maria Santos', daysOpen: 3, anonymous: false },
+            { id: 'CMP-2025-002', seafarer: 'Anonymous', rank: 'Rating', vessel: 'MV Diana Star', principal: 'Diana Shipping', category: 'harassment', priority: 'critical', status: 'escalated', subject: 'Verbal harassment by senior officer', description: 'Continuous verbal abuse and threatening behavior from deck officer. Creating hostile work environment.', dateSubmitted: '2025-02-06', assignedTo: 'HR Manager', daysOpen: 5, anonymous: true },
+            { id: 'CMP-2025-003', seafarer: 'Miguel Torres', rank: '3rd Engineer', vessel: 'MV Centrofin Glory', principal: 'Centrofin', category: 'safety', priority: 'critical', status: 'in-progress', subject: 'Defective safety equipment in engine room', description: 'Fire extinguishers in engine room are past inspection date. Safety shower not functioning properly.', dateSubmitted: '2025-02-05', assignedTo: 'Safety Officer', daysOpen: 6, anonymous: false },
+            { id: 'CMP-2025-004', seafarer: 'Carlos Aquino', rank: 'Oiler', vessel: 'MV Diana Ocean', principal: 'Diana Shipping', category: 'food', priority: 'medium', status: 'in-progress', subject: 'Poor food quality and variety', description: 'Food quality has deteriorated significantly. Limited fresh vegetables and fruits. Same menu rotating weekly.', dateSubmitted: '2025-02-04', assignedTo: 'Fleet Manager', daysOpen: 7, anonymous: false },
+            { id: 'CMP-2025-005', seafarer: 'Fernando Bautista', rank: '3rd Officer', vessel: 'MV Neda Harmony', principal: 'Neda Maritime', category: 'working-conditions', priority: 'high', status: 'open', subject: 'Excessive working hours beyond MLC limits', description: 'Work/rest hours consistently exceeding MLC 2006 limits. Average 16-hour days for past 3 weeks.', dateSubmitted: '2025-02-07', assignedTo: 'Compliance Officer', daysOpen: 4, anonymous: false },
+            { id: 'CMP-2025-006', seafarer: 'Antonio Cruz', rank: 'Bosun', vessel: 'MV Oldendorff Star', principal: 'Oldendorff', category: 'contract', priority: 'medium', status: 'in-progress', subject: 'Contract extension without proper notice', description: 'Contract extended by 2 months without prior consultation or agreement. Family emergency requires return.', dateSubmitted: '2025-02-03', assignedTo: 'Crewing Manager', daysOpen: 8, anonymous: false },
+            { id: 'CMP-2025-007', seafarer: 'Anonymous', rank: 'Officer', vessel: 'MV Pioneer Spirit', principal: 'Pioneer Marine', category: 'management', priority: 'low', status: 'open', subject: 'Unfair cabin assignment', description: 'Senior officers assigned better cabins despite same rank. Request for cabin reassignment denied without reason.', dateSubmitted: '2025-02-09', assignedTo: 'Unassigned', daysOpen: 2, anonymous: true },
+            { id: 'CMP-2024-148', seafarer: 'Juan Dela Cruz', rank: 'Chief Officer', vessel: 'MV Diana Star', principal: 'Diana Shipping', category: 'wages', priority: 'medium', status: 'resolved', subject: 'Allotment transfer delay', description: 'Monthly allotment to family delayed by 2 weeks. Caused financial hardship for dependents.', dateSubmitted: '2025-01-15', assignedTo: 'Finance Dept', daysOpen: 0, resolvedDate: '2025-01-20', resolution: 'Bank transfer issue identified and corrected. Allotment sent with apology bonus.', anonymous: false },
+            { id: 'CMP-2024-147', seafarer: 'Mario Reyes', rank: '2nd Engineer', vessel: 'MV Centrofin Glory', principal: 'Centrofin', category: 'safety', priority: 'high', status: 'resolved', subject: 'PPE not replaced timely', description: 'Safety boots worn out and request for replacement ignored for 3 weeks.', dateSubmitted: '2025-01-10', assignedTo: 'Safety Officer', daysOpen: 0, resolvedDate: '2025-01-15', resolution: 'New PPE issued immediately. Implemented monthly PPE inspection checklist.', anonymous: false },
+            { id: 'CMP-2024-145', seafarer: 'Eduardo Pascual', rank: 'Chief Engineer', vessel: 'MV Pioneer Spirit', principal: 'Pioneer Marine', category: 'working-conditions', priority: 'medium', status: 'closed', subject: 'Air conditioning not working in cabin', description: 'Cabin AC unit broken for 2 weeks. Temperature reaching 35°C in tropical waters.', dateSubmitted: '2025-01-05', assignedTo: 'Technical Dept', daysOpen: 0, resolvedDate: '2025-01-08', resolution: 'AC unit replaced. Added to preventive maintenance schedule.', anonymous: false },
+        ];
+
+        const MOCK_OPEN_RFAS = [
+            { id: 'RFA-2026-001', type: 'Embark', vessel: 'MV APOLLON', imo: '9234567', client: 'Diana Shipping', rank: 'Chief Officer', joinDate: '2026-03-15', urgent: true, proposalsCount: 2, status: 'proposed', daysUntil: 31 },
+            { id: 'RFA-2026-002', type: 'Sign-off', vessel: 'MV ATHENA', imo: '9345678', client: 'Centrofin', rank: '2nd Engineer', joinDate: '2026-03-20', urgent: false, proposalsCount: 1, status: 'proposed', daysUntil: 36 },
+            { id: 'RFA-2026-003', type: 'Embark', vessel: 'MV POSEIDON', imo: '9456789', client: 'Pioneer Marine', rank: 'Bosun', joinDate: '2026-03-10', urgent: true, proposalsCount: 0, status: 'open', daysUntil: 26 },
+            { id: 'RFA-2026-004', type: 'Promotion', vessel: 'MV ZEUS', imo: '9567890', client: 'Diana Shipping', rank: 'Chief Engineer', joinDate: '2026-04-01', urgent: false, proposalsCount: 1, status: 'proposed', daysUntil: 48 },
+            { id: 'RFA-2026-005', type: 'Embark', vessel: 'MV ARTEMIS', imo: '9678901', client: 'Neda Maritime', rank: 'AB', joinDate: '2026-03-25', urgent: false, proposalsCount: 3, status: 'proposed', daysUntil: 41 },
+            { id: 'RFA-2026-006', type: 'Replacement', vessel: 'MV HERMES', imo: '9789012', client: 'Centrofin', rank: '2nd Officer', joinDate: '2026-02-28', urgent: true, proposalsCount: 0, status: 'open', daysUntil: 16 },
+            { id: 'RFA-2026-007', type: 'Extension', vessel: 'MV HERA', imo: '9890123', client: 'Pioneer Marine', rank: 'Oiler', joinDate: '2026-04-10', urgent: false, proposalsCount: 1, status: 'proposed', daysUntil: 57 },
+            { id: 'RFA-2026-008', type: 'Embark', vessel: 'MV DIONYSUS', imo: '9901234', client: 'Diana Shipping', rank: 'Master', joinDate: '2026-03-18', urgent: false, proposalsCount: 2, status: 'proposed', daysUntil: 34 }
+        ];
+
+        const MOCK_CREW_POOL = [
+            { id: 'SF-1001', name: 'John Martinez', rank: 'Chief Officer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '12y' },
+            { id: 'SF-1002', name: 'Maria Santos', rank: 'Chief Officer', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: false, quotaOK: true, experience: '8y' },
+            { id: 'SF-1003', name: 'Ahmed Hassan', rank: '2nd Engineer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '15y' },
+            { id: 'SF-1004', name: 'Elena Popov', rank: 'Bosun', pool: 'non-dedicated', status: 'Endorsed', docsOK: false, restOK: true, quotaOK: true, experience: '6y' },
+            { id: 'SF-1005', name: 'Carlos Rodriguez', rank: 'Chief Engineer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '18y' },
+            { id: 'SF-1006', name: 'Li Wei', rank: 'AB', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: false, experience: '4y' },
+            { id: 'SF-1007', name: 'Ivan Petrov', rank: '2nd Officer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '10y' },
+            { id: 'SF-1008', name: 'Ana Silva', rank: 'Oiler', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: false, quotaOK: true, experience: '5y' },
+            { id: 'SF-1009', name: 'Michael O\'Brien', rank: 'Master', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '22y' },
+            { id: 'SF-1010', name: 'Yuki Tanaka', rank: 'Chief Officer', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '14y' },
+            { id: 'SF-1011', name: 'Pierre Dubois', rank: '2nd Engineer', pool: 'dedicated', status: 'Endorsed', docsOK: false, restOK: true, quotaOK: true, experience: '9y' },
+            { id: 'SF-1012', name: 'Sofia Andersson', rank: 'Bosun', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '7y' },
+            { id: 'SF-1013', name: 'Ravi Kumar', rank: 'Chief Engineer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '16y' },
+            { id: 'SF-1014', name: 'Isabella Costa', rank: 'AB', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '3y' },
+            { id: 'SF-1015', name: 'Hans Mueller', rank: '2nd Officer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: false, quotaOK: true, experience: '11y' },
+            { id: 'SF-1016', name: 'Fatima Al-Mansoori', rank: 'Oiler', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '6y' },
+            { id: 'SF-1017', name: 'Thomas Anderson', rank: 'Master', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '25y' },
+            { id: 'SF-1018', name: 'Olga Ivanova', rank: 'Chief Officer', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: false, experience: '13y' },
+            { id: 'SF-1019', name: 'Jorge Fernandez', rank: '2nd Engineer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '8y' },
+            { id: 'SF-1020', name: 'Mei Lin', rank: 'Bosun', pool: 'non-dedicated', status: 'Endorsed', docsOK: false, restOK: false, quotaOK: true, experience: '5y' },
+            { id: 'SF-1021', name: 'Lars Nielsen', rank: 'Chief Engineer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '19y' },
+            { id: 'SF-1022', name: 'Amara Okafor', rank: 'AB', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '4y' },
+            { id: 'SF-1023', name: 'Dimitri Papadopoulos', rank: '2nd Officer', pool: 'dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '12y' },
+            { id: 'SF-1024', name: 'Natasha Kowalski', rank: 'Oiler', pool: 'non-dedicated', status: 'Endorsed', docsOK: true, restOK: true, quotaOK: true, experience: '7y' }
+        ];
+
+        // MOCK DATA - Tickets
+        const MOCK_TICKETS = [
+            { id: 'TKT-001', pnr: 'ABC123', passenger: 'Juan Dela Cruz', rank: 'Chief Officer', from: 'MNL', fromCity: 'Manila', to: 'SIN', toCity: 'Singapore', date: '2025-02-15', time: '08:30', airline: 'Philippine Airlines', flight: 'PR501', duration: '3h 45m', status: 'confirmed', price: 890, type: 'embark' },
+            { id: 'TKT-002', pnr: 'XYZ789', passenger: 'Mario Reyes', rank: '2nd Engineer', from: 'MNL', fromCity: 'Manila', to: 'AMS', toCity: 'Amsterdam', date: '2025-02-14', time: '22:15', airline: 'KLM', flight: 'KL802', duration: '14h 20m', status: 'confirmed', price: 1450, type: 'embark' },
+            { id: 'TKT-003', pnr: 'DEF456', passenger: 'Eduardo Pascual', rank: 'Chief Engineer', from: 'MNL', fromCity: 'Manila', to: 'ICN', toCity: 'Seoul', date: '2025-02-13', time: '14:00', airline: 'Korean Air', flight: 'KE622', duration: '4h 15m', status: 'pending', price: 780, type: 'embark' },
+            { id: 'TKT-004', pnr: 'GHI321', passenger: 'Antonio Santos', rank: 'Master', from: 'MNL', fromCity: 'Manila', to: 'ATH', toCity: 'Athens', date: '2025-02-12', time: '01:30', airline: 'Emirates', flight: 'EK335', duration: '16h 40m', status: 'confirmed', price: 1680, type: 'embark' },
+            { id: 'TKT-005', pnr: 'JKL654', passenger: 'Ramon Lopez', rank: 'Cook', from: 'MNL', fromCity: 'Manila', to: 'RTM', toCity: 'Rotterdam', date: '2025-02-14', time: '11:45', airline: 'Qatar Airways', flight: 'QR337', duration: '18h 10m', status: 'confirmed', price: 1520, type: 'embark' },
+            { id: 'TKT-006', pnr: 'MNO987', passenger: 'Carlos Aquino', rank: 'Oiler', from: 'SIN', fromCity: 'Singapore', to: 'MNL', toCity: 'Manila', date: '2025-02-18', time: '16:20', airline: 'Singapore Airlines', flight: 'SQ916', duration: '3h 40m', status: 'pending', price: 650, type: 'signoff' },
+            { id: 'TKT-007', pnr: 'PQR147', passenger: 'Fernando Bautista', rank: '3rd Officer', from: 'MNL', fromCity: 'Manila', to: 'SIN', toCity: 'Singapore', date: '2025-02-15', time: '06:00', airline: 'Cebu Pacific', flight: '5J805', duration: '3h 50m', status: 'confirmed', price: 420, type: 'embark' },
+            { id: 'TKT-008', pnr: 'STU258', passenger: 'Miguel Torres', rank: 'AB Seaman', from: 'MNL', fromCity: 'Manila', to: 'NRT', toCity: 'Tokyo', date: '2025-02-20', time: '09:15', airline: 'Japan Airlines', flight: 'JL742', duration: '4h 30m', status: 'pending', price: 920, type: 'embark' },
+        ];
+
+        // MOCK DATA - Pending Transactions
+        const MOCK_PENDING = [
+            { id: 'TXN-001', type: 'rfa', title: 'RFA-2025-0156 Approval', seafarer: 'Juan Dela Cruz', rank: 'Chief Officer', relatedTo: 'MV Diana Star', ageHours: 48, priority: 'urgent', status: 'awaiting' },
+            { id: 'TXN-002', type: 'contract', title: 'Contract Extension', seafarer: 'Mario Reyes', rank: '2nd Engineer', relatedTo: 'CTR-2025-0143', ageHours: 24, priority: 'high', status: 'awaiting' },
+            { id: 'TXN-003', type: 'document', title: 'COC Verification', seafarer: 'Roberto Garcia', rank: 'AB Seaman', relatedTo: 'DOC-2025-003', ageHours: 72, priority: 'urgent', status: 'awaiting' },
+            { id: 'TXN-004', type: 'travel', title: 'Flight Booking Approval', seafarer: 'Eduardo Pascual', rank: 'Chief Engineer', relatedTo: 'Singapore → Manila', ageHours: 8, priority: 'high', status: 'awaiting' },
+            { id: 'TXN-005', type: 'peme', title: 'PEME Results Review', seafarer: 'Jose Martinez', rank: 'Bosun', relatedTo: 'PEME-2025-089', ageHours: 12, priority: 'normal', status: 'awaiting' },
+            { id: 'TXN-006', type: 'rfa', title: 'RFA-2025-0157 Approval', seafarer: 'Fernando Bautista', rank: '3rd Officer', relatedTo: 'MV Pioneer Spirit', ageHours: 36, priority: 'high', status: 'awaiting' },
+            { id: 'TXN-007', type: 'document', title: 'Flag Endorsement Upload', seafarer: 'Antonio Santos', rank: 'Master', relatedTo: 'Panama Flag', ageHours: 96, priority: 'urgent', status: 'awaiting' },
+            { id: 'TXN-008', type: 'contract', title: 'New Contract Sign-off', seafarer: 'Carlos Aquino', rank: 'Oiler', relatedTo: 'CTR-2025-0152', ageHours: 16, priority: 'normal', status: 'awaiting' },
+            { id: 'TXN-009', type: 'travel', title: 'Hotel Booking Approval', seafarer: 'Ramon Lopez', rank: 'Cook', relatedTo: 'Rotterdam Transit', ageHours: 4, priority: 'normal', status: 'awaiting' },
+            { id: 'TXN-010', type: 'peme', title: 'Medical Waiver Request', seafarer: 'Miguel Torres', rank: 'AB Seaman', relatedTo: 'PEME-2025-092', ageHours: 120, priority: 'urgent', status: 'awaiting' },
+            { id: 'TXN-011', type: 'rfa', title: 'RFA-2025-0158 Approval', seafarer: 'Diego Villanueva', rank: '2nd Officer', relatedTo: 'MV Centrofin Glory', ageHours: 6, priority: 'normal', status: 'awaiting' },
+            { id: 'TXN-012', type: 'document', title: 'Training Certificate', seafarer: 'Hector Reyes', rank: 'Chief Officer', relatedTo: 'ECDIS Cert', ageHours: 28, priority: 'high', status: 'awaiting' },
+        ];
+
+        // MOCK DATA - Embarkation Prep
+        const MOCK_EMBARKATIONS = [
+            { id: 'EMB-001', name: 'Juan Dela Cruz', rank: 'Chief Officer', vessel: 'MV Diana Star', port: 'Singapore', embarkDate: '2025-02-15', daysUntil: 4, checklist: { contract: true, peme: true, visa: true, training: true, travel: true, briefing: false }, readiness: 'pending' },
+            { id: 'EMB-002', name: 'Mario Reyes', rank: '2nd Engineer', vessel: 'MV Centrofin Glory', port: 'Rotterdam', embarkDate: '2025-02-14', daysUntil: 3, checklist: { contract: true, peme: true, visa: true, training: true, travel: true, briefing: true }, readiness: 'ready' },
+            { id: 'EMB-003', name: 'Roberto Garcia', rank: 'AB Seaman', vessel: 'MV Pioneer Spirit', port: 'Hamburg', embarkDate: '2025-02-18', daysUntil: 7, checklist: { contract: true, peme: true, visa: false, training: true, travel: false, briefing: false }, readiness: 'pending' },
+            { id: 'EMB-004', name: 'Eduardo Pascual', rank: 'Chief Engineer', vessel: 'MV Neda Harmony', port: 'Busan', embarkDate: '2025-02-13', daysUntil: 2, checklist: { contract: true, peme: false, visa: true, training: true, travel: true, briefing: false }, readiness: 'blocked' },
+            { id: 'EMB-005', name: 'Jose Martinez', rank: 'Bosun', vessel: 'MV Diana Ocean', port: 'Shanghai', embarkDate: '2025-02-16', daysUntil: 5, checklist: { contract: true, peme: true, visa: true, training: true, travel: true, briefing: true }, readiness: 'ready' },
+            { id: 'EMB-006', name: 'Fernando Bautista', rank: '3rd Officer', vessel: 'MV Diana Star', port: 'Singapore', embarkDate: '2025-02-15', daysUntil: 4, checklist: { contract: true, peme: true, visa: true, training: false, travel: true, briefing: false }, readiness: 'pending' },
+            { id: 'EMB-007', name: 'Antonio Santos', rank: 'Master', vessel: 'MV Pioneer Wave', port: 'Piraeus', embarkDate: '2025-02-12', daysUntil: 1, checklist: { contract: true, peme: true, visa: true, training: true, travel: true, briefing: true }, readiness: 'ready' },
+            { id: 'EMB-008', name: 'Carlos Aquino', rank: 'Oiler', vessel: 'MV Centrofin Titan', port: 'Fujairah', embarkDate: '2025-02-17', daysUntil: 6, checklist: { contract: false, peme: false, visa: true, training: true, travel: false, briefing: false }, readiness: 'blocked' },
+            { id: 'EMB-009', name: 'Ramon Lopez', rank: 'Cook', vessel: 'MV Centrofin Glory', port: 'Rotterdam', embarkDate: '2025-02-14', daysUntil: 3, checklist: { contract: true, peme: true, visa: true, training: true, travel: true, briefing: true }, readiness: 'ready' },
+            { id: 'EMB-010', name: 'Miguel Torres', rank: 'AB Seaman', vessel: 'MV Neda Spirit', port: 'Tokyo', embarkDate: '2025-02-20', daysUntil: 9, checklist: { contract: true, peme: true, visa: false, training: true, travel: false, briefing: false }, readiness: 'pending' },
+        ];
+
+        // MOCK DATA - Interviews
+        const MOCK_INTERVIEWS = [
+            { id: 'INT-2025-089', candidateName: 'Ricardo Mendoza', candidateRank: 'Chief Officer', rfcId: 'RFC-2025-042', date: '2025-02-11', time: '09:00', duration: 45, status: 'scheduled', interviewer: 'Maria Santos', interviewerInitials: 'MS', type: 'Technical', location: 'Office - Room A', scores: { technical: null, experience: null, communication: null }, result: 'pending' },
+            { id: 'INT-2025-088', candidateName: 'Carlos Fernandez', candidateRank: 'Chief Officer', rfcId: 'RFC-2025-042', date: '2025-02-11', time: '10:30', duration: 45, status: 'in-progress', interviewer: 'Maria Santos', interviewerInitials: 'MS', type: 'Technical', location: 'Office - Room A', scores: { technical: null, experience: null, communication: null }, result: 'pending' },
+            { id: 'INT-2025-087', candidateName: 'Ernesto Garcia', candidateRank: 'Chief Engineer', rfcId: 'RFC-2025-036', date: '2025-02-11', time: '14:00', duration: 60, status: 'scheduled', interviewer: 'Carlos Reyes', interviewerInitials: 'CR', type: 'Technical + Practical', location: 'Training Center', scores: { technical: null, experience: null, communication: null }, result: 'pending' },
+            { id: 'INT-2025-086', candidateName: 'Hector Reyes', candidateRank: 'Chief Officer', rfcId: 'RFC-2025-042', date: '2025-02-10', time: '15:00', duration: 45, status: 'completed', interviewer: 'Maria Santos', interviewerInitials: 'MS', type: 'Technical', location: 'Office - Room B', scores: { technical: 85, experience: 90, communication: 88 }, result: 'passed' },
+            { id: 'INT-2025-085', candidateName: 'Ivan Aquino', candidateRank: '2nd Engineer', rfcId: 'RFC-2025-041', date: '2025-02-10', time: '11:00', duration: 45, status: 'completed', interviewer: 'Carlos Reyes', interviewerInitials: 'CR', type: 'Technical', location: 'Office - Room A', scores: { technical: 78, experience: 82, communication: 75 }, result: 'passed' },
+            { id: 'INT-2025-084', candidateName: 'Gabriel Santos', candidateRank: 'AB Seaman', rfcId: 'RFC-2025-040', date: '2025-02-09', time: '09:30', duration: 30, status: 'completed', interviewer: 'Ana Garcia', interviewerInitials: 'AG', type: 'Basic Assessment', location: 'Office - Room C', scores: { technical: 72, experience: 68, communication: 80 }, result: 'passed' },
+            { id: 'INT-2025-083', candidateName: 'Manuel Ortega', candidateRank: 'Oiler', rfcId: null, date: '2025-02-09', time: '14:00', duration: 30, status: 'no-show', interviewer: 'Ana Garcia', interviewerInitials: 'AG', type: 'Basic Assessment', location: 'Office - Room C', scores: { technical: null, experience: null, communication: null }, result: 'pending' },
+            { id: 'INT-2025-082', candidateName: 'Diego Villanueva', candidateRank: '3rd Officer', rfcId: 'RFC-2025-037', date: '2025-02-08', time: '10:00', duration: 45, status: 'completed', interviewer: 'Maria Santos', interviewerInitials: 'MS', type: 'Technical', location: 'Video Call', scores: { technical: 55, experience: 60, communication: 65 }, result: 'failed' },
+            { id: 'INT-2025-081', candidateName: 'Arturo Bautista', candidateRank: 'Master', rfcId: 'RFC-2025-038', date: '2025-02-12', time: '09:00', duration: 60, status: 'scheduled', interviewer: 'Carlos Reyes', interviewerInitials: 'CR', type: 'Senior Assessment', location: 'Office - Room A', scores: { technical: null, experience: null, communication: null }, result: 'pending' },
+            { id: 'INT-2025-080', candidateName: 'Francisco Lopez', candidateRank: '2nd Officer', rfcId: null, date: '2025-02-07', time: '11:30', duration: 45, status: 'cancelled', interviewer: 'Maria Santos', interviewerInitials: 'MS', type: 'Technical', location: 'Office - Room B', scores: { technical: null, experience: null, communication: null }, result: 'pending' },
+        ];
+
+        // MOCK DATA - RFC Tasks (Request for Candidates)
+        const MOCK_RFC_TASKS = [
+            { id: 'RFC-2025-042', rank: 'Chief Officer', vessel: 'MV Diana Star', principal: 'Diana Shipping', principalKey: 'diana', priority: 'urgent', status: 'sourcing', createdDate: '2025-02-01', targetDate: '2025-03-01', candidates: 5, shortlisted: 2, source: 'Pool shortage', rfa: 'RFA-2025-0142' },
+            { id: 'RFC-2025-041', rank: '2nd Engineer', vessel: 'MV Centrofin Glory', principal: 'Centrofin', principalKey: 'centrofin', priority: 'high', status: 'shortlisted', createdDate: '2025-01-25', targetDate: '2025-02-28', candidates: 8, shortlisted: 3, source: 'Promotion gap', rfa: 'RFA-2025-0143' },
+            { id: 'RFC-2025-040', rank: 'AB Seaman', vessel: 'MV Pioneer Spirit', principal: 'Pioneer Marine', principalKey: 'pioneer', priority: 'normal', status: 'open', createdDate: '2025-02-08', targetDate: '2025-04-01', candidates: 0, shortlisted: 0, source: 'New requirement', rfa: 'RFA-2025-0144' },
+            { id: 'RFC-2025-039', rank: 'Bosun', vessel: 'MV Diana Ocean', principal: 'Diana Shipping', principalKey: 'diana', priority: 'high', status: 'sourcing', createdDate: '2025-02-03', targetDate: '2025-03-10', candidates: 3, shortlisted: 0, source: 'Emergency replacement', rfa: null },
+            { id: 'RFC-2025-038', rank: 'Master', vessel: 'MV Neda Harmony', principal: 'Neda Maritime', principalKey: 'neda', priority: 'urgent', status: 'shortlisted', createdDate: '2025-01-15', targetDate: '2025-02-20', candidates: 4, shortlisted: 2, source: 'Contract extension declined', rfa: null },
+            { id: 'RFC-2025-037', rank: '3rd Officer', vessel: 'MV Pioneer Wave', principal: 'Pioneer Marine', principalKey: 'pioneer', priority: 'normal', status: 'filled', createdDate: '2025-01-10', targetDate: '2025-02-15', candidates: 6, shortlisted: 3, source: 'Pool shortage', rfa: 'RFA-2025-0147' },
+            { id: 'RFC-2025-036', rank: 'Chief Engineer', vessel: 'MV Centrofin Titan', principal: 'Centrofin', principalKey: 'centrofin', priority: 'high', status: 'sourcing', createdDate: '2025-02-05', targetDate: '2025-03-15', candidates: 2, shortlisted: 0, source: 'Medical sign-off', rfa: null },
+            { id: 'RFC-2025-035', rank: 'Cook', vessel: 'MV Diana Star', principal: 'Diana Shipping', principalKey: 'diana', priority: 'normal', status: 'open', createdDate: '2025-02-10', targetDate: '2025-03-20', candidates: 0, shortlisted: 0, source: 'New position', rfa: null },
+            { id: 'RFC-2025-034', rank: 'Oiler', vessel: 'MV Neda Spirit', principal: 'Neda Maritime', principalKey: 'neda', priority: 'normal', status: 'cancelled', createdDate: '2025-01-20', targetDate: '2025-02-25', candidates: 2, shortlisted: 1, source: 'Pool shortage', rfa: null },
+            { id: 'RFC-2025-033', rank: '2nd Officer', vessel: 'MV Oldendorff Heinrich', principal: 'Oldendorff', principalKey: 'oldendorff', priority: 'high', status: 'filled', createdDate: '2025-01-05', targetDate: '2025-02-10', candidates: 7, shortlisted: 2, source: 'Rotation coverage', rfa: null },
+        ];
+
+        // MOCK DATA - Clients/Principals
+        const MOCK_CLIENTS = [
+            { id: 'CL-001', name: 'Diana Shipping', country: 'Greece', countryKey: 'greece', flag: '🇬🇷', status: 'active', since: 2018, vessels: 12, crew: 245, contracts: 267, contact: 'operations@dianashipping.gr', fleet: [
+                { name: 'MV Diana Star', type: 'bulk', crew: 22 },
+                { name: 'MV Diana Ocean', type: 'bulk', crew: 21 },
+                { name: 'MV Diana Wave', type: 'bulk', crew: 22 },
+            ]},
+            { id: 'CL-002', name: 'Centrofin Management', country: 'Greece', countryKey: 'greece', flag: '🇬🇷', status: 'active', since: 2019, vessels: 8, crew: 178, contracts: 195, contact: 'crewing@centrofin.gr', fleet: [
+                { name: 'MV Centrofin Glory', type: 'tanker', crew: 24 },
+                { name: 'MV Centrofin Titan', type: 'tanker', crew: 23 },
+            ]},
+            { id: 'CL-003', name: 'Pioneer Marine', country: 'Greece', countryKey: 'greece', flag: '🇬🇷', status: 'active', since: 2020, vessels: 6, crew: 134, contracts: 156, contact: 'crew@pioneermarine.gr', fleet: [
+                { name: 'MV Pioneer Spirit', type: 'container', crew: 21 },
+                { name: 'MV Pioneer Wave', type: 'container', crew: 22 },
+            ]},
+            { id: 'CL-004', name: 'Neda Maritime', country: 'Greece', countryKey: 'greece', flag: '🇬🇷', status: 'active', since: 2017, vessels: 10, crew: 289, contracts: 312, contact: 'manning@nedamaritime.gr', fleet: [
+                { name: 'MV Neda Harmony', type: 'lng', crew: 28 },
+                { name: 'MV Neda Spirit', type: 'lng', crew: 27 },
+            ]},
+            { id: 'CL-005', name: 'Eurobulk Shipping', country: 'Greece', countryKey: 'greece', flag: '🇬🇷', status: 'active', since: 2021, vessels: 5, crew: 98, contracts: 112, contact: 'operations@eurobulk.gr', fleet: [
+                { name: 'MV Eurobulk Pride', type: 'bulk', crew: 20 },
+            ]},
+            { id: 'CL-006', name: 'Oldendorff Carriers', country: 'Germany', countryKey: 'germany', flag: '🇩🇪', status: 'active', since: 2019, vessels: 15, crew: 312, contracts: 345, contact: 'crewing@oldendorff.com', fleet: [
+                { name: 'MV Heinrich Oldendorff', type: 'bulk', crew: 22 },
+                { name: 'MV Sophie Oldendorff', type: 'bulk', crew: 21 },
+            ]},
+            { id: 'CL-007', name: 'Mitsui O.S.K. Lines', country: 'Japan', countryKey: 'japan', flag: '🇯🇵', status: 'active', since: 2020, vessels: 8, crew: 198, contracts: 223, contact: 'manning@mol.co.jp', fleet: [
+                { name: 'MV MOL Triumph', type: 'container', crew: 24 },
+                { name: 'MV MOL Trust', type: 'lng', crew: 28 },
+            ]},
+            { id: 'CL-008', name: 'Frontline Ltd', country: 'Norway', countryKey: 'norway', flag: '🇳🇴', status: 'active', since: 2022, vessels: 4, crew: 92, contracts: 98, contact: 'crew@frontline.no', fleet: [
+                { name: 'MV Front Altair', type: 'tanker', crew: 23 },
+            ]},
+        ];
+
+        // MOCK DATA - Contracts
+        const MOCK_CONTRACTS = [
+            { id: 'CTR-2025-0142', seafarerName: 'Juan Dela Cruz', seafarerRank: 'Chief Officer', vesselName: 'MV Diana Star', vesselType: 'Bulk Carrier', principal: 'Diana Shipping', principalKey: 'diana', status: 'active', pemeStatus: 'cleared', startDate: '2024-11-15', endDate: '2025-08-15', duration: 9, salary: 4500, signedDate: '2024-11-10' },
+            { id: 'CTR-2025-0143', seafarerName: 'Mario Reyes', seafarerRank: '2nd Engineer', vesselName: 'MV Centrofin Glory', vesselType: 'Tanker', principal: 'Centrofin', principalKey: 'centrofin', status: 'active', pemeStatus: 'cleared', startDate: '2024-12-01', endDate: '2025-09-20', duration: 9, salary: 4200, signedDate: '2024-11-25' },
+            { id: 'CTR-2025-0144', seafarerName: 'Roberto Garcia', seafarerRank: 'AB Seaman', vesselName: 'MV Pioneer Spirit', vesselType: 'Container Ship', principal: 'Pioneer Marine', principalKey: 'pioneer', status: 'pending-peme', pemeStatus: 'scheduled', startDate: '2025-04-01', endDate: '2026-01-01', duration: 9, salary: 1800, signedDate: null },
+            { id: 'CTR-2025-0145', seafarerName: 'Eduardo Pascual', seafarerRank: 'Chief Engineer', vesselName: 'MV Neda Harmony', vesselType: 'LNG Carrier', principal: 'Neda Maritime', principalKey: 'neda', status: 'peme-cleared', pemeStatus: 'cleared', startDate: '2025-03-25', endDate: '2025-12-25', duration: 9, salary: 6500, signedDate: null },
+            { id: 'CTR-2025-0146', seafarerName: 'Jose Martinez', seafarerRank: 'Bosun', vesselName: 'MV Diana Ocean', vesselType: 'Bulk Carrier', principal: 'Diana Shipping', principalKey: 'diana', status: 'signed', pemeStatus: 'cleared', startDate: '2025-03-15', endDate: '2025-12-15', duration: 9, salary: 2200, signedDate: '2025-02-08' },
+            { id: 'CTR-2025-0147', seafarerName: 'Fernando Bautista', seafarerRank: '3rd Officer', vesselName: 'MV Diana Star', vesselType: 'Bulk Carrier', principal: 'Diana Shipping', principalKey: 'diana', status: 'pending-peme', pemeStatus: 'pending', startDate: '2025-03-10', endDate: '2025-12-10', duration: 9, salary: 2800, signedDate: null },
+            { id: 'CTR-2025-0148', seafarerName: 'Ramon Lopez', seafarerRank: 'Cook', vesselName: 'MV Centrofin Glory', vesselType: 'Tanker', principal: 'Centrofin', principalKey: 'centrofin', status: 'signed', pemeStatus: 'cleared', startDate: '2025-02-28', endDate: '2025-11-28', duration: 9, salary: 1600, signedDate: '2025-02-05' },
+            { id: 'CTR-2025-0149', seafarerName: 'Daniel Villanueva', seafarerRank: '2nd Officer', vesselName: 'MV Pioneer Spirit', vesselType: 'Container Ship', principal: 'Pioneer Marine', principalKey: 'pioneer', status: 'completed', pemeStatus: 'cleared', startDate: '2024-02-15', endDate: '2025-02-15', duration: 12, salary: 3200, signedDate: '2024-02-01' },
+            { id: 'CTR-2025-0150', seafarerName: 'Carlos Aquino', seafarerRank: 'Oiler', vesselName: 'MV Neda Harmony', vesselType: 'LNG Carrier', principal: 'Neda Maritime', principalKey: 'neda', status: 'cancelled', pemeStatus: 'failed', startDate: '2025-02-20', endDate: '2025-11-20', duration: 9, salary: 1400, signedDate: null },
+            { id: 'CTR-2025-0151', seafarerName: 'Antonio Santos', seafarerRank: 'Master', vesselName: 'MV Diana Star', vesselType: 'Bulk Carrier', principal: 'Diana Shipping', principalKey: 'diana', status: 'active', pemeStatus: 'cleared', startDate: '2024-09-01', endDate: '2025-06-01', duration: 9, salary: 8500, signedDate: '2024-08-25' },
+            { id: 'CTR-2025-0152', seafarerName: 'Pedro Ramos', seafarerRank: 'Master', vesselName: 'MV Diana Star', vesselType: 'Bulk Carrier', principal: 'Diana Shipping', principalKey: 'diana', status: 'draft', pemeStatus: 'pending', startDate: '2025-06-01', endDate: '2026-03-01', duration: 9, salary: 8200, signedDate: null },
+            { id: 'CTR-2025-0153', seafarerName: 'Miguel Torres', seafarerRank: 'AB Seaman', vesselName: 'MV Centrofin Glory', vesselType: 'Tanker', principal: 'Centrofin', principalKey: 'centrofin', status: 'active', pemeStatus: 'cleared', startDate: '2024-10-15', endDate: '2025-07-15', duration: 9, salary: 1850, signedDate: '2024-10-01' },
+        ];
+
+        // MOCK DATA - Documents & Certificates
+        const MOCK_DOCUMENTS = [
+            { id: 'DOC-001', seafarerId: 'CW-2024-00142', seafarerName: 'Juan Dela Cruz', rank: 'Chief Officer', docType: 'stcw', docName: 'Certificate of Competency', docNumber: 'COC-2024-12345', issueDate: '2022-03-15', expiryDate: '2027-03-14', status: 'valid', daysLeft: 752 },
+            { id: 'DOC-002', seafarerId: 'CW-2024-00142', seafarerName: 'Juan Dela Cruz', rank: 'Chief Officer', docType: 'medical', docName: 'Medical Certificate', docNumber: 'MED-2024-5678', issueDate: '2024-06-01', expiryDate: '2025-06-01', status: 'valid', daysLeft: 110 },
+            { id: 'DOC-003', seafarerId: 'CW-2024-00142', seafarerName: 'Juan Dela Cruz', rank: 'Chief Officer', docType: 'flag', docName: 'Panama Flag Endorsement', docNumber: 'PAN-2023-9012', issueDate: '2023-01-10', expiryDate: '2025-03-01', status: 'critical', daysLeft: 18 },
+            { id: 'DOC-004', seafarerId: 'CW-2023-00891', seafarerName: 'Mario Reyes', rank: '2nd Engineer', docType: 'stcw', docName: 'Certificate of Competency', docNumber: 'COC-2023-23456', issueDate: '2021-08-20', expiryDate: '2026-08-19', status: 'valid', daysLeft: 554 },
+            { id: 'DOC-005', seafarerId: 'CW-2023-00891', seafarerName: 'Mario Reyes', rank: '2nd Engineer', docType: 'stcw', docName: 'GMDSS Certificate', docNumber: 'GMDSS-2022-3456', issueDate: '2022-05-15', expiryDate: '2025-02-20', status: 'critical', daysLeft: 9 },
+            { id: 'DOC-006', seafarerId: 'CW-2023-00891', seafarerName: 'Mario Reyes', rank: '2nd Engineer', docType: 'medical', docName: 'Medical Certificate', docNumber: 'MED-2024-7890', issueDate: '2024-08-01', expiryDate: '2025-08-01', status: 'valid', daysLeft: 171 },
+            { id: 'DOC-007', seafarerId: 'CW-2022-00567', seafarerName: 'Antonio Santos', rank: 'Master', docType: 'stcw', docName: 'Master License', docNumber: 'ML-2020-78901', issueDate: '2020-04-10', expiryDate: '2025-04-09', status: 'expiring-soon', daysLeft: 57 },
+            { id: 'DOC-008', seafarerId: 'CW-2022-00567', seafarerName: 'Antonio Santos', rank: 'Master', docType: 'flag', docName: 'Liberia Flag Endorsement', docNumber: 'LIB-2024-1234', issueDate: '2024-01-15', expiryDate: '2025-03-10', status: 'expiring-soon', daysLeft: 27 },
+            { id: 'DOC-009', seafarerId: 'CW-2024-00234', seafarerName: 'Roberto Garcia', rank: 'AB Seaman', docType: 'national', docName: 'Seaman Book', docNumber: 'SB-2023-56789', issueDate: '2023-03-01', expiryDate: '2028-02-28', status: 'valid', daysLeft: 1113 },
+            { id: 'DOC-010', seafarerId: 'CW-2024-00234', seafarerName: 'Roberto Garcia', rank: 'AB Seaman', docType: 'stcw', docName: 'Basic Safety Training', docNumber: 'BST-2022-4567', issueDate: '2022-09-01', expiryDate: '2025-02-15', status: 'critical', daysLeft: 4 },
+            { id: 'DOC-011', seafarerId: 'CW-2021-00123', seafarerName: 'Eduardo Pascual', rank: 'Chief Engineer', docType: 'stcw', docName: 'Chief Engineer License', docNumber: 'CEL-2019-23456', issueDate: '2019-11-15', expiryDate: '2024-11-14', status: 'expired', daysLeft: -89 },
+            { id: 'DOC-012', seafarerId: 'CW-2021-00123', seafarerName: 'Eduardo Pascual', rank: 'Chief Engineer', docType: 'company', docName: 'Tanker Familiarization', docNumber: 'TF-2024-8901', issueDate: '2024-02-01', expiryDate: '2026-02-01', status: 'valid', daysLeft: 355 },
+            { id: 'DOC-013', seafarerId: 'CW-2023-00456', seafarerName: 'Jose Martinez', rank: 'Bosun', docType: 'medical', docName: 'Medical Certificate', docNumber: 'MED-2024-2345', issueDate: '2024-03-15', expiryDate: '2025-03-15', status: 'expiring-soon', daysLeft: 32 },
+            { id: 'DOC-014', seafarerId: 'CW-2023-00456', seafarerName: 'Jose Martinez', rank: 'Bosun', docType: 'national', docName: 'Passport', docNumber: 'PP-2021-67890', issueDate: '2021-06-01', expiryDate: '2031-05-31', status: 'valid', daysLeft: 2300 },
+            { id: 'DOC-015', seafarerId: 'CW-2020-00089', seafarerName: 'Fernando Bautista', rank: '3rd Officer', docType: 'stcw', docName: 'ECDIS Certificate', docNumber: 'ECDIS-2023-5678', issueDate: '2023-07-01', expiryDate: '2025-02-25', status: 'critical', daysLeft: 14 },
+        ];
+
+        const KANBAN_COLUMNS = [
+            { id: 'new', name: 'New', color: 'new' },
+            { id: 'screening', name: 'Screening', color: 'screening' },
+            { id: 'interview', name: 'Interview', color: 'interview' },
+            { id: 'negotiation', name: 'Negotiation', color: 'negotiation' },
+            { id: 'endorsed', name: 'Endorsed', color: 'endorsed' },
+            { id: 'rejected', name: 'Rejected', color: 'rejected' },
+        ];
+
+        const MOCK_VESSELS = [
+            { id: 'V001', name: 'MV Diana Star', type: 'Bulk Carrier', typeKey: 'bulk', principal: 'Diana Shipping', principalKey: 'diana', status: 'active', flag: 'Panama', imo: '9876543', built: 2018, dwt: 82000, crew: [
+                { id: 'C001', name: 'Antonio Santos', rank: 'Master', startDate: '2024-09-01', endDate: '2025-03-28', status: 'onboard', nextCrew: { name: 'Pedro Ramos', startDate: '2025-03-28' } },
+                { id: 'C002', name: 'Juan Dela Cruz', rank: 'Chief Officer', startDate: '2024-11-15', endDate: '2025-08-15', status: 'onboard' },
+                { id: 'C003', name: 'Fernando Bautista', rank: '3rd Officer', startDate: '2024-06-01', endDate: '2025-02-28', status: 'expiring' },
+                { id: 'C004', name: null, rank: 'Bosun', startDate: '2025-03-15', endDate: '2025-09-15', status: 'vacancy' },
+            ]},
+            { id: 'V002', name: 'MV Centrofin Glory', type: 'Tanker', typeKey: 'tanker', principal: 'Centrofin', principalKey: 'centrofin', status: 'active', flag: 'Liberia', imo: '9876544', built: 2020, dwt: 115000, crew: [
+                { id: 'C005', name: 'Ricardo Cruz', rank: 'Master', startDate: '2024-08-01', endDate: '2025-04-01', status: 'onboard' },
+                { id: 'C006', name: 'Mario Reyes', rank: '2nd Engineer', startDate: '2024-12-01', endDate: '2025-09-20', status: 'onboard' },
+                { id: 'C007', name: 'Ramon Lopez', rank: 'Cook', startDate: '2025-02-28', endDate: '2025-11-30', status: 'scheduled' },
+                { id: 'C008', name: 'Miguel Torres', rank: 'AB Seaman', startDate: '2024-10-15', endDate: '2025-05-15', status: 'onboard' },
+            ]},
+            { id: 'V003', name: 'MV Pioneer Spirit', type: 'Container Ship', typeKey: 'container', principal: 'Pioneer Marine', principalKey: 'pioneer', status: 'active', flag: 'Marshall Islands', imo: '9876545', built: 2019, dwt: 68000, crew: [
+                { id: 'C009', name: 'Jose Garcia', rank: 'Master', startDate: '2024-07-01', endDate: '2025-03-01', status: 'expiring' },
+                { id: 'C010', name: 'Daniel Villanueva', rank: '2nd Officer', startDate: '2024-12-15', endDate: '2025-06-15', status: 'onboard' },
+                { id: 'C011', name: null, rank: 'AB Seaman', startDate: '2025-04-01', endDate: '2025-10-01', status: 'vacancy' },
+                { id: 'C012', name: 'Carlos Mendoza', rank: 'Oiler', startDate: '2024-11-01', endDate: '2025-07-01', status: 'onboard' },
+            ]},
+            { id: 'V004', name: 'MV Neda Harmony', type: 'LNG Carrier', typeKey: 'lng', principal: 'Neda Maritime', principalKey: 'neda', status: 'active', flag: 'Greece', imo: '9876546', built: 2021, dwt: 95000, crew: [
+                { id: 'C013', name: 'Eduardo Pascual', rank: 'Chief Engineer', startDate: '2024-10-01', endDate: '2025-07-10', status: 'onboard' },
+                { id: 'C014', name: 'Roberto Silva', rank: 'Master', startDate: '2024-05-01', endDate: '2025-02-15', status: 'expiring', extension: true },
+                { id: 'C015', name: 'Manuel Cruz', rank: '2nd Officer', startDate: '2025-01-15', endDate: '2025-08-15', status: 'onboard' },
+            ]},
+            { id: 'V005', name: 'MV Diana Ocean', type: 'Bulk Carrier', typeKey: 'bulk', principal: 'Diana Shipping', principalKey: 'diana', status: 'active', flag: 'Panama', imo: '9876547', built: 2017, dwt: 78000, crew: [
+                { id: 'C016', name: 'Francisco Ramos', rank: 'Master', startDate: '2024-06-15', endDate: '2025-03-15', status: 'onboard' },
+                { id: 'C017', name: 'Gabriel Santos', rank: 'Chief Officer', startDate: '2024-09-01', endDate: '2025-06-01', status: 'onboard' },
+                { id: 'C018', name: 'Luis Torres', rank: '2nd Engineer', startDate: '2024-11-01', endDate: '2025-08-01', status: 'onboard' },
+            ]},
+            { id: 'V006', name: 'MV Centrofin Titan', type: 'Tanker', typeKey: 'tanker', principal: 'Centrofin', principalKey: 'centrofin', status: 'maintenance', flag: 'Liberia', imo: '9876548', built: 2016, dwt: 105000, crew: [
+                { id: 'C019', name: 'Pedro Martinez', rank: 'Master', startDate: '2024-04-01', endDate: '2025-01-01', status: 'onboard' },
+            ]},
+            { id: 'V007', name: 'MV Pioneer Wave', type: 'Container Ship', typeKey: 'container', principal: 'Pioneer Marine', principalKey: 'pioneer', status: 'active', flag: 'Marshall Islands', imo: '9876549', built: 2022, dwt: 72000, crew: [
+                { id: 'C020', name: 'Marco Reyes', rank: 'Master', startDate: '2024-08-15', endDate: '2025-05-15', status: 'onboard' },
+                { id: 'C021', name: 'Andres Cruz', rank: 'Chief Engineer', startDate: '2024-10-01', endDate: '2025-07-01', status: 'onboard' },
+                { id: 'C022', name: 'Felipe Garcia', rank: 'Chief Officer', startDate: '2024-12-01', endDate: '2025-09-01', status: 'onboard' },
+                { id: 'C023', name: 'Oscar Mendez', rank: 'Bosun', startDate: '2024-07-01', endDate: '2025-04-01', status: 'onboard' },
+            ]},
+            { id: 'V008', name: 'MV Neda Spirit', type: 'LNG Carrier', typeKey: 'lng', principal: 'Neda Maritime', principalKey: 'neda', status: 'active', flag: 'Greece', imo: '9876550', built: 2023, dwt: 98000, crew: [
+                { id: 'C024', name: 'Rafael Aquino', rank: 'Master', startDate: '2024-09-01', endDate: '2025-06-01', status: 'onboard' },
+                { id: 'C025', name: 'Diego Fernandez', rank: 'Chief Engineer', startDate: '2024-11-15', endDate: '2025-08-15', status: 'onboard' },
+            ]},
+        ];
+
+        // Timeline state
+        let timelineStartMonth = 0; // 0 = current month
+
+        // ROTATION PLAN RENDERING
+        function renderRotationPlan() {
+            renderGanttHeader();
+            renderGanttBody();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function getMonthsArray(count, startOffset) {
+            const months = [];
+            const now = new Date();
+            for (let i = startOffset; i < startOffset + count; i++) {
+                const d = new Date(now.getFullYear(), now.getMonth() + i, 1);
+                months.push({
+                    month: d.toLocaleString('en-US', { month: 'short' }),
+                    year: d.getFullYear(),
+                    date: d,
+                    isCurrent: i === 0
+                });
+            }
+            return months;
+        }
+
+        function renderGanttHeader() {
+            const container = document.getElementById('ganttHeaderScroll');
+            if (!container) return;
+            const months = getMonthsArray(12, timelineStartMonth);
+            container.innerHTML = months.map(m => 
+                '<div class="gantt-month' + (m.isCurrent ? ' current' : '') + '">' +
+                '<div class="gantt-month-name">' + m.month + '</div>' +
+                '<div class="gantt-month-year">' + m.year + '</div></div>'
+            ).join('');
+        }
+
+        function renderGanttBody() {
+            const container = document.getElementById('ganttBody');
+            if (!container) return;
+            const principalFilter = document.getElementById('rotationPrincipalFilter')?.value || '';
+            const vessels = principalFilter ? MOCK_VESSELS.filter(v => v.principalKey === principalFilter) : MOCK_VESSELS;
+            const months = getMonthsArray(12, timelineStartMonth);
+            
+            container.innerHTML = vessels.map(vessel => {
+                const crewRows = vessel.crew.map(crew => renderCrewRow(crew, months)).join('');
+                return '<div class="gantt-vessel-group" data-vessel="' + vessel.id + '">' +
+                    '<div class="gantt-vessel-row" onclick="toggleVesselCrew(\'' + vessel.id + '\')">' +
+                        '<div class="gantt-vessel-info">' +
+                            '<button class="gantt-expand-btn expanded" data-vessel="' + vessel.id + '"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></button>' +
+                            '<div class="gantt-vessel-icon"><i data-lucide="ship"></i></div>' +
+                            '<div><div class="gantt-vessel-name">' + vessel.name + '</div><div class="gantt-vessel-meta">' + vessel.type + ' • ' + vessel.principal + '</div></div>' +
+                        '</div>' +
+                        '<div class="gantt-vessel-timeline">' + months.map(m => '<div class="gantt-cell' + (m.isCurrent ? ' current' : '') + '"></div>').join('') + '</div>' +
+                    '</div>' +
+                    '<div class="gantt-crew-rows" id="crew-' + vessel.id + '">' + crewRows + '</div>' +
+                '</div>';
+            }).join('');
+        }
+
+        function renderCrewRow(crew, months) {
+            const barStyle = calculateBarPosition(crew.startDate, crew.endDate, months);
+            const statusClass = crew.extension ? 'extension' : crew.status;
+            const displayName = crew.name || 'VACANCY';
+            const initials = crew.name ? crew.name.split(' ').map(n => n[0]).join('') : '?';
+            
+            return '<div class="gantt-crew-row">' +
+                '<div class="gantt-crew-info">' +
+                    '<div class="gantt-crew-avatar" style="' + (crew.status === 'vacancy' ? 'background:var(--tag-nfr);color:white;' : '') + '">' + initials + '</div>' +
+                    '<div class="gantt-crew-details">' +
+                        '<div class="gantt-crew-name">' + displayName + '</div>' +
+                        '<div class="gantt-crew-rank">' + crew.rank + '</div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="gantt-crew-timeline">' +
+                    months.map(m => '<div class="gantt-cell' + (m.isCurrent ? ' current' : '') + '"></div>').join('') +
+                    (barStyle ? '<div class="gantt-bar ' + statusClass + '" style="' + barStyle + '" title="' + displayName + ': ' + crew.startDate + ' to ' + crew.endDate + '">' + displayName + '</div>' : '') +
+                '</div>' +
+            '</div>';
+        }
+
+        function calculateBarPosition(startDate, endDate, months) {
+            if (!startDate || !endDate || months.length === 0) return null;
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+            const timelineStart = months[0].date;
+            const timelineEnd = new Date(months[months.length - 1].date);
+            timelineEnd.setMonth(timelineEnd.getMonth() + 1);
+            
+            if (end < timelineStart || start > timelineEnd) return null;
+            
+            const effectiveStart = start < timelineStart ? timelineStart : start;
+            const effectiveEnd = end > timelineEnd ? timelineEnd : end;
+            
+            const totalDays = (timelineEnd - timelineStart) / (1000 * 60 * 60 * 24);
+            const startOffset = (effectiveStart - timelineStart) / (1000 * 60 * 60 * 24);
+            const duration = (effectiveEnd - effectiveStart) / (1000 * 60 * 60 * 24);
+            
+            const leftPercent = (startOffset / totalDays) * 100;
+            const widthPercent = (duration / totalDays) * 100;
+            
+            return 'left:calc(' + leftPercent + '% + 4px);width:calc(' + widthPercent + '% - 8px);';
+        }
+
+        function toggleVesselCrew(vesselId) {
+            const crewContainer = document.getElementById('crew-' + vesselId);
+            const expandBtn = document.querySelector('.gantt-expand-btn[data-vessel="' + vesselId + '"]');
+            if (crewContainer && expandBtn) {
+                const isHidden = crewContainer.style.display === 'none';
+                crewContainer.style.display = isHidden ? 'block' : 'none';
+                expandBtn.classList.toggle('expanded', isHidden);
+            }
+        }
+
+        function shiftTimeline(months) {
+            timelineStartMonth += months;
+            renderRotationPlan();
+        }
+        
+        function exportRotationPlan() {
+            let csv = 'Vessel,Position,Seafarer,Contract Start,Contract End,Status\n';
+            
+            // Export rotation data
+            MOCK_ROTATION_DATA.forEach(vessel => {
+                vessel.positions.forEach(pos => {
+                    csv += '"' + vessel.name + '","' + pos.rank + '","' + (pos.seafarer || 'VACANCY') + '","' + (pos.contractStart || 'N/A') + '","' + (pos.contractEnd || 'N/A') + '","' + (pos.seafarer ? 'Filled' : 'Vacant') + '"\n';
+                });
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'rotation_plan_export_' + new Date().toISOString().split('T')[0] + '.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            showNotification('Rotation plan exported successfully!', 'success');
+        }
+        
+        function filterRotationByType(type) {
+            const showFilter = document.getElementById('rotationShowFilter');
+            if (showFilter) {
+                showFilter.value = type;
+            }
+            showNotification('Filtering: ' + (type === 'vacancies' ? 'Vacancies Only' : type === 'expiring' ? 'Expiring Soon' : 'All'), 'info');
+            renderRotationPlan();
+        }
+        
+        function savePlanRotation() {
+            const vessel = document.getElementById('rotationVessel')?.value;
+            const position = document.getElementById('rotationPosition')?.value;
+            const signOffDate = document.getElementById('rotationSignOffDate')?.value;
+            
+            if (!vessel || !position || !signOffDate) {
+                showNotification('Please fill all required fields', 'error');
+                return;
+            }
+            
+            const replacement = document.getElementById('rotationReplacement')?.value;
+            const signOnDate = document.getElementById('rotationSignOnDate')?.value;
+            
+            if (replacement && signOnDate) {
+                showNotification('Rotation planned: ' + position + ' on ' + vessel.replace('-', ' ').toUpperCase(), 'success');
+            } else {
+                showNotification('Vacancy created for ' + position + ' position', 'warning');
+            }
+            
+            closeModal('planRotationModal');
+            renderRotationPlan();
+        }
+
+        // KANBAN BOARD RENDERING
+        function renderKanbanBoard(stageFilter = null) {
+            const container = document.getElementById('kanbanBoard');
+            if (!container) return;
+            
+            // Get filter values
+            const rfcFilter = document.getElementById('candidateRfcFilter')?.value || '';
+            const rankFilter = document.getElementById('candidateRankFilter')?.value || '';
+            const sourceFilter = document.getElementById('candidateSourceFilter')?.value || '';
+            const priorityFilter = document.getElementById('candidatePriorityFilter')?.value || '';
+            const searchQuery = document.getElementById('candidateSearchInput')?.value?.toLowerCase() || '';
+            
+            // Filter candidates
+            let filteredCandidates = MOCK_CANDIDATES.filter(c => {
+                if (rfcFilter && c.rfcId !== rfcFilter) return false;
+                if (rankFilter && c.rank !== rankFilter) return false;
+                if (sourceFilter && c.source !== sourceFilter) return false;
+                if (priorityFilter && c.priority !== priorityFilter) return false;
+                if (searchQuery) {
+                    const fullName = (c.firstName + ' ' + c.lastName).toLowerCase();
+                    if (!fullName.includes(searchQuery) && !c.rank.toLowerCase().includes(searchQuery)) return false;
+                }
+                return true;
+            });
+            
+            // Determine which columns to show
+            const columnsToShow = stageFilter ? KANBAN_COLUMNS.filter(col => col.id === stageFilter) : KANBAN_COLUMNS;
+            
+            container.innerHTML = columnsToShow.map(col => {
+                const candidates = filteredCandidates.filter(c => c.stage === col.id);
+                return '<div class="kanban-column">' +
+                    '<div class="kanban-column-header ' + col.color + '">' +
+                        '<div class="kanban-column-title">' +
+                            '<span class="kanban-column-name">' + col.name + '</span>' +
+                            '<span class="kanban-column-count">' + candidates.length + '</span>' +
+                        '</div>' +
+                        '<div class="kanban-column-actions">' +
+                            (stageFilter ? '<button class="kanban-column-btn" onclick="renderKanbanBoard()" title="Show all columns"><i data-lucide="x" style="width:16px;height:16px;"></i></button>' : '<button class="kanban-column-btn"><i data-lucide="more-horizontal" style="width:16px;height:16px;"></i></button>') +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="kanban-cards">' +
+                        candidates.map(c => renderCandidateCard(c)).join('') +
+                        (candidates.length === 0 ? '<div style="padding:24px;text-align:center;color:var(--cw-gray-400);font-size:0.85rem;">No candidates match filters</div>' : '') +
+                        (col.id !== 'endorsed' && col.id !== 'rejected' && candidates.length > 0 ? '<button class="kanban-add-card" onclick="openModal(\'addCandidateModal\')"><i data-lucide="plus" style="width:16px;height:16px;"></i>Add Candidate</button>' : '') +
+                    '</div>' +
+                '</div>';
+            }).join('');
+            
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        
+        function filterKanban(stage) {
+            renderKanbanBoard(stage);
+        }
+
+        function renderCandidateCard(candidate) {
+            const initials = candidate.firstName[0] + candidate.lastName[0];
+            const daysClass = candidate.daysInStage > 5 ? 'danger' : candidate.daysInStage > 3 ? 'warning' : '';
+            
+            let tags = '';
+            if (candidate.priority === 'urgent') tags += '<span class="kanban-card-tag urgent">Urgent</span>';
+            if (candidate.priority === 'high') tags += '<span class="kanban-card-tag high">High</span>';
+            if (candidate.rfcId) tags += '<span class="kanban-card-tag rfc">' + candidate.rfcId + '</span>';
+            if (candidate.docsStatus === 'ok') tags += '<span class="kanban-card-tag docs-ok">Docs OK</span>';
+            if (candidate.docsStatus === 'partial') tags += '<span class="kanban-card-tag docs-pending">Docs Pending</span>';
+            
+            return '<div class="kanban-card" onclick="openCandidatePanel(\'' + candidate.id + '\')">' +
+                '<div class="kanban-card-header">' +
+                    '<div class="kanban-card-avatar">' + initials + '</div>' +
+                    '<div class="kanban-card-info">' +
+                        '<div class="kanban-card-name">' + candidate.firstName + ' ' + candidate.lastName + '</div>' +
+                        '<div class="kanban-card-rank">' + candidate.rank + '</div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="kanban-card-body">' +
+                    '<div class="kanban-card-meta"><i data-lucide="briefcase"></i>' + candidate.source + '</div>' +
+                    (tags ? '<div class="kanban-card-tags">' + tags + '</div>' : '') +
+                '</div>' +
+                '<div class="kanban-card-footer">' +
+                    '<span class="kanban-card-days ' + daysClass + '">' + candidate.daysInStage + ' day' + (candidate.daysInStage !== 1 ? 's' : '') + ' in stage</span>' +
+                    '<div class="kanban-card-actions">' +
+                        '<button class="kanban-column-btn" onclick="event.stopPropagation();"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></button>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+        }
+
+        let currentPanelItem = null; // Store current item being viewed
+        
+        function openCandidatePanel(id) {
+            const candidate = MOCK_CANDIDATES.find(c => c.id === id);
+            if (!candidate) return;
+            currentPanelItem = { type: 'candidate', data: candidate };
+            const initials = candidate.firstName[0] + candidate.lastName[0];
+            const stageLabel = KANBAN_COLUMNS.find(c => c.id === candidate.stage)?.name || candidate.stage;
+            const avatar = document.getElementById('seafarerPanelAvatar');
+            const name = document.getElementById('seafarerPanelName');
+            const rank = document.getElementById('seafarerPanelRank');
+            const statusBadge = document.getElementById('seafarerPanelStatus');
+            const docsCount = document.getElementById('seafarerDocsCount');
+            const contractDays = document.getElementById('seafarerContractDays');
+            const poolType = document.getElementById('seafarerPoolType');
+            const email = document.getElementById('seafarerEmail');
+            const phone = document.getElementById('seafarerPhone');
+            if (avatar) avatar.textContent = initials;
+            if (name) name.textContent = candidate.firstName + ' ' + candidate.lastName;
+            if (rank) rank.textContent = candidate.rank + ' - ' + candidate.id;
+            if (statusBadge) { statusBadge.textContent = stageLabel; statusBadge.style.background = 'rgba(59,130,246,0.2)'; statusBadge.style.color = '#3b82f6'; }
+            if (docsCount) docsCount.textContent = candidate.docsStatus === 'ok' ? 'Complete' : 'Pending';
+            if (contractDays) contractDays.textContent = candidate.daysInStage + 'd';
+            if (poolType) poolType.textContent = candidate.priority.toUpperCase();
+            if (email) email.innerHTML = '<a href="mailto:' + candidate.email + '">' + candidate.email + '</a>';
+            if (phone) phone.textContent = candidate.phone;
+            let html = '<div style="background:var(--cw-gray-50);border-radius:12px;padding:20px;margin-bottom:20px;">';
+            html += '<h4 style="margin:0 0 16px;font-size:0.85rem;color:var(--cw-gray-500);text-transform:uppercase;">Application Details</h4>';
+            html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">';
+            html += '<div><div style="font-size:0.75rem;color:var(--cw-gray-500);margin-bottom:4px;">Source</div><div style="font-weight:600;text-transform:capitalize;">' + candidate.source + '</div></div>';
+            html += '<div><div style="font-size:0.75rem;color:var(--cw-gray-500);margin-bottom:4px;">Priority</div><div style="font-weight:600;text-transform:capitalize;">' + candidate.priority + '</div></div>';
+            html += '<div><div style="font-size:0.75rem;color:var(--cw-gray-500);margin-bottom:4px;">RFC</div><div style="font-weight:600;">' + (candidate.rfcId || 'None') + '</div></div>';
+            html += '<div><div style="font-size:0.75rem;color:var(--cw-gray-500);margin-bottom:4px;">Days in Stage</div><div style="font-weight:600;">' + candidate.daysInStage + ' days</div></div>';
+            html += '</div></div>';
+            html += '<div style="background:var(--cw-gray-50);border-radius:12px;padding:20px;margin-bottom:20px;">';
+            html += '<h4 style="margin:0 0 16px;font-size:0.85rem;color:var(--cw-gray-500);text-transform:uppercase;">Document Status</h4>';
+            html += '<span class="tag tag-' + (candidate.docsStatus === 'ok' ? 'assigned' : 'unassigned') + '">' + (candidate.docsStatus === 'ok' ? 'All Documents OK' : 'Documents Pending') + '</span>';
+            html += '</div>';
+            html += '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;">';
+            html += '<button class="btn btn-primary" onclick="moveToNextStage(\'' + candidate.id + '\')"><i data-lucide="arrow-right"></i>Move to Next Stage</button>';
+            html += '<button class="btn btn-secondary" onclick="scheduleInterviewFor(\'' + candidate.id + '\')"><i data-lucide="calendar"></i>Schedule Interview</button>';
+            html += '<button class="btn btn-ghost" style="color:#ef4444;" onclick="rejectCandidate(\'' + candidate.id + '\')"><i data-lucide="x-circle"></i>Reject</button>';
+            html += '</div>';
+            document.getElementById('candidateModalAvatar').textContent = initials;
+            document.getElementById('candidateModalName').textContent = candidate.firstName + ' ' + candidate.lastName;
+            document.getElementById('candidateModalRank').textContent = candidate.rank + ' • ' + candidate.id;
+            document.getElementById('candidateModalBody').innerHTML = html;
+            openModal('candidateDetailModal');
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        
+
+        function editCandidateFromModal() {
+            if (!currentPanelItem || currentPanelItem.type !== 'candidate') return;
+            const candidate = currentPanelItem.data;
+            closeModal('candidateDetailModal');
+            openModal('editCandidateModal');
+            const idField = document.getElementById('editCandidateId');
+            const firstNameField = document.getElementById('editCandidateFirstName');
+            const lastNameField = document.getElementById('editCandidateLastName');
+            const rankField = document.getElementById('editCandidateRank');
+            const emailField = document.getElementById('editCandidateEmail');
+            const phoneField = document.getElementById('editCandidatePhone');
+            const sourceField = document.getElementById('editCandidateSource');
+            const priorityField = document.getElementById('editCandidatePriority');
+            if (idField) idField.value = candidate.id;
+            if (firstNameField) firstNameField.value = candidate.firstName;
+            if (lastNameField) lastNameField.value = candidate.lastName;
+            if (rankField) rankField.value = candidate.rank;
+            if (emailField) emailField.value = candidate.email;
+            if (phoneField) phoneField.value = candidate.phone;
+            if (sourceField) sourceField.value = candidate.source;
+            if (priorityField) priorityField.value = candidate.priority;
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        window.editCandidateFromModal = editCandidateFromModal;
+        
+        function viewFullProfile() {
+            if (!currentPanelItem) return;
+            
+            if (currentPanelItem.type === 'candidate') {
+                const c = currentPanelItem.data;
+                const initials = c.firstName[0] + c.lastName[0];
+                const stageLabel = KANBAN_COLUMNS.find(col => col.id === c.stage)?.name || c.stage;
+                
+                let html = '<div style="display:flex;gap:24px;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--cw-gray-200);">' +
+                    '<div class="avatar" style="width:100px;height:100px;font-size:2rem;flex-shrink:0;">' + initials + '</div>' +
+                    '<div style="flex:1;">' +
+                        '<h2 style="font-size:1.5rem;font-weight:700;margin-bottom:4px;">' + c.firstName + ' ' + c.lastName + '</h2>' +
+                        '<p style="font-size:1.1rem;color:var(--cw-gray-600);margin-bottom:8px;">' + c.rank + '</p>' +
+                        '<p style="font-size:0.9rem;color:var(--cw-gray-500);margin-bottom:12px;">Candidate ID: ' + c.id + '</p>' +
+                        '<div style="display:flex;gap:8px;flex-wrap:wrap;">' +
+                            '<span class="status-badge status-' + c.stage + '"><span class="dot"></span>' + stageLabel + '</span>' +
+                            '<span class="tag tag-' + c.priority + '" style="text-transform:capitalize;">' + c.priority + ' Priority</span>' +
+                            '<span class="tag tag-' + (c.docsStatus === 'ok' ? 'assigned' : 'unassigned') + '">' + (c.docsStatus === 'ok' ? 'Docs Complete' : 'Docs Pending') + '</span>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+                
+                html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">';
+                
+                // Left Column
+                html += '<div>' +
+                    '<div class="panel-section"><h4 class="panel-section-title">Contact Information</h4>' +
+                        '<div class="info-box">' +
+                            '<div class="contact-item" style="margin-bottom:12px;"><i data-lucide="mail"></i><span>' + c.email + '</span></div>' +
+                            '<div class="contact-item" style="margin-bottom:12px;"><i data-lucide="phone"></i><span>' + c.phone + '</span></div>' +
+                            '<div class="contact-item"><i data-lucide="map-pin"></i><span>Manila, Philippines</span></div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="panel-section"><h4 class="panel-section-title">Application Details</h4>' +
+                        '<div class="info-box"><div class="info-grid">' +
+                            '<div class="info-item"><span class="info-label">Source</span><span class="info-value" style="text-transform:capitalize;">' + c.source + '</span></div>' +
+                            '<div class="info-item"><span class="info-label">Applied Date</span><span class="info-value">2025-01-15</span></div>' +
+                            '<div class="info-item"><span class="info-label">Days in Stage</span><span class="info-value">' + c.daysInStage + ' days</span></div>' +
+                            '<div class="info-item"><span class="info-label">Linked RFC</span><span class="info-value">' + (c.rfcId || 'None') + '</span></div>' +
+                        '</div></div>' +
+                    '</div>' +
+                '</div>';
+                
+                // Right Column
+                html += '<div>' +
+                    '<div class="panel-section"><h4 class="panel-section-title">Certifications & Documents</h4>' +
+                        '<div class="info-box">' +
+                            '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--cw-gray-100);"><span>STCW Certificate</span><span class="tag tag-assigned" style="font-size:0.7rem;">Valid</span></div>' +
+                            '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--cw-gray-100);"><span>Medical Certificate</span><span class="tag tag-assigned" style="font-size:0.7rem;">Valid</span></div>' +
+                            '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--cw-gray-100);"><span>Passport</span><span class="tag tag-assigned" style="font-size:0.7rem;">Valid</span></div>' +
+                            '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--cw-gray-100);"><span>Seamans Book</span><span class="tag tag-' + (c.docsStatus === 'ok' ? 'assigned' : 'unassigned') + '" style="font-size:0.7rem;">' + (c.docsStatus === 'ok' ? 'Valid' : 'Pending') + '</span></div>' +
+                            '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;"><span>Flag State License</span><span class="tag tag-' + (c.docsStatus === 'ok' ? 'assigned' : 'unassigned') + '" style="font-size:0.7rem;">' + (c.docsStatus === 'ok' ? 'Valid' : 'Pending') + '</span></div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="panel-section"><h4 class="panel-section-title">Experience Summary</h4>' +
+                        '<div class="info-box">' +
+                            '<div class="info-item" style="margin-bottom:8px;"><span class="info-label">Total Sea Service</span><span class="info-value">8 years, 4 months</span></div>' +
+                            '<div class="info-item" style="margin-bottom:8px;"><span class="info-label">Vessel Types</span><span class="info-value">Bulk Carrier, Tanker</span></div>' +
+                            '<div class="info-item"><span class="info-label">Last Vessel</span><span class="info-value">MV Pacific Star</span></div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+                
+                html += '</div>'; // Close grid
+                
+                // Timeline
+                html += '<div class="panel-section" style="margin-top:24px;"><h4 class="panel-section-title">Application Timeline <span style="font-size:0.75rem;color:var(--cw-gray-400);font-weight:normal;">(Click to change stage)</span></h4>' +
+                    '<div style="display:flex;gap:16px;overflow-x:auto;padding:16px 0;">' +
+                        '<div onclick="changeCandidateStage(\'' + c.id + '\', \'new\')" style="flex:1;min-width:120px;text-align:center;padding:16px;background:' + (c.stage === 'new' || c.stage === 'screening' || c.stage === 'interview' || c.stage === 'negotiation' || c.stage === 'endorsed' ? 'var(--status-ready)' : 'var(--cw-gray-200)') + ';color:white;border-radius:8px;cursor:pointer;transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform=\'scale(1.05)\';this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.15)\';" onmouseout="this.style.transform=\'scale(1)\';this.style.boxShadow=\'none\';"><i data-lucide="user-plus" style="width:24px;height:24px;margin-bottom:8px;"></i><div style="font-size:0.8rem;">New</div><div style="font-size:0.7rem;opacity:0.8;">Jan 15</div></div>' +
+                        '<div onclick="changeCandidateStage(\'' + c.id + '\', \'screening\')" style="flex:1;min-width:120px;text-align:center;padding:16px;background:' + (c.stage === 'screening' || c.stage === 'interview' || c.stage === 'negotiation' || c.stage === 'endorsed' ? 'var(--status-ready)' : 'var(--cw-gray-200)') + ';color:' + (c.stage === 'screening' || c.stage === 'interview' || c.stage === 'negotiation' || c.stage === 'endorsed' ? 'white' : 'var(--cw-gray-500)') + ';border-radius:8px;cursor:pointer;transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform=\'scale(1.05)\';this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.15)\';" onmouseout="this.style.transform=\'scale(1)\';this.style.boxShadow=\'none\';"><i data-lucide="search" style="width:24px;height:24px;margin-bottom:8px;"></i><div style="font-size:0.8rem;">Screening</div><div style="font-size:0.7rem;opacity:0.8;">' + (c.stage === 'screening' || c.stage === 'interview' || c.stage === 'negotiation' || c.stage === 'endorsed' ? 'Jan 18' : '—') + '</div></div>' +
+                        '<div onclick="changeCandidateStage(\'' + c.id + '\', \'interview\')" style="flex:1;min-width:120px;text-align:center;padding:16px;background:' + (c.stage === 'interview' || c.stage === 'negotiation' || c.stage === 'endorsed' ? 'var(--status-ready)' : 'var(--cw-gray-200)') + ';color:' + (c.stage === 'interview' || c.stage === 'negotiation' || c.stage === 'endorsed' ? 'white' : 'var(--cw-gray-500)') + ';border-radius:8px;cursor:pointer;transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform=\'scale(1.05)\';this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.15)\';" onmouseout="this.style.transform=\'scale(1)\';this.style.boxShadow=\'none\';"><i data-lucide="message-square" style="width:24px;height:24px;margin-bottom:8px;"></i><div style="font-size:0.8rem;">Interview</div><div style="font-size:0.7rem;opacity:0.8;">' + (c.stage === 'interview' || c.stage === 'negotiation' || c.stage === 'endorsed' ? 'Jan 22' : '—') + '</div></div>' +
+                        '<div onclick="changeCandidateStage(\'' + c.id + '\', \'negotiation\')" style="flex:1;min-width:120px;text-align:center;padding:16px;background:' + (c.stage === 'negotiation' || c.stage === 'endorsed' ? 'var(--status-ready)' : 'var(--cw-gray-200)') + ';color:' + (c.stage === 'negotiation' || c.stage === 'endorsed' ? 'white' : 'var(--cw-gray-500)') + ';border-radius:8px;cursor:pointer;transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform=\'scale(1.05)\';this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.15)\';" onmouseout="this.style.transform=\'scale(1)\';this.style.boxShadow=\'none\';"><i data-lucide="handshake" style="width:24px;height:24px;margin-bottom:8px;"></i><div style="font-size:0.8rem;">Negotiation</div><div style="font-size:0.7rem;opacity:0.8;">' + (c.stage === 'negotiation' || c.stage === 'endorsed' ? 'Jan 25' : '—') + '</div></div>' +
+                        '<div onclick="changeCandidateStage(\'' + c.id + '\', \'endorsed\')" style="flex:1;min-width:120px;text-align:center;padding:16px;background:' + (c.stage === 'endorsed' ? 'var(--status-ready)' : 'var(--cw-gray-200)') + ';color:' + (c.stage === 'endorsed' ? 'white' : 'var(--cw-gray-500)') + ';border-radius:8px;cursor:pointer;transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform=\'scale(1.05)\';this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.15)\';" onmouseout="this.style.transform=\'scale(1)\';this.style.boxShadow=\'none\';"><i data-lucide="check-circle" style="width:24px;height:24px;margin-bottom:8px;"></i><div style="font-size:0.8rem;">Endorsed</div><div style="font-size:0.7rem;opacity:0.8;">' + (c.stage === 'endorsed' ? 'Jan 28' : '—') + '</div></div>' +
+                    '</div>' +
+                '</div>';
+                
+                // Notes
+                html += '<div class="panel-section"><h4 class="panel-section-title">Notes & Comments</h4>' +
+                    '<div class="info-box" style="background:var(--cw-gray-50);">' +
+                        '<div style="padding:12px;border-bottom:1px solid var(--cw-gray-200);"><div style="font-size:0.8rem;color:var(--cw-gray-500);margin-bottom:4px;">Maria Santos • 2 days ago</div><div>Strong technical background. Recommended for interview.</div></div>' +
+                        '<div style="padding:12px;"><div style="font-size:0.8rem;color:var(--cw-gray-500);margin-bottom:4px;">System • 5 days ago</div><div>Candidate added to pipeline from ' + c.source + ' source.</div></div>' +
+                    '</div>' +
+                '</div>';
+                
+                document.getElementById('fullProfileContent').innerHTML = html;
+                closePanel('seafarerPanel');
+                openModal('fullProfileModal');
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }
+        }
+        
+        function printProfile() {
+            window.print();
+        }
+        
+        function openEditModal() {
+            if (!currentPanelItem) return;
+            
+            const item = currentPanelItem.data;
+            
+            if (currentPanelItem.type === 'candidate') {
+                // Populate and open edit candidate modal
+                document.getElementById('editCandidateFirstName').value = item.firstName;
+                document.getElementById('editCandidateLastName').value = item.lastName;
+                document.getElementById('editCandidateRank').value = item.rank;
+                document.getElementById('editCandidateEmail').value = item.email;
+                document.getElementById('editCandidatePhone').value = item.phone;
+                document.getElementById('editCandidatePriority').value = item.priority;
+                document.getElementById('editCandidateStage').value = item.stage;
+                openModal('editCandidateModal');
+            }
+        }
+        
+        function saveEditCandidate() {
+            showNotification('Candidate updated successfully!', 'success');
+            closeModal('editCandidateModal');
+            closePanel('seafarerPanel');
+            renderKanbanBoard();
+        }
+        
+        function moveToNextStage(id) {
+            const stages = ['new', 'screening', 'interview', 'negotiation', 'endorsed'];
+            const candidate = MOCK_CANDIDATES.find(c => c.id === id);
+            if (!candidate) return;
+            
+            const currentIndex = stages.indexOf(candidate.stage);
+            if (currentIndex < stages.length - 1) {
+                candidate.stage = stages[currentIndex + 1];
+                candidate.daysInStage = 0;
+                showNotification(candidate.firstName + ' moved to ' + stages[currentIndex + 1].charAt(0).toUpperCase() + stages[currentIndex + 1].slice(1), 'success');
+                closePanel('seafarerPanel');
+                renderKanbanBoard();
+            }
+        }
+        window.moveToNextStage = moveToNextStage;
+        
+        function scheduleInterviewFor(id) {
+            const candidate = MOCK_CANDIDATES.find(c => c.id === id);
+            if (!candidate) return;
+            
+            closePanel('seafarerPanel');
+            document.getElementById('interviewCandidateSelect').value = id;
+            openModal('scheduleInterviewModal');
+        }
+        window.scheduleInterviewFor = scheduleInterviewFor;
+        
+        function rejectCandidate(id) {
+            const candidate = MOCK_CANDIDATES.find(c => c.id === id);
+            if (!candidate) return;
+            
+            if (confirm('Are you sure you want to reject ' + candidate.firstName + ' ' + candidate.lastName + '?')) {
+                candidate.stage = 'rejected';
+                showNotification('Candidate rejected', 'info');
+                closePanel('seafarerPanel');
+                renderKanbanBoard();
+            }
+        }
+        window.rejectCandidate = rejectCandidate;
+        
+        function changeCandidateStage(id, newStage) {
+            const candidate = MOCK_CANDIDATES.find(c => c.id === id);
+            if (!candidate) return;
+            
+            const stageLabels = { new: 'New', screening: 'Screening', interview: 'Interview', negotiation: 'Negotiation', endorsed: 'Endorsed' };
+            
+            if (candidate.stage === newStage) {
+                showNotification('Candidate is already in ' + stageLabels[newStage] + ' stage', 'info');
+                return;
+            }
+            
+            candidate.stage = newStage;
+            candidate.daysInStage = 0;
+            
+            // Update the currentPanelItem
+            if (currentPanelItem) {
+                currentPanelItem.data = candidate;
+            }
+            
+            showNotification(candidate.firstName + ' ' + candidate.lastName + ' moved to ' + stageLabels[newStage], 'success');
+            
+            // Refresh the full profile modal content without closing
+            refreshFullProfileContent(candidate);
+            
+            // Refresh kanban in background
+            renderKanbanBoard();
+        }
+        
+        function refreshFullProfileContent(c) {
+            const initials = c.firstName[0] + c.lastName[0];
+            const stageLabel = KANBAN_COLUMNS.find(col => col.id === c.stage)?.name || c.stage;
+            
+            let html = '<div style="display:flex;gap:24px;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--cw-gray-200);">' +
+                '<div class="avatar" style="width:100px;height:100px;font-size:2rem;flex-shrink:0;">' + initials + '</div>' +
+                '<div style="flex:1;">' +
+                    '<h2 style="font-size:1.5rem;font-weight:700;margin-bottom:4px;">' + c.firstName + ' ' + c.lastName + '</h2>' +
+                    '<p style="font-size:1.1rem;color:var(--cw-gray-600);margin-bottom:8px;">' + c.rank + '</p>' +
+                    '<p style="font-size:0.9rem;color:var(--cw-gray-500);margin-bottom:12px;">Candidate ID: ' + c.id + '</p>' +
+                    '<div style="display:flex;gap:8px;flex-wrap:wrap;">' +
+                        '<span class="status-badge status-' + c.stage + '"><span class="dot"></span>' + stageLabel + '</span>' +
+                        '<span class="tag tag-' + c.priority + '" style="text-transform:capitalize;">' + c.priority + ' Priority</span>' +
+                        '<span class="tag tag-' + (c.docsStatus === 'ok' ? 'assigned' : 'unassigned') + '">' + (c.docsStatus === 'ok' ? 'Docs Complete' : 'Docs Pending') + '</span>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+            
+            html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">';
+            
+            // Left Column
+            html += '<div>' +
+                '<div class="panel-section"><h4 class="panel-section-title">Contact Information</h4>' +
+                    '<div class="info-box">' +
+                        '<div class="contact-item" style="margin-bottom:12px;"><i data-lucide="mail"></i><span>' + c.email + '</span></div>' +
+                        '<div class="contact-item" style="margin-bottom:12px;"><i data-lucide="phone"></i><span>' + c.phone + '</span></div>' +
+                        '<div class="contact-item"><i data-lucide="map-pin"></i><span>Manila, Philippines</span></div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="panel-section"><h4 class="panel-section-title">Application Details</h4>' +
+                    '<div class="info-box"><div class="info-grid">' +
+                        '<div class="info-item"><span class="info-label">Source</span><span class="info-value" style="text-transform:capitalize;">' + c.source + '</span></div>' +
+                        '<div class="info-item"><span class="info-label">Applied Date</span><span class="info-value">2025-01-15</span></div>' +
+                        '<div class="info-item"><span class="info-label">Days in Stage</span><span class="info-value">' + c.daysInStage + ' days</span></div>' +
+                        '<div class="info-item"><span class="info-label">Linked RFC</span><span class="info-value">' + (c.rfcId || 'None') + '</span></div>' +
+                    '</div></div>' +
+                '</div>' +
+            '</div>';
+            
+            // Right Column
+            html += '<div>' +
+                '<div class="panel-section"><h4 class="panel-section-title">Certifications & Documents</h4>' +
+                    '<div class="info-box">' +
+                        '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--cw-gray-100);"><span>STCW Certificate</span><span class="tag tag-assigned" style="font-size:0.7rem;">Valid</span></div>' +
+                        '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--cw-gray-100);"><span>Medical Certificate</span><span class="tag tag-assigned" style="font-size:0.7rem;">Valid</span></div>' +
+                        '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--cw-gray-100);"><span>Passport</span><span class="tag tag-assigned" style="font-size:0.7rem;">Valid</span></div>' +
+                        '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--cw-gray-100);"><span>Seamans Book</span><span class="tag tag-' + (c.docsStatus === 'ok' ? 'assigned' : 'unassigned') + '" style="font-size:0.7rem;">' + (c.docsStatus === 'ok' ? 'Valid' : 'Pending') + '</span></div>' +
+                        '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;"><span>Flag State License</span><span class="tag tag-' + (c.docsStatus === 'ok' ? 'assigned' : 'unassigned') + '" style="font-size:0.7rem;">' + (c.docsStatus === 'ok' ? 'Valid' : 'Pending') + '</span></div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="panel-section"><h4 class="panel-section-title">Experience Summary</h4>' +
+                    '<div class="info-box">' +
+                        '<div class="info-item" style="margin-bottom:8px;"><span class="info-label">Total Sea Service</span><span class="info-value">8 years, 4 months</span></div>' +
+                        '<div class="info-item" style="margin-bottom:8px;"><span class="info-label">Vessel Types</span><span class="info-value">Bulk Carrier, Tanker</span></div>' +
+                        '<div class="info-item"><span class="info-label">Last Vessel</span><span class="info-value">MV Pacific Star</span></div>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+            
+            html += '</div>';
+            
+            // Timeline - Updated
+            html += '<div class="panel-section" style="margin-top:24px;"><h4 class="panel-section-title">Application Timeline <span style="font-size:0.75rem;color:var(--cw-gray-400);font-weight:normal;">(Click to change stage)</span></h4>' +
+                '<div style="display:flex;gap:16px;overflow-x:auto;padding:16px 0;">' +
+                    '<div onclick="changeCandidateStage(\'' + c.id + '\', \'new\')" style="flex:1;min-width:120px;text-align:center;padding:16px;background:' + (c.stage === 'new' || c.stage === 'screening' || c.stage === 'interview' || c.stage === 'negotiation' || c.stage === 'endorsed' ? 'var(--status-ready)' : 'var(--cw-gray-200)') + ';color:white;border-radius:8px;cursor:pointer;transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform=\'scale(1.05)\';this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.15)\';" onmouseout="this.style.transform=\'scale(1)\';this.style.boxShadow=\'none\';"><i data-lucide="user-plus" style="width:24px;height:24px;margin-bottom:8px;"></i><div style="font-size:0.8rem;">New</div><div style="font-size:0.7rem;opacity:0.8;">Jan 15</div></div>' +
+                    '<div onclick="changeCandidateStage(\'' + c.id + '\', \'screening\')" style="flex:1;min-width:120px;text-align:center;padding:16px;background:' + (c.stage === 'screening' || c.stage === 'interview' || c.stage === 'negotiation' || c.stage === 'endorsed' ? 'var(--status-ready)' : 'var(--cw-gray-200)') + ';color:' + (c.stage === 'screening' || c.stage === 'interview' || c.stage === 'negotiation' || c.stage === 'endorsed' ? 'white' : 'var(--cw-gray-500)') + ';border-radius:8px;cursor:pointer;transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform=\'scale(1.05)\';this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.15)\';" onmouseout="this.style.transform=\'scale(1)\';this.style.boxShadow=\'none\';"><i data-lucide="search" style="width:24px;height:24px;margin-bottom:8px;"></i><div style="font-size:0.8rem;">Screening</div><div style="font-size:0.7rem;opacity:0.8;">' + (c.stage === 'screening' || c.stage === 'interview' || c.stage === 'negotiation' || c.stage === 'endorsed' ? 'Jan 18' : '—') + '</div></div>' +
+                    '<div onclick="changeCandidateStage(\'' + c.id + '\', \'interview\')" style="flex:1;min-width:120px;text-align:center;padding:16px;background:' + (c.stage === 'interview' || c.stage === 'negotiation' || c.stage === 'endorsed' ? 'var(--status-ready)' : 'var(--cw-gray-200)') + ';color:' + (c.stage === 'interview' || c.stage === 'negotiation' || c.stage === 'endorsed' ? 'white' : 'var(--cw-gray-500)') + ';border-radius:8px;cursor:pointer;transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform=\'scale(1.05)\';this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.15)\';" onmouseout="this.style.transform=\'scale(1)\';this.style.boxShadow=\'none\';"><i data-lucide="message-square" style="width:24px;height:24px;margin-bottom:8px;"></i><div style="font-size:0.8rem;">Interview</div><div style="font-size:0.7rem;opacity:0.8;">' + (c.stage === 'interview' || c.stage === 'negotiation' || c.stage === 'endorsed' ? 'Jan 22' : '—') + '</div></div>' +
+                    '<div onclick="changeCandidateStage(\'' + c.id + '\', \'negotiation\')" style="flex:1;min-width:120px;text-align:center;padding:16px;background:' + (c.stage === 'negotiation' || c.stage === 'endorsed' ? 'var(--status-ready)' : 'var(--cw-gray-200)') + ';color:' + (c.stage === 'negotiation' || c.stage === 'endorsed' ? 'white' : 'var(--cw-gray-500)') + ';border-radius:8px;cursor:pointer;transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform=\'scale(1.05)\';this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.15)\';" onmouseout="this.style.transform=\'scale(1)\';this.style.boxShadow=\'none\';"><i data-lucide="handshake" style="width:24px;height:24px;margin-bottom:8px;"></i><div style="font-size:0.8rem;">Negotiation</div><div style="font-size:0.7rem;opacity:0.8;">' + (c.stage === 'negotiation' || c.stage === 'endorsed' ? 'Jan 25' : '—') + '</div></div>' +
+                    '<div onclick="changeCandidateStage(\'' + c.id + '\', \'endorsed\')" style="flex:1;min-width:120px;text-align:center;padding:16px;background:' + (c.stage === 'endorsed' ? 'var(--status-ready)' : 'var(--cw-gray-200)') + ';color:' + (c.stage === 'endorsed' ? 'white' : 'var(--cw-gray-500)') + ';border-radius:8px;cursor:pointer;transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform=\'scale(1.05)\';this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.15)\';" onmouseout="this.style.transform=\'scale(1)\';this.style.boxShadow=\'none\';"><i data-lucide="check-circle" style="width:24px;height:24px;margin-bottom:8px;"></i><div style="font-size:0.8rem;">Endorsed</div><div style="font-size:0.7rem;opacity:0.8;">' + (c.stage === 'endorsed' ? 'Jan 28' : '—') + '</div></div>' +
+                '</div>' +
+            '</div>';
+            
+            // Notes
+            html += '<div class="panel-section"><h4 class="panel-section-title">Notes & Comments</h4>' +
+                '<div class="info-box" style="background:var(--cw-gray-50);">' +
+                    '<div style="padding:12px;border-bottom:1px solid var(--cw-gray-200);"><div style="font-size:0.8rem;color:var(--cw-gray-500);margin-bottom:4px;">System • Just now</div><div>Stage changed to ' + stageLabel + '</div></div>' +
+                    '<div style="padding:12px;border-bottom:1px solid var(--cw-gray-200);"><div style="font-size:0.8rem;color:var(--cw-gray-500);margin-bottom:4px;">Maria Santos • 2 days ago</div><div>Strong technical background. Recommended for interview.</div></div>' +
+                    '<div style="padding:12px;"><div style="font-size:0.8rem;color:var(--cw-gray-500);margin-bottom:4px;">System • 5 days ago</div><div>Candidate added to pipeline from ' + c.source + ' source.</div></div>' +
+                '</div>' +
+            '</div>';
+            
+            document.getElementById('fullProfileContent').innerHTML = html;
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function searchCandidates(query) {
+            // In a real app, this would filter the kanban board
+            console.log('Searching for:', query);
+        }
+
+        function filterKanban(stage) {
+            // In a real app, this would highlight/filter a specific stage
+            console.log('Filtering stage:', stage);
+        }
+
+        // FLEET & VESSELS RENDERING
+        function renderFleetGrid() {
+            const container = document.getElementById('fleetGrid');
+            if (!container) return;
+            
+            const principalFilter = document.getElementById('fleetPrincipalFilter')?.value || '';
+            const typeFilter = document.getElementById('fleetTypeFilter')?.value || '';
+            const statusFilter = document.getElementById('fleetStatusFilter')?.value || '';
+            const searchQuery = document.getElementById('fleetSearchInput')?.value?.toLowerCase() || '';
+            
+            let vessels = MOCK_VESSELS;
+            if (principalFilter) vessels = vessels.filter(v => v.principalKey === principalFilter);
+            if (typeFilter) vessels = vessels.filter(v => v.typeKey === typeFilter);
+            if (statusFilter) vessels = vessels.filter(v => v.status === statusFilter);
+            if (searchQuery) vessels = vessels.filter(v => v.name.toLowerCase().includes(searchQuery) || v.principal.toLowerCase().includes(searchQuery));
+            
+            // Update counts
+            const allVessels = MOCK_VESSELS;
+            if (document.getElementById('fleetTotalCount')) {
+                document.getElementById('fleetTotalCount').textContent = allVessels.length;
+            }
+            if (document.getElementById('fleetActiveCount')) {
+                document.getElementById('fleetActiveCount').textContent = allVessels.filter(v => v.status === 'active').length;
+            }
+            if (document.getElementById('fleetMaintenanceCount')) {
+                document.getElementById('fleetMaintenanceCount').textContent = allVessels.filter(v => v.status === 'maintenance').length;
+            }
+            
+            container.innerHTML = vessels.length > 0 ? 
+                vessels.map(vessel => renderVesselCard(vessel)).join('') :
+                '<div style="grid-column:1/-1;padding:48px;text-align:center;color:var(--cw-gray-400);"><i data-lucide="ship" style="width:48px;height:48px;margin-bottom:16px;"></i><p>No vessels match your filters</p></div>';
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        
+        function filterFleetByStatus(status) {
+            try {
+                const statusFilter = document.getElementById('fleetStatusFilter');
+                const principalFilter = document.getElementById('fleetPrincipalFilter');
+                const typeFilter = document.getElementById('fleetTypeFilter');
+                const searchInput = document.getElementById('fleetSearchInput');
+                
+                if (statusFilter) statusFilter.value = status;
+                if (principalFilter) principalFilter.value = '';
+                if (typeFilter) typeFilter.value = '';
+                if (searchInput) searchInput.value = '';
+                
+                renderFleetGrid();
+            } catch (e) {
+                console.error('filterFleetByStatus error:', e);
+                alert('Error: ' + e.message);
+            }
+        }
+        
+        function exportFleet() {
+            let csv = 'ID,Name,Type,Principal,Flag,DWT,Built,Status,Crew\n';
+            MOCK_VESSELS.forEach(v => {
+                csv += '"' + v.id + '","' + v.name + '","' + v.type + '","' + v.principal + '","' + v.flag + '",' + v.dwt + ',' + v.built + ',"' + v.status + '",' + v.crew.length + '\n';
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'fleet_export_' + new Date().toISOString().split('T')[0] + '.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            showNotification('Fleet data exported successfully!', 'success');
+        }
+        
+        function showFleetMap() {
+            openModal('fleetMapModal');
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        
+        function saveNewVessel() {
+            const name = document.getElementById('vesselName').value;
+            const type = document.getElementById('vesselType').value;
+            const principal = document.getElementById('vesselPrincipal').value;
+            
+            if (!name || !type || !principal) {
+                showNotification('Please fill all required fields', 'error');
+                return;
+            }
+            
+            showNotification('Vessel "' + name + '" added successfully!', 'success');
+            closeModal('addVesselModal');
+        }
+
+        function renderVesselCard(vessel) {
+            const crewCount = vessel.crew.length;
+            const vacancies = vessel.crew.filter(c => !c.name).length;
+            const expiring = vessel.crew.filter(c => c.status === 'expiring').length;
+            const crewAvatars = vessel.crew.slice(0, 3).map(c => {
+                const initials = c.name ? c.name.split(' ').map(n => n[0]).join('') : '?';
+                return '<div class="vessel-crew-avatar">' + initials + '</div>';
+            }).join('');
+            const moreCount = crewCount > 3 ? crewCount - 3 : 0;
+            
+            return '<div class="vessel-card" onclick="openVesselDetailModal(\'' + vessel.id + '\')">' +
+                '<div class="vessel-card-header">' +
+                    '<div class="vessel-card-icon ' + vessel.typeKey + '"><i data-lucide="ship"></i></div>' +
+                    '<div class="vessel-card-info">' +
+                        '<div class="vessel-card-name">' + vessel.name + '</div>' +
+                        '<div class="vessel-card-type">' + vessel.type + ' • ' + vessel.dwt.toLocaleString() + ' DWT</div>' +
+                        '<div class="vessel-card-principal"><i data-lucide="building-2" style="width:12px;height:12px;"></i>' + vessel.principal + '</div>' +
+                    '</div>' +
+                    '<div class="vessel-card-status"><div class="vessel-status-dot ' + vessel.status + '"></div></div>' +
+                '</div>' +
+                '<div class="vessel-card-body">' +
+                    '<div class="vessel-card-stats">' +
+                        '<div class="vessel-stat"><div class="vessel-stat-value">' + crewCount + '</div><div class="vessel-stat-label">Crew</div></div>' +
+                        '<div class="vessel-stat"><div class="vessel-stat-value" style="color:' + (vacancies > 0 ? 'var(--tag-nfr)' : 'var(--status-ready)') + ';">' + vacancies + '</div><div class="vessel-stat-label">Vacancies</div></div>' +
+                        '<div class="vessel-stat"><div class="vessel-stat-value" style="color:' + (expiring > 0 ? 'var(--status-on-approval)' : 'var(--cw-gray-400)') + ';">' + expiring + '</div><div class="vessel-stat-label">Expiring</div></div>' +
+                    '</div>' +
+                    '<div class="vessel-card-crew">' +
+                        '<div class="vessel-crew-avatars">' + crewAvatars + (moreCount > 0 ? '<div class="vessel-crew-avatar more">+' + moreCount + '</div>' : '') + '</div>' +
+                        '<span class="vessel-crew-text">' + crewCount + ' crew members</span>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="vessel-card-footer">' +
+                    '<div class="vessel-card-meta">' +
+                        '<span class="vessel-card-meta-item"><i data-lucide="flag"></i>' + vessel.flag + '</span>' +
+                        '<span class="vessel-card-meta-item"><i data-lucide="calendar"></i>Built ' + vessel.built + '</span>' +
+                    '</div>' +
+                    '<div class="vessel-card-actions">' +
+                        '<button class="actions-btn" onclick="event.stopPropagation(); openVesselDetailModal(\'' + vessel.id + '\');"><i data-lucide="more-horizontal" style="width:16px;height:16px;"></i></button>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+        }
+
+        function openVesselDetailModal(vesselId) {
+            const vessel = MOCK_VESSELS.find(v => v.id === vesselId);
+            if (!vessel) return;
+            
+            // Store current vessel
+            window.currentVessel = vessel;
+            
+            // Update header
+            const typeColors = { bulk: '#0ea5e9', tanker: '#f97316', container: '#8b5cf6', lng: '#10b981' };
+            const headerColor = typeColors[vessel.typeKey] || '#0ea5e9';
+            document.getElementById('vesselDetailHeader').style.background = 'linear-gradient(135deg, ' + headerColor + ' 0%, ' + headerColor + '99 100%)';
+            
+            document.getElementById('vesselDetailName').textContent = vessel.name;
+            document.getElementById('vesselDetailType').textContent = vessel.type + ' • ' + vessel.dwt.toLocaleString() + ' DWT';
+            document.getElementById('vesselDetailPrincipal').innerHTML = '<i data-lucide="building-2" style="width:14px;height:14px;"></i>' + vessel.principal;
+            
+            // Status badge
+            const statusColors = { active: '#10b981', maintenance: '#f59e0b', inactive: '#ef4444' };
+            const statusLabels = { active: 'Active', maintenance: 'Maintenance', inactive: 'Inactive' };
+            document.getElementById('vesselDetailStatus').innerHTML = '<span style="width:8px;height:8px;border-radius:50%;background:' + statusColors[vessel.status] + ';"></span>' + statusLabels[vessel.status];
+            document.getElementById('vesselDetailStatus').style.background = 'rgba(' + (vessel.status === 'active' ? '16,185,129' : vessel.status === 'maintenance' ? '245,158,11' : '239,68,68') + ',0.3)';
+            
+            // Crew counts
+            const crewCount = vessel.crew.length;
+            const vacancies = vessel.crew.filter(c => !c.name).length;
+            const expiring = vessel.crew.filter(c => c.status === 'expiring').length;
+            const onboard = vessel.crew.filter(c => c.status === 'onboard').length;
+            const scheduled = vessel.crew.filter(c => c.status === 'scheduled').length;
+            
+            document.getElementById('vesselDetailCrewCount').textContent = crewCount;
+            document.getElementById('vesselDetailVacancies').textContent = vacancies;
+            document.getElementById('vesselStatOnboard').textContent = onboard;
+            document.getElementById('vesselStatExpiring').textContent = expiring;
+            document.getElementById('vesselStatVacancy').textContent = vacancies;
+            document.getElementById('vesselStatScheduled').textContent = scheduled;
+            
+            // Vessel info
+            document.getElementById('vesselDetailIMO').textContent = vessel.imo;
+            document.getElementById('vesselDetailFlag').textContent = vessel.flag;
+            document.getElementById('vesselDetailBuilt').textContent = vessel.built;
+            document.getElementById('vesselDetailDWT').textContent = vessel.dwt.toLocaleString();
+            document.getElementById('vesselDetailTypeShort').textContent = vessel.type;
+            
+            // Render crew table
+            const tbody = document.getElementById('vesselCrewTableBody');
+            tbody.innerHTML = vessel.crew.map(c => {
+                const initials = c.name ? c.name.split(' ').map(n => n[0]).join('') : '?';
+                const statusColors = { onboard: '#10b981', expiring: '#f59e0b', vacancy: '#ef4444', scheduled: '#3b82f6' };
+                const statusLabels = { onboard: 'Onboard', expiring: 'Expiring', vacancy: 'Vacancy', scheduled: 'Scheduled' };
+                const statusColor = statusColors[c.status] || '#6b7280';
+                const statusLabel = statusLabels[c.status] || c.status;
+                
+                return '<tr style="border-bottom:1px solid var(--cw-gray-100);">' +
+                    '<td style="padding:14px 16px;">' +
+                        '<div style="display:flex;align-items:center;gap:12px;">' +
+                            '<div style="width:40px;height:40px;border-radius:10px;background:' + (c.name ? 'linear-gradient(135deg,#00495D,#0891b2)' : '#ef4444') + ';color:white;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:0.9rem;">' + initials + '</div>' +
+                            '<div><div style="font-weight:600;' + (!c.name ? 'color:#ef4444;' : '') + '">' + (c.name || 'VACANCY') + '</div>' + (c.name ? '<div style="font-size:0.8rem;color:var(--cw-gray-500);">ID: ' + c.id + '</div>' : '') + '</div>' +
+                        '</div>' +
+                    '</td>' +
+                    '<td style="padding:14px 16px;"><span class="badge badge-officer">' + c.rank + '</span></td>' +
+                    '<td style="padding:14px 16px;text-align:center;font-family:monospace;">' + c.startDate + '</td>' +
+                    '<td style="padding:14px 16px;text-align:center;font-family:monospace;' + (c.status === 'expiring' ? 'color:#f59e0b;font-weight:600;' : '') + '">' + c.endDate + '</td>' +
+                    '<td style="padding:14px 16px;text-align:center;"><span style="background:' + statusColor + '20;color:' + statusColor + ';padding:4px 12px;border-radius:12px;font-size:0.8rem;font-weight:600;">' + statusLabel + '</span></td>' +
+                    '<td style="padding:14px 16px;text-align:center;">' + (c.nextCrew ? '<div style="font-size:0.85rem;"><div style="font-weight:600;">' + c.nextCrew.name + '</div><div style="color:var(--cw-gray-500);">' + c.nextCrew.startDate + '</div></div>' : '<span style="color:var(--cw-gray-400);">-</span>') + '</td>' +
+                    '<td style="padding:14px 16px;text-align:center;">' +
+                        (c.name ? '<button class="btn btn-ghost btn-sm" onclick="openSeafarerProfile(\'' + c.name + '\')"><i data-lucide="user" style="width:16px;height:16px;"></i></button>' : '<button class="btn btn-primary btn-sm" onclick="createRfaForPosition(\'' + c.rank + '\')"><i data-lucide="plus" style="width:14px;height:14px;"></i>Fill</button>') +
+                    '</td>' +
+                '</tr>';
+            }).join('');
+            
+            openModal('vesselDetailModal');
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        
+        function openVesselPanel(vesselId) {
+            // Redirect to new modal
+            openVesselDetailModal(vesselId);
+        }
+        
+        function printVesselDetails() {
+            const v = window.currentVessel;
+            if (!v) return;
+            
+            const crewRows = v.crew.map(c => 
+                '<tr><td style="padding:8px;border:1px solid #ddd;">' + (c.name || 'VACANCY') + '</td><td style="padding:8px;border:1px solid #ddd;">' + c.rank + '</td><td style="padding:8px;border:1px solid #ddd;">' + c.startDate + '</td><td style="padding:8px;border:1px solid #ddd;">' + c.endDate + '</td><td style="padding:8px;border:1px solid #ddd;">' + c.status + '</td></tr>'
+            ).join('');
+            
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write('<!DOCTYPE html><html><head><title>Vessel Details - ' + v.name + '</title><style>body{font-family:Arial,sans-serif;padding:40px;max-width:900px;margin:0 auto;}.header{text-align:center;border-bottom:3px solid #0369a1;padding-bottom:20px;margin-bottom:30px;}.logo{font-size:24px;font-weight:bold;color:#00495D;}table{width:100%;border-collapse:collapse;margin-top:20px;}th{background:#f3f4f6;padding:10px;text-align:left;border:1px solid #ddd;}</style></head><body>' +
+                '<div class="header"><div class="logo">CROSSWORLD MARINE SERVICES</div><div style="font-size:20px;margin-top:10px;">VESSEL CREW MANIFEST</div></div>' +
+                '<h2>' + v.name + '</h2><p>' + v.type + ' • ' + v.principal + '</p>' +
+                '<table><tr><td><strong>IMO:</strong> ' + v.imo + '</td><td><strong>Flag:</strong> ' + v.flag + '</td><td><strong>Built:</strong> ' + v.built + '</td><td><strong>DWT:</strong> ' + v.dwt.toLocaleString() + '</td></tr></table>' +
+                '<h3 style="margin-top:30px;">Crew List</h3><table><thead><tr><th>Name</th><th>Rank</th><th>Start Date</th><th>End Date</th><th>Status</th></tr></thead><tbody>' + crewRows + '</tbody></table>' +
+                '<p style="margin-top:40px;text-align:center;font-size:12px;color:#999;">Generated by ATLANTIS ERP | ' + new Date().toLocaleString() + '</p></body></html>');
             printWindow.document.close();
             setTimeout(() => { printWindow.print(); }, 500);
             showNotification('Print dialog opened', 'success');
@@ -9190,140 +10398,6 @@
                 opacity: 0;
             }
         }
-    
-        /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-           🚀 ATLANTIS v2.81 - RESPONSIVE ENHANCEMENTS
-        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-        /* 📱 MOBILE LAYOUT */
-        @media (max-width: 767px) {
-            .app-container { flex-direction: column; }
-            
-            .sidebar {
-                transform: translateX(-100%);
-                position: fixed;
-                z-index: 999;
-                box-shadow: 2px 0 24px rgba(0,0,0,0.2);
-            }
-            
-            body.mobile-menu-open .sidebar { transform: translateX(0); }
-            
-            body.mobile-menu-open::before {
-                content: '';
-                position: fixed;
-                inset: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 998;
-            }
-            
-            .header { height: 56px; padding: 0 16px; }
-            .main-content { margin-left: 0; padding-top: 56px; }
-            .page-content { padding: 16px; }
-            .breadcrumb { display: none; }
-            .global-search { display: none; }
-            
-            .stats-grid {
-                grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
-                gap: 12px;
-            }
-            
-            .stat-card { padding: 12px 16px; }
-            
-            .filters-panel { padding: 12px 16px; }
-            .filters-bar {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                gap: 8px;
-            }
-            
-            .filter-select { min-width: 120px; font-size: 0.8rem; }
-            .filter-divider { display: none; }
-            
-            table { min-width: 600px; font-size: 0.8rem; }
-            th, td { padding: 10px 12px; }
-            .avatar { width: 32px; height: 32px; font-size: 0.75rem; }
-            
-            .page-header { flex-direction: column; gap: 12px; }
-            .page-title { font-size: clamp(1.25rem, 4vw, 1.5rem); }
-            
-            .page-actions { width: 100%; }
-            .page-actions .btn { width: 100%; }
-            
-            .card-header, .card-body { padding: 12px 16px; }
-            
-            .modal-overlay { padding: 16px; align-items: flex-end; }
-            .modal {
-                max-width: 100%;
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
-                transform: translateY(100%);
-            }
-            .modal-overlay.open .modal { transform: translateY(0); }
-            .modal-header, .modal-body, .modal-footer { padding: 16px; }
-            .modal-footer { flex-direction: column-reverse; }
-            .modal-footer .btn { width: 100%; }
-            
-            .form-row { grid-template-columns: 1fr; }
-            .form-input, .form-select, .form-textarea { font-size: 16px; }
-            
-            .slide-panel { width: 100%; }
-            .panel-header, .panel-content, .panel-footer { padding: 16px; }
-            .panel-footer { flex-direction: column-reverse; }
-            
-            .pagination { flex-direction: column; padding: 12px 16px; }
-        }
-        
-        /* 🔘 MOBILE MENU BUTTON */
-        .mobile-menu-toggle {
-            display: none;
-            width: 44px;
-            height: 44px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-        }
-        
-        .mobile-menu-toggle:hover { background: var(--cw-gray-100); }
-        .mobile-menu-toggle svg { width: 24px; height: 24px; color: var(--cw-gray-700); }
-        
-        @media (max-width: 767px) {
-            .mobile-menu-toggle { display: flex; }
-        }
-        
-        /* 📐 RESPONSIVE GRIDS */
-        .stats-grid {
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-        }
-        
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        /* ♿ ACCESSIBILITY */
-        *:focus-visible {
-            outline: 2px solid var(--cw-accent);
-            outline-offset: 2px;
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
-        /* 🖨️ PRINT */
-        @media print {
-            .sidebar, .header, .mobile-menu-toggle, .page-actions,
-            .filters-panel, .pagination { display: none !important; }
-            .main-content { margin-left: 0; padding: 0; }
-            body { background: white; }
-        }
     </style>
                 </head>
                 <body>
@@ -9383,9 +10457,7 @@
                         <p>This document is computer generated by ATLANTIS ERP</p>
                         <p>Printed on: ${new Date().toLocaleString()}</p>
                     </div>
-                
-    
-</body>
+                </body>
                 </html>
             `);
             printWindow.document.close();
@@ -9860,7 +10932,7 @@ Date: ${new Date().toLocaleString()}
                         '<div class="rfc-task-detail"><div class="rfc-task-detail-label">Target Date</div><div class="rfc-task-detail-value ' + daysClass + '">' + task.targetDate + '</div></div>' +
                         '<div class="rfc-task-detail"><div class="rfc-task-detail-label">Days Left</div><div class="rfc-task-detail-value ' + daysClass + '">' + (daysLeft > 0 ? daysLeft + ' days' : 'Overdue') + '</div></div>' +
                         '<div class="rfc-task-detail"><div class="rfc-task-detail-label">Source</div><div class="rfc-task-detail-value">' + task.source + '</div></div>' +
-                        '<div class="rfc-task-detail"><div class="rfc-task-detail-label">Linked RFA</div><div class="rfc-task-detail-value">' + (task.rfa || '-') + '</div></div>' +
+                        '<div class="rfc-task-detail"><div class="rfc-task-detail-label">Linked RFA</div><div class="rfc-task-detail-value">' + (task.rfa || '—') + '</div></div>' +
                     '</div>' +
                     '<div class="rfc-task-progress">' +
                         '<div class="rfc-task-progress-header">' +
@@ -10063,7 +11135,7 @@ Date: ${new Date().toLocaleString()}
                     '<div class="interview-score"><div class="interview-score-value">' + interview.scores.communication + '</div><div class="interview-score-label">Comm.</div></div>' +
                     '<div class="interview-score"><div class="interview-score-value ' + (avgScore >= 70 ? 'pass' : 'fail') + '">' + avgScore + '</div><div class="interview-score-label">Average</div></div>' +
                 '</div>' :
-                '<div class="interview-scores"><div class="interview-score"><div class="interview-score-value pending">-</div><div class="interview-score-label">Pending Assessment</div></div></div>';
+                '<div class="interview-scores"><div class="interview-score"><div class="interview-score-value pending">—</div><div class="interview-score-label">Pending Assessment</div></div></div>';
             
             return '<div class="interview-card">' +
                 '<div class="interview-card-header" onclick="openInterviewDetail(\'' + interview.id + '\')" style="cursor:pointer;">' +
@@ -11121,140 +12193,6 @@ Date: ${new Date().toLocaleString()}
                 opacity: 0;
             }
         }
-    
-        /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-           🚀 ATLANTIS v2.81 - RESPONSIVE ENHANCEMENTS
-        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-        /* 📱 MOBILE LAYOUT */
-        @media (max-width: 767px) {
-            .app-container { flex-direction: column; }
-            
-            .sidebar {
-                transform: translateX(-100%);
-                position: fixed;
-                z-index: 999;
-                box-shadow: 2px 0 24px rgba(0,0,0,0.2);
-            }
-            
-            body.mobile-menu-open .sidebar { transform: translateX(0); }
-            
-            body.mobile-menu-open::before {
-                content: '';
-                position: fixed;
-                inset: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 998;
-            }
-            
-            .header { height: 56px; padding: 0 16px; }
-            .main-content { margin-left: 0; padding-top: 56px; }
-            .page-content { padding: 16px; }
-            .breadcrumb { display: none; }
-            .global-search { display: none; }
-            
-            .stats-grid {
-                grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
-                gap: 12px;
-            }
-            
-            .stat-card { padding: 12px 16px; }
-            
-            .filters-panel { padding: 12px 16px; }
-            .filters-bar {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                gap: 8px;
-            }
-            
-            .filter-select { min-width: 120px; font-size: 0.8rem; }
-            .filter-divider { display: none; }
-            
-            table { min-width: 600px; font-size: 0.8rem; }
-            th, td { padding: 10px 12px; }
-            .avatar { width: 32px; height: 32px; font-size: 0.75rem; }
-            
-            .page-header { flex-direction: column; gap: 12px; }
-            .page-title { font-size: clamp(1.25rem, 4vw, 1.5rem); }
-            
-            .page-actions { width: 100%; }
-            .page-actions .btn { width: 100%; }
-            
-            .card-header, .card-body { padding: 12px 16px; }
-            
-            .modal-overlay { padding: 16px; align-items: flex-end; }
-            .modal {
-                max-width: 100%;
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
-                transform: translateY(100%);
-            }
-            .modal-overlay.open .modal { transform: translateY(0); }
-            .modal-header, .modal-body, .modal-footer { padding: 16px; }
-            .modal-footer { flex-direction: column-reverse; }
-            .modal-footer .btn { width: 100%; }
-            
-            .form-row { grid-template-columns: 1fr; }
-            .form-input, .form-select, .form-textarea { font-size: 16px; }
-            
-            .slide-panel { width: 100%; }
-            .panel-header, .panel-content, .panel-footer { padding: 16px; }
-            .panel-footer { flex-direction: column-reverse; }
-            
-            .pagination { flex-direction: column; padding: 12px 16px; }
-        }
-        
-        /* 🔘 MOBILE MENU BUTTON */
-        .mobile-menu-toggle {
-            display: none;
-            width: 44px;
-            height: 44px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-        }
-        
-        .mobile-menu-toggle:hover { background: var(--cw-gray-100); }
-        .mobile-menu-toggle svg { width: 24px; height: 24px; color: var(--cw-gray-700); }
-        
-        @media (max-width: 767px) {
-            .mobile-menu-toggle { display: flex; }
-        }
-        
-        /* 📐 RESPONSIVE GRIDS */
-        .stats-grid {
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-        }
-        
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        /* ♿ ACCESSIBILITY */
-        *:focus-visible {
-            outline: 2px solid var(--cw-accent);
-            outline-offset: 2px;
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
-        /* 🖨️ PRINT */
-        @media print {
-            .sidebar, .header, .mobile-menu-toggle, .page-actions,
-            .filters-panel, .pagination { display: none !important; }
-            .main-content { margin-left: 0; padding: 0; }
-            body { background: white; }
-        }
     </style>
 </head>
 <body>
@@ -11305,8 +12243,6 @@ Date: ${new Date().toLocaleString()}
     <div style="margin-top: 30px; text-align: center; color: #999; font-size: 12px;">
         Generated by ATLANTIS ERP | ${new Date().toLocaleString()}
     </div>
-
-    
 </body>
 </html>`;
             
@@ -11534,7 +12470,7 @@ Generated by ATLANTIS ERP | ${new Date().toLocaleString()}
                 '<div class="eval-body">' +
                     '<div class="eval-vessel"><i data-lucide="ship"></i><span>' + ev.vessel + ' • ' + ev.principal + '</span></div>' +
                     '<div class="eval-criteria" style="margin-top:12px;">' + criteriaHtml + '</div>' +
-                    '<div class="eval-comment"><div class="eval-comment-text">"' + ev.comment + '"</div><div class="eval-comment-author">- ' + ev.evaluator + '</div></div>' +
+                    '<div class="eval-comment"><div class="eval-comment-text">"' + ev.comment + '"</div><div class="eval-comment-author">— ' + ev.evaluator + '</div></div>' +
                 '</div>' +
                 '<div class="eval-footer"><span>Evaluated: ' + ev.date + '</span><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); openEvaluationDetail(\'' + ev.id + '\')">View Full Report</button></div>' +
             '</div>';
@@ -11606,7 +12542,7 @@ Generated by ATLANTIS ERP | ${new Date().toLocaleString()}
             
             // Comments
             document.getElementById('evalDetailComment').textContent = '"' + ev.comment + '"';
-            document.getElementById('evalDetailCommentAuthor').textContent = '- ' + ev.evaluator;
+            document.getElementById('evalDetailCommentAuthor').textContent = '— ' + ev.evaluator;
             
             // Performance summary
             const overallPercent = (ev.avgScore / 5) * 100;
@@ -11668,140 +12604,6 @@ Generated by ATLANTIS ERP | ${new Date().toLocaleString()}
                 opacity: 0;
             }
         }
-    
-        /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-           🚀 ATLANTIS v2.81 - RESPONSIVE ENHANCEMENTS
-        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-        /* 📱 MOBILE LAYOUT */
-        @media (max-width: 767px) {
-            .app-container { flex-direction: column; }
-            
-            .sidebar {
-                transform: translateX(-100%);
-                position: fixed;
-                z-index: 999;
-                box-shadow: 2px 0 24px rgba(0,0,0,0.2);
-            }
-            
-            body.mobile-menu-open .sidebar { transform: translateX(0); }
-            
-            body.mobile-menu-open::before {
-                content: '';
-                position: fixed;
-                inset: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 998;
-            }
-            
-            .header { height: 56px; padding: 0 16px; }
-            .main-content { margin-left: 0; padding-top: 56px; }
-            .page-content { padding: 16px; }
-            .breadcrumb { display: none; }
-            .global-search { display: none; }
-            
-            .stats-grid {
-                grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
-                gap: 12px;
-            }
-            
-            .stat-card { padding: 12px 16px; }
-            
-            .filters-panel { padding: 12px 16px; }
-            .filters-bar {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                gap: 8px;
-            }
-            
-            .filter-select { min-width: 120px; font-size: 0.8rem; }
-            .filter-divider { display: none; }
-            
-            table { min-width: 600px; font-size: 0.8rem; }
-            th, td { padding: 10px 12px; }
-            .avatar { width: 32px; height: 32px; font-size: 0.75rem; }
-            
-            .page-header { flex-direction: column; gap: 12px; }
-            .page-title { font-size: clamp(1.25rem, 4vw, 1.5rem); }
-            
-            .page-actions { width: 100%; }
-            .page-actions .btn { width: 100%; }
-            
-            .card-header, .card-body { padding: 12px 16px; }
-            
-            .modal-overlay { padding: 16px; align-items: flex-end; }
-            .modal {
-                max-width: 100%;
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
-                transform: translateY(100%);
-            }
-            .modal-overlay.open .modal { transform: translateY(0); }
-            .modal-header, .modal-body, .modal-footer { padding: 16px; }
-            .modal-footer { flex-direction: column-reverse; }
-            .modal-footer .btn { width: 100%; }
-            
-            .form-row { grid-template-columns: 1fr; }
-            .form-input, .form-select, .form-textarea { font-size: 16px; }
-            
-            .slide-panel { width: 100%; }
-            .panel-header, .panel-content, .panel-footer { padding: 16px; }
-            .panel-footer { flex-direction: column-reverse; }
-            
-            .pagination { flex-direction: column; padding: 12px 16px; }
-        }
-        
-        /* 🔘 MOBILE MENU BUTTON */
-        .mobile-menu-toggle {
-            display: none;
-            width: 44px;
-            height: 44px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-        }
-        
-        .mobile-menu-toggle:hover { background: var(--cw-gray-100); }
-        .mobile-menu-toggle svg { width: 24px; height: 24px; color: var(--cw-gray-700); }
-        
-        @media (max-width: 767px) {
-            .mobile-menu-toggle { display: flex; }
-        }
-        
-        /* 📐 RESPONSIVE GRIDS */
-        .stats-grid {
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-        }
-        
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        /* ♿ ACCESSIBILITY */
-        *:focus-visible {
-            outline: 2px solid var(--cw-accent);
-            outline-offset: 2px;
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
-        /* 🖨️ PRINT */
-        @media print {
-            .sidebar, .header, .mobile-menu-toggle, .page-actions,
-            .filters-panel, .pagination { display: none !important; }
-            .main-content { margin-left: 0; padding: 0; }
-            body { background: white; }
-        }
     </style>
                 </head>
                 <body>
@@ -11832,7 +12634,7 @@ Generated by ATLANTIS ERP | ${new Date().toLocaleString()}
                     
                     <div class="section">
                         <div class="section-title">Evaluator's Comments</div>
-                        <div class="comment">"${ev.comment}"<br><br>- ${ev.evaluator}</div>
+                        <div class="comment">"${ev.comment}"<br><br>— ${ev.evaluator}</div>
                     </div>
                     
                     <div class="section">
@@ -11846,9 +12648,7 @@ Generated by ATLANTIS ERP | ${new Date().toLocaleString()}
                         <p>This document is computer generated by ATLANTIS ERP</p>
                         <p>Printed on: ${new Date().toLocaleString()}</p>
                     </div>
-                
-    
-</body>
+                </body>
                 </html>
             `);
             printWindow.document.close();
@@ -11889,7 +12689,7 @@ EVALUATOR'S COMMENTS
 --------------------
 "${ev.comment}"
 
-- ${ev.evaluator}
+— ${ev.evaluator}
 
 EVALUATION DETAILS
 ------------------
@@ -12510,140 +13310,6 @@ Date: ${new Date().toLocaleString()}
                 opacity: 0;
             }
         }
-    
-        /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-           🚀 ATLANTIS v2.81 - RESPONSIVE ENHANCEMENTS
-        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-        /* 📱 MOBILE LAYOUT */
-        @media (max-width: 767px) {
-            .app-container { flex-direction: column; }
-            
-            .sidebar {
-                transform: translateX(-100%);
-                position: fixed;
-                z-index: 999;
-                box-shadow: 2px 0 24px rgba(0,0,0,0.2);
-            }
-            
-            body.mobile-menu-open .sidebar { transform: translateX(0); }
-            
-            body.mobile-menu-open::before {
-                content: '';
-                position: fixed;
-                inset: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 998;
-            }
-            
-            .header { height: 56px; padding: 0 16px; }
-            .main-content { margin-left: 0; padding-top: 56px; }
-            .page-content { padding: 16px; }
-            .breadcrumb { display: none; }
-            .global-search { display: none; }
-            
-            .stats-grid {
-                grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
-                gap: 12px;
-            }
-            
-            .stat-card { padding: 12px 16px; }
-            
-            .filters-panel { padding: 12px 16px; }
-            .filters-bar {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                gap: 8px;
-            }
-            
-            .filter-select { min-width: 120px; font-size: 0.8rem; }
-            .filter-divider { display: none; }
-            
-            table { min-width: 600px; font-size: 0.8rem; }
-            th, td { padding: 10px 12px; }
-            .avatar { width: 32px; height: 32px; font-size: 0.75rem; }
-            
-            .page-header { flex-direction: column; gap: 12px; }
-            .page-title { font-size: clamp(1.25rem, 4vw, 1.5rem); }
-            
-            .page-actions { width: 100%; }
-            .page-actions .btn { width: 100%; }
-            
-            .card-header, .card-body { padding: 12px 16px; }
-            
-            .modal-overlay { padding: 16px; align-items: flex-end; }
-            .modal {
-                max-width: 100%;
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
-                transform: translateY(100%);
-            }
-            .modal-overlay.open .modal { transform: translateY(0); }
-            .modal-header, .modal-body, .modal-footer { padding: 16px; }
-            .modal-footer { flex-direction: column-reverse; }
-            .modal-footer .btn { width: 100%; }
-            
-            .form-row { grid-template-columns: 1fr; }
-            .form-input, .form-select, .form-textarea { font-size: 16px; }
-            
-            .slide-panel { width: 100%; }
-            .panel-header, .panel-content, .panel-footer { padding: 16px; }
-            .panel-footer { flex-direction: column-reverse; }
-            
-            .pagination { flex-direction: column; padding: 12px 16px; }
-        }
-        
-        /* 🔘 MOBILE MENU BUTTON */
-        .mobile-menu-toggle {
-            display: none;
-            width: 44px;
-            height: 44px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-        }
-        
-        .mobile-menu-toggle:hover { background: var(--cw-gray-100); }
-        .mobile-menu-toggle svg { width: 24px; height: 24px; color: var(--cw-gray-700); }
-        
-        @media (max-width: 767px) {
-            .mobile-menu-toggle { display: flex; }
-        }
-        
-        /* 📐 RESPONSIVE GRIDS */
-        .stats-grid {
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-        }
-        
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        /* ♿ ACCESSIBILITY */
-        *:focus-visible {
-            outline: 2px solid var(--cw-accent);
-            outline-offset: 2px;
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
-        /* 🖨️ PRINT */
-        @media print {
-            .sidebar, .header, .mobile-menu-toggle, .page-actions,
-            .filters-panel, .pagination { display: none !important; }
-            .main-content { margin-left: 0; padding: 0; }
-            body { background: white; }
-        }
     </style>
                 </head>
                 <body>
@@ -12702,9 +13368,7 @@ Date: ${new Date().toLocaleString()}
                         <p>MLC 2006 Standard A5.1.5 - On-board complaint procedures</p>
                         <p>Printed on: ${new Date().toLocaleString()}</p>
                     </div>
-                
-    
-</body>
+                </body>
                 </html>
             `);
             printWindow.document.close();
@@ -12993,7 +13657,7 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
                 tags += '<span class="tag tag-' + (s.assigned ? 'assigned' : 'unassigned') + '">' + (s.assigned ? 'Assigned' : 'Unassigned') + '</span>';
                 if (s.tags.includes('on-leave')) tags += '<span class="tag tag-on-leave">On Leave</span>';
                 if (s.tags.includes('nfr')) tags += '<span class="tag tag-nfr">NFR</span>';
-                return '<tr><td class="checkbox-cell"><div class="custom-checkbox" onclick="toggleCheckbox(this,\'roster\')"><i data-lucide="check" style="width:12px;height:12px;"></i></div></td><td><div class="avatar-cell clickable-seafarer" onclick="openSeafarerProfile(\'' + s.firstName + ' ' + s.lastName + '\')"><div class="avatar">' + initials + '</div><div class="avatar-info"><span class="avatar-name">' + s.firstName + ' ' + s.lastName + '</span><span class="avatar-meta">' + s.id + '</span></div></div></td><td><span class="badge badge-' + s.rankType + '">' + s.rank + '</span></td><td><span class="status-badge ' + statusClass + '"><span class="dot"></span>' + statusLabel + '</span></td><td class="tags-cell">' + tags + '</td><td class="text-cell"><div class="text-primary">' + (s.vessel || '-') + '</div><div class="text-secondary">' + (s.vesselType || '') + '</div></td><td class="text-cell"><span class="text-primary">' + (s.principal || '-') + '</span></td><td class="date-cell ' + dateClass + '">' + (s.contractEnd || '-') + '</td><td class="progress-cell"><div class="progress-bar-wrapper"><div class="progress-bar"><div class="progress-bar-fill ' + docsClass + '" style="width:' + docsPercent + '%;"></div></div><span class="progress-text">' + s.docsComplete + '/' + s.docsTotal + '</span></div></td><td class="actions-cell"><button class="actions-btn"><i data-lucide="more-horizontal" style="width:18px;height:18px;"></i></button></td></tr>';
+                return '<tr><td class="checkbox-cell"><div class="custom-checkbox" onclick="toggleCheckbox(this,\'roster\')"><i data-lucide="check" style="width:12px;height:12px;"></i></div></td><td><div class="avatar-cell clickable-seafarer" onclick="openSeafarerProfile(\'' + s.firstName + ' ' + s.lastName + '\')"><div class="avatar">' + initials + '</div><div class="avatar-info"><span class="avatar-name">' + s.firstName + ' ' + s.lastName + '</span><span class="avatar-meta">' + s.id + '</span></div></div></td><td><span class="badge badge-' + s.rankType + '">' + s.rank + '</span></td><td><span class="status-badge ' + statusClass + '"><span class="dot"></span>' + statusLabel + '</span></td><td class="tags-cell">' + tags + '</td><td class="text-cell"><div class="text-primary">' + (s.vessel || '—') + '</div><div class="text-secondary">' + (s.vesselType || '') + '</div></td><td class="text-cell"><span class="text-primary">' + (s.principal || '—') + '</span></td><td class="date-cell ' + dateClass + '">' + (s.contractEnd || '—') + '</td><td class="progress-cell"><div class="progress-bar-wrapper"><div class="progress-bar"><div class="progress-bar-fill ' + docsClass + '" style="width:' + docsPercent + '%;"></div></div><span class="progress-text">' + s.docsComplete + '/' + s.docsTotal + '</span></div></td><td class="actions-cell"><button class="actions-btn"><i data-lucide="more-horizontal" style="width:18px;height:18px;"></i></button></td></tr>';
             }).join('');
             if (typeof lucide !== 'undefined') lucide.createIcons();
         }
@@ -13219,140 +13883,6 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
                 opacity: 0;
             }
         }
-    
-        /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-           🚀 ATLANTIS v2.81 - RESPONSIVE ENHANCEMENTS
-        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-        /* 📱 MOBILE LAYOUT */
-        @media (max-width: 767px) {
-            .app-container { flex-direction: column; }
-            
-            .sidebar {
-                transform: translateX(-100%);
-                position: fixed;
-                z-index: 999;
-                box-shadow: 2px 0 24px rgba(0,0,0,0.2);
-            }
-            
-            body.mobile-menu-open .sidebar { transform: translateX(0); }
-            
-            body.mobile-menu-open::before {
-                content: '';
-                position: fixed;
-                inset: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 998;
-            }
-            
-            .header { height: 56px; padding: 0 16px; }
-            .main-content { margin-left: 0; padding-top: 56px; }
-            .page-content { padding: 16px; }
-            .breadcrumb { display: none; }
-            .global-search { display: none; }
-            
-            .stats-grid {
-                grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
-                gap: 12px;
-            }
-            
-            .stat-card { padding: 12px 16px; }
-            
-            .filters-panel { padding: 12px 16px; }
-            .filters-bar {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                gap: 8px;
-            }
-            
-            .filter-select { min-width: 120px; font-size: 0.8rem; }
-            .filter-divider { display: none; }
-            
-            table { min-width: 600px; font-size: 0.8rem; }
-            th, td { padding: 10px 12px; }
-            .avatar { width: 32px; height: 32px; font-size: 0.75rem; }
-            
-            .page-header { flex-direction: column; gap: 12px; }
-            .page-title { font-size: clamp(1.25rem, 4vw, 1.5rem); }
-            
-            .page-actions { width: 100%; }
-            .page-actions .btn { width: 100%; }
-            
-            .card-header, .card-body { padding: 12px 16px; }
-            
-            .modal-overlay { padding: 16px; align-items: flex-end; }
-            .modal {
-                max-width: 100%;
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
-                transform: translateY(100%);
-            }
-            .modal-overlay.open .modal { transform: translateY(0); }
-            .modal-header, .modal-body, .modal-footer { padding: 16px; }
-            .modal-footer { flex-direction: column-reverse; }
-            .modal-footer .btn { width: 100%; }
-            
-            .form-row { grid-template-columns: 1fr; }
-            .form-input, .form-select, .form-textarea { font-size: 16px; }
-            
-            .slide-panel { width: 100%; }
-            .panel-header, .panel-content, .panel-footer { padding: 16px; }
-            .panel-footer { flex-direction: column-reverse; }
-            
-            .pagination { flex-direction: column; padding: 12px 16px; }
-        }
-        
-        /* 🔘 MOBILE MENU BUTTON */
-        .mobile-menu-toggle {
-            display: none;
-            width: 44px;
-            height: 44px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-        }
-        
-        .mobile-menu-toggle:hover { background: var(--cw-gray-100); }
-        .mobile-menu-toggle svg { width: 24px; height: 24px; color: var(--cw-gray-700); }
-        
-        @media (max-width: 767px) {
-            .mobile-menu-toggle { display: flex; }
-        }
-        
-        /* 📐 RESPONSIVE GRIDS */
-        .stats-grid {
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-        }
-        
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        /* ♿ ACCESSIBILITY */
-        *:focus-visible {
-            outline: 2px solid var(--cw-accent);
-            outline-offset: 2px;
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
-        /* 🖨️ PRINT */
-        @media print {
-            .sidebar, .header, .mobile-menu-toggle, .page-actions,
-            .filters-panel, .pagination { display: none !important; }
-            .main-content { margin-left: 0; padding: 0; }
-            body { background: white; }
-        }
     </style>
                 </head>
                 <body>
@@ -13403,9 +13933,7 @@ MLC 2006 Standard A5.1.5 - On-board complaint procedures
                     <div class="footer">
                         <p>Generated by ATLANTIS ERP | ${new Date().toLocaleString()}</p>
                     </div>
-                
-    
-</body>
+                </body>
                 </html>
             `);
             printWindow.document.close();
@@ -17067,141 +17595,7 @@ Generated by ATLANTIS ERP v2.18
                 const printContent = `
                     <html>
                     <head><title>Seafarer Profile - ${MOCK_SEAFARER_PROFILE.firstName} ${MOCK_SEAFARER_PROFILE.lastName}</title>
-                    <style>body{font-family:Arial,sans-serif;padding:40px;}h1{color:#00495D;}table{width:100%;border-collapse:collapse;margin:20px 0;}td,th{border:1px solid #ddd;padding:8px;text-align:left;}
-        /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-           🚀 ATLANTIS v2.81 - RESPONSIVE ENHANCEMENTS
-        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-        /* 📱 MOBILE LAYOUT */
-        @media (max-width: 767px) {
-            .app-container { flex-direction: column; }
-            
-            .sidebar {
-                transform: translateX(-100%);
-                position: fixed;
-                z-index: 999;
-                box-shadow: 2px 0 24px rgba(0,0,0,0.2);
-            }
-            
-            body.mobile-menu-open .sidebar { transform: translateX(0); }
-            
-            body.mobile-menu-open::before {
-                content: '';
-                position: fixed;
-                inset: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 998;
-            }
-            
-            .header { height: 56px; padding: 0 16px; }
-            .main-content { margin-left: 0; padding-top: 56px; }
-            .page-content { padding: 16px; }
-            .breadcrumb { display: none; }
-            .global-search { display: none; }
-            
-            .stats-grid {
-                grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
-                gap: 12px;
-            }
-            
-            .stat-card { padding: 12px 16px; }
-            
-            .filters-panel { padding: 12px 16px; }
-            .filters-bar {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                gap: 8px;
-            }
-            
-            .filter-select { min-width: 120px; font-size: 0.8rem; }
-            .filter-divider { display: none; }
-            
-            table { min-width: 600px; font-size: 0.8rem; }
-            th, td { padding: 10px 12px; }
-            .avatar { width: 32px; height: 32px; font-size: 0.75rem; }
-            
-            .page-header { flex-direction: column; gap: 12px; }
-            .page-title { font-size: clamp(1.25rem, 4vw, 1.5rem); }
-            
-            .page-actions { width: 100%; }
-            .page-actions .btn { width: 100%; }
-            
-            .card-header, .card-body { padding: 12px 16px; }
-            
-            .modal-overlay { padding: 16px; align-items: flex-end; }
-            .modal {
-                max-width: 100%;
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
-                transform: translateY(100%);
-            }
-            .modal-overlay.open .modal { transform: translateY(0); }
-            .modal-header, .modal-body, .modal-footer { padding: 16px; }
-            .modal-footer { flex-direction: column-reverse; }
-            .modal-footer .btn { width: 100%; }
-            
-            .form-row { grid-template-columns: 1fr; }
-            .form-input, .form-select, .form-textarea { font-size: 16px; }
-            
-            .slide-panel { width: 100%; }
-            .panel-header, .panel-content, .panel-footer { padding: 16px; }
-            .panel-footer { flex-direction: column-reverse; }
-            
-            .pagination { flex-direction: column; padding: 12px 16px; }
-        }
-        
-        /* 🔘 MOBILE MENU BUTTON */
-        .mobile-menu-toggle {
-            display: none;
-            width: 44px;
-            height: 44px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-        }
-        
-        .mobile-menu-toggle:hover { background: var(--cw-gray-100); }
-        .mobile-menu-toggle svg { width: 24px; height: 24px; color: var(--cw-gray-700); }
-        
-        @media (max-width: 767px) {
-            .mobile-menu-toggle { display: flex; }
-        }
-        
-        /* 📐 RESPONSIVE GRIDS */
-        .stats-grid {
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-        }
-        
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        /* ♿ ACCESSIBILITY */
-        *:focus-visible {
-            outline: 2px solid var(--cw-accent);
-            outline-offset: 2px;
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
-        /* 🖨️ PRINT */
-        @media print {
-            .sidebar, .header, .mobile-menu-toggle, .page-actions,
-            .filters-panel, .pagination { display: none !important; }
-            .main-content { margin-left: 0; padding: 0; }
-            body { background: white; }
-        }
-    </style></head>
+                    <style>body{font-family:Arial,sans-serif;padding:40px;}h1{color:#00495D;}table{width:100%;border-collapse:collapse;margin:20px 0;}td,th{border:1px solid #ddd;padding:8px;text-align:left;}</style></head>
                     <body>
                     <h1>Seafarer Profile</h1>
                     <h2>${MOCK_SEAFARER_PROFILE.firstName} ${MOCK_SEAFARER_PROFILE.lastName}</h2>
@@ -17219,9 +17613,7 @@ Generated by ATLANTIS ERP v2.18
                     <p><strong>Vessel:</strong> ${MOCK_SEAFARER_PROFILE.vessel}</p>
                     <p><strong>Principal:</strong> ${MOCK_SEAFARER_PROFILE.principal}</p>
                     <p><strong>Contract:</strong> ${MOCK_SEAFARER_PROFILE.contractStart} to ${MOCK_SEAFARER_PROFILE.contractEnd}</p>
-                    
-    
-</body></html>
+                    </body></html>
                 `;
                 const printWindow = window.open('', '_blank');
                 printWindow.document.write(printContent);
@@ -17686,7 +18078,7 @@ Generated by ATLANTIS ERP v2.18
                 ];
                 const commentIndex = Math.floor(Math.random() * comments.length);
                 if (elem('evalDetailComment')) elem('evalDetailComment').textContent = comments[commentIndex];
-                if (elem('evalDetailCommentAuthor')) elem('evalDetailCommentAuthor').textContent = '- ' + ev.evaluator;
+                if (elem('evalDetailCommentAuthor')) elem('evalDetailCommentAuthor').textContent = '— ' + ev.evaluator;
                 
                 // Store current evaluation
                 window.currentEvaluation = { name: 'Juan Dela Cruz', id: evalId };
@@ -18595,141 +18987,7 @@ Generated: ${new Date().toISOString()}`;
             if (!currentSupernumerary) return;
             const printWin = window.open('', '_blank');
             printWin.document.write('<html><head><title>' + docType + '</title>');
-            printWin.document.write('<style>body{font-family:Arial;max-width:800px;margin:40px auto;padding:40px}.header{text-align:center;margin-bottom:40px;border-bottom:3px solid #00495D;padding-bottom:20px}.company{font-size:24px;font-weight:bold;color:#00495D}.doc-title{font-size:28px;font-weight:bold;margin:20px 0}.section{margin:30px 0}.section-title{background:#00495D;color:white;padding:10px 15px;font-weight:bold;margin-bottom:15px}.info-row{display:grid;grid-template-columns:200px 1fr;padding:10px 15px;border-bottom:1px solid #e0e0e0}.info-label{font-weight:bold;color:#666}.verification{background:#ecfdf5;border:2px solid #10b981;padding:20px;margin-top:40px}.footer{margin-top:60px;padding-top:20px;border-top:2px solid #ddd;text-align:center;font-size:12px;color:#666}
-        /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-           🚀 ATLANTIS v2.81 - RESPONSIVE ENHANCEMENTS
-        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-        /* 📱 MOBILE LAYOUT */
-        @media (max-width: 767px) {
-            .app-container { flex-direction: column; }
-            
-            .sidebar {
-                transform: translateX(-100%);
-                position: fixed;
-                z-index: 999;
-                box-shadow: 2px 0 24px rgba(0,0,0,0.2);
-            }
-            
-            body.mobile-menu-open .sidebar { transform: translateX(0); }
-            
-            body.mobile-menu-open::before {
-                content: '';
-                position: fixed;
-                inset: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 998;
-            }
-            
-            .header { height: 56px; padding: 0 16px; }
-            .main-content { margin-left: 0; padding-top: 56px; }
-            .page-content { padding: 16px; }
-            .breadcrumb { display: none; }
-            .global-search { display: none; }
-            
-            .stats-grid {
-                grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
-                gap: 12px;
-            }
-            
-            .stat-card { padding: 12px 16px; }
-            
-            .filters-panel { padding: 12px 16px; }
-            .filters-bar {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                gap: 8px;
-            }
-            
-            .filter-select { min-width: 120px; font-size: 0.8rem; }
-            .filter-divider { display: none; }
-            
-            table { min-width: 600px; font-size: 0.8rem; }
-            th, td { padding: 10px 12px; }
-            .avatar { width: 32px; height: 32px; font-size: 0.75rem; }
-            
-            .page-header { flex-direction: column; gap: 12px; }
-            .page-title { font-size: clamp(1.25rem, 4vw, 1.5rem); }
-            
-            .page-actions { width: 100%; }
-            .page-actions .btn { width: 100%; }
-            
-            .card-header, .card-body { padding: 12px 16px; }
-            
-            .modal-overlay { padding: 16px; align-items: flex-end; }
-            .modal {
-                max-width: 100%;
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
-                transform: translateY(100%);
-            }
-            .modal-overlay.open .modal { transform: translateY(0); }
-            .modal-header, .modal-body, .modal-footer { padding: 16px; }
-            .modal-footer { flex-direction: column-reverse; }
-            .modal-footer .btn { width: 100%; }
-            
-            .form-row { grid-template-columns: 1fr; }
-            .form-input, .form-select, .form-textarea { font-size: 16px; }
-            
-            .slide-panel { width: 100%; }
-            .panel-header, .panel-content, .panel-footer { padding: 16px; }
-            .panel-footer { flex-direction: column-reverse; }
-            
-            .pagination { flex-direction: column; padding: 12px 16px; }
-        }
-        
-        /* 🔘 MOBILE MENU BUTTON */
-        .mobile-menu-toggle {
-            display: none;
-            width: 44px;
-            height: 44px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-        }
-        
-        .mobile-menu-toggle:hover { background: var(--cw-gray-100); }
-        .mobile-menu-toggle svg { width: 24px; height: 24px; color: var(--cw-gray-700); }
-        
-        @media (max-width: 767px) {
-            .mobile-menu-toggle { display: flex; }
-        }
-        
-        /* 📐 RESPONSIVE GRIDS */
-        .stats-grid {
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-        }
-        
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        /* ♿ ACCESSIBILITY */
-        *:focus-visible {
-            outline: 2px solid var(--cw-accent);
-            outline-offset: 2px;
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
-        /* 🖨️ PRINT */
-        @media print {
-            .sidebar, .header, .mobile-menu-toggle, .page-actions,
-            .filters-panel, .pagination { display: none !important; }
-            .main-content { margin-left: 0; padding: 0; }
-            body { background: white; }
-        }
-    </style>');
+            printWin.document.write('<style>body{font-family:Arial;max-width:800px;margin:40px auto;padding:40px}.header{text-align:center;margin-bottom:40px;border-bottom:3px solid #00495D;padding-bottom:20px}.company{font-size:24px;font-weight:bold;color:#00495D}.doc-title{font-size:28px;font-weight:bold;margin:20px 0}.section{margin:30px 0}.section-title{background:#00495D;color:white;padding:10px 15px;font-weight:bold;margin-bottom:15px}.info-row{display:grid;grid-template-columns:200px 1fr;padding:10px 15px;border-bottom:1px solid #e0e0e0}.info-label{font-weight:bold;color:#666}.verification{background:#ecfdf5;border:2px solid #10b981;padding:20px;margin-top:40px}.footer{margin-top:60px;padding-top:20px;border-top:2px solid #ddd;text-align:center;font-size:12px;color:#666}</style>');
             printWin.document.write('</head><body>');
             printWin.document.write('<div class="header"><div class="company">CROSSWORLD MARINE SERVICES</div><div>Official Document</div></div>');
             printWin.document.write('<div class="doc-title">' + docType + '</div>');
@@ -18748,9 +19006,7 @@ Generated: ${new Date().toISOString()}`;
             printWin.document.write('<div class="info-row"><div class="info-label">Purpose:</div><div>' + currentSupernumerary.purpose + '</div></div></div>');
             printWin.document.write('<div class="verification"><strong style="color:#065f46">✓ Document Verified</strong><br>Verified by Crossworld Marine Services on ' + new Date().toLocaleDateString() + '</div>');
             printWin.document.write('<div class="footer">Document ID: ' + docNumber + ' | Generated: ' + new Date().toLocaleString() + '</div>');
-            printWin.document.write('
-    
-</body></html>');
+            printWin.document.write('</body></html>');
             printWin.document.close();
             printWin.focus();
             setTimeout(function() { printWin.print(); }, 250);
@@ -19413,36 +19669,5 @@ Generated: ${new Date().toISOString()}`;
         });
 
 </script>
-
-    <script>
-        // Mobile Menu Toggle
-        function toggleMobileMenu() {
-            document.body.classList.toggle('mobile-menu-open');
-        }
-        
-        document.addEventListener('click', function(event) {
-            const sidebar = document.querySelector('.sidebar');
-            const menuToggle = document.querySelector('.mobile-menu-toggle');
-            if (document.body.classList.contains('mobile-menu-open')) {
-                if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
-                    document.body.classList.remove('mobile-menu-open');
-                }
-            }
-        });
-        
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function() {
-                if (window.innerWidth < 768) {
-                    document.body.classList.remove('mobile-menu-open');
-                }
-            });
-        });
-        
-        window.addEventListener('resize', function() {
-            if (window.innerWidth >= 768) {
-                document.body.classList.remove('mobile-menu-open');
-            }
-        });
-    </script>
 </body>
 </html>
