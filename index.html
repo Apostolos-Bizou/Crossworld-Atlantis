@@ -1632,7 +1632,7 @@
                     <i data-lucide="chevron-down" style="width:16px;height:16px;opacity:0.6;"></i>
                 </div>
                 <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);text-align:center;">
-                    <span style="font-size:0.75rem;color:rgba(255,255,255,0.9);letter-spacing:0.05em;font-weight:600;">ATLANTIS_v2_80_🏆_PRODUCTION_READY_FINAL</span>
+                    <span style="font-size:0.75rem;color:rgba(255,255,255,0.9);letter-spacing:0.05em;font-weight:600;cursor:pointer;" onclick="openDevModal()">ATLANTIS_v2_81_🏆_PRODUCTION_READY_FINAL</span>
                 </div>
             </div>
         </aside>
@@ -19669,5 +19669,504 @@ Generated: ${new Date().toISOString()}`;
         });
 
 </script>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     DEVELOPER HANDOFF DOCUMENTATION - COMPLETE MODAL
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="devModal">
+    <div class="modal modal-dev-handoff">
+        <div class="modal-header">
+            <div class="modal-title-section">
+                <div class="modal-icon-dev"><i data-lucide="anchor"></i></div>
+                <div>
+                    <h3 class="modal-title">Developer Handoff Documentation</h3>
+                    <p class="modal-subtitle-dev">Frontend Complete - Backend Integration Guide</p>
+                </div>
+            </div>
+            <button class="modal-close" onclick="closeDevModal()"><i data-lucide="x"></i></button>
+        </div>
+        <div class="modal-body modal-body-dev">
+            
+            <!-- Frontend Status -->
+            <div class="dev-section">
+                <div class="dev-section-header">
+                    <i data-lucide="check-circle-2"></i>
+                    <h4>Frontend Status - 100% Complete</h4>
+                </div>
+                <div class="dev-status-grid">
+                    <div class="dev-status-item">
+                        <i data-lucide="check"></i>
+                        <div><strong>UI/UX Design:</strong> All 22 modules with complete interfaces</div>
+                    </div>
+                    <div class="dev-status-item">
+                        <i data-lucide="check"></i>
+                        <div><strong>Responsive:</strong> Mobile, tablet, desktop fully tested</div>
+                    </div>
+                    <div class="dev-status-item">
+                        <i data-lucide="check"></i>
+                        <div><strong>Mock Data:</strong> Realistic data for all views and workflows</div>
+                    </div>
+                    <div class="dev-status-item">
+                        <i data-lucide="check"></i>
+                        <div><strong>Navigation:</strong> Client-side view switching ready</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- What We Built -->
+            <div class="dev-section">
+                <div class="dev-section-header">
+                    <i data-lucide="package"></i>
+                    <h4>What We Built - Frontend Deliverables</h4>
+                </div>
+                
+                <div class="dev-domain-card">
+                    <div class="dev-domain-title">
+                        <span>👥 Recruitment Domain</span>
+                        <span class="dev-count">4 modules</span>
+                    </div>
+                    <ul class="dev-feature-list">
+                        <li><strong>Candidates:</strong> Kanban board, filters, profile modals, status workflow</li>
+                        <li><strong>Interviews:</strong> Schedule interface, assessment forms, scoring</li>
+                        <li><strong>RFC Tasks:</strong> Request queue, priority indicators, assignment</li>
+                        <li><strong>Talent Pool Settings:</strong> Configuration panels, rules management</li>
+                    </ul>
+                </div>
+
+                <div class="dev-domain-card">
+                    <div class="dev-domain-title">
+                        <span>⚓ Crew Operations</span>
+                        <span class="dev-count">7 modules</span>
+                    </div>
+                    <ul class="dev-feature-list">
+                        <li><strong>Clients:</strong> Client cards, detail modals, contract info</li>
+                        <li><strong>Fleet & Vessels:</strong> 89 vessel grid, specifications, crew complement</li>
+                        <li><strong>RFA Hub:</strong> 5 request types (Embark/Sign-off/Promotion/Extension/Replace)</li>
+                        <li><strong>Assignment & Proposal:</strong> Matrix view, crew pool, eligibility engine</li>
+                        <li><strong>Contracts:</strong> Contract listing, status tracking, templates</li>
+                        <li><strong>Rotation Plan:</strong> Gantt timeline, 12-month view, vacancy forecast</li>
+                        <li><strong>Reports:</strong> IFrame integration with fullscreen reports module</li>
+                    </ul>
+                </div>
+
+                <div class="dev-domain-card">
+                    <div class="dev-domain-title">
+                        <span>📋 Crew Management</span>
+                        <span class="dev-count">11 modules</span>
+                    </div>
+                    <ul class="dev-feature-list">
+                        <li><strong>Seafarer Profile:</strong> Tabbed modal (Profile/Docs/Sea Service/Training)</li>
+                        <li><strong>Seafarer Roster:</strong> 2,847 seafarer grid, multi-filter, pagination</li>
+                        <li><strong>Documents:</strong> Certificate repository, expiry tracking</li>
+                        <li><strong>Pending Transactions:</strong> Approval queue, task checklist</li>
+                        <li><strong>Embarkation Prep:</strong> Readiness checklist, progress indicators</li>
+                        <li><strong>Crew Changes:</strong> Relief planning, on-signer/off-signer pairing</li>
+                        <li><strong>Tickets:</strong> Flight bookings, PNR display, route visualization</li>
+                        <li><strong>Evaluations:</strong> Star ratings, performance reviews</li>
+                        <li><strong>Complaints:</strong> Issue tracking, severity workflow</li>
+                        <li><strong>Supernumerary:</strong> Non-crew rider management</li>
+                        <li><strong>Compliance:</strong> Papers availability, expiry heat-map</li>
+                    </ul>
+                </div>
+
+                <div class="dev-domain-card">
+                    <div class="dev-domain-title">
+                        <span>📊 Reports & Analytics</span>
+                        <span class="dev-count">20 tabs</span>
+                    </div>
+                    <ul class="dev-feature-list">
+                        <li>Chart.js visualizations (bar, line, pie, doughnut)</li>
+                        <li>KPI cards with animated counters</li>
+                        <li>Fullscreen reports module (separate HTML)</li>
+                        <li>Export capabilities UI</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Backend Critical -->
+            <div class="dev-section dev-critical">
+                <div class="dev-section-header">
+                    <i data-lucide="alert-triangle"></i>
+                    <h4>🔴 Critical - Backend Required (Priority 1)</h4>
+                </div>
+                
+                <div class="dev-task-card">
+                    <div class="dev-badge dev-badge-critical">CRITICAL</div>
+                    <h5>1. Database Schema Design</h5>
+                    <ul class="dev-task-list">
+                        <li><strong>Seafarers Table:</strong> 2,847 records (firstName, lastName, rank, rankType, status, nationality, dateOfBirth, seaService, etc.)</li>
+                        <li><strong>Vessels Table:</strong> 89 vessels (IMO, name, type, flag, dwt, built, principal)</li>
+                        <li><strong>RFAs Table:</strong> Request types, statuses, workflow states</li>
+                        <li><strong>Contracts Table:</strong> Terms, durations, salary, vessel assignments</li>
+                        <li><strong>Documents Table:</strong> Certificates, expiry dates, verification status</li>
+                        <li><strong>Clients Table:</strong> Principals, fleet ownership, contact info</li>
+                    </ul>
+                    <div class="dev-note">📝 <strong>Note:</strong> Follow Annex I specifications for full schema (see project docs)</div>
+                </div>
+
+                <div class="dev-task-card">
+                    <div class="dev-badge dev-badge-critical">CRITICAL</div>
+                    <h5>2. RESTful API Development</h5>
+                    <p><strong>Required Endpoints:</strong></p>
+                    <div class="dev-api-grid">
+                        <div class="dev-api-group">
+                            <strong>Seafarers:</strong>
+                            <code>GET /api/seafarers</code>
+                            <code>GET /api/seafarers/:id</code>
+                            <code>POST /api/seafarers</code>
+                            <code>PUT /api/seafarers/:id</code>
+                            <code>DELETE /api/seafarers/:id</code>
+                        </div>
+                        <div class="dev-api-group">
+                            <strong>RFAs:</strong>
+                            <code>GET /api/rfas</code>
+                            <code>POST /api/rfas</code>
+                            <code>PUT /api/rfas/:id/status</code>
+                            <code>POST /api/rfas/:id/assign</code>
+                        </div>
+                        <div class="dev-api-group">
+                            <strong>Documents:</strong>
+                            <code>GET /api/documents</code>
+                            <code>POST /api/documents</code>
+                            <code>PUT /api/documents/:id/verify</code>
+                        </div>
+                        <div class="dev-api-group">
+                            <strong>Analytics:</strong>
+                            <code>GET /api/analytics/dashboard</code>
+                            <code>GET /api/analytics/reports/:type</code>
+                        </div>
+                    </div>
+                    <div class="dev-note">📝 <strong>Format:</strong> All responses in JSON. Use pagination (limit/offset or cursor-based).</div>
+                </div>
+
+                <div class="dev-task-card">
+                    <div class="dev-badge dev-badge-high">HIGH</div>
+                    <h5>3. Authentication & Authorization</h5>
+                    <ul class="dev-task-list">
+                        <li><strong>JWT Authentication:</strong> Login endpoint, token refresh</li>
+                        <li><strong>Role-Based Access Control:</strong> 8 roles defined (see Annex I A.2)</li>
+                        <li><strong>Permissions Matrix:</strong> Module-level and action-level permissions</li>
+                        <li><strong>Session Management:</strong> Token expiry, logout</li>
+                    </ul>
+                </div>
+
+                <div class="dev-task-card">
+                    <div class="dev-badge dev-badge-high">HIGH</div>
+                    <h5>4. File Upload & Storage</h5>
+                    <ul class="dev-task-list">
+                        <li><strong>Azure Blob Storage:</strong> 40TB capacity (as per specs)</li>
+                        <li><strong>Document Types:</strong> Certificates, passports, medical, contracts</li>
+                        <li><strong>File Validation:</strong> Size limits, type checking, virus scanning</li>
+                        <li><strong>Access Control:</strong> Signed URLs, expiry timestamps</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Backend Medium -->
+            <div class="dev-section">
+                <div class="dev-section-header">
+                    <i data-lucide="layers"></i>
+                    <h4>🟡 Medium Priority - Backend Features</h4>
+                </div>
+                
+                <div class="dev-task-card">
+                    <div class="dev-badge dev-badge-medium">MEDIUM</div>
+                    <h5>5. Business Logic & Workflows</h5>
+                    <ul class="dev-task-list">
+                        <li><strong>RFA Workflow Engine:</strong> State transitions (New → In Progress → Approved → Ready → Completed)</li>
+                        <li><strong>Document Expiry Alerts:</strong> Auto-notifications at 90/60/30 days</li>
+                        <li><strong>Eligibility Engine:</strong> Rank matching, certificate validation, rest period calculation</li>
+                        <li><strong>Rotation Planning:</strong> Vacancy forecasting, auto-RFA creation</li>
+                    </ul>
+                </div>
+
+                <div class="dev-task-card">
+                    <div class="dev-badge dev-badge-medium">MEDIUM</div>
+                    <h5>6. Integration Framework</h5>
+                    <ul class="dev-task-list">
+                        <li><strong>Event Bus:</strong> Domain events for cross-module communication</li>
+                        <li><strong>PEME Clinic API:</strong> External medical examination integration</li>
+                        <li><strong>Email Service:</strong> Notifications, reminders, reports</li>
+                        <li><strong>CDC Pipeline:</strong> Change data capture for BI/analytics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Integration Points -->
+            <div class="dev-section">
+                <div class="dev-section-header">
+                    <i data-lucide="plug"></i>
+                    <h4>🔌 Frontend-Backend Integration Points</h4>
+                </div>
+                <div class="dev-integration-list">
+                    <div class="dev-integration-item">
+                        <div class="dev-integration-title">
+                            <i data-lucide="arrow-right"></i>
+                            <span>Replace Mock Data Functions</span>
+                        </div>
+                        <div class="dev-code-example">
+                            <strong>Current (Frontend Mock):</strong><br>
+                            <code>const seafarers = mockData.seafarers;</code><br><br>
+                            <strong>Replace with (API Call):</strong><br>
+                            <code>const response = await fetch('/api/seafarers');</code><br>
+                            <code>const seafarers = await response.json();</code>
+                        </div>
+                    </div>
+                    <div class="dev-integration-item">
+                        <div class="dev-integration-title">
+                            <i data-lucide="arrow-right"></i>
+                            <span>Add Loading States</span>
+                        </div>
+                        <div class="dev-code-example">
+                            <code>showLoading(); // Add spinner</code><br>
+                            <code>const data = await fetchFromAPI();</code><br>
+                            <code>hideLoading(); // Remove spinner</code><br>
+                            <code>renderData(data);</code>
+                        </div>
+                    </div>
+                    <div class="dev-integration-item">
+                        <div class="dev-integration-title">
+                            <i data-lucide="arrow-right"></i>
+                            <span>Error Handling</span>
+                        </div>
+                        <div class="dev-code-example">
+                            <code>try {</code><br>
+                            <code>&nbsp;&nbsp;const data = await api.call();</code><br>
+                            <code>} catch (error) {</code><br>
+                            <code>&nbsp;&nbsp;showErrorToast(error.message);</code><br>
+                            <code>}</code>
+                        </div>
+                    </div>
+                    <div class="dev-integration-item">
+                        <div class="dev-integration-title">
+                            <i data-lucide="arrow-right"></i>
+                            <span>Form Submissions</span>
+                        </div>
+                        <div class="dev-code-example">
+                            <strong>Current:</strong> Forms update local state only<br>
+                            <strong>Add:</strong> POST/PUT requests to API endpoints<br>
+                            <strong>Add:</strong> Validation error display<br>
+                            <strong>Add:</strong> Success confirmations
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Specs -->
+            <div class="dev-section">
+                <div class="dev-section-header">
+                    <i data-lucide="settings"></i>
+                    <h4>⚙️ Technical Specifications</h4>
+                </div>
+                <div class="dev-spec-grid">
+                    <div class="dev-spec-item"><strong>Frontend Code:</strong> 19,962 lines (HTML: ~1,650, CSS: ~5,800, JS: ~12,500)</div>
+                    <div class="dev-spec-item"><strong>Architecture:</strong> Single Page Application (SPA), No frameworks</div>
+                    <div class="dev-spec-item"><strong>Database Suggested:</strong> PostgreSQL (as per Annex I specs)</div>
+                    <div class="dev-spec-item"><strong>Backend Suggested:</strong> Node.js/Express or .NET Core or Python/Django</div>
+                    <div class="dev-spec-item"><strong>Cloud Infrastructure:</strong> Azure (D4s v5 app server, Flexible DB, 40TB Blob)</div>
+                    <div class="dev-spec-item"><strong>Estimated Effort:</strong> 77 person-months total (frontend done = ~23 PM, backend = ~54 PM remaining)</div>
+                </div>
+            </div>
+
+            <!-- Documentation Links -->
+            <div class="dev-section">
+                <div class="dev-section-header">
+                    <i data-lucide="book-open"></i>
+                    <h4>📚 Documentation & Resources</h4>
+                </div>
+                <div class="dev-docs-grid">
+                    <a href="#" class="dev-doc-link" onclick="alert('Annex I - Platform Specifications\n\nComplete system requirements & architecture document.\nSee project documentation folder.'); return false;">
+                        <i data-lucide="file-text"></i>
+                        <div>
+                            <div class="dev-doc-title">Annex I - Platform Specifications</div>
+                            <div class="dev-doc-desc">Complete system requirements & architecture</div>
+                        </div>
+                    </a>
+                    <a href="#" class="dev-doc-link" onclick="alert('Database Schema (ERD)\n\nEntity relationships & table structures.\nTo be created during backend development.'); return false;">
+                        <i data-lucide="database"></i>
+                        <div>
+                            <div class="dev-doc-title">Database Schema (ERD)</div>
+                            <div class="dev-doc-desc">Entity relationships & table structures</div>
+                        </div>
+                    </a>
+                    <a href="#" class="dev-doc-link" onclick="alert('API Specification (OpenAPI/Swagger)\n\nEndpoint definitions & contracts.\nTo be created during backend development.'); return false;">
+                        <i data-lucide="code-2"></i>
+                        <div>
+                            <div class="dev-doc-title">API Specification (OpenAPI/Swagger)</div>
+                            <div class="dev-doc-desc">Endpoint definitions & contracts</div>
+                        </div>
+                    </a>
+                    <a href="#" class="dev-doc-link" onclick="alert('Security & RBAC Matrix\n\nRole permissions & access control.\nSee Annex I Section A.2 for user roles.'); return false;">
+                        <i data-lucide="shield"></i>
+                        <div>
+                            <div class="dev-doc-title">Security & RBAC Matrix</div>
+                            <div class="dev-doc-desc">Role permissions & access control</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Start -->
+            <div class="dev-section">
+                <div class="dev-section-header">
+                    <i data-lucide="rocket"></i>
+                    <h4>🚀 Quick Start for Backend Developer</h4>
+                </div>
+                <div class="dev-steps-list">
+                    <div class="dev-step-item">
+                        <div class="dev-step-num">1</div>
+                        <div class="dev-step-content">
+                            <h5>Review Annex I Specifications</h5>
+                            <p>Read Sections 2-4 for domain architecture and module requirements</p>
+                        </div>
+                    </div>
+                    <div class="dev-step-item">
+                        <div class="dev-step-num">2</div>
+                        <div class="dev-step-content">
+                            <h5>Set Up Database</h5>
+                            <p>Design schema following specification, create migrations</p>
+                        </div>
+                    </div>
+                    <div class="dev-step-item">
+                        <div class="dev-step-num">3</div>
+                        <div class="dev-step-content">
+                            <h5>Build API Foundation</h5>
+                            <p>Start with Seafarers and RFA endpoints (most critical)</p>
+                        </div>
+                    </div>
+                    <div class="dev-step-item">
+                        <div class="dev-step-num">4</div>
+                        <div class="dev-step-content">
+                            <h5>Connect Frontend</h5>
+                            <p>Replace mock data calls with real API endpoints</p>
+                        </div>
+                    </div>
+                    <div class="dev-step-item">
+                        <div class="dev-step-num">5</div>
+                        <div class="dev-step-content">
+                            <h5>Test & Iterate</h5>
+                            <p>Integration testing, performance optimization, security hardening</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="dev-section" style="border: none; margin-bottom: 0;">
+                <div class="dev-contact-card">
+                    <i data-lucide="headphones"></i>
+                    <div>
+                        <h5>Need Help Getting Started?</h5>
+                        <p>Frontend team available for integration support & API contract discussions</p>
+                        <div class="dev-company-name">Crossworld Marine Services</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeDevModal()">Close</button>
+        </div>
+    </div>
+</div>
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   DEVELOPER HANDOFF MODAL - COMPREHENSIVE STYLES
+   ═══════════════════════════════════════════════════════════════════════ */
+.modal-dev-handoff { max-width: 900px; max-height: 90vh; }
+.modal-body-dev { max-height: 70vh; overflow-y: auto; padding: 20px 24px; }
+.modal-title-section { display: flex; align-items: center; gap: 12px; }
+.modal-icon-dev { width: 48px; height: 48px; background: linear-gradient(135deg, #00495D, #0891B2); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.modal-icon-dev i { width: 24px; height: 24px; color: white; }
+.modal-subtitle-dev { font-size: 0.85rem; color: #6b7280; margin-top: 4px; }
+
+.dev-section { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb; }
+.dev-section:last-child { border: none; margin-bottom: 0; }
+.dev-critical { border: 2px solid #EF4444; border-radius: 12px; padding: 20px; background: rgba(239,68,68,0.02); }
+
+.dev-section-header { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.dev-section-header i { width: 20px; height: 20px; color: #0891B2; }
+.dev-section-header h4 { font-size: 1.05rem; font-weight: 600; color: #111827; margin: 0; }
+
+.dev-status-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (max-width: 767px) { .dev-status-grid { grid-template-columns: 1fr; } }
+.dev-status-item { display: flex; gap: 10px; padding: 12px; background: rgba(16,185,129,0.05); border-radius: 8px; border: 1px solid rgba(16,185,129,0.2); font-size: 0.85rem; }
+.dev-status-item i { width: 18px; height: 18px; color: #10b981; flex-shrink: 0; margin-top: 2px; }
+
+.dev-domain-card { margin-bottom: 16px; padding: 16px; background: #f9fafb; border-radius: 10px; border: 1px solid #e5e7eb; }
+.dev-domain-title { font-weight: 600; color: #00495D; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
+.dev-count { font-size: 0.75rem; background: #0891B2; color: white; padding: 4px 10px; border-radius: 12px; }
+.dev-feature-list { margin: 0; padding-left: 20px; }
+.dev-feature-list li { margin: 8px 0; font-size: 0.88rem; line-height: 1.6; }
+.dev-feature-list strong { color: #00495D; }
+
+.dev-task-card { margin-bottom: 16px; padding: 16px; background: white; border-radius: 8px; border: 1px solid #e5e7eb; }
+.dev-badge { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
+.dev-badge-critical { background: #EF4444; color: white; }
+.dev-badge-high { background: #F59E0B; color: white; }
+.dev-badge-medium { background: #3B82F6; color: white; }
+.dev-task-card h5 { font-size: 0.95rem; margin: 0 0 12px 0; color: #111827; }
+.dev-task-list { margin: 8px 0 0 0; padding-left: 20px; }
+.dev-task-list li { margin: 6px 0; font-size: 0.85rem; line-height: 1.6; }
+.dev-note { margin-top: 12px; padding: 12px; background: rgba(8,145,178,0.05); border-left: 3px solid #0891B2; border-radius: 4px; font-size: 0.8rem; }
+
+.dev-api-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 12px 0; }
+@media (max-width: 767px) { .dev-api-grid { grid-template-columns: 1fr; } }
+.dev-api-group { padding: 12px; background: #f9fafb; border-radius: 6px; font-size: 0.8rem; }
+.dev-api-group strong { color: #00495D; display: block; margin-bottom: 8px; font-size: 0.85rem; }
+.dev-api-group code { display: block; padding: 6px 10px; background: white; border-radius: 4px; margin: 4px 0; font-family: 'Courier New', monospace; font-size: 0.75rem; color: #0891B2; border: 1px solid #e5e7eb; }
+
+.dev-integration-list { display: flex; flex-direction: column; gap: 12px; }
+.dev-integration-item { padding: 14px; background: #f9fafb; border-radius: 8px; border-left: 3px solid #0891B2; }
+.dev-integration-title { display: flex; align-items: center; gap: 8px; font-weight: 600; color: #111827; margin-bottom: 10px; font-size: 0.88rem; }
+.dev-integration-title i { width: 16px; height: 16px; color: #0891B2; }
+.dev-code-example { background: white; padding: 12px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.75rem; line-height: 1.8; border: 1px solid #e5e7eb; }
+.dev-code-example strong { font-family: Arial, sans-serif; color: #374151; display: block; margin-bottom: 4px; font-size: 0.8rem; }
+.dev-code-example code { color: #0891B2; }
+
+.dev-spec-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.dev-spec-item { padding: 10px 14px; background: #f9fafb; border-radius: 6px; font-size: 0.85rem; border: 1px solid #e5e7eb; }
+.dev-spec-item strong { color: #374151; }
+
+.dev-docs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (max-width: 767px) { .dev-docs-grid { grid-template-columns: 1fr; } }
+.dev-doc-link { display: flex; gap: 12px; padding: 14px; background: #f9fafb; border-radius: 8px; border: 1px solid #e5e7eb; text-decoration: none; transition: all 0.15s; }
+.dev-doc-link:hover { background: white; border-color: #0891B2; transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.dev-doc-link i { width: 24px; height: 24px; color: #0891B2; flex-shrink: 0; }
+.dev-doc-title { font-weight: 600; color: #111827; font-size: 0.85rem; margin-bottom: 4px; }
+.dev-doc-desc { font-size: 0.75rem; color: #6b7280; }
+
+.dev-steps-list { display: flex; flex-direction: column; gap: 14px; }
+.dev-step-item { display: flex; gap: 16px; }
+.dev-step-num { width: 32px; height: 32px; min-width: 32px; background: linear-gradient(135deg, #00495D, #0891B2); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; }
+.dev-step-content h5 { font-size: 0.9rem; color: #111827; margin: 0 0 4px 0; }
+.dev-step-content p { font-size: 0.8rem; color: #6b7280; margin: 0; }
+
+.dev-contact-card { display: flex; gap: 16px; padding: 20px; background: linear-gradient(135deg, rgba(0,73,93,0.05), rgba(8,145,178,0.05)); border-radius: 12px; align-items: center; }
+.dev-contact-card i { width: 40px; height: 40px; color: #0891B2; flex-shrink: 0; }
+.dev-contact-card h5 { font-size: 1rem; color: #111827; margin: 0 0 6px 0; }
+.dev-contact-card p { font-size: 0.85rem; color: #6b7280; margin: 0 0 8px 0; }
+.dev-company-name { font-size: 1.1rem; font-weight: 700; color: #00495D; }
+</style>
+
+<script>
+function openDevModal() {
+    var modal = document.getElementById('devModal');
+    if (modal) {
+        modal.classList.add('open');
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    }
+}
+
+function closeDevModal() {
+    var modal = document.getElementById('devModal');
+    if (modal) {
+        modal.classList.remove('open');
+    }
+}
+</script>
+
 </body>
 </html>
