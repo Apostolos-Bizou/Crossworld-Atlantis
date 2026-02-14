@@ -474,6 +474,296 @@
 @keyframes slideIn { from { transform:translateX(100%); opacity:0; } to { transform:translateX(0); opacity:1; } }
 @keyframes slideOut { from { transform:translateX(0); opacity:1; } to { transform:translateX(100%); opacity:0; } }
 </style>
+
+<style>
+/* ============================================================================
+   ATLANTIS ERP - COMPREHENSIVE RESPONSIVE DESIGN
+   Mobile-first approach with progressive enhancement
+   Breakpoints: 320px (mobile), 768px (tablet), 1024px (desktop), 1440px (large)
+============================================================================ */
+
+/* ========== BASE RESPONSIVE SETUP ========== */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px; /* Base font size */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    min-height: 100vh;
+}
+
+/* ========== FLUID TYPOGRAPHY ========== */
+h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+h2 { font-size: clamp(1.25rem, 3vw, 2rem); }
+h3 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
+p { font-size: clamp(0.875rem, 2vw, 1rem); }
+
+/* ========== CONTAINER RESPONSIVE ========== */
+.container,
+.max-w-7xl,
+[style*="max-width:1400px"],
+[style*="max-width:1200px"] {
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+@media (min-width: 768px) {
+    .container { padding-left: 2rem !important; padding-right: 2rem !important; }
+}
+
+@media (min-width: 1024px) {
+    .container { 
+        max-width: 1200px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+/* ========== GRID RESPONSIVE ========== */
+[style*="display:grid"],
+[style*="display: grid"] {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+}
+
+@media (min-width: 640px) {
+    [style*="grid-template-columns:repeat(2"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (min-width: 768px) {
+    [style*="grid-template-columns:repeat(3"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    [style*="grid-template-columns:repeat(3"] {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    [style*="grid-template-columns:repeat(4"] {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
+/* ========== CATEGORY CARDS RESPONSIVE ========== */
+.category-card,
+[onclick*="download"][style*="cursor:pointer"] {
+    min-height: auto !important;
+    padding: 1.5rem !important;
+}
+
+@media (max-width: 767px) {
+    [style*="grid-template-columns:repeat(4,1fr)"] {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+}
+
+/* ========== MODAL RESPONSIVE ========== */
+[id*="modal"] > div,
+[style*="position:absolute"][style*="transform:translate(-50%,-50%)"] {
+    width: 95% !important;
+    max-width: 95vw !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+}
+
+@media (min-width: 640px) {
+    [id*="modal"] > div {
+        width: 90% !important;
+        max-width: 600px !important;
+    }
+}
+
+/* ========== BUTTONS RESPONSIVE (Touch-friendly) ========== */
+button,
+.btn,
+[style*="cursor:pointer"][onclick] {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 0.75rem 1.5rem !important;
+    font-size: clamp(0.875rem, 2vw, 1rem) !important;
+}
+
+/* Floating Report Builder button */
+#atlantis-builder-v5-trigger,
+[id*="report-builder-trigger"] {
+    bottom: 1rem !important;
+    right: 1rem !important;
+}
+
+#atlantis-builder-v5-trigger button,
+[id*="report-builder-trigger"] button {
+    padding: 1rem 1.5rem !important;
+    font-size: 0.9rem !important;
+}
+
+@media (max-width: 640px) {
+    #atlantis-builder-v5-trigger button span {
+        display: none; /* Hide text, show only icon on mobile */
+    }
+    #atlantis-builder-v5-trigger button {
+        width: 56px !important;
+        height: 56px !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        justify-content: center !important;
+    }
+}
+
+/* ========== CARDS RESPONSIVE ========== */
+.card,
+.report-card,
+[style*="border-radius:16px"],
+[style*="border-radius:12px"] {
+    margin-bottom: 1rem !important;
+    width: 100% !important;
+}
+
+/* ========== SECTIONS PADDING ========== */
+.section,
+[style*="padding:40px"],
+[style*="padding:28px"] {
+    padding: 1.5rem 1rem !important;
+}
+
+@media (min-width: 768px) {
+    .section { padding: 2rem !important; }
+}
+
+@media (min-width: 1024px) {
+    .section { padding: 2.5rem !important; }
+}
+
+/* ========== REPORT BUILDER MODAL SECTIONS ========== */
+#atlantis-builder-v5-modal [style*="max-height:380px"],
+#atlantis-builder-v5-modal [style*="overflow-y:auto"] {
+    max-height: 50vh !important;
+}
+
+/* Section items in modal */
+#atlantis-builder-v5-modal label {
+    padding: 1rem !important;
+    flex-wrap: wrap !important;
+}
+
+#atlantis-builder-v5-modal label > div:first-of-type {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+}
+
+/* ========== FOOTER BUTTONS ========== */
+[style*="display:flex;gap:12px"] button {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+}
+
+@media (max-width: 640px) {
+    [style*="padding:22px 28px"][style*="border-top"] {
+        padding: 1rem !important;
+        flex-direction: column !important;
+    }
+    
+    [style*="padding:22px 28px"] button {
+        width: 100% !important;
+    }
+}
+
+/* ========== ICONS RESPONSIVE ========== */
+svg {
+    max-width: 100%;
+    height: auto;
+}
+
+[style*="width:48px;height:48px"],
+[style*="width:56px;height:56px"] {
+    flex-shrink: 0 !important;
+}
+
+@media (max-width: 640px) {
+    [style*="width:56px;height:56px"] {
+        width: 40px !important;
+        height: 40px !important;
+    }
+}
+
+/* ========== TEXT RESPONSIVE ========== */
+[style*="font-size:1.25rem"],
+[style*="font-size:1.5rem"] {
+    font-size: clamp(1rem, 3vw, 1.25rem) !important;
+}
+
+[style*="font-size:2rem"] {
+    font-size: clamp(1.5rem, 4vw, 2rem) !important;
+}
+
+/* ========== ALERT/MODAL RESPONSIVE ========== */
+[style*="backdrop-filter:blur"] > div {
+    margin: 1rem !important;
+    border-radius: 1rem !important;
+}
+
+/* ========== SCROLLABLE SECTIONS ========== */
+.scrollable,
+[style*="overflow-x:auto"] {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+/* ========== TOUCH IMPROVEMENTS ========== */
+@media (hover: none) and (pointer: coarse) {
+    /* Touch devices */
+    a, button, [onclick] {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* ========== LANDSCAPE MODE (Mobile) ========== */
+@media (max-height: 500px) and (orientation: landscape) {
+    #atlantis-builder-v5-modal > div {
+        max-height: 95vh !important;
+    }
+}
+
+/* ========== PRINT FRIENDLY ========== */
+@media print {
+    #atlantis-builder-v5-trigger,
+    [id*="report-builder-trigger"],
+    button {
+        display: none !important;
+    }
+}
+
+/* ========== UTILITY CLASSES ========== */
+.mobile-only { display: block !important; }
+.desktop-only { display: none !important; }
+
+@media (min-width: 768px) {
+    .mobile-only { display: none !important; }
+    .desktop-only { display: block !important; }
+}
+
+/* ========== SAFE AREA (iPhone notch, etc) ========== */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
+    }
+}
+
+</style>
+
 </head>
 <body>
 
