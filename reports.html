@@ -529,10 +529,19 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
 }
 
 /* ========== GRID RESPONSIVE ========== */
-[style*="display:grid"],
-[style*="display: grid"] {
+/* Only target main page grids, not modal content */
+body > div[style*="display:grid"],
+body > section [style*="display:grid"] {
     grid-template-columns: 1fr !important;
     gap: 1rem !important;
+}
+
+@media (min-width: 1024px) {
+    body > div[style*="display:grid"],
+    body > section [style*="display:grid"] {
+        grid-template-columns: initial !important;
+        gap: initial !important;
+    }
 }
 
 @media (min-width: 640px) {
@@ -564,15 +573,15 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
 }
 
 @media (max-width: 767px) {
-    [style*="grid-template-columns:repeat(4,1fr)"] {
+    /* Only target the main page category grid */
+    body > div > div > div[style*="grid-template-columns:repeat(4,1fr)"] {
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
     }
 }
 
-/* ========== MODAL RESPONSIVE ========== */
-[id*="modal"] > div,
-[style*="position:absolute"][style*="transform:translate(-50%,-50%)"] {
+/* ========== MODAL RESPONSIVE (SAFE) ========== */
+#atlantis-builder-v5-modal > div:first-child {
     width: 95% !important;
     max-width: 95vw !important;
     max-height: 90vh !important;
@@ -580,9 +589,15 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
 }
 
 @media (min-width: 640px) {
-    [id*="modal"] > div {
+    #atlantis-builder-v5-modal > div:first-child {
         width: 90% !important;
-        max-width: 600px !important;
+        max-width: 680px !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    #atlantis-builder-v5-modal > div:first-child {
+        max-width: 680px !important;
     }
 }
 
@@ -2026,6 +2041,22 @@ function showNotificationV5(msg, type) {
 #atlantis-builder-v5-modal>div::-webkit-scrollbar{width:8px;}
 #atlantis-builder-v5-modal>div::-webkit-scrollbar-track{background:#0F172A;}
 #atlantis-builder-v5-modal>div::-webkit-scrollbar-thumb{background:#334155;border-radius:4px;}
+
+/* ========== MODAL CONTENT PROTECTION ========== */
+#atlantis-builder-v5-modal [style*="display:grid"],
+#atlantis-builder-v5-modal [style*="grid-template-columns"] {
+    /* Preserve original grid settings inside modal */
+    grid-template-columns: initial !important;
+    gap: initial !important;
+}
+
+#atlantis-builder-v5-modal label {
+    /* Ensure modal labels work correctly */
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+}
+
 </style>
 
 <script>
