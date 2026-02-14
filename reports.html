@@ -1909,6 +1909,133 @@ function showNotificationV5(msg, type) {
     }
 }
 
+
+
+/* ============================================================================
+   HORIZONTAL SCROLL FOR CHARTS & WIDE CONTENT (Mobile)
+============================================================================ */
+
+/* Chart containers - enable horizontal scroll on mobile */
+.chart-container,
+[id*="Chart"],
+canvas,
+.kpi-container,
+.stats-grid {
+    max-width: 100%;
+}
+
+/* Wrapper for charts to enable scrolling */
+@media (max-width: 767px) {
+    
+    /* Charts need scrollable container */
+    .chart-container,
+    div[style*="position:relative"] > canvas {
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: #0891B2 #E5E7EB;
+    }
+    
+    /* Chart canvas - set min-width to preserve readability */
+    canvas {
+        min-width: 600px !important; /* Ensure chart is readable */
+        height: auto !important;
+    }
+    
+    /* KPI grids that might overflow */
+    .header-stats,
+    .kpi-container,
+    .stats-grid,
+    [style*="display:grid"][style*="grid-template-columns"] {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+    
+    /* Tables - horizontal scroll */
+    table,
+    .table-container,
+    [style*="overflow-x:auto"] {
+        display: block !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+    
+    /* Scrollbar styling for better UX */
+    .chart-container::-webkit-scrollbar,
+    canvas::-webkit-scrollbar,
+    table::-webkit-scrollbar {
+        height: 8px;
+        background: #E5E7EB;
+        border-radius: 4px;
+    }
+    
+    .chart-container::-webkit-scrollbar-thumb,
+    canvas::-webkit-scrollbar-thumb,
+    table::-webkit-scrollbar-thumb {
+        background: #0891B2;
+        border-radius: 4px;
+    }
+    
+    .chart-container::-webkit-scrollbar-thumb:hover,
+    canvas::-webkit-scrollbar-thumb:hover,
+    table::-webkit-scrollbar-thumb:hover {
+        background: #0E7490;
+    }
+    
+    /* Add scroll indicator hint */
+    .chart-container::after,
+    div[style*="position:relative"]:has(canvas)::after {
+        content: "← Scroll →";
+        position: absolute;
+        bottom: 2px;
+        right: 10px;
+        background: rgba(8, 145, 178, 0.9);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        pointer-events: none;
+        opacity: 0.8;
+        animation: fadeInOut 3s ease-in-out infinite;
+    }
+    
+    @keyframes fadeInOut {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+    }
+}
+
+/* Tablet - less aggressive scrolling */
+@media (min-width: 768px) and (max-width: 1023px) {
+    canvas {
+        min-width: 500px !important;
+    }
+}
+
+/* Wide content that breaks layout */
+.scrollable-content {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent body horizontal scroll */
+body {
+    overflow-x: hidden !important;
+}
+
+/* Container max-width enforcement */
+.container,
+.max-w-7xl,
+section,
+main {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+}
+
 </style>
 
 <script>
@@ -2247,6 +2374,37 @@ document.addEventListener('DOMContentLoaded', function() {
         lucide.createIcons();
         console.log('✓ Lucide icons initialized');
     }
+});
+</script>
+
+
+
+<script>
+// Wrap charts in scrollable containers for mobile
+document.addEventListener('DOMContentLoaded', function() {
+    // Wait for charts to render
+    setTimeout(function() {
+        // Find all canvas elements (Chart.js)
+        const canvases = document.querySelectorAll('canvas');
+        
+        canvases.forEach(function(canvas) {
+            const parent = canvas.parentElement;
+            
+            // Check if already wrapped
+            if (!parent.classList.contains('chart-scroll-wrapper')) {
+                // Create wrapper
+                const wrapper = document.createElement('div');
+                wrapper.className = 'chart-scroll-wrapper';
+                wrapper.style.cssText = 'overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; position: relative;';
+                
+                // Wrap canvas
+                parent.insertBefore(wrapper, canvas);
+                wrapper.appendChild(canvas);
+                
+                console.log('✓ Chart wrapped for horizontal scroll');
+            }
+        });
+    }, 1000);
 });
 </script>
 
